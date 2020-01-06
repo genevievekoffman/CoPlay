@@ -1,2 +1,0 @@
-# CoPlay
-Impact Month App
