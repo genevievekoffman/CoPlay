@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import firebase from 'firebase';
 
@@ -21,37 +21,45 @@ const DB = firebase.firestore();
  
 
 function App() {
-  return (
-    <div className="App">
-      <form onSubmit = {(event) => {
-        checkUser(event)
-      }}>
-        <input type = 'text'name='username' placeholder="username"></input>
-        <input type = 'text'name='password' placeholder="password"></input>
-        <input type = 'submit'value='Verify Credentials'></input>
-      </form>
-                
-         
-    </div>
-  );
+  let username = sessionStorage.getItem('user')
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  if (!isLoggedIn){
+    return (
+      <div className="App">
+        <form onSubmit = {(event) => {
+          checkUser(event, setIsLoggedIn)
+        }}>
+          <input type = 'text'name='username' placeholder="username"></input>
+          <input type = 'text'name='password' placeholder="password"></input>
+          <input type = 'submit'value='Verify Credentials'></input>
+        </form>
+      </div>
+    );
+  } else { //someone is logged in
+    return (
+      <div className = "App">
+        Logged in page
+      </div>
+    );
+  }
+  
 }
  
 
-function checkUser(e){
+function checkUser(e, setIsLoggedIn){
   e.preventDefault();
   console.log("function called")
   let username = e.target.elements.username.value;
   let password = e.target.elements.password.value;
-
-  //DB.collection('Users').doc('Adin').set({username:'alien'})
+ 
   var docRef = DB.collection('Users').doc(username);
   docRef.get().then(function(doc){
       if(doc.exists){
-        //console.log("Exist: Document data: ", doc.data());
         if(password === doc.data().password) {
-          console.log("passwords match")
-          DB.collection('Users').doc(username).update({isLogged:true})
-          checkLogged(username);
+          console.log("passwords match") 
+          sessionStorage.setItem('user',username) //saves to local storage
+          setIsLoggedIn(true)
+           
         } else {
           console.log("passwords dont match")
         }
@@ -62,12 +70,5 @@ function checkUser(e){
 })
 }
 
-function checkLogged(username){
-  DB.collection('Users').doc(username).get().then(function(doc){
-    if(doc.data().isLogged === true){
-      console.log(doc.data().isLogged)
-    }
-  })
-}
-
 export default App;
+
