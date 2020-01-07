@@ -4,6 +4,8 @@ import React, {useState} from 'react';
 import './App.css';
 import firebase from 'firebase';
 
+import Task from './view/Task/Task'
+
 //Firebase
 var firebaseConfig = {
   apiKey: "AIzaSyAQrMqvW5LWBc2rXz-ve-jdgUnwXGtT9Gk",
@@ -41,15 +43,22 @@ function App() {
       </div>
     );
   } else { //someone is logged in
+    
+    
     return (
       <div className = "App">
-        Logged in pagexss
+        Logged in page
+        
+      <div id = "container">
+      <Task/>
+      </div>
+
       </div>
     );
   }
   
 }
-  
+ 
 
 function checkUser(e, setIsLoggedIn){
   e.preventDefault();
@@ -76,17 +85,7 @@ function checkUser(e, setIsLoggedIn){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 export default App;
 
