@@ -1,4 +1,6 @@
+
 import React, {useState} from 'react';
+
 import './App.css';
 import firebase from 'firebase';
 
@@ -29,9 +31,12 @@ function App() {
         <form onSubmit = {(event) => {
           checkUser(event, setIsLoggedIn)
         }}>
-          <input type = 'text'name='username' placeholder="username"></input>
-          <input type = 'text'name='password' placeholder="password"></input>
-          <input type = 'submit'value='Verify Credentials'></input>
+          <div id = "container">
+            <div id = "LogIn">CoPlay</div>
+          <input type = 'text'name='username' id = "name" placeholder="username"></input>
+          <input type = 'text'name='password' id = "password" placeholder="password"></input>
+          <input type = 'submit' id = "submit" value='Verify Credentials'></input>
+  </div>
         </form>
       </div>
     );
@@ -69,6 +74,19 @@ function checkUser(e, setIsLoggedIn){
   }
 })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 export default App;
 
