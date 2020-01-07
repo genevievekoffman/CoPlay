@@ -43,13 +43,13 @@ function App() {
   } else { //someone is logged in
     return (
       <div className = "App">
-        Logged in page
+        Logged in pagexss
       </div>
     );
   }
   
 }
- 
+  
 
 function checkUser(e, setIsLoggedIn){
   e.preventDefault();
