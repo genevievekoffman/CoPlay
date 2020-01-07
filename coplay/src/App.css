@@ -1,4 +1,150 @@
-.App {
+/*input{
+  border-radius: %;
+}
+*/
+
+
+#LogIn{
+  justify-self: center;
+  
+  font-size: 6vw;
+  line-height: 40vh;
+  grid-area: LogIn;
+  color: orange;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+
+
+  
+
+}
+
+
+
+#name{
+  justify-self: center;
+  width:37vw;
+  grid-area: name;
+  height: 80px;
+  border: groove;
+  height:5vh;
+}
+
+#password{
+  justify-self: center;
+  grid-area: password;
+  width:37vw;
+  height: 80px ;
+  border: groove;
+  height:5vh;
+  
+  
+}
+
+#submit{
+  grid-area: submit;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #4CAF50;
+  border: 0;
+  color: #FFFFFF;
+  justify-self: center;
+  width: 38vw;
+  height:5vh;
+  
+  
+}
+
+#container{
+  justify-self: center;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 5vw auto 5vw;
+  grid-template-rows: 40vh auto 3vh auto 3vh 40vh;
+  grid-template-areas: 
+  ". LogIn ."
+  ". name ."
+  ". . ."
+  ". password ."
+  ". . ."
+  ". submit .";
+}
+
+form{
+  display: grid;
+  
+}
+
+
+html{
+  background: #f9f9f9;
+}
+
+@media only screen and (max-width: 400px)
+{
+  
+    #LogIn{
+      justify-content: center;
+      font-size: 8vh;
+      
+    }
+
+    #name{
+      width: 70vw
+    }
+    #password{
+      width: 70vw
+    }
+    #submit{
+      width: 70vw
+    }
+
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +181,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
