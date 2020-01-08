@@ -2,11 +2,15 @@
 .task{
 padding: 20px;
 margin: 0.5em;
-border: 1px solid black;
-border-radius: 25px;
+border: 6px solid white;
 justify-content: center;
-width: 50%
-
+display: inline-block;
+color:white;
+font-family: Avenir;
+font-size: 1.5vw;
+text-align: center;
+background-color:#D8D8D8 ;
+ 
 }
 
 h2{

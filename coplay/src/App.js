@@ -54,6 +54,8 @@ function App() {
       </div>
     );
   } else {
+
+    
     //someone is logged in
 
     if (counter == 0) {
@@ -61,14 +63,33 @@ function App() {
     }
     console.log(tasksLists);
     return (
-      <div className="App">
-        <h4>
+    
+      <div className="App2">
+
+
+
+       
+        <div className = "top-nav"> 
+              <a className="active" href="#leaderboard">Leading</a>
+              <a href="#tasks">Tasks</a>
+              <a href="#rewards">Rewards</a> 
+        </div>
+       
+       
+      
+      
+
+
+      <div>
+      <h4>
           {tasksLists.map((task, index) => {
             return <Task task={task} key={index} />;
           })}
         </h4>
+      </div>
+         
 
-        <div class="AddTaskPopUp">
+        <div className="AddTaskPopUp">
           <form
             onSubmit={event => {
               addTask(event, setTasksList, setCounter);
@@ -86,7 +107,7 @@ function App() {
               placeholder="Points"
               id="Points"
             ></input>
-            <div class="button">
+            <div className="button">
               <input type="submit" id="Cancel" value="Cancel"></input>
               <input type="submit" id="Save" value="Save"></input>
             </div>
