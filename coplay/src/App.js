@@ -83,9 +83,9 @@ function addTask(event) {
 console.log(title);
 console.log(points);
   DB.collection("Tasks").doc(title).set({
-    Points: points,
+    points: points,
     completed: false,
-    Title: title
+    task: title
   })
   event.target.elements.title.value = " "
   event.target.elements.points.value = " "
