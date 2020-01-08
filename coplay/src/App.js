@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 
 import './App.css';
@@ -49,9 +50,8 @@ function App() {
         Logged in page
 
       <h2>Add Task</h2>
-      
 
-<div class="AddTaskPopUp">
+<div class="containers">
     
 <form onSubmit={(event) => {
           addTask(event)
@@ -83,9 +83,9 @@ function addTask(event) {
 console.log(title);
 console.log(points);
   DB.collection("Tasks").doc(title).set({
-    points: points,
+    Points: points,
     completed: false,
-    task: title
+    Title: title
   })
   event.target.elements.title.value = " "
   event.target.elements.points.value = " "
@@ -119,3 +119,4 @@ function checkUser(e, setIsLoggedIn) {
 
 
 export default App;
+
