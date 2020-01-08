@@ -155,10 +155,6 @@ button{
   margin-top: 2vw;
   font-size: 130%;
   outline: none;
+  cursor: pointer;
 }
 
-.PopUp{
-  display: none;
-}
-  
-  

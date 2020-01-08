@@ -22,9 +22,13 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 const DB = firebase.firestore();
 
-
+let looks = {
+  background:"red"
+}
 
 function App() {
+ 
+
   let username = sessionStorage.getItem('user')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   if (!isLoggedIn) {
@@ -44,44 +48,51 @@ function App() {
     );
   } else { //someone is logged in
 
-
     return (
       <div>
-      <h2>Add Task</h2>
-      <div className="PopUp">
+        
         Logged in page
+      <div className="PopUp" name = "PopUp" style = {{looks}}>
+        
+          <h2>Add Task</h2>
 
 
+    
 
-        <div class="AddTask" name = "AddTask">
+          <div class="AddTask" name="AddTask">
 
-          <form onSubmit={(event) => {
-            addTask(event)
-          }}>
-            <input type="text" name="title" placeholder="Title" id="Title"></input>
-            <input type="text" name="points" placeholder="Points" id="Points"></input>
-            <div class="button">
-              <input type="submit" name = "cancel" id="Cancel" value="Cancel"></input>
-              <input type="submit" id="Save" value="Save" ></input>
+            <form onSubmit={(event) => {
+              addTask(event)
+            }}>
+              <input type="text" name="title" placeholder="Title" id="Title"></input>
+              <input type="text" name="points" placeholder="Points" id="Points"></input>
+              <div class="button">
+                <input type="submit" name="cancel" id="Cancel" value="Cancel"></input>
+                <input type="submit" id="Save" value="Save" ></input>
+              </div>
+            </form>
+            <div class="plus">
+              <button id="PopUp" onClick={(event) => {
+                revealAddTask(event)
+              }}>+</button>
             </div>
-          </form>
-          <div class="plus">
-         <button id = "PopUp" onClick ={(event) => {
-            revealAddTask(event)}}>+</button>
-        </div>
-        </div>
+          </div>
 
 
-      </div>
+        </div>
       </div>
     );
   }
 }
 
-function revealAddTask(event){
+function revealAddTask(event) {
+ 
   event.preventDefault();
   console.log("revealed!!!")
-  document.AddTask.style.display = "inline"
+  looks = {background: "green"}
+  // event.target.elements.PopUp.style = { display: "inline" }
+  // style = {{visibility: show}}
+  // document.AddTask.style.display = "inline"
 }
 
 
