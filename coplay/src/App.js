@@ -1,10 +1,9 @@
+import React, { useState, useEffect } from "react";
 
-import React, {useState} from 'react';
+import "./App.css";
+import firebase from "firebase";
 
-import './App.css';
-import firebase from 'firebase';
-
-import Task from './view/Task/Task'
+import Task from "./view/Task/Task";
 
 //Firebase
 var firebaseConfig = {
@@ -21,71 +20,102 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 const DB = firebase.firestore();
- 
- 
 
 function App() {
-  let username = sessionStorage.getItem('user')
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-  if (!isLoggedIn){
+  let username = sessionStorage.getItem("user");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [tasksLists, setTasksList] = useState([]);
+  //useEffect(() => updateTasks(setTasksList), []);
+  const [counter, setCounter] = useState(0);
+
+  if (!isLoggedIn) {
     return (
       <div className="App">
-        <form onSubmit = {(event) => {
-          checkUser(event, setIsLoggedIn)
-        }}>
-          <div id = "container">
-            <div id = "LogIn">CoPlay</div>
-          <input type = 'text'name='username' id = "name" placeholder="username"></input>
-          <input type = 'text'name='password' id = "password" placeholder="password"></input>
-          <input type = 'submit' id = "submit" value='Verify Credentials'></input>
-  </div>
+        <form
+          onSubmit={event => {
+            checkUser(event, setIsLoggedIn);
+          }}
+        >
+          <div id="container">
+            <div id="LogIn">CoPlay</div>
+            <input
+              type="text"
+              name="username"
+              id="name"
+              placeholder="username"
+            ></input>
+            <input
+              type="text"
+              name="password"
+              id="password"
+              placeholder="password"
+            ></input>
+            <input type="submit" id="submit" value="Verify Credentials"></input>
+          </div>
         </form>
       </div>
     );
-  } else { //someone is logged in
+  } else {
+    //someone is logged in
+     
+    if(counter == 0){
+      updateTasks(setTasksList, setCounter);
+    }
+    console.log(tasksLists)
     return (
-      <div className = "App">
-        Logged in page
-        
-      <div id = "container">
-      <Task/>
-      </div>
-
+      <div className="App">
+         
+        <h4>
+          {tasksLists.map((task, index) => {
+             
+            return <Task task={task} key={index} />;
+          })}
+        </h4>
       </div>
     );
   }
-  
 }
- 
 
+function updateTasks(setTasksList, setCounter) {
+  var list = new Array();
+  //let list = [];
 
+  DB.collection("Tasks")
+    .get()
+    .then(tasksDB => {
+      tasksDB.forEach(taskDB => {
+        let taskInfo = [];
+        taskInfo.push(taskDB.get("task"));
+        taskInfo.push(taskDB.get("points"));
+        taskInfo.push(taskDB.get("completed"));
+        //console.log("pushing!", taskInfo);
+        list.push(taskInfo);
+      });
+      setTasksList(list);
+      setCounter(1);
+    });
+}
 
-function checkUser(e, setIsLoggedIn){
+function checkUser(e, setIsLoggedIn) {
   e.preventDefault();
-  console.log("function called")
+  console.log("function called");
   let username = e.target.elements.username.value;
   let password = e.target.elements.password.value;
- 
-  var docRef = DB.collection('Users').doc(username);
-  docRef.get().then(function(doc){
-      if(doc.exists){
-        if(password === doc.data().password) {
-          console.log("passwords match") 
-          sessionStorage.setItem('user',username) //saves to local storage
-          setIsLoggedIn(true)
-           
-        } else {
-          console.log("passwords dont match")
-        }
-        
+
+  var docRef = DB.collection("Users").doc(username);
+  docRef.get().then(function(doc) {
+    if (doc.exists) {
+      if (password === doc.data().password) {
+        console.log("passwords match");
+        sessionStorage.setItem("user", username); //saves to local storage
+        setIsLoggedIn(true);
       } else {
-        console.log("no info found")
-  }
-})
+        console.log("passwords dont match");
+      }
+    } else {
+      console.log("no info found");
+    }
+  });
 }
 
-
- 
-
 export default App;
-

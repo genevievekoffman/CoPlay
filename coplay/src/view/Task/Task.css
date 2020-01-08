@@ -1,0 +1,8 @@
+.task{
+padding: 20px;
+margin: 0.5em;
+border: 1px solid black;
+border-radius: 25px;
+justify-content: center;
+width: 50%
+}
