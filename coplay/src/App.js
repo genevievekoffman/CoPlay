@@ -50,8 +50,9 @@ function App() {
         Logged in page
 
       <h2>Add Task</h2>
+      
 
-<div class="containers">
+<div class="AddTaskPopUp">
     
 <form onSubmit={(event) => {
           addTask(event)
