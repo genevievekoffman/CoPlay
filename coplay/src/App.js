@@ -49,21 +49,21 @@ function App() {
         Logged in page
 
       <h2>Add Task</h2>
-      
 
-<div class="AddTaskPopUp">
-    
-<form onSubmit={(event) => {
-          addTask(event)
-        }}>
-    <input type="text" name = "title" placeholder="Title" id="Title"></input>
-    <input type="text" name = "points" placeholder="Points" id="Points"></input>
-    <div class="button">
-     <input type="submit" id="Cancel"value="Cancel"></input>
-     <input type="submit" id="Save" value="Save" ></input>
-</div>
-    </form>
- </div>
+
+        <div class="AddTaskPopUp">
+
+          <form onSubmit={(event) => {
+            addTask(event)
+          }}>
+            <input type="text" name="title" placeholder="Title" id="Title"></input>
+            <input type="text" name="points" placeholder="Points" id="Points"></input>
+            <div class="button">
+              <input type="submit" name = "cancel" id="Cancel" value="Cancel"></input>
+              <input type="submit" id="Save" value="Save" ></input>
+            </div>
+          </form>
+        </div>
 
 
       </div>
@@ -76,17 +76,23 @@ function App() {
 
 
 
+
 function addTask(event) {
   event.preventDefault()
-  let title = event.target.elements.title.value;
-  let points = event.target.elements.points.value;
-console.log(title);
-console.log(points);
-  DB.collection("Tasks").doc(title).set({
-    points: points,
-    completed: false,
-    task: title
-  })
+  if (event.target.elements.cancel.value == "Cancel") {
+    console.log("cancelled bitchhh")
+  } else {
+    console.log(event.target.elements.cancel.value)
+    let title = event.target.elements.title.value;
+    let points = event.target.elements.points.value;
+    console.log(title);
+    console.log(points);
+    DB.collection("Tasks").doc(title).set({
+      points: points,
+      completed: false,
+      task: title
+    })
+  }
   event.target.elements.title.value = " "
   event.target.elements.points.value = " "
 }
