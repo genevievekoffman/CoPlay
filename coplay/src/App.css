@@ -1,160 +1,136 @@
-
-
-
-#LogIn{
+#LogIn {
   justify-self: center;
-  
+
   font-size: 6vw;
   line-height: 40vh;
   grid-area: LogIn;
   color: orange;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-
-
-  
-
+  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
-
-
-#name{
+#name {
   justify-self: center;
-  width:37vw;
+  width: 37vw;
   grid-area: name;
   height: 80px;
   border: groove;
-  height:5vh;
+  height: 5vh;
 }
 
-#password{
+#password {
   justify-self: center;
   grid-area: password;
-  width:37vw;
-  height: 80px ;
+  width: 37vw;
+  height: 80px;
   border: groove;
-  height:5vh;
-  
-  
+  height: 5vh;
 }
 
-#submit{
+#submit {
   grid-area: submit;
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #4CAF50;
+  background: #4caf50;
   border: 0;
-  color: #FFFFFF;
+  color: #ffffff;
   justify-self: center;
   width: 38vw;
-  height:5vh;
-  
-  
+  height: 5vh;
 }
 
-#container{
+#container {
   justify-self: center;
   width: 100vw;
   height: 100vh;
   display: grid;
   grid-template-columns: 5vw auto 5vw;
   grid-template-rows: 40vh auto 3vh auto 3vh 40vh;
-  grid-template-areas: 
-  ". LogIn ."
-  ". name ."
-  ". . ."
-  ". password ."
-  ". . ."
-  ". submit .";
+  grid-template-areas:
+    ". LogIn ."
+    ". name ."
+    ". . ."
+    ". password ."
+    ". . ."
+    ". submit .";
 }
 
-form{
+form {
   display: grid;
-  
 }
 
-
-html{
+html {
   background: #f9f9f9;
 }
 
-@media only screen and (max-width: 400px)
-{
-  
-    #LogIn{
-      justify-content: center;
-      font-size: 8vh;
-      
-    }
+@media only screen and (max-width: 400px) {
+  #LogIn {
+    justify-content: center;
+    font-size: 8vh;
+  }
 
-    #name{
-      width: 70vw
-    }
-    #password{
-      width: 70vw
-    }
-    #submit{
-      width: 70vw
-    }
-
-    
-
-} 
-
-
-h2{
-  margin-left: 43vw;
-  margin-top: 7vw;
+  #name {
+    width: 70vw;
+  }
+  #password {
+    width: 70vw;
+  }
+  #submit {
+    width: 70vw;
+  }
 }
-.AddTask{
+
+h2 {
+  /* margin-left: 43vw;
+  margin-top: 7vw; */
+}
+.AddTask {
   display: grid;
   margin-top: 100px;
   margin-left: 40vw;
-  
 }
 
-
-input{
+input {
   margin-bottom: 10px;
   width: 30%;
   height: 10px;
-  border-top:none;
-  border-left:none;
-  border-right:none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
   border-bottom: gray;
-  outline:none;
+  outline: none;
   font-size: 13px;
-  
 }
 
-#Cancel{
+#Cancel {
   width: 4vw;
   height: 2vw;
-  background-color:gray;
+  background-color: gray;
   margin-top: 20px;
   margin-left: 3vw;
   border-radius: 5px;
 }
 
-#Save{
+#Save {
   width: 4vw;
   height: 2vw;
   margin-left: 2vw;
   background-color: cornflowerblue;
 }
 
-
-  
-button{
+button {
   border-radius: 50%;
-  background-color:rgb(105, 105, 231);
+  background-color: rgb(105, 105, 231);
   width: 3vw;
   height: 3vw;
   text-align: center;
   margin-left: 13vw;
-  margin-top: 2vw;
+  margin-top: 15vw;
   font-size: 130%;
   outline: none;
   cursor: pointer;
 }
 
+#PopUp {
+  position: absolute;
+}

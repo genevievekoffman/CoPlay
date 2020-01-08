@@ -1,10 +1,9 @@
+import React, { useState } from "react";
 
-import React, { useState } from 'react';
+import "./App.css";
+import firebase from "firebase";
 
-import './App.css';
-import firebase from 'firebase';
-
-import Task from './view/Task/Task'
+import Task from "./view/Task/Task";
 
 //Firebase
 var firebaseConfig = {
@@ -22,129 +21,121 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 const DB = firebase.firestore();
 
-let looks = {
-  background:"red"
-}
-
 function App() {
- 
+  let username = sessionStorage.getItem("user");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
-  let username = sessionStorage.getItem('user')
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
   if (!isLoggedIn) {
     return (
       <div className="App">
-        <form onSubmit={(event) => {
-          checkUser(event, setIsLoggedIn)
-        }}>
+        <form
+          onSubmit={event => {
+            checkUser(event, setIsLoggedIn);
+          }}
+        >
           <div id="container">
             <div id="LogIn">CoPlay</div>
-            <input type='text' name='username' id="name" placeholder="username"></input>
-            <input type='text' name='password' id="password" placeholder="password"></input>
-            <input type='submit' id="submit" value='Verify Credentials'></input>
+            <input
+              type="text"
+              name="username"
+              id="name"
+              placeholder="username"
+            ></input>
+            <input
+              type="text"
+              name="password"
+              id="password"
+              placeholder="password"
+            ></input>
+            <input type="submit" id="submit" value="Verify Credentials"></input>
           </div>
         </form>
       </div>
     );
-  } else { //someone is logged in
+  } else {
+    //someone is logged in
 
     return (
       <div>
-        
         Logged in page
-      <div className="PopUp" name = "PopUp" style = {{looks}}>
-        
-          <h2>Add Task</h2>
-
-
-    
-
+        <div className="PopUp" name="PopUp">
           <div class="AddTask" name="AddTask">
+            {showForm && <AddTaskForm />}
 
-            <form onSubmit={(event) => {
-              addTask(event)
-            }}>
-              <input type="text" name="title" placeholder="Title" id="Title"></input>
-              <input type="text" name="points" placeholder="Points" id="Points"></input>
-              <div class="button">
-                <input type="submit" name="cancel" id="Cancel" value="Cancel"></input>
-                <input type="submit" id="Save" value="Save" ></input>
-              </div>
-            </form>
-            <div class="plus">
-              <button id="PopUp" onClick={(event) => {
-                revealAddTask(event)
-              }}>+</button>
-            </div>
+            <button id="PopUp" onClick={() => setShowForm(!showForm)}>
+              +
+            </button>
           </div>
-
-
         </div>
       </div>
     );
   }
 }
 
-function revealAddTask(event) {
- 
-  event.preventDefault();
-  console.log("revealed!!!")
-  looks = {background: "green"}
-  // event.target.elements.PopUp.style = { display: "inline" }
-  // style = {{visibility: show}}
-  // document.AddTask.style.display = "inline"
+function AddTaskForm() {
+  return (
+    <form
+      onSubmit={event => {
+        addTask(event);
+      }}
+    >
+      <h2>Add Task</h2>
+      <input type="text" name="title" placeholder="Title" id="Title"></input>
+      <input type="text" name="points" placeholder="Points" id="Points"></input>
+      <div class="button">
+        <input type="submit" name="cancel" id="Cancel" value="Cancel"></input>
+        <input type="submit" name="save" id="Save" value="Save"></input>
+      </div>
+    </form>
+  );
 }
 
-
-
-
-
 function addTask(event) {
-  event.preventDefault()
+  event.preventDefault();
+  //its always cancel u dumbass
   if (event.target.elements.cancel.value == "Cancel") {
-    console.log("cancelled bitchhh")
+    // console.log(event.target.elements.cancel.value)
+    // console.log(event.target.elements.save.value)
+    console.log("cancelled bitchhh");
   } else {
-    console.log(event.target.elements.cancel.value)
+    console.log("saved my G");
     let title = event.target.elements.title.value;
-    let points = event.target.elements.points.value;
+    let points = parseInt(event.target.elements.points.value);
     console.log(title);
     console.log(points);
-    DB.collection("Tasks").doc(title).set({
-      points: points,
-      completed: false,
-      task: title
-    })
+    DB.collection("Tasks")
+      .doc(title)
+      .set({
+        points: points,
+        completed: false,
+        task: title
+      });
   }
-  event.target.elements.title.value = " "
-  event.target.elements.points.value = " "
+  event.target.elements.title.value = " ";
+  event.target.elements.points.value = " ";
 }
 
 function checkUser(e, setIsLoggedIn) {
   e.preventDefault();
-  console.log("function called")
+  console.log("function called");
   let username = e.target.elements.username.value;
   let password = e.target.elements.password.value;
 
-  var docRef = DB.collection('Users').doc(username);
-  docRef.get().then(function (doc) {
+  var docRef = DB.collection("Users").doc(username);
+  docRef.get().then(function(doc) {
     if (doc.exists) {
       if (password === doc.data().password) {
-        console.log("passwords match")
-        sessionStorage.setItem('user', username) //saves to local storage
-        setIsLoggedIn(true)
-
+        console.log("passwords match");
+        sessionStorage.setItem("user", username); //saves to local storage
+        setIsLoggedIn(true);
       } else {
-        console.log("passwords dont match")
+        console.log("passwords dont match");
       }
-
     } else {
-      console.log("no info found")
+      console.log("no info found");
     }
-  })
+  });
 }
 
-
-
-
 export default App;
-
