@@ -1,5 +1,5 @@
 
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import './App.css';
 import firebase from 'firebase';
@@ -21,71 +21,102 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 const DB = firebase.firestore();
- 
- 
+
+
 
 function App() {
   let username = sessionStorage.getItem('user')
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  if (!isLoggedIn){
+  if (!isLoggedIn) {
     return (
       <div className="App">
-        <form onSubmit = {(event) => {
+        <form onSubmit={(event) => {
           checkUser(event, setIsLoggedIn)
         }}>
-          <div id = "container">
-            <div id = "LogIn">CoPlay</div>
-          <input type = 'text'name='username' id = "name" placeholder="username"></input>
-          <input type = 'text'name='password' id = "password" placeholder="password"></input>
-          <input type = 'submit' id = "submit" value='Verify Credentials'></input>
-  </div>
+          <div id="container">
+            <div id="LogIn">CoPlay</div>
+            <input type='text' name='username' id="name" placeholder="username"></input>
+            <input type='text' name='password' id="password" placeholder="password"></input>
+            <input type='submit' id="submit" value='Verify Credentials'></input>
+          </div>
         </form>
       </div>
     );
   } else { //someone is logged in
-    
-    
+
+
     return (
-      <div className = "App">
+      <div className="App">
         Logged in page
-        
-      <div id = "container">
-      <Task/>
-      </div>
+
+      <h2>Add Task</h2>
+
+<div class="containers">
+    
+<form onSubmit={(event) => {
+          addTask(event)
+        }}>
+    <input type="text" name = "title" placeholder="Title" id="Title"></input>
+    <input type="text" name = "points" placeholder="Points" id="Points"></input>
+    <div class="button">
+     <input type="submit" id="Cancel"value="Cancel"></input>
+     <input type="submit" id="Save" value="Save" ></input>
+</div>
+    </form>
+ </div>
+
 
       </div>
     );
   }
-  
 }
- 
 
-function checkUser(e, setIsLoggedIn){
+
+
+
+
+
+function addTask(event) {
+  event.preventDefault()
+  let title = event.target.elements.title.value;
+  let points = event.target.elements.points.value;
+console.log(title);
+console.log(points);
+  DB.collection("Tasks").doc(title).set({
+    Points: points,
+    completed: false,
+    Title: title
+  })
+  event.target.elements.title.value = " "
+  event.target.elements.points.value = " "
+}
+
+function checkUser(e, setIsLoggedIn) {
   e.preventDefault();
   console.log("function called")
   let username = e.target.elements.username.value;
   let password = e.target.elements.password.value;
- 
+
   var docRef = DB.collection('Users').doc(username);
-  docRef.get().then(function(doc){
-      if(doc.exists){
-        if(password === doc.data().password) {
-          console.log("passwords match") 
-          sessionStorage.setItem('user',username) //saves to local storage
-          setIsLoggedIn(true)
-           
-        } else {
-          console.log("passwords dont match")
-        }
-        
+  docRef.get().then(function (doc) {
+    if (doc.exists) {
+      if (password === doc.data().password) {
+        console.log("passwords match")
+        sessionStorage.setItem('user', username) //saves to local storage
+        setIsLoggedIn(true)
+
       } else {
-        console.log("no info found")
-  }
-})
+        console.log("passwords dont match")
+      }
+
+    } else {
+      console.log("no info found")
+    }
+  })
 }
 
 
- 
+
 
 export default App;
 
