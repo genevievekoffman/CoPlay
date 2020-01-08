@@ -132,16 +132,19 @@ input{
   height: 2vw;
   background-color:gray;
   margin-top: 20px;
-  margin-left: 2vw;
+  margin-left: 3vw;
   border-radius: 5px;
 }
 
 #Save{
   width: 4vw;
   height: 2vw;
+  margin-left: 2vw;
   background-color: cornflowerblue;
 }
 
+
+  
 button{
   border-radius: 50%;
   background-color:rgb(105, 105, 231);
@@ -153,6 +156,3 @@ button{
   font-size: 130%;
   outline: none;
 }
-
-  
-  
