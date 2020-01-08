@@ -1,3 +1,4 @@
+
 .task{
 padding: 20px;
 margin: 0.5em;
@@ -5,4 +6,36 @@ border: 1px solid black;
 border-radius: 25px;
 justify-content: center;
 width: 50%
+
+h2{
+    margin-left: 43vw;
+}
+.containers{
+    display: grid;
+    
+    margin-top: 100px;
+    margin-left: 40vw;
+}
+
+
+input{
+    margin-bottom: 10px;
+    width: 12vw;
+    height: 2vw;
+    ;
+    
+}
+
+#Cancel{
+     width: 4vw;
+    background-color:gray;
+    margin-top: 20px;
+    margin-left: 2vw;
+    border-radius: 5px;
+}
+
+#Save{
+    width: 4vw;
+    background-color: cornflowerblue;
+
 }

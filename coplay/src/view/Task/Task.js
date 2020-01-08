@@ -1,15 +1,11 @@
+ 
 import React from 'react';
 import './Task.css'
 
 function Task(props){ //passed an array of tasks
      
     console.log("props: ", props.task[0]);
-    
-    //console.dir(props.task)
-    // let arr = props.task
-    // console.dir(arr)
-    // console.dir(arr[0])
-     
+ 
      
 
     return(
@@ -20,5 +16,5 @@ function Task(props){ //passed an array of tasks
  
     )
 }
-
+ 
 export default Task;
