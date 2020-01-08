@@ -97,7 +97,17 @@ html{
       width: 70vw
     }
 
-    
+
+} 
+
+
+
+
+.App{
+  justify-content: center;
+  display: flex;
+}
+
 
 } 
 
