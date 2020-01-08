@@ -71,7 +71,7 @@ function App() {
         <div class="AddTaskPopUp">
           <form
             onSubmit={event => {
-              addTask(event);
+              addTask(event, setTasksList, setCounter);
             }}
           >
             <input
@@ -113,11 +113,14 @@ function updateTasks(setTasksList, setCounter) {
         list.push(taskInfo);
       });
       setTasksList(list);
+      
       setCounter(1);
+      
+       
     });
 }
 
-function addTask(event) {
+function addTask(event, setTasksList, setCounter) {
   event.preventDefault();
   let title = event.target.elements.title.value;
   let points = event.target.elements.points.value;
@@ -132,6 +135,7 @@ function addTask(event) {
     });
   event.target.elements.title.value = " ";
   event.target.elements.points.value = " ";
+  updateTasks(setTasksList,setCounter)
 }
 
 function checkUser(e, setIsLoggedIn) {
