@@ -21,7 +21,9 @@
   height: 80px;
   border: groove;
   height:5vh;
-  
+  border-radius: 15px;
+  padding: 0.1em;
+  font-size: 3vh;
 }
 
 #password{
@@ -31,8 +33,9 @@
   height: 80px ;
   border: groove;
   height:5vh;
-  
-  
+  border-radius: 15px;
+  padding: 0.1em;
+  font-size: 3vh;
 }
 
 #submit{
@@ -49,8 +52,10 @@
 
   background: #648AD1;
   box-shadow: 0 6px 11px 0 #648AD1;
-   
   
+  border-radius: 15px;
+  font-size: 3vh;
+  padding: 0.1em;
   
 }
 
@@ -160,7 +165,6 @@ input{
   background-color: cornflowerblue;
 }
 
- 
 
 .top-nav {
   padding-top: 0.5vw;
@@ -170,6 +174,7 @@ input{
   font-size: 1.5vw;
   font-family: sans-serif;
   background: white;
+
 }
 
 .top-nav a {

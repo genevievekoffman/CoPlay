@@ -35,7 +35,7 @@ function App() {
           }}
         >
           <div id="container">
-            <div id="LogIn">CoPlay</div> 
+            <div id="LogIn">CoPlay</div>
             <input
               type="text"
               name="username"
@@ -48,46 +48,42 @@ function App() {
               id="password"
               placeholder="password"
             ></input>
-            <input type="submit" id="submit" value="Verify Credentials"></input>
+            <input type="submit" id="submit" value="Play"></input>
           </div>
         </form>
       </div>
     );
   } else {
 
-    
+
     //someone is logged in
 
     if (counter == 0) {
       updateTasks(setTasksList, setCounter);
     }
-     
+
     return (
-    
+
       <div className="App2">
 
 
 
-       
-        <div className = "top-nav"> 
-              <a className="active" href="#leaderboard">Leading</a>
-              <a href="#tasks">Tasks</a>
-              <a href="#rewards">Rewards</a> 
+        <div className="navCont">
+          <div className="top-nav">
+            <a className="active" href="#leaderboard">Leading</a>
+            <a href="#tasks">Tasks</a>
+            <a href="#rewards">Rewards</a>
+          </div>
         </div>
-       
-       
-      
-      
 
+        <div>
+          <h4>
+            {tasksLists.map((task, index) => {
+              return <Task task={task} key={index} db={DB} />;
+            })}
+          </h4>
+        </div>
 
-      <div>
-      <h4>
-          {tasksLists.map((task, index) => {
-            return <Task task={task} key={index} db={DB} />;
-          })}
-        </h4>
-      </div>
-         
 
         <div className="AddTaskPopUp">
           <form
@@ -130,14 +126,14 @@ function updateTasks(setTasksList, setCounter) {
         taskInfo.push(taskDB.get("task"));
         taskInfo.push(taskDB.get("points"));
         taskInfo.push(taskDB.get("completed"));
-         
+
         list.push(taskInfo);
       });
       setTasksList(list);
-      
+
       setCounter(1);
-      
-       
+
+
     });
 }
 
@@ -156,7 +152,7 @@ function addTask(event, setTasksList, setCounter) {
     });
   event.target.elements.title.value = " ";
   event.target.elements.points.value = " ";
-  updateTasks(setTasksList,setCounter)
+  updateTasks(setTasksList, setCounter)
 }
 
 function checkUser(e, setIsLoggedIn) {
@@ -166,7 +162,7 @@ function checkUser(e, setIsLoggedIn) {
   let password = e.target.elements.password.value;
 
   var docRef = DB.collection("Users").doc(username);
-  docRef.get().then(function(doc) {
+  docRef.get().then(function (doc) {
     if (doc.exists) {
       if (password === doc.data().password) {
         console.log("passwords match");
