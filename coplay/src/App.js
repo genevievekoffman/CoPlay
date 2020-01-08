@@ -46,13 +46,14 @@ function App() {
 
 
     return (
-      <div className="App">
+      <div>
+      <h2>Add Task</h2>
+      <div className="PopUp">
         Logged in page
 
-      <h2>Add Task</h2>
 
 
-        <div class="AddTaskPopUp">
+        <div class="AddTask" name = "AddTask">
 
           <form onSubmit={(event) => {
             addTask(event)
@@ -65,17 +66,23 @@ function App() {
             </div>
           </form>
           <div class="plus">
-         <button>+</button>
+         <button id = "PopUp" onClick ={(event) => {
+            revealAddTask(event)}}>+</button>
         </div>
         </div>
 
 
       </div>
+      </div>
     );
   }
 }
 
-
+function revealAddTask(event){
+  event.preventDefault();
+  console.log("revealed!!!")
+  document.AddTask.style.display = "inline"
+}
 
 
 

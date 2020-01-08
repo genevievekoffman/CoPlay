@@ -106,7 +106,7 @@ h2{
   margin-left: 43vw;
   margin-top: 7vw;
 }
-.AddTaskPopUp{
+.AddTask{
   display: grid;
   margin-top: 100px;
   margin-left: 40vw;
@@ -154,5 +154,8 @@ button{
   outline: none;
 }
 
+.PopUp{
+  display: none;
+}
   
   
