@@ -4,7 +4,7 @@ import firebase from "firebase";
 import Task from "./view/Task/Task";
 
 //Firebase
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyAQrMqvW5LWBc2rXz-ve-jdgUnwXGtT9Gk",
   authDomain: "coplay-85fcb.firebaseapp.com",
   databaseURL: "https://coplay-85fcb.firebaseio.com",
@@ -35,7 +35,7 @@ function App() {
           }}
         >
           <div id="container">
-            <div id="LogIn">CoPlay</div>
+            <div id="LogIn">CoPlay</div> 
             <input
               type="text"
               name="username"
@@ -59,16 +59,16 @@ function App() {
     if (counter == 0) {
       updateTasks(setTasksList, setCounter);
     }
-    console.log(tasksLists);
+     
     return (
       <div className="App">
         <h4>
           {tasksLists.map((task, index) => {
-            return <Task task={task} key={index} />;
+            return <Task task={task} key={index} db={DB} />;
           })}
         </h4>
 
-        <div class="AddTaskPopUp">
+        <div className="AddTaskPopUp">
           <form
             onSubmit={event => {
               addTask(event, setTasksList, setCounter);
@@ -86,7 +86,7 @@ function App() {
               placeholder="Points"
               id="Points"
             ></input>
-            <div class="button">
+            <div className="button">
               <input type="submit" id="Cancel" value="Cancel"></input>
               <input type="submit" id="Save" value="Save"></input>
             </div>
@@ -109,7 +109,7 @@ function updateTasks(setTasksList, setCounter) {
         taskInfo.push(taskDB.get("task"));
         taskInfo.push(taskDB.get("points"));
         taskInfo.push(taskDB.get("completed"));
-        //console.log("pushing!", taskInfo);
+         
         list.push(taskInfo);
       });
       setTasksList(list);

@@ -2,12 +2,20 @@
 .task{
 padding: 20px;
 margin: 0.5em;
-border: 1px solid black;
-border-radius: 25px;
 justify-content: center;
-width: 50%
+text-align: center;
+width: 50%;
 
+background: #D8D8D8;
+border: 10px solid #FFFFFF;
+box-shadow: 0 2px 3px 0 rgba(0,0,0,0.50);
+
+font-family: Avenir-Heavy;
+font-size: 2vw;
+color: #FFFFFF;
+text-align: center;
 }
+ 
 
 h2{
     margin-left: 43vw;
@@ -41,3 +49,5 @@ input{
     background-color: cornflowerblue;
 
 }
+
+ 

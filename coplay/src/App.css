@@ -7,12 +7,9 @@
   font-size: 6vw;
   line-height: 40vh;
   grid-area: LogIn;
-  color: orange;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-
-
-  
-
+  color: black;
+  font-family: Krungthep;
+ 
 }
 
 
@@ -24,6 +21,7 @@
   height: 80px;
   border: groove;
   height:5vh;
+  
 }
 
 #password{
@@ -42,12 +40,16 @@
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
-  background: #4CAF50;
+   
   border: 0;
   color: #FFFFFF;
   justify-self: center;
   width: 38vw;
   height:5vh;
+
+  background: #648AD1;
+  box-shadow: 0 6px 11px 0 #648AD1;
+   
   
   
 }
@@ -151,6 +153,4 @@ input{
   background-color: cornflowerblue;
 }
 
-
-  
-  
+ 
