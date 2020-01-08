@@ -116,6 +116,7 @@ html{
   flex-direction: column;
   background-color:#D8D8D8;
   background: rgba(164,164,164,20%);
+  height:100vh;
 }
 
 .App{
@@ -174,7 +175,6 @@ input{
   font-size: 1.5vw;
   font-family: sans-serif;
   background: white;
-
 }
 
 .top-nav a {

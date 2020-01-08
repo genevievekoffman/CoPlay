@@ -68,13 +68,13 @@ function App() {
 
 
 
-        <div className="navCont">
-          <div className="top-nav">
-            <a className="active" href="#leaderboard">Leading</a>
-            <a href="#tasks">Tasks</a>
-            <a href="#rewards">Rewards</a>
-          </div>
+
+        <div className="top-nav">
+          <a className="active" href="#leaderboard">Leading</a>
+          <a href="#tasks">Tasks</a>
+          <a href="#rewards">Rewards</a>
         </div>
+
 
         <div>
           <h4>
