@@ -142,7 +142,17 @@ input{
   background-color: cornflowerblue;
 }
 
-
+button{
+  border-radius: 50%;
+  background-color:rgb(105, 105, 231);
+  width: 3vw;
+  height: 3vw;
+  text-align: center;
+  margin-left: 13vw;
+  margin-top: 2vw;
+  font-size: 130%;
+  outline: none;
+}
 
   
   

@@ -64,6 +64,9 @@ function App() {
               <input type="submit" id="Save" value="Save" ></input>
             </div>
           </form>
+          <div class="plus">
+         <button>+</button>
+        </div>
         </div>
 
 
