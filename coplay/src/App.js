@@ -54,6 +54,8 @@ function App() {
       </div>
     );
   } else {
+
+    
     //someone is logged in
 
     if (counter == 0) {
@@ -61,12 +63,31 @@ function App() {
     }
      
     return (
-      <div className="App">
-        <h4>
+    
+      <div className="App2">
+
+
+
+       
+        <div className = "top-nav"> 
+              <a className="active" href="#leaderboard">Leading</a>
+              <a href="#tasks">Tasks</a>
+              <a href="#rewards">Rewards</a> 
+        </div>
+       
+       
+      
+      
+
+
+      <div>
+      <h4>
           {tasksLists.map((task, index) => {
             return <Task task={task} key={index} db={DB} />;
           })}
         </h4>
+      </div>
+         
 
         <div className="AddTaskPopUp">
           <form
