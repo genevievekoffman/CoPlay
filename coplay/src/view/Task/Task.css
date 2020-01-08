@@ -2,7 +2,16 @@
 .task{
 padding: 20px;
 margin: 0.5em;
-border: 6px solid white;
+ 
+justify-content: center;
+text-align: center;
+ 
+
+ 
+border: 10px solid #FFFFFF;
+box-shadow: 0 2px 3px 0 rgba(0,0,0,0.50);
+  
+  
 justify-content: center;
 display: inline-block;
 color:white;
@@ -11,7 +20,9 @@ font-size: 1.5vw;
 text-align: center;
 background-color:#D8D8D8 ;
  
+ 
 }
+ 
 
 h2{
     margin-left: 43vw;
@@ -45,3 +56,5 @@ input{
     background-color: cornflowerblue;
 
 }
+
+ 
