@@ -246,6 +246,8 @@ button {
 
 .PopUp{
   position: absolute;
+  margin-top: 4vh;
+  z-index: 99;
 }
 
  
