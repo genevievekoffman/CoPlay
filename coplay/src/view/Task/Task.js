@@ -1,20 +1,31 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import "./Task.css";
 
 function Task(props) {
   //passed an array of tasks
-  const { task, index, db } = props; 
-  
+  const { task, index, db } = props;
+  task.completed = task[2];
+  const [taskCompleted, setTaskCompleted] = useState(task.completed);
 
-
-  if (task[2] === false) {
+  if (task.completed === false) {
     return (
       <div className="task" key={index}>
-        <div id={"completed"}></div>
+        <div>
+          {taskCompleted ? (
+            "Completed"
+          ) : (
+            <button
+              onClick={() =>
+                completeTask(task[0], task[1], db, setTaskCompleted)
+              }
+            >
+              {" "}
+              Complete Task
+            </button>
+          )}
+        </div>
         {task[0]} <br></br>
         {task[1]} <br></br>
-        <div id = "completed"></div>  
-        <button onClick = {() => completeTask(task[0], db)}> Complete Task</button>  
       </div>
     );
   } else {
@@ -29,30 +40,26 @@ function Task(props) {
   }
 }
 
-function completeTask(task, points, db) {
-
-
+function completeTask(task, points, db, setTaskCompleted) {
   db.collection("Tasks")
     .doc(task)
     .update({
       completed: true
     });
-  document.getElementById("completed").innerHTML = "Completed";
+  setTaskCompleted(true);
 
-       
-     
-  db.collection("Users").doc(sessionStorage.getItem("user")).get().then(function(doc){
-    let total = doc.get("totalPoints") + points;
-
-    db.collection("Users")
+  db.collection("Users")
     .doc(sessionStorage.getItem("user"))
-    .update({
-      totalPoints: total
+    .get()
+    .then(function(doc) {
+      let total = doc.get("totalPoints") + points;
+
+      db.collection("Users")
+        .doc(sessionStorage.getItem("user"))
+        .update({
+          totalPoints: total
+        });
     });
-  });
-   
-   
-   
 }
 
 export default Task;
