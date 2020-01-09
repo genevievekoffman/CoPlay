@@ -222,8 +222,8 @@ button {
   width: 3vw;
   height: 3vw;
   text-align: center;
-  margin-left: 13vw;
-  margin-top: 15vw;
+  margin-left: 34vw;
+  
   font-size: 130%;
   outline: none;
   cursor: pointer;
@@ -231,6 +231,7 @@ button {
 
 #PopUp {
   position: absolute;
+  
 }
 
 .profileIcon{
