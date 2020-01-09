@@ -77,12 +77,20 @@
 
 form {
   display: grid;
+  padding:34px;
+  
+  
+
+  
 }
 
 #grid{
   display:grid;
-  padding:white 2%;
+  background-color: rgb(137, 238, 137);
+
 }
+
+
 
 
 
@@ -225,6 +233,7 @@ button {
 #PopUp {
   position: absolute;
   
+  
 }
 
 .profileIcon{
@@ -255,3 +264,9 @@ button {
   
 
 }
+
+#addtask{
+text-align: center;
+
+}
+
