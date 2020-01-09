@@ -75,6 +75,10 @@ form{
   
 }
 
+#grid{
+  display:grid
+
+}
 
 html{
   background: #f9f9f9;

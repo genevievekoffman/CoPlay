@@ -26,10 +26,12 @@ function App() {
   //useEffect(() => updateTasks(setTasksList), []);
   const [counter, setCounter] = useState(0);
   const [points, setPoints] = useState(false);
+  const [showForm, setShowForm] = useState(false);
 
   if (!isLoggedIn) {
     return (
       <div className="App">
+        
         <form
           onSubmit={event => {
             checkUser(event, setIsLoggedIn);
@@ -84,32 +86,13 @@ function App() {
         </h4>
       </div>
          
+<div class="AddTask" name="AddTask">
+          {showForm && <AddTaskForm onCancel={() => setShowForm(false)}/>}
 
-        <div className="AddTaskPopUp">
-          <form
-            onSubmit={event => {
-              addTask(event, setTasksList, setCounter);
-            }}
-          >
-            <input
-              type="text"
-              name="title"
-              placeholder="Title"
-              id="Title"
-            ></input>
-            <input
-              type="text"
-              name="points"
-              placeholder="Points"
-              id="Points"
-            ></input>
-            <div className="button">
-              <input type="submit" id="Cancel" value="Cancel"></input>
-              <input type="submit" id="Save" value="Save"></input>
-            </div>
-          </form>
+          <button id="PopUp" onClick={() => setShowForm(!showForm)}>
+            +
+          </button>
         </div>
-
 
         <div id = "points" className = "points"></div>
         <img className = "profileIcon" src = "sketchImages/profileheadbig.png" onClick = {
@@ -159,44 +142,101 @@ function updateTasks(setTasksList, setCounter) {
     });
 }
 
-function addTask(event, setTasksList, setCounter) {
+function addTask(event) {
   event.preventDefault();
+
+  console.log("saved my G");
   let title = event.target.elements.title.value;
-  let points = event.target.elements.points.value;
-  console.log(title);
-  console.log(points);
-  DB.collection("Tasks")
-    .doc(title)
-    .set({
-      points: points,
-      completed: false,
-      task: title
-    });
+  let points = parseInt(event.target.elements.points.value);
+  if (title == "") {
+    alert("Must enter a title");
+  } else if (points == "") {
+    alert("Must enter points");
+  } else {
+    console.log(title);
+    console.log(points);
+    DB.collection("Tasks")
+      .doc(title)
+      .set({
+        points: points,
+        completed: false,
+        task: title
+      });
+  }
+
   event.target.elements.title.value = " ";
   event.target.elements.points.value = " ";
-  updateTasks(setTasksList,setCounter)
+}
+
+function AddTaskForm(props) {
+  
+  console.log("form opened");
+  return (
+    <div name="PopUp" className="PopUp">
+      <div id="grid">
+        <form
+          onSubmit={event => {
+            addTask(event);
+          }}
+        >
+          <h2>Add Task </h2>
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            id="Title"
+          ></input>
+          <input
+            type="text"
+            name="points"
+            placeholder="Points"
+            id="Points"
+          ></input>
+          <div class="button">
+            <input type="submit" name="save" id="Save" value="Save"></input>
+          </div>
+        </form>
+
+        <button
+          name="cancel"
+          id="Cancel"
+          value="Cancel"
+          onClick={props.onCancel}
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  );
 }
 
 function checkUser(e, setIsLoggedIn) {
   e.preventDefault();
   console.log("function called");
+
   let username = e.target.elements.username.value;
   let password = e.target.elements.password.value;
 
-  var docRef = DB.collection("Users").doc(username);
-  docRef.get().then(function(doc) {
-    if (doc.exists) {
-      if (password === doc.data().password) {
-        console.log("passwords match");
-        sessionStorage.setItem("user", username); //saves to local storage
-        setIsLoggedIn(true);
+  if (username == "") {
+    alert("Must enter a username");
+  } else if (password == "") {
+    alert("Must enter a password");
+  } else {
+    var docRef = DB.collection("Users").doc(username);
+    docRef.get().then(function(doc) {
+      if (doc.exists) {
+        if (password === doc.data().password) {
+          console.log("passwords match");
+          sessionStorage.setItem("user", username); //saves to local storage
+          setIsLoggedIn(true);
+        } else {
+          console.log("passwords dont match");
+        }
       } else {
-        console.log("passwords dont match");
+        console.log("no info found");
       }
-    } else {
-      console.log("no info found");
-    }
-  });
+    });
+  }
 }
 
 export default App;
