@@ -164,6 +164,11 @@ input{
   
 }
 
+#submit{
+  cursor: pointer;
+
+}
+
 #Cancel{
   width: 4vw;
   height: 2vw;
@@ -211,7 +216,7 @@ input{
   background-color: cornflowerblue;
 }
 
-button {
+.addTaskBtn {
   border-radius: 50%;
   background-color: rgb(105, 105, 231);
   width: 3vw;
@@ -231,6 +236,7 @@ button {
 .profileIcon{
   width: 5vw;
   padding: 1vw;
+  cursor: pointer;
 }
 
 #points{
