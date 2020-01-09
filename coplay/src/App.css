@@ -55,13 +55,13 @@
     ". submit .";
 }
 
-/* form {
+form {
   display: grid;
-} */
+}
 
 #grid{
   display:grid
-  
+
 }
 
 html {
@@ -111,7 +111,7 @@ input {
   width: 4vw;
   height: 2vw;
   background-color: gray;
-  margin-top: -5vh;
+  margin-top: -4.5vh;
   margin-left: 0vw;
   border-radius: 5px;
   font-size: 1vw;
