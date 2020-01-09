@@ -31,14 +31,14 @@ function App() {
   if (!isLoggedIn) {
     return (
       <div className="App">
-        
+
         <form
           onSubmit={event => {
             checkUser(event, setIsLoggedIn);
           }}
         >
           <div id="container">
-            <div id="LogIn">CoPlay</div> 
+            <div id="LogIn">CoPlay</div>
             <input
               type="text"
               name="username"
@@ -58,66 +58,66 @@ function App() {
     );
   } else {
 
-    
+
     //someone is logged in
 
     if (counter == 0) {
       updateTasks(setTasksList, setCounter);
     }
-     
+
     return (
-    
+
       <div className="App2">
 
 
 
-       
-        <div className = "top-nav"> 
-              <a className="active" href="#leaderboard">Leading</a>
-              <a href="#tasks">Tasks</a>
-              <a href="#rewards">Rewards</a> 
+
+        <div className="top-nav">
+          <a className="active" href="#leaderboard">Leading</a>
+          <a href="#tasks">Tasks</a>
+          <a href="#rewards">Rewards</a>
         </div>
 
-      <div>
-      <h4>
-          {tasksLists.map((task, index) => {
-            return <Task task={task} key={index} db={DB} />;
-          })}
-        </h4>
-      </div>
-         
-<div className="AddTask" name="AddTask">
-          {showForm && <AddTaskForm onCancel={() => setShowForm(false)}/>}
+        <div>
+          <h4>
+            {tasksLists.map((task, index) => {
+              return <Task task={task} key={index} db={DB} />;
+            })}
+          </h4>
+        </div>
+
+        <div className="AddTask" name="AddTask">
+          {showForm && <AddTaskForm onCancel={() => setShowForm(false)} />}
 
           <button id="PopUp" onClick={() => setShowForm(!showForm)}>
             +
           </button>
         </div>
 
-        <div id = "points" className = "points"></div>
-        <img className = "profileIcon" src = "sketchImages/profileheadbig.png" onClick = {
+        <div id="points" className="points"></div>
+        <img className="profileIcon" src="sketchImages/profileheadbig.png" onClick={
           displayPoints
-          }></img>
-        
+        }></img>
+
 
       </div>
     );
   }
 }
 
-function displayPoints(){
+function displayPoints() {
   DB.collection("Users").doc(sessionStorage.getItem('user')).get().then(userDB => {
     let points = userDB.get("totalPoints")
     console.log(points)
     document.getElementById("points").style.visibility = "visible";
     document.getElementById("points").innerHTML = "Points: " + points;
     wait();
-     
+
   });
 }
 
-function wait(){
-  setTimeout(()=> document.getElementById("points").style.visibility = "hidden", 3000) 
+function wait() {
+  setTimeout(() => document.getElementById("points").style.visibility = "hidden", 3000)
 }
 function updateTasks(setTasksList, setCounter) {
   var list = new Array();
@@ -131,14 +131,14 @@ function updateTasks(setTasksList, setCounter) {
         taskInfo.push(taskDB.get("task"));
         taskInfo.push(taskDB.get("points"));
         taskInfo.push(taskDB.get("completed"));
-         
+
         list.push(taskInfo);
       });
       setTasksList(list);
-      
+
       setCounter(1);
-      
-       
+
+
     });
 }
 
@@ -169,7 +169,7 @@ function addTask(event) {
 }
 
 function AddTaskForm(props) {
-  
+
   console.log("form opened");
   return (
     <div name="PopUp" className="PopUp">
@@ -223,7 +223,7 @@ function checkUser(e, setIsLoggedIn) {
     alert("Must enter a password");
   } else {
     var docRef = DB.collection("Users").doc(username);
-    docRef.get().then(function(doc) {
+    docRef.get().then(function (doc) {
       if (doc.exists) {
         if (password === doc.data().password) {
           console.log("passwords match");
