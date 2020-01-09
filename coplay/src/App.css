@@ -86,8 +86,8 @@ form {
 
 #grid{
   display:grid;
-  background-color: rgb(137, 238, 137);
-
+  background-color: rgb(255, 255, 255);
+  border-radius: 50px;
 }
 
 

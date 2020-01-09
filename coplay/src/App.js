@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import firebase from "firebase";
 import Task from "./view/Task/Task";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
+
+
 
 //Firebase
 const firebaseConfig = {
@@ -99,7 +104,20 @@ function App() {
           displayPoints
           }></img>
         
+        <Modal.Dialog>
+  <Modal.Header closeButton>
+    <Modal.Title>Modal title</Modal.Title>
+  </Modal.Header>
 
+  <Modal.Body>
+    <p>Modal body text goes here.</p>
+  </Modal.Body>
+
+  <Modal.Footer>
+    <Button variant="secondary">Close</Button>
+    <Button variant="primary">Save changes</Button>
+  </Modal.Footer>
+</Modal.Dialog>
       </div>
     );
   }
