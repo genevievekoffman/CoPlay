@@ -243,4 +243,8 @@ button {
   visibility: hidden;
 }
 
+.PopUp{
+  position: absolute;
+}
+
  
