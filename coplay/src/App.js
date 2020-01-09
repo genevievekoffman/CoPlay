@@ -59,7 +59,7 @@ function App() {
     return (
       <div>
         Logged in page
-        <div className="PopUp" name="PopUp">
+        
           <div class="AddTask" name="AddTask">
             {showForm && <AddTaskForm />}
 
@@ -67,51 +67,75 @@ function App() {
               +
             </button>
           </div>
-        </div>
+       
       </div>
     );
   }
 }
 
 function AddTaskForm() {
+  const [showForm, setShowForm] = useState(false);
+  console.log("form opened");
+  console.log(showForm, setShowForm);
   return (
-    <form
-      onSubmit={event => {
-        addTask(event);
-      }}
-    >
-      <h2>Add Task</h2>
-      <input type="text" name="title" placeholder="Title" id="Title"></input>
-      <input type="text" name="points" placeholder="Points" id="Points"></input>
-      <div class="button">
-        <input type="submit" name="cancel" id="Cancel" value="Cancel"></input>
-        <input type="submit" name="save" id="Save" value="Save"></input>
+    <div name = "PopUp" className = "PopUp">
+      <div id = "grid">
+      <form
+        onSubmit={event => {
+          addTask(event);
+        }}
+      >
+        <h2>Add Task </h2>
+        <input type="text" name="title" placeholder="Title" id="Title"></input>
+        <input
+          type="text"
+          name="points"
+          placeholder="Points"
+          id="Points"
+        ></input>
+        <div class="button">
+          <input type="submit" name="save" id="Save" value="Save"></input>
+        </div>
+      </form>
+
+      <button
+        name="cancel"
+        id="Cancel"
+        value="Cancel"
+        onClick={() => setShowForm(false)}
+      >
+        Cancel
+      </button>
       </div>
-    </form>
+    </div>
   );
 }
 
 function addTask(event) {
   event.preventDefault();
-  //its always cancel u dumbass
-  if (event.target.elements.cancel.value == "Cancel") {
-    // console.log(event.target.elements.cancel.value)
-    // console.log(event.target.elements.save.value)
-    console.log("cancelled bitchhh");
-  } else {
-    console.log("saved my G");
-    let title = event.target.elements.title.value;
-    let points = parseInt(event.target.elements.points.value);
-    console.log(title);
-    console.log(points);
-    DB.collection("Tasks")
-      .doc(title)
-      .set({
-        points: points,
-        completed: false,
-        task: title
-      });
+
+  console.log("saved my G");
+  let title = event.target.elements.title.value;
+  let points = parseInt(event.target.elements.points.value);
+  if(title==""){
+    alert("Must enter a title")
   }
+  else if(points==""){
+    alert("Must enter points")
+  }
+  else{
+    console.log(title);
+  console.log(points);
+  DB.collection("Tasks")
+    .doc(title)
+    .set({
+      points: points,
+      completed: false,
+      task: title
+    });
+   }
+  
+  
   event.target.elements.title.value = " ";
   event.target.elements.points.value = " ";
 }
@@ -119,8 +143,19 @@ function addTask(event) {
 function checkUser(e, setIsLoggedIn) {
   e.preventDefault();
   console.log("function called");
+
+
   let username = e.target.elements.username.value;
   let password = e.target.elements.password.value;
+
+  if(username==""){
+    alert("Must enter a username")
+  }
+  else if(password==""){
+    alert("Must enter a password")
+  }
+  else{
+
 
   var docRef = DB.collection("Users").doc(username);
   docRef.get().then(function(doc) {
@@ -137,5 +172,5 @@ function checkUser(e, setIsLoggedIn) {
     }
   });
 }
-
+}
 export default App;
