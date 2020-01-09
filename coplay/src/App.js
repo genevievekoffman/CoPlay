@@ -192,7 +192,7 @@ function AddTaskForm(props) {
             placeholder="Points"
             id="Points"
           ></input>
-          <div class="button">
+          <div className="button">
             <input type="submit" name="save" id="Save" value="Save"></input>
           </div>
         </form>
