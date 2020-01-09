@@ -1,11 +1,18 @@
+
 #LogIn {
+
   justify-self: center;
 
   font-size: 6vw;
   line-height: 40vh;
   grid-area: LogIn;
+
   color: orange;
   font-family: Georgia, "Times New Roman", Times, serif;
+
+  color: black;
+  font-family: Krungthep;
+
 }
 
 #name {
@@ -14,7 +21,12 @@
   grid-area: name;
   height: 80px;
   border: groove;
+
   height: 5vh;
+
+  height:5vh;
+  
+
 }
 
 #password {
@@ -31,12 +43,20 @@
   font-family: "Roboto", sans-serif;
   text-transform: uppercase;
   outline: 0;
+
   background: #4caf50;
+
   border: 0;
   color: #ffffff;
   justify-self: center;
   width: 38vw;
-  height: 5vh;
+
+  height:5vh;
+
+  background: #648AD1;
+  box-shadow: 0 6px 11px 0 #648AD1;
+   
+
 }
 
 #container {
@@ -64,58 +84,121 @@ form {
 
 }
 
+
 html {
   background: #f9f9f9;
 }
 
-@media only screen and (max-width: 400px) {
-  #LogIn {
-    justify-content: center;
-    font-size: 8vh;
-  }
+@media only screen and (max-width: 400px)
+{
+  
+    #LogIn{
+      justify-content: center;
+      font-size: 8vh;
+      
+    }
 
-  #name {
-    width: 70vw;
-  }
-  #password {
-    width: 70vw;
-  }
-  #submit {
-    width: 70vw;
-  }
-}
+    #name{
+      width: 70vw
+    }
+    #password{
+      width: 70vw
+    }
+    #submit{
+      width: 70vw
+    }
 
-h2 {
-  /* margin-left: 43vw;
-  margin-top: 7vw; */
-}
-.AddTask {
+
+} 
+
+  .AddTask {
   display: grid;
   margin-top: 100px;
   margin-left: 40vw;
 }
 
-input {
+
+
+.App2{
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  background-color:#D8D8D8;
+  background: rgba(164,164,164,20%);
+ 
+}
+
+.App{
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+
+h2{
+  margin-left: 43vw;
+  margin-top: 7vw;
+}
+.AddTaskPopUp{
+  display: grid;
+  margin-top: 100px;
+  margin-left: 40vw;
+  
+}
+
+
+input{
   margin-bottom: 10px;
   width: 30%;
   height: 10px;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  border-top:none;
+  border-left:none;
+  border-right:none;
   border-bottom: gray;
-  outline: none;
+  outline:none;
   font-size: 13px;
+  
 }
 
-#Cancel {
+#Cancel{
   width: 4vw;
   height: 2vw;
-  background-color: gray;
-  margin-top: -4.5vh;
-  margin-left: 0vw;
+  background-color:gray;
+  margin-top: 20px;
+  margin-left: 2vw;
   border-radius: 5px;
-  font-size: 1vw;
 }
+
+
+ 
+
+.top-nav {
+  padding-top: 0.5vw;
+  overflow: hidden;
+  color: black;
+  height:5vw;
+  font-size: 1.5vw;
+  font-family: sans-serif;
+  background: white;
+  
+}
+
+.top-nav a {
+  float: left;
+  padding: 14px 16px;
+  text-decoration: none;
+  color:black;
+}
+
+.top-nav a:hover {
+  color: #0B598C;
+  background: #96C6E5;
+  border-radius: 10px;
+
+}
+ 
+ 
+ 
 
 #Save {
   width: 4vw;
@@ -140,3 +223,14 @@ button {
 #PopUp {
   position: absolute;
 }
+
+.profileIcon{
+  width: 5vw;
+  padding: 1vw;
+}
+
+#points{
+  visibility: hidden;
+}
+
+ 

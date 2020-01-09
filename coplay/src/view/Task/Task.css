@@ -1,0 +1,60 @@
+
+.task{
+padding: 20px;
+margin: 0.5em;
+ 
+justify-content: center;
+text-align: center;
+ 
+
+ 
+border: 10px solid #FFFFFF;
+box-shadow: 0 2px 3px 0 rgba(0,0,0,0.50);
+  
+  
+justify-content: center;
+display: inline-block;
+color:white;
+font-family: Avenir;
+font-size: 1.5vw;
+text-align: center;
+background-color:#D8D8D8 ;
+ 
+ 
+}
+ 
+
+h2{
+    margin-left: 43vw;
+}
+.containers{
+    display: grid;
+    
+    margin-top: 100px;
+    margin-left: 40vw;
+}
+
+
+input{
+    margin-bottom: 10px;
+    width: 12vw;
+    height: 2vw;
+    ;
+    
+}
+
+#Cancel{
+     width: 4vw;
+    background-color:gray;
+    margin-top: 20px;
+    margin-left: 2vw;
+    border-radius: 5px;
+}
+
+#Save{
+    width: 4vw;
+    background-color: cornflowerblue;
+
+}
+
+ 

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
 
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import firebase from "firebase";
 
 import Task from "./view/Task/Task";
 
 //Firebase
-var firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyAQrMqvW5LWBc2rXz-ve-jdgUnwXGtT9Gk",
   authDomain: "coplay-85fcb.firebaseapp.com",
   databaseURL: "https://coplay-85fcb.firebaseio.com",
@@ -24,7 +24,13 @@ const DB = firebase.firestore();
 function App() {
   let username = sessionStorage.getItem("user");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [tasksLists, setTasksList] = useState([]);
   const [showForm, setShowForm] = useState(false);
+  //useEffect(() => updateTasks(setTasksList), []);
+  const [counter, setCounter] = useState(0);
+  const [points, setPoints] = useState(false);
+
 
   if (!isLoggedIn) {
     return (
@@ -35,7 +41,9 @@ function App() {
           }}
         >
           <div id="container">
+
             <div id="LogIn">CoPlay</div>
+
             <input
               type="text"
               name="username"
@@ -54,18 +62,47 @@ function App() {
       </div>
     );
   } else {
+
+
+    
     //someone is logged in
 
+    if (counter == 0) {
+      updateTasks(setTasksList, setCounter);
+    }
+     
     return (
-      <div>
-        Logged in page
-        <div class="AddTask" name="AddTask">
+    
+      <div className="App2">
+
+   <div class="AddTask" name="AddTask">
           {showForm && <AddTaskForm onCancel={() => setShowForm(false)}/>}
 
           <button id="PopUp" onClick={() => setShowForm(!showForm)}>
             +
           </button>
+
+       
+        <div className = "top-nav"> 
+              <a className="active" href="#leaderboard">Leading</a>
+              <a href="#tasks">Tasks</a>
+              <a href="#rewards">Rewards</a> 
         </div>
+
+      <div>
+      <h4>
+          {tasksLists.map((task, index) => {
+            return <Task task={task} key={index} db={DB} />;
+          })}
+        </h4>
+      </div>
+      
+
+        <div id = "points" className = "points"></div>
+        <img className = "profileIcon" src = "sketchImages/profileheadbig.png" onClick = {
+          displayPoints
+          }></img>
+        
       </div>
     );
   }
@@ -137,7 +174,44 @@ function addTask(event) {
 
   event.target.elements.title.value = " ";
   event.target.elements.points.value = " ";
+
+function displayPoints(){
+  DB.collection("Users").doc(sessionStorage.getItem('user')).get().then(userDB => {
+    let points = userDB.get("totalPoints")
+    console.log(points)
+    document.getElementById("points").style.visibility = "visible";
+    document.getElementById("points").innerHTML = "Points: " + points;
+    wait();
+     
+  });
 }
+
+function wait(){
+  setTimeout(()=> document.getElementById("points").style.visibility = "hidden", 3000) 
+}
+function updateTasks(setTasksList, setCounter) {
+  var list = new Array();
+  //let list = [];
+
+  DB.collection("Tasks")
+    .get()
+    .then(tasksDB => {
+      tasksDB.forEach(taskDB => {
+        let taskInfo = [];
+        taskInfo.push(taskDB.get("task"));
+        taskInfo.push(taskDB.get("points"));
+        taskInfo.push(taskDB.get("completed"));
+         
+        list.push(taskInfo);
+      });
+      setTasksList(list);
+      
+      setCounter(1);
+      
+       
+    });
+}
+
 
 function checkUser(e, setIsLoggedIn) {
   e.preventDefault();
@@ -167,4 +241,5 @@ function checkUser(e, setIsLoggedIn) {
     });
   }
 }
+
 export default App;
