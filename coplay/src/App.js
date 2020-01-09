@@ -164,8 +164,8 @@ function addTask(event) {
       });
   }
 
-  event.target.elements.title.value = " ";
-  event.target.elements.points.value = " ";
+  event.target.elements.title.value = "";
+  event.target.elements.points.value = "";
 }
 
 function AddTaskForm(props) {
@@ -231,12 +231,16 @@ function checkUser(e, setIsLoggedIn) {
           setIsLoggedIn(true);
         } else {
           console.log("passwords dont match");
+          alert("Either the username or password is incorrect")
         }
       } else {
         console.log("no info found");
       }
     });
   }
+  
+  e.target.elements.username.value = "";
+  e.target.elements.password.value = "";
 }
 
 export default App;
