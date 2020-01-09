@@ -89,7 +89,7 @@ function App() {
 <div className="AddTask" name="AddTask">
           {showForm && <AddTaskForm onCancel={() => setShowForm(false)}/>}
 
-          <button id="PopUp" onClick={() => setShowForm(!showForm)}>
+          <button className ="addTaskBtn" id="PopUp" onClick={() => setShowForm(!showForm)}>
             +
           </button>
         </div>

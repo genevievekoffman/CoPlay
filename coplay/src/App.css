@@ -216,7 +216,7 @@ input{
   background-color: cornflowerblue;
 }
 
-button {
+.addTaskBtn {
   border-radius: 50%;
   background-color: rgb(105, 105, 231);
   width: 3vw;
