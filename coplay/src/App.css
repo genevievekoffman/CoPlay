@@ -80,14 +80,11 @@ form {
 }
 
 #grid{
-  display:grid
-
+  display:grid;
+  padding:white 2%;
 }
 
-#grid{
-  display:grid
 
-}
 
 html {
   background: #f9f9f9;
@@ -119,6 +116,7 @@ html {
   display: grid;
   margin-top: 100px;
   margin-left: 40vw;
+  
 }
 
 
@@ -130,6 +128,7 @@ html {
   background-color:#D8D8D8;
   background: rgba(164,164,164,20%);
  
+ 
 }
 
 .App{
@@ -138,15 +137,9 @@ html {
   flex-direction: column;
 }
 
-
-h2{
-  margin-left: 43vw;
-  margin-top: 7vw;
-}
 .AddTaskPopUp{
   display: grid;
   margin-top: 100px;
-  margin-left: 40vw;
   
 }
 
@@ -173,7 +166,6 @@ input{
   width: 40vw;
   height: 3vw;
   background-color:gray;
-  margin-top: 20px;
   margin-left: 2vw;
   border-radius: 5px;
 }
@@ -247,7 +239,8 @@ button {
 
 .PopUp{
   position: absolute;
-  margin-top: 4vh;
+  background: white;
+  margin-top: -30vh;
   z-index: 99;
 }
 
