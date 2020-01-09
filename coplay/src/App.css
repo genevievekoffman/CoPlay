@@ -80,11 +80,9 @@ form {
 }
 
 #grid{
-  display:grid;
-  padding:white 2%;
+  display:grid
+
 }
-
-
 
 html {
   background: #f9f9f9;
@@ -109,7 +107,10 @@ html {
       width: 70vw
     }
 
-
+#PopUp{
+  margin-bottom:0px;
+  margin-right:0px;
+}
 } 
 
   .AddTask {
