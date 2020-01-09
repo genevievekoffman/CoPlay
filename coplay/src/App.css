@@ -77,12 +77,23 @@
 
 form {
   display: grid;
+  padding:34px;
+  
+  
+
+  
 }
 
 #grid{
-  display:grid
+  display:grid;
+  background-color: rgb(137, 238, 137);
 
 }
+
+
+
+
+
 
 html {
   background: #f9f9f9;
@@ -164,8 +175,8 @@ input{
 }
 
 #Cancel{
-  width: 7vw;
-  height: 2vw;
+  width: 40vw;
+  height: 3vw;
   background-color:gray;
   margin-left: 2vw;
   border-radius: 5px;
@@ -216,6 +227,8 @@ button {
   height: 3vw;
   text-align: center;
   margin-left: 34vw;
+  
+  
   font-size: 130%;
   outline: none;
   cursor: pointer;
@@ -223,6 +236,7 @@ button {
 
 #PopUp {
   position: absolute;
+  
   
 }
 
@@ -244,3 +258,19 @@ button {
 }
 
  
+.Cancel{
+  width: 4vw;
+  height: 1,5vw;
+  border-radius: 5px;
+  background-color: grey;
+  margin-left: 0vw;
+  font-size: small;
+  
+
+}
+
+#addtask{
+text-align: center;
+
+}
+
