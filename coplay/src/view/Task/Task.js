@@ -14,7 +14,7 @@ function Task(props) {
         {task[0]} <br></br>
         {task[1]} <br></br>
         <div id = "completed"></div>  
-        <button onClick = {() => completeTask(task[0], db)}> Complete Task</button>  
+        <button onClick = {() => completeTask(task[0], task[1], db)}> Complete Task</button>  
       </div>
     );
   } else {
