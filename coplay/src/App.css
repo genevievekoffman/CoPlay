@@ -164,6 +164,11 @@ input{
   
 }
 
+#submit{
+  cursor: pointer;
+
+}
+
 #Cancel{
   width: 4vw;
   height: 2vw;
@@ -231,6 +236,7 @@ button {
 .profileIcon{
   width: 5vw;
   padding: 1vw;
+  cursor: pointer;
 }
 
 #points{
