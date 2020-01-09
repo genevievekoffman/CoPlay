@@ -179,7 +179,7 @@ function AddTaskForm(props) {
             addTask(event);
           }}
         >
-          <h2>Add Task </h2>
+          <h2>Add Task</h2>
           <input
             type="text"
             name="title"
