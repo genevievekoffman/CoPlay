@@ -25,6 +25,7 @@ function App() {
   const [tasksLists, setTasksList] = useState([]);
   //useEffect(() => updateTasks(setTasksList), []);
   const [counter, setCounter] = useState(0);
+  const [points, setPoints] = useState(false);
 
   if (!isLoggedIn) {
     return (
@@ -74,11 +75,6 @@ function App() {
               <a href="#tasks">Tasks</a>
               <a href="#rewards">Rewards</a> 
         </div>
-       
-       
-      
-      
-
 
       <div>
       <h4>
@@ -113,11 +109,33 @@ function App() {
             </div>
           </form>
         </div>
+
+
+        <div id = "points" className = "points"></div>
+        <img className = "profileIcon" src = "sketchImages/profileheadbig.png" onClick = {
+          displayPoints
+          }></img>
+        
+
       </div>
     );
   }
 }
 
+function displayPoints(){
+  DB.collection("Users").doc(sessionStorage.getItem('user')).get().then(userDB => {
+    let points = userDB.get("totalPoints")
+    console.log(points)
+    document.getElementById("points").style.visibility = "visible";
+    document.getElementById("points").innerHTML = "Points: " + points;
+    wait();
+     
+  });
+}
+
+function wait(){
+  setTimeout(()=> document.getElementById("points").style.visibility = "hidden", 3000) 
+}
 function updateTasks(setTasksList, setCounter) {
   var list = new Array();
   //let list = [];
