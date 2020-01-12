@@ -207,9 +207,7 @@
 .App2{
   justify-content: center;
   display: flex;
-  flex-direction: column;
-  background-color:#D8D8D8;
-  background: rgba(164,164,164,20%);
+  flex-direction: column;  
 }
 
 .App{
@@ -221,6 +219,7 @@
 .AddTaskPopUp{
   display: grid;
   margin-top: 100px;
+  
   
 }
 
@@ -313,6 +312,10 @@ input{
   visibility: hidden;
 }
 
+#form{
+  display:grid;
+}
+
 .PopUp{
   position: absolute;
   background: white;
@@ -332,8 +335,8 @@ text-align: center;
   align-items: center;
   overflow: hidden;
   color: black;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(8, auto);
 }
 
 .topNav a {
@@ -348,5 +351,4 @@ text-align: center;
 .topNav a:hover {
   color: #648AD1;
 }
-
 

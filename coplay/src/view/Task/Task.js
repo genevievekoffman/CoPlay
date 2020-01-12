@@ -12,15 +12,15 @@ function Task(props) {
       <div className="task" key={index}>
         <div>
           {taskCompleted ? (
-            <div className = "x"> x </div>
+            <div className = "checkBox"> x </div>
           ) : (
-            <button
+            <button className = "checkBox"
               onClick={() =>
                 completeTask(task[0], task[1], db, setTaskCompleted)
               }
             >
               {" "}
-              Complete Task
+               
             </button>
           )}
         </div>
@@ -31,10 +31,15 @@ function Task(props) {
   } else {
     return (
       <div className="task" key={index}>
-        <div className = "x"> x </div> <br></br>
-        {task[0]} <br></br>
-        {task[1]}
-        <br></br>
+        <div className = "checkBox"> x </div>
+         <div>
+           <div className = "taskBig">
+            {task[0]} <br></br>
+           </div>
+           <div className = "taskSmall">
+            {task[1]} <br></br>
+           </div>
+         </div>
       </div>
     );
   }

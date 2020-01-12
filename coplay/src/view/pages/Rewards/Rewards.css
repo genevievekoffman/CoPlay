@@ -18,7 +18,7 @@
 
   .PopUp{
     position: absolute;
-    background: white;
+    display:grid;
     margin-top: -30vh;
     z-index: 99;
   }
