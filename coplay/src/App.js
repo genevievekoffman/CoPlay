@@ -167,7 +167,7 @@ function Tasks() {
       </div>
 
       <div id="points" className="points"></div>
-      <img className="profileIcon" src="sketchImages/profileheadbig.png" onClick={
+      <img className="profileIcon" src="sketchImages/blackprofileicon.png" onClick={
         displayPoints
 
       }></img>
