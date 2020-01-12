@@ -276,3 +276,24 @@ text-align: center;
 
 }
 
+ 
+.topNav{
+  align-items: center;
+  overflow: hidden;
+  color: black;
+  display: flex;
+  flex-direction: row;
+}
+
+.topNav a {
+  float: left;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 1em;
+  color:black;
+}
+
+.topNav a:hover {
+  color: #648AD1;
+}
