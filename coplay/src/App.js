@@ -85,7 +85,7 @@ function App() {
               <Tasks />
             </Route>
             <Route path="/rewardspage">
-              <Rewards />
+              <Rewards db = {DB}/>
             </Route>
           </Switch>
         </div>
@@ -95,21 +95,7 @@ function App() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 function checkUser(e, setIsLoggedIn) {
   e.preventDefault();
   console.log("function called");
