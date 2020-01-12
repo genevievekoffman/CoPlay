@@ -23,10 +23,10 @@ function Rewards(props) {
             })}
             </h4>
     <div className="AddReward" name="AddReward">
-        {showForm && <AddRewardForm DB = {DB} onCancel={() => setShowForm(false)} />}
+        {showForm && <AddRewardForm db = {db} onCancel={() => setShowForm(false)} />}
 
         <button
-          className="addRewardBtn"
+          className="addRewardbtn"
           id="PopUp"
           onClick={() => setShowForm(!showForm)}
         >
@@ -45,11 +45,11 @@ function updateRewards(setRewardsList, setCounter, db){
 
     db.collection("Rewards")
     .get()
-    .then(rewardsDB => {
-        rewardsDB.forEach(rewardDB => {
+    .then(rewardsdb => {
+        rewardsdb.forEach(rewarddb => {
             let rewardInfo = [];
-            rewardInfo.push(rewardDB.get("name"));
-            rewardInfo.push(rewardDB.get("value"));
+            rewardInfo.push(rewarddb.get("name"));
+            rewardInfo.push(rewarddb.get("value"));
 
             list.push(rewardInfo);
         });
@@ -59,7 +59,7 @@ function updateRewards(setRewardsList, setCounter, db){
     });
 }
  
-function addReward(event, DB) {
+function addReward(event, db) {
   event.preventDefault();
 
   console.log("saved my G");
@@ -72,7 +72,7 @@ function addReward(event, DB) {
   } else {
     console.log(title);
     console.log(points);
-    DB.collection("Rewards")
+    db.collection("Rewards")
       .doc(title)
       .set({
         value: points,
@@ -86,14 +86,14 @@ function addReward(event, DB) {
 
 
 function AddRewardForm(props) {
-  const { DB } = props;
+  const { db } = props;
   console.log("form opened");
   return (
     <div name="PopUp" className="PopUp">
       <div id="grid">
         <form
           onSubmit={event => {
-            addReward(event, DB);
+            addReward(event, db);
           }}
         >
           <div id="TitleAddReward">Add Reward</div>
