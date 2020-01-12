@@ -129,6 +129,69 @@
   height: 5vh;
 }
 
+
+@media only screen and (max-width: 520px){
+  #leftSide{
+    display: none;
+  }
+
+  #LogIn {
+    display: none;
+  }
+
+  #slogan{
+    display: none;
+  }
+
+  #signIn{
+    grid-column-start: 2;
+    grid-column-end: span 2;
+    grid-row-start: 2;
+    grid-row-end: span 1;
+
+    line-height: 28vh;;
+  
+    font-size: 3.9vw;
+  }
+
+  #signInForm{
+    grid-column-start: 2;
+    grid-column-end: span 3;
+    grid-row-start: 3;
+    grid-row-end: span 4;
+  }
+
+  #formFlex{
+    grid-column-start: 1;
+    grid-column-end: span 5;
+    grid-row-start: 1;
+    grid-row-end: span 7;
+  }
+
+  #userLabel{
+    font-size: 2.5vw;
+  }
+  
+  #name {
+    width: 40vw;
+  }
+  
+  #passwordLabel{
+    font-size: 2.5vw;
+  }
+  
+  #password {
+    width: 40vw;
+  }
+  
+  #submitLogin {
+    font-size: 2.3vw;
+    width: 18vw;
+  }
+}
+
+
+
   .AddTask {
   display: grid;
   margin-top: 100px;
