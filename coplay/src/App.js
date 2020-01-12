@@ -180,7 +180,7 @@ function AddTaskForm(props) {
   console.log("form opened");
   return (
     <div name="PopUp" className="PopUp">
-    <button name="cancel" className="Cancel" value="Cancel" onClick={props.onCancel} >X</button>
+    
       <div id="grid">
         <form id = "form"
           onSubmit={event => {

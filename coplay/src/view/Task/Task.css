@@ -54,7 +54,7 @@ input{
      width: 5vw;
     background-color:gray;
     margin-top: 20px;
-    margin-left: 7vw;
+    margin-left: 4vw;
     
     border-radius: 5px;
 
@@ -64,7 +64,7 @@ input{
     width: 5vw;
     border-radius: 5px;
     margin-top: 1vw;
-    margin-left: 7vw;
+    margin-left: 4vw;
     background-color: cornflowerblue;
 
 }
@@ -82,3 +82,9 @@ input{
     transform: translate(-50%, -50%);
 }
 
+#TitleAddTask{
+    text-align: center;
+    font-weight: 600;
+    margin-top: 200px;
+    font-size: 4.5mm;
+}
