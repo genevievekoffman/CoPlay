@@ -2,6 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import firebase from "firebase";
 import Task from "./view/Task/Task";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+
+
+
 
 //Firebase
 const firebaseConfig = {
@@ -97,15 +103,62 @@ function App() {
         <div id="points" className="points"></div>
         <img className="profileIcon" src="sketchImages/profileheadbig.png" onClick={
           displayPoints
-        }></img>
 
+          }></img>
+        
+        {/* <Example /> */}
 
       </div>
     );
   }
 }
 
+
+function Example(props) {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  return (
+    <>
+    
+    
+      <Button variant="primary" id = "PopUpButton" onClick={handleShow}>
+        +
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+      
+        <Modal.Header closeButton>
+          <Modal.Title>Add Task</Modal.Title>
+        </Modal.Header>
+        {/* <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body> */}
+        <Modal.Footer>
+        <Form id = "kkk">
+  <Form.Group controlId="formGroupEmail">
+    <Form.Label>Title</Form.Label>
+    <Form.Control type="email" placeholder="Enter email" />
+  </Form.Group>
+  <Form.Group controlId="formGroupPassword">
+    <Form.Label>Points</Form.Label>
+    <Form.Control type="password" placeholder="Password" />
+  </Form.Group>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Add
+          </Button>
+</Form>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}
+
 function displayPoints() {
+
   DB.collection("Users").doc(sessionStorage.getItem('user')).get().then(userDB => {
     let points = userDB.get("totalPoints")
     console.log(points)
@@ -164,8 +217,8 @@ function addTask(event) {
       });
   }
 
-  event.target.elements.title.value = " ";
-  event.target.elements.points.value = " ";
+  event.target.elements.title.value = "";
+  event.target.elements.points.value = "";
 }
 
 function AddTaskForm(props) {
@@ -179,7 +232,7 @@ function AddTaskForm(props) {
             addTask(event);
           }}
         >
-          <h2>Add Task </h2>
+          <div id = "TitleAddTask">Add Task</div>
           <input
             type="text"
             name="title"
@@ -192,19 +245,20 @@ function AddTaskForm(props) {
             placeholder="Points"
             id="Points"
           ></input>
-          <div class="button">
+          <div className="button">
             <input type="submit" name="save" id="Save" value="Save"></input>
           </div>
         </form>
 
         <button
           name="cancel"
-          id="Cancel"
+          className="Cancel"
           value="Cancel"
           onClick={props.onCancel}
         >
           Cancel
         </button>
+        
       </div>
     </div>
   );
@@ -231,12 +285,16 @@ function checkUser(e, setIsLoggedIn) {
           setIsLoggedIn(true);
         } else {
           console.log("passwords dont match");
+          alert("Either the username or password is incorrect")
         }
       } else {
         console.log("no info found");
       }
     });
   }
+  
+  e.target.elements.username.value = "";
+  e.target.elements.password.value = "";
 }
 
 export default App;
