@@ -71,7 +71,8 @@ function App() {
     return (
       <Router>
         <div>
-          <ul>
+           
+          <ul className = "topNav">
             <li>
               <Link to="/">Task Page</Link>
             </li>
@@ -88,6 +89,7 @@ function App() {
 
             </Route>
           </Switch>
+           
         </div>
       </Router>
     );
