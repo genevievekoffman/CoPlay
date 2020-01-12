@@ -224,6 +224,7 @@
 }
 
 
+
 input{
   margin-bottom: 10px;
   width: 30%;
@@ -288,8 +289,8 @@ input{
   width: 3vw;
   height: 3vw;
   text-align: center;
-  margin-left: 34vw;
-  
+  margin-left: 50vw;
+  margin-top: 10vw;
   
   font-size: 130%;
   outline: none;
@@ -314,6 +315,7 @@ input{
 
 #form{
   display:grid;
+  
 }
 
 .PopUp{
@@ -321,6 +323,8 @@ input{
   background: white;
   margin-top: -30vh;
   z-index: 99;
+  
+  
 }
 
 
@@ -353,6 +357,7 @@ text-align: center;
 }
 
 .PopUp{
-  margin-left: 27vw;
+  margin-left: 20vw;
+  
   
 }
