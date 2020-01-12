@@ -1,23 +1,29 @@
 
 .task{
-padding: 20px;
-margin: 0.5em;
- 
- 
-border: 10px solid #FFFFFF;
-box-shadow: 0 2px 3px 0 rgba(0,0,0,0.50);
-  
-  
-justify-content: center;
-display: inline-block;
-color:white;
-font-family: Avenir;
-font-size: 1.5vw;
-text-align: center;
-background-color:#D8D8D8 ;
+    display: flex;
+    justify-content: center;
+     
+    padding: 20px;
+    margin: 0.5em;
+     
 
-position: relative;
+    font-family: Avenir-Light;
+    color: #8C8787;
+    text-align: center;
+    font-size: 1.5vw;
  
+}
+
+.checkBox{
+    border: 1px solid #979797;
+    border-radius: 6px;
+    font-family: Avenir-Light;
+    font-size: 1.5vw;
+    color: #8C8787;
+    text-align: center;
+    width: 2vw;
+    height: 2vw;
+    margin-right: 1em;
 }
  
 
@@ -52,14 +58,4 @@ input{
 }
 
  
-.x{
-    font-family: DFWaWaSC-W5;
-    font-size: 15vw;
-    color: #FFFFFF;
-     
-    
-    position: absolute;
-    top: 15%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
+ 
