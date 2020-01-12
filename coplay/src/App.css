@@ -176,13 +176,7 @@ input{
 
 }
 
-#Cancel{
-  width: 40vw;
-  height: 3vw;
-  background-color:gray;
-  margin-left: 2vw;
-  border-radius: 5px;
-}
+
 
 
  
@@ -215,12 +209,7 @@ input{
  
  
 
-#Save {
-  width: 4vw;
-  height: 2vw;
-  margin-left: 5vw;
-  background-color: cornflowerblue;
-}
+
 
 .addTaskBtn {
   border-radius: 50%;
