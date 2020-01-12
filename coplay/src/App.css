@@ -2,7 +2,7 @@
 #LogIn {
 
   justify-self: center;
-
+  width:5vw;
   font-size: 6vw;
   line-height: 40vh;
   grid-area: LogIn;
@@ -13,6 +13,18 @@
   color: black;
   font-family: Krungthep;
 
+}
+
+.btn{
+  width:6vw;
+
+}
+ #kkk{
+   margin-left:0vw;
+ }
+
+#PopUpButton{
+  margin-right:5vw;
 }
 
 #name {

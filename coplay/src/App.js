@@ -4,6 +4,7 @@ import firebase from "firebase";
 import Task from "./view/Task/Task";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 
 
 
@@ -104,23 +105,53 @@ function App() {
           displayPoints
           }></img>
         
-        <Modal.Dialog>
-  <Modal.Header closeButton>
-    <Modal.Title>Modal title</Modal.Title>
-  </Modal.Header>
-
-  <Modal.Body>
-    <p>Modal body text goes here.</p>
-  </Modal.Body>
-
-  <Modal.Footer>
-    <Button variant="secondary">Close</Button>
-    <Button variant="primary">Save changes</Button>
-  </Modal.Footer>
-</Modal.Dialog>
+        {/* <Example /> */}
       </div>
     );
   }
+}
+
+function Example(props) {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  return (
+    <>
+    
+    
+      <Button variant="primary" id = "PopUpButton" onClick={handleShow}>
+        +
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+      
+        <Modal.Header closeButton>
+          <Modal.Title>Add Task</Modal.Title>
+        </Modal.Header>
+        {/* <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body> */}
+        <Modal.Footer>
+        <Form id = "kkk">
+  <Form.Group controlId="formGroupEmail">
+    <Form.Label>Title</Form.Label>
+    <Form.Control type="email" placeholder="Enter email" />
+  </Form.Group>
+  <Form.Group controlId="formGroupPassword">
+    <Form.Label>Points</Form.Label>
+    <Form.Control type="password" placeholder="Password" />
+  </Form.Group>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Add
+          </Button>
+</Form>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
 }
 
 function displayPoints(){
