@@ -9,7 +9,7 @@ import Task from "./view/Task/Task";
 //pages
 
 import Rewards from './view/pages/Rewards/Rewards';
-import Tasks from './view/pages/Tasks/Tasks';
+
 
 import {
   BrowserRouter as Router,
