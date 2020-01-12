@@ -18,10 +18,14 @@ function Reward(props) {
 }
 
 function deductPoints(points, db) {
+    console.log(points)
     db.collection("Users").doc(sessionStorage.getItem("user")).get().then(function (doc) {
 
         if (doc.get("totalPoints") >= points) {
+            doc.get("totalPoints")
+
             let balance = doc.get("totalPoints") - points;
+            console.log(balance)
 
             db.collection("Users").doc(sessionStorage.getItem("user")).update({
                 totalPoints: balance
