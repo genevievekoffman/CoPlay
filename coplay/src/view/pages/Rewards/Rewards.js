@@ -1,17 +1,106 @@
-import React from 'react';
-import './Rewards.css';
+import React from "react";
+import "./Rewards.css";
+import firebase from "firebase";
 
+function Rewards(props) {
+  const [showForm, setShowForm] = React.useState(false);
+  const {DB} = props;
+  return (
+    <div>
+      This is the Rewards Page lorem This is the Rewards Page lorem This is the
+      Rewards Page lorem This is the Rewards Page lorem This is the Rewards Page
+      lorem This is the Rewards Page lorem This is the Rewards Page lorem This
+      is the Rewards Page loremThis is the Rewards Page lorem This is the
+      Rewards Page lorem This is the Rewards Page lorem This is the Rewards Page
+      lorem This is the Rewards Page lorem This is the Rewards Page lorem This
+      is the Rewards Page lorem This is the Rewards Page loremThis is the
+      Rewards Page lorem This is the Rewards Page lorem This is the Rewards Page
+      lorem This is the Rewards Page lorem This is the Rewards Page lorem This
+      is the Rewards Page lorem This is the Rewards Page lorem This is the
+      Rewards Page lorem This is the Rewards Page lorem This is the Rewards Page
+      lorem This is the Rewards Page lorem This is the Rewards Page lorem This
+      is the Rewards Page lorem This is the Rewards Page lorem This is the
+      Rewards Page lorem This is the Rewards Page lorem
+      <div className="AddReward" name="AddReward">
+        {showForm && <AddRewardForm DB = {DB} onCancel={() => setShowForm(false)} />}
 
+        <button
+          className="addRewardBtn"
+          id="PopUp"
+          onClick={() => setShowForm(!showForm)}
+        >
+          +
+        </button>
+      </div>
+    </div>
+  );
+}
 
-function Rewards(props) {   
+function AddRewardForm(props) {
+  const { DB } = props;
+  console.log("form opened");
+  return (
+    <div name="PopUp" className="PopUp">
+      <div id="grid">
+        <form
+          onSubmit={event => {
+            addReward(event, DB);
+          }}
+        >
+          <div id="TitleAddReward">Add Reward</div>
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            id="Title"
+          ></input>
+          <input
+            type="text"
+            name="points"
+            placeholder="Points"
+            id="Points"
+          ></input>
+          <div className="button">
+            <input type="submit" name="save" id="Save" value="Save"></input>
+          </div>
+        </form>
 
-    return (
-        <div>
-            This is the Rewards Page
-        </div>
-    )
+        <button
+          name="cancel"
+          className="Cancel"
+          value="Cancel"
+          onClick={props.onCancel}
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  );
+}
 
-    
+function addReward(event, DB) {
+  event.preventDefault();
+
+  console.log("saved my G");
+  let title = event.target.elements.title.value;
+  let points = parseInt(event.target.elements.points.value);
+  if (title == "") {
+    alert("Must enter a title");
+  } else if (points == "") {
+    alert("Must enter points");
+  } else {
+    console.log(title);
+    console.log(points);
+    DB.collection("Rewards")
+      .doc(title)
+      .set({
+        value: points,
+        name: title
+      });
+  }
+
+  event.target.elements.title.value = "";
+  event.target.elements.points.value = "";
 }
 
 export default Rewards;

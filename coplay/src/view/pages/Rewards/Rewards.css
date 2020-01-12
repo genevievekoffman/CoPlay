@@ -1,0 +1,33 @@
+#PopUpButton{
+    margin-right:5vw;
+  }
+
+  
+#PopUp{
+    margin-bottom:0px;
+    margin-right:0px;
+    position: absolute;
+    
+  }
+
+  .AddRewardPopUp{
+    display: grid;
+    
+    
+  }
+
+  .PopUp{
+    position: absolute;
+    background: white;
+    margin-top: -30vh;
+    z-index: 99;
+  }
+
+  #grid{
+      display: grid;
+  }
+
+  .AddReward{
+      margin-left:30vw;
+      margin-top: 10vh;
+  }

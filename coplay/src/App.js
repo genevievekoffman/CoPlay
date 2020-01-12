@@ -6,18 +6,10 @@ import Task from "./view/Task/Task";
 // import Modal from 'react-bootstrap/Modal';
 // import Form from 'react-bootstrap/Form';
 
-
 //pages
-import Rewards from './view/pages/Rewards/Rewards';
+import Rewards from "./view/pages/Rewards/Rewards";
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
- 
-
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 //Firebase
 const firebaseConfig = {
@@ -35,18 +27,16 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 const DB = firebase.firestore();
 
-function App() { 
+function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-   
+
   //useEffect(() => updateTasks(setTasksList), []);
-   
+
   //const [points, setPoints] = useState(false);
-   
 
   if (!isLoggedIn) {
     return (
       <div className="App">
-
         <form
           onSubmit={event => {
             checkUser(event, setIsLoggedIn);
@@ -83,13 +73,13 @@ function App() {
             <li>
               <Link to="/rewardspage">Rewards page</Link>
             </li>
-          </ul>        
+          </ul>
           <Switch>
             <Route exact path="/">
               <Tasks />
             </Route>
             <Route path="/rewardspage">
-              <Rewards />
+              <Rewards DB = {DB} />
             </Route>
           </Switch>
         </div>
@@ -97,22 +87,6 @@ function App() {
     );
   }
 }
-
-
-
-
-     
- 
-
- 
-
- 
-
- 
- 
-
- 
- 
 
 function checkUser(e, setIsLoggedIn) {
   e.preventDefault();
@@ -127,7 +101,7 @@ function checkUser(e, setIsLoggedIn) {
     alert("Must enter a password");
   } else {
     var docRef = DB.collection("Users").doc(username);
-    docRef.get().then(function (doc) {
+    docRef.get().then(function(doc) {
       if (doc.exists) {
         if (password === doc.data().password) {
           console.log("passwords match");
@@ -135,61 +109,62 @@ function checkUser(e, setIsLoggedIn) {
           setIsLoggedIn(true);
         } else {
           console.log("passwords dont match");
-          alert("Either the username or password is incorrect")
+          alert("Either the username or password is incorrect");
         }
       } else {
         console.log("no info found");
       }
     });
   }
-  
+
   e.target.elements.username.value = "";
   e.target.elements.password.value = "";
 }
 
 export default App;
 
-function Tasks(){
-      const [counter, setCounter] = useState(0);
-      const [tasksLists, setTasksList] = useState([]);
-      const [showForm, setShowForm] = useState(false);
+function Tasks() {
+  const [counter, setCounter] = useState(0);
+  const [tasksLists, setTasksList] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
-      if (counter == 0) {
-      updateTasks(setTasksList, setCounter);
-      }
+  if (counter == 0) {
+    updateTasks(setTasksList, setCounter);
+  }
 
   return (
-      <div className="App2">
-
-        <div>
-          <h4>
-            {tasksLists.map((task, index) => {
-              return <Task task={task} key={index} db={DB} />;
-            })}
-          </h4>
-        </div>
-
-        <div className="AddTask" name="AddTask">
-          {showForm && <AddTaskForm onCancel={() => setShowForm(false)} />}
-
-          <button className ="addTaskBtn" id="PopUp" onClick={() => setShowForm(!showForm)}>
-            +
-          </button>
-        </div>
-
-        <div id="points" className="points"></div>
-        <img className="profileIcon" src="sketchImages/profileheadbig.png" onClick={
-          displayPoints
-
-          }></img>
-        
+    <div className="App2">
+      <div>
+        <h4>
+          {tasksLists.map((task, index) => {
+            return <Task task={task} key={index} db={DB} />;
+          })}
+        </h4>
       </div>
-    );
+
+      <div className="AddTask" name="AddTask">
+        {showForm && <AddTaskForm onCancel={() => setShowForm(false)} />}
+
+        <button
+          className="addTaskBtn"
+          id="PopUp"
+          onClick={() => setShowForm(!showForm)}
+        >
+          +
+        </button>
+      </div>
+
+      <div id="points" className="points"></div>
+      <img
+        className="profileIcon"
+        src="sketchImages/profileheadbig.png"
+        onClick={displayPoints}
+      ></img>
+    </div>
+  );
 }
 
-
 function AddTaskForm(props) {
-
   console.log("form opened");
   return (
     <div name="PopUp" className="PopUp">
@@ -199,7 +174,7 @@ function AddTaskForm(props) {
             addTask(event);
           }}
         >
-          <div id = "TitleAddTask">Add Task</div>
+          <div id="TitleAddTask">Add Task</div>
           <input
             type="text"
             name="title"
@@ -225,7 +200,6 @@ function AddTaskForm(props) {
         >
           Cancel
         </button>
-        
       </div>
     </div>
   );
@@ -258,21 +232,24 @@ function addTask(event) {
 }
 
 function displayPoints() {
-
-  DB.collection("Users").doc(sessionStorage.getItem('user')).get().then(userDB => {
-    let points = userDB.get("totalPoints")
-    console.log(points)
-    document.getElementById("points").style.visibility = "visible";
-    document.getElementById("points").innerHTML = "Points: " + points;
-    wait();
-
-  });
+  DB.collection("Users")
+    .doc(sessionStorage.getItem("user"))
+    .get()
+    .then(userDB => {
+      let points = userDB.get("totalPoints");
+      console.log(points);
+      document.getElementById("points").style.visibility = "visible";
+      document.getElementById("points").innerHTML = "Points: " + points;
+      wait();
+    });
 }
 
 function wait() {
-  setTimeout(() => document.getElementById("points").style.visibility = "hidden", 3000)
+  setTimeout(
+    () => (document.getElementById("points").style.visibility = "hidden"),
+    3000
+  );
 }
-
 
 function updateTasks(setTasksList, setCounter) {
   var list = new Array();
@@ -292,13 +269,8 @@ function updateTasks(setTasksList, setCounter) {
       setTasksList(list);
 
       setCounter(1);
-
-
     });
 }
-
-
-
 
 // function Example(props) {
 //   const [show, setShow] = useState(false);
@@ -308,14 +280,13 @@ function updateTasks(setTasksList, setCounter) {
 
 //   return (
 //     <>
-    
-    
+
 //       <Button variant="primary" id = "PopUpButton" onClick={handleShow}>
 //         +
 //       </Button>
 
 //       <Modal show={show} onHide={handleClose}>
-      
+
 //         <Modal.Header closeButton>
 //           <Modal.Title>Add Task</Modal.Title>
 //         </Modal.Header>
