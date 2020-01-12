@@ -1,146 +1,138 @@
+.grid{
+  display: grid;
+  grid-template-columns: repeat(5, 26vw);
+  grid-template-rows: repeat(7, 10vh);
+  height: 100vh;
+}
+
+#leftSide{
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  grid-row-start: 1;
+  grid-row-end: span 7;
+
+  background: #648AD1;
+
+  width: 40vw;
+  height: 100vh;
+}
 
 #LogIn {
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  grid-row-start: 1;
+  grid-row-end: span 1;
+  line-height: 20vh;
 
-  justify-self: center;
-  width:5vw;
-  font-size: 6vw;
-  line-height: 40vh;
-  grid-area: LogIn;
-
-  color: orange;
-  font-family: Georgia, "Times New Roman", Times, serif;
-
+  font-size: 2vw;
+  padding-left: 2em;
   color: black;
   font-family: Krungthep;
 
+  height: 10vh;
+  user-select: none;
 }
 
-.btn{
-  width:6vw;
+#slogan{
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  grid-row-start: 3;
+  grid-row-end: span 1;
 
+  font-size: 2vw;
+  padding-left: 1em;
+
+  font-family: Avenir;
+  user-select: none;
 }
- #kkk{
-   margin-left:0vw;
- }
 
-#PopUpButton{
-  margin-right:5vw;
+#logo{
+  height: 90vh;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+#signIn{
+  grid-column-start: 3;
+  grid-column-end: span 2;
+  grid-row-start: 2;
+  grid-row-end: span 1;
+
+  line-height: 24vh;
+
+  height: 3vh;
+  font-size: 2vw;
+  font-family: Avenir;
+  user-select: none;
+}
+
+#signInForm{
+  grid-column-start: 3;
+  grid-column-end: span 3;
+  grid-row-start: 3;
+  grid-row-end: span 4;
+}
+
+#formFlex{
+  grid-column-start: 3;
+  grid-column-end: span 3;
+  grid-row-start: 3;
+  grid-row-end: span 4;
+
+  background: none;
+
+  display: flex;
+  flex-direction: column;
+  padding-top: 4.1em;
+}
+
+#userLabel{
+  font-family: Avenir-Heavy;
+  font-size: 1.5vw;
+  user-select: none;
 }
 
 #name {
-  justify-self: center;
-  width: 37vw;
-  grid-area: name;
-  height: 80px;
-  border: groove;
+  opacity: 0.53;
+  background: #D8D8D8;
+  border: 2px solid #979797;
+  border-radius: 10px;
 
+  width: 30vw;
   height: 5vh;
+  margin-top: 0.3em;
+}
 
-  height:5vh;
-  
-
+#passwordLabel{
+  font-family: Avenir-Heavy;
+  font-size: 1.5vw;
+  user-select: none;
 }
 
 #password {
-  justify-self: center;
-  grid-area: password;
-  width: 37vw;
-  height: 80px;
-  border: groove;
+  opacity: 0.53;
+  background: #D8D8D8;
+  border: 2px solid #979797;
+  border-radius: 10px;
+
+  width: 30vw;
+  height: 5vh;
+  margin-top: 0.3em;
+}
+
+#submitLogin {
+  background: #648AD1;
+  border-radius: 10px;
+  color: white;
+  font-family: Avenir-Heavy;
+  font-size: 1.3vw;
   height: 5vh;
 }
-
-#submit {
-  grid-area: submit;
-  font-family: "Roboto", sans-serif;
-  text-transform: uppercase;
-  outline: 0;
-
-  background: #4caf50;
-
-  border: 0;
-  color: #ffffff;
-  justify-self: center;
-  width: 38vw;
-
-  height:5vh;
-
-  background: #648AD1;
-  box-shadow: 0 6px 11px 0 #648AD1;
-   
-
-}
-
-#container {
-  justify-self: center;
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  grid-template-columns: 5vw auto 5vw;
-  grid-template-rows: 40vh auto 3vh auto 3vh 40vh;
-  grid-template-areas:
-    ". LogIn ."
-    ". name ."
-    ". . ."
-    ". password ."
-    ". . ."
-    ". submit .";
-}
-
-form {
-  display: grid;
-  padding:34px;
-  
-  
-
-  
-}
-
-#grid{
-  display:grid;
-  background-color: rgb(255, 255, 255);
-  border-radius: 50px;
-}
-
-
-
-
-
-
-html {
-  background: #f9f9f9;
-}
-
-@media only screen and (max-width: 400px)
-{
-  
-    #LogIn{
-      justify-content: center;
-      font-size: 8vh;
-      
-    }
-
-    #name{
-      width: 70vw
-    }
-    #password{
-      width: 70vw
-    }
-    #submit{
-      width: 70vw
-    }
-
-#PopUp{
-  margin-bottom:0px;
-  margin-right:0px;
-}
-} 
 
   .AddTask {
   display: grid;
   margin-top: 100px;
   margin-left: 40vw;
-  
 }
 
 
@@ -151,8 +143,6 @@ html {
   flex-direction: column;
   background-color:#D8D8D8;
   background: rgba(164,164,164,20%);
- 
- 
 }
 
 .App{

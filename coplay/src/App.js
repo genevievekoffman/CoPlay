@@ -16,7 +16,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
- 
+
 
 
 //Firebase
@@ -35,40 +35,36 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 const DB = firebase.firestore();
 
-function App() { 
+function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-   
+
   //useEffect(() => updateTasks(setTasksList), []);
-   
+
   //const [points, setPoints] = useState(false);
-   
+
 
   if (!isLoggedIn) {
     return (
       <div className="App">
+        <div className="grid">
+          <div id="leftSide"></div>
+          <div id="LogIn">Coplay</div>
+          <div id="slogan">Coexisting sounds hard but<br></br>CoPlay sounds like fun</div>
 
-        <form
-          onSubmit={event => {
-            checkUser(event, setIsLoggedIn);
-          }}
-        >
-          <div id="container">
-            <div id="LogIn">CoPlay</div>
-            <input
-              type="text"
-              name="username"
-              id="name"
-              placeholder="username"
-            ></input>
-            <input
-              type="text"
-              name="password"
-              id="password"
-              placeholder="password"
-            ></input>
-            <input type="submit" id="submit" value="Verify Credentials"></input>
-          </div>
-        </form>
+          <img id="logo" src="./sketchImages/coplayLogo.jpeg"></img>
+          <div id="signIn">Sign in to Coplay</div>
+          <form id="signInForm" onSubmit={event => { checkUser(event, setIsLoggedIn); }}>
+            <div id="formFlex">
+              <div id="userLabel">Username</div>
+              <input type="text" name="username" id="name"></input>
+              <br></br>
+              <div id="passwordLabel">Password</div>
+              <input type="text" name="password" id="password"></input>
+              <br></br>
+              <input type="submit" id="submitLogin" value="Sign In"></input>
+            </div>
+          </form>
+        </div>
       </div>
     );
   } else {
@@ -83,7 +79,7 @@ function App() {
             <li>
               <Link to="/rewardspage">Rewards page</Link>
             </li>
-          </ul>        
+          </ul>
           <Switch>
             <Route exact path="/">
               <Tasks />
@@ -101,18 +97,18 @@ function App() {
 
 
 
-     
- 
 
- 
 
- 
 
- 
- 
 
- 
- 
+
+
+
+
+
+
+
+
 
 function checkUser(e, setIsLoggedIn) {
   e.preventDefault();
@@ -142,49 +138,49 @@ function checkUser(e, setIsLoggedIn) {
       }
     });
   }
-  
+
   e.target.elements.username.value = "";
   e.target.elements.password.value = "";
 }
 
 export default App;
 
-function Tasks(){
-      const [counter, setCounter] = useState(0);
-      const [tasksLists, setTasksList] = useState([]);
-      const [showForm, setShowForm] = useState(false);
+function Tasks() {
+  const [counter, setCounter] = useState(0);
+  const [tasksLists, setTasksList] = useState([]);
+  const [showForm, setShowForm] = useState(false);
 
-      if (counter == 0) {
-      updateTasks(setTasksList, setCounter);
-      }
+  if (counter == 0) {
+    updateTasks(setTasksList, setCounter);
+  }
 
   return (
-      <div className="App2">
+    <div className="App2">
 
-        <div>
-          <h4>
-            {tasksLists.map((task, index) => {
-              return <Task task={task} key={index} db={DB} />;
-            })}
-          </h4>
-        </div>
-
-        <div className="AddTask" name="AddTask">
-          {showForm && <AddTaskForm onCancel={() => setShowForm(false)} />}
-
-          <button className ="addTaskBtn" id="PopUp" onClick={() => setShowForm(!showForm)}>
-            +
-          </button>
-        </div>
-
-        <div id="points" className="points"></div>
-        <img className="profileIcon" src="sketchImages/profileheadbig.png" onClick={
-          displayPoints
-
-          }></img>
-        
+      <div>
+        <h4>
+          {tasksLists.map((task, index) => {
+            return <Task task={task} key={index} db={DB} />;
+          })}
+        </h4>
       </div>
-    );
+
+      <div className="AddTask" name="AddTask">
+        {showForm && <AddTaskForm onCancel={() => setShowForm(false)} />}
+
+        <button className="addTaskBtn" id="PopUp" onClick={() => setShowForm(!showForm)}>
+          +
+          </button>
+      </div>
+
+      <div id="points" className="points"></div>
+      <img className="profileIcon" src="sketchImages/profileheadbig.png" onClick={
+        displayPoints
+
+      }></img>
+
+    </div>
+  );
 }
 
 
@@ -199,7 +195,7 @@ function AddTaskForm(props) {
             addTask(event);
           }}
         >
-          <div id = "TitleAddTask">Add Task</div>
+          <div id="TitleAddTask">Add Task</div>
           <input
             type="text"
             name="title"
@@ -225,7 +221,7 @@ function AddTaskForm(props) {
         >
           Cancel
         </button>
-        
+
       </div>
     </div>
   );
@@ -308,14 +304,14 @@ function updateTasks(setTasksList, setCounter) {
 
 //   return (
 //     <>
-    
-    
+
+
 //       <Button variant="primary" id = "PopUpButton" onClick={handleShow}>
 //         +
 //       </Button>
 
 //       <Modal show={show} onHide={handleClose}>
-      
+
 //         <Modal.Header closeButton>
 //           <Modal.Title>Add Task</Modal.Title>
 //         </Modal.Header>
