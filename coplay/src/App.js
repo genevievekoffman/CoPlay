@@ -200,7 +200,7 @@ function AddTaskForm(props) {
           </div>
         </form>
 
-        <button name="cancel" className="Cancel" value="Cancel" onClick={props.onCancel} > cancel </button>
+        <button name="cancel" id="Cancel" value="Cancel" onClick={props.onCancel} >Cancel </button>
         
          
       

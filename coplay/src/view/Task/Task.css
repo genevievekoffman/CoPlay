@@ -38,15 +38,20 @@ input{
 }
 
 #Cancel{
-     width: 4vw;
+     width: 5vw;
     background-color:gray;
     margin-top: 20px;
-    margin-left: 2vw;
+    margin-left: 7vw;
+    
     border-radius: 5px;
+
 }
 
 #Save{
-    width: 4vw;
+    width: 5vw;
+    border-radius: 5px;
+    margin-top: 1vw;
+    margin-left: 7vw;
     background-color: cornflowerblue;
 
 }
@@ -63,3 +68,4 @@ input{
     left: 50%;
     transform: translate(-50%, -50%);
 }
+

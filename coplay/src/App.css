@@ -274,7 +274,12 @@ input{
 }
  
  
- 
+ #Save {
+  width: 4vw;
+  height: 2vw;
+  margin-left: 5vw;
+  background-color: cornflowerblue;
+}
 
 
 
@@ -315,17 +320,7 @@ input{
   z-index: 99;
 }
 
- 
-.Cancel{
-  width: 4vw;
-  height: 1,5vw;
-  border-radius: 5px;
-  background-color: grey;
-  margin-left: 0vw;
-  font-size: small;
-  
 
-}
 
 #addtask{
 text-align: center;
@@ -353,3 +348,5 @@ text-align: center;
 .topNav a:hover {
   color: #648AD1;
 }
+
+
