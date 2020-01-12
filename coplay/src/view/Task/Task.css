@@ -8,11 +8,18 @@
      
 
     font-family: Avenir-Light;
-    color: #8C8787;
+    color: black;
     text-align: center;
-    font-size: 1.5vw;
- 
+     
 }
+
+.taskBig{
+    font-size: 1.5vw;
+}
+.taskSmall{
+    font-size: 1vw;
+}
+ 
 
 .checkBox{
     border: 1px solid #979797;

@@ -7,11 +7,16 @@ function Reward(props) {
     return (
         <div className="reward" key={index}>
             <div>
-                <button className="claim" onClick={() => deductPoints(reward[1], db)}>Claim</button>
+                <button className = "checkBox" onClick={() => deductPoints(reward[1], db)}> </button>
             </div>
             <div>
-                {reward[0]} <br />
+                <div className = "rewardBig">
+                    {reward[0]} <br />
+                </div>
+                <div className = "rewardSmall">
                 {reward[1]}
+                </div>
+                 
             </div>
         </div>
     )

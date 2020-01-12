@@ -33,8 +33,12 @@ function Task(props) {
       <div className="task" key={index}>
         <div className = "checkBox"> x </div>
          <div>
-          {task[0]} <br></br>
-          {task[1]} <br></br>
+           <div className = "taskBig">
+            {task[0]} <br></br>
+           </div>
+           <div className = "taskSmall">
+            {task[1]} <br></br>
+           </div>
          </div>
       </div>
     );
