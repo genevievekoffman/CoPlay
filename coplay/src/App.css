@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: repeat(5, 26vw);
   grid-template-rows: repeat(7, 10vh);
+  height: 100vh;
 }
 
 #leftSide{
@@ -10,7 +11,7 @@
   grid-row-start: 1;
   grid-row-end: span 7;
 
-  background: rgba(100, 138, 209, 100%);
+  background: #648AD1;
 
   width: 40vw;
   height: 100vh;
@@ -29,6 +30,7 @@
   font-family: Krungthep;
 
   height: 10vh;
+  user-select: none;
 }
 
 #slogan{
@@ -41,12 +43,13 @@
   padding-left: 1em;
 
   font-family: Avenir;
+  user-select: none;
 }
 
 #logo{
   height: 90vh;
   opacity: 0.2;
-  z-index: 1;
+  z-index: -1;
 }
 
 #signIn{
@@ -60,6 +63,7 @@
   height: 3vh;
   font-size: 2vw;
   font-family: Avenir;
+  user-select: none;
 }
 
 #signInForm{
@@ -75,6 +79,8 @@
   grid-row-start: 3;
   grid-row-end: span 4;
 
+  background: none;
+
   display: flex;
   flex-direction: column;
   padding-top: 4.1em;
@@ -83,6 +89,7 @@
 #userLabel{
   font-family: Avenir-Heavy;
   font-size: 1.5vw;
+  user-select: none;
 }
 
 #name {
@@ -99,6 +106,7 @@
 #passwordLabel{
   font-family: Avenir-Heavy;
   font-size: 1.5vw;
+  user-select: none;
 }
 
 #password {
@@ -112,17 +120,13 @@
   margin-top: 0.3em;
 }
 
-#submit {
+#submitLogin {
   background: #648AD1;
   border-radius: 10px;
   color: white;
   font-family: Avenir-Heavy;
   font-size: 1.3vw;
   height: 5vh;
-}
-
-html {
-  background: #f9f9f9;
 }
 
   .AddTask {

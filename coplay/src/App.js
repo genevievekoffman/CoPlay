@@ -61,7 +61,7 @@ function App() {
               <div id="passwordLabel">Password</div>
               <input type="text" name="password" id="password"></input>
               <br></br>
-              <input type="submit" id="submit" value="Sign In"></input>
+              <input type="submit" id="submitLogin" value="Sign In"></input>
             </div>
           </form>
         </div>
