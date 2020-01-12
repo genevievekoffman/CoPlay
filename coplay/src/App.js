@@ -9,6 +9,7 @@ import Task from "./view/Task/Task";
 //pages
 
 import Rewards from './view/pages/Rewards/Rewards';
+import Tasks from './view/pages/Tasks/Tasks';
 
 import {
   BrowserRouter as Router,
@@ -77,7 +78,7 @@ function App() {
             <div></div>
             <div></div>
             <li className="link">
-              <Link to="/">Task Page</Link>
+              <Link to="/">Tasks Page</Link>
             </li>
             <li className="link">
               <Link to="/rewardspage">Rewards page</Link>
@@ -88,7 +89,7 @@ function App() {
           </ul>
           <Switch>
             <Route exact path="/">
-              <Tasks />
+              <Tasks db = {DB} />
             </Route>
             <Route path="/rewardspage">
               <Rewards db = {DB} />
