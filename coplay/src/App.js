@@ -6,8 +6,8 @@ import Task from "./view/Task/Task";
 // import Modal from 'react-bootstrap/Modal';
 // import Form from 'react-bootstrap/Form';
 
-
 //pages
+
 import Rewards from './view/pages/Rewards/Rewards';
 
 import {
@@ -18,6 +18,7 @@ import {
 } from "react-router-dom";
 
 
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 //Firebase
 const firebaseConfig = {
@@ -46,6 +47,7 @@ function App() {
   if (!isLoggedIn) {
     return (
       <div className="App">
+
         <div className="grid">
           <div id="leftSide"></div>
           <div id="LogIn">Coplay</div>
@@ -85,7 +87,8 @@ function App() {
               <Tasks />
             </Route>
             <Route path="/rewardspage">
-              <Rewards db = {DB}/>
+              <Rewards DB = {DB} />
+
             </Route>
           </Switch>
         </div>
@@ -94,8 +97,6 @@ function App() {
   }
 }
 
-
- 
 function checkUser(e, setIsLoggedIn) {
   e.preventDefault();
   console.log("function called");
@@ -109,7 +110,7 @@ function checkUser(e, setIsLoggedIn) {
     alert("Must enter a password");
   } else {
     var docRef = DB.collection("Users").doc(username);
-    docRef.get().then(function (doc) {
+    docRef.get().then(function(doc) {
       if (doc.exists) {
         if (password === doc.data().password) {
           console.log("passwords match");
@@ -117,7 +118,7 @@ function checkUser(e, setIsLoggedIn) {
           setIsLoggedIn(true);
         } else {
           console.log("passwords dont match");
-          alert("Either the username or password is incorrect")
+          alert("Either the username or password is incorrect");
         }
       } else {
         console.log("no info found");
@@ -151,6 +152,7 @@ function Tasks() {
         </h4>
       </div>
 
+
       <div className="AddTask" name="AddTask">
         {showForm && <AddTaskForm onCancel={() => setShowForm(false)} />}
 
@@ -170,8 +172,17 @@ function Tasks() {
 }
 
 
-function AddTaskForm(props) {
+      <div id="points" className="points"></div>
+      <img
+        className="profileIcon"
+        src="sketchImages/profileheadbig.png"
+        onClick={displayPoints}
+      ></img>
+    </div>
+  );
+}
 
+function AddTaskForm(props) {
   console.log("form opened");
   return (
     <div name="PopUp" className="PopUp">
@@ -240,21 +251,24 @@ function addTask(event) {
 }
 
 function displayPoints() {
-
-  DB.collection("Users").doc(sessionStorage.getItem('user')).get().then(userDB => {
-    let points = userDB.get("totalPoints")
-    console.log(points)
-    document.getElementById("points").style.visibility = "visible";
-    document.getElementById("points").innerHTML = "Points: " + points;
-    wait();
-
-  });
+  DB.collection("Users")
+    .doc(sessionStorage.getItem("user"))
+    .get()
+    .then(userDB => {
+      let points = userDB.get("totalPoints");
+      console.log(points);
+      document.getElementById("points").style.visibility = "visible";
+      document.getElementById("points").innerHTML = "Points: " + points;
+      wait();
+    });
 }
 
 function wait() {
-  setTimeout(() => document.getElementById("points").style.visibility = "hidden", 3000)
+  setTimeout(
+    () => (document.getElementById("points").style.visibility = "hidden"),
+    3000
+  );
 }
-
 
 function updateTasks(setTasksList, setCounter) {
   var list = new Array();
@@ -274,13 +288,8 @@ function updateTasks(setTasksList, setCounter) {
       setTasksList(list);
 
       setCounter(1);
-
-
     });
 }
-
-
-
 
 // function Example(props) {
 //   const [show, setShow] = useState(false);
