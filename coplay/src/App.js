@@ -2,11 +2,21 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import firebase from "firebase";
 import Task from "./view/Task/Task";
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
+// import Button from 'react-bootstrap/Button';
+// import Modal from 'react-bootstrap/Modal';
+// import Form from 'react-bootstrap/Form';
 
 
+//pages
+import Rewards from './view/pages/Rewards/Rewards';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+ 
 
 
 //Firebase
@@ -25,14 +35,13 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 const DB = firebase.firestore();
 
-function App() {
-  let username = sessionStorage.getItem("user");
+function App() { 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [tasksLists, setTasksList] = useState([]);
+   
   //useEffect(() => updateTasks(setTasksList), []);
-  const [counter, setCounter] = useState(0);
-  const [points, setPoints] = useState(false);
-  const [showForm, setShowForm] = useState(false);
+   
+  //const [points, setPoints] = useState(false);
+   
 
   if (!isLoggedIn) {
     return (
@@ -63,26 +72,94 @@ function App() {
       </div>
     );
   } else {
-
-
     //someone is logged in
-
-    if (counter == 0) {
-      updateTasks(setTasksList, setCounter);
-    }
-
     return (
-
-      <div className="App2">
-
-
-
-
-        <div className="top-nav">
-          <a className="active" href="#leaderboard">Leading</a>
-          <a href="#tasks">Tasks</a>
-          <a href="#rewards">Rewards</a>
+      <Router>
+        <div>
+          <ul>
+            <li>
+              <Link to="/">Task Page</Link>
+            </li>
+            <li>
+              <Link to="/rewardspage">Rewards page</Link>
+            </li>
+          </ul>        
+          <Switch>
+            <Route exact path="/">
+              <Tasks />
+            </Route>
+            <Route path="/rewardspage">
+              <Rewards />
+            </Route>
+          </Switch>
         </div>
+      </Router>
+    );
+  }
+}
+
+
+
+
+     
+ 
+
+ 
+
+ 
+
+ 
+ 
+
+ 
+ 
+
+function checkUser(e, setIsLoggedIn) {
+  e.preventDefault();
+  console.log("function called");
+
+  let username = e.target.elements.username.value;
+  let password = e.target.elements.password.value;
+
+  if (username == "") {
+    alert("Must enter a username");
+  } else if (password == "") {
+    alert("Must enter a password");
+  } else {
+    var docRef = DB.collection("Users").doc(username);
+    docRef.get().then(function (doc) {
+      if (doc.exists) {
+        if (password === doc.data().password) {
+          console.log("passwords match");
+          sessionStorage.setItem("user", username); //saves to local storage
+          setIsLoggedIn(true);
+        } else {
+          console.log("passwords dont match");
+          alert("Either the username or password is incorrect")
+        }
+      } else {
+        console.log("no info found");
+      }
+    });
+  }
+  
+  e.target.elements.username.value = "";
+  e.target.elements.password.value = "";
+}
+
+export default App;
+
+function Tasks(){
+      const [counter, setCounter] = useState(0);
+      const [tasksLists, setTasksList] = useState([]);
+      const [showForm, setShowForm] = useState(false);
+
+      if (counter == 0) {
+      updateTasks(setTasksList, setCounter);
+      }
+
+  return (
+      <div className="App2">
 
         <div>
           <h4>
@@ -106,120 +183,10 @@ function App() {
 
           }></img>
         
-        {/* <Example /> */}
-
       </div>
     );
-  }
 }
 
-
-function Example(props) {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  return (
-    <>
-    
-    
-      <Button variant="primary" id = "PopUpButton" onClick={handleShow}>
-        +
-      </Button>
-
-      <Modal show={show} onHide={handleClose}>
-      
-        <Modal.Header closeButton>
-          <Modal.Title>Add Task</Modal.Title>
-        </Modal.Header>
-        {/* <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body> */}
-        <Modal.Footer>
-        <Form id = "kkk">
-  <Form.Group controlId="formGroupEmail">
-    <Form.Label>Title</Form.Label>
-    <Form.Control type="email" placeholder="Enter email" />
-  </Form.Group>
-  <Form.Group controlId="formGroupPassword">
-    <Form.Label>Points</Form.Label>
-    <Form.Control type="password" placeholder="Password" />
-  </Form.Group>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Add
-          </Button>
-</Form>
-        </Modal.Footer>
-      </Modal>
-    </>
-  );
-}
-
-function displayPoints() {
-
-  DB.collection("Users").doc(sessionStorage.getItem('user')).get().then(userDB => {
-    let points = userDB.get("totalPoints")
-    console.log(points)
-    document.getElementById("points").style.visibility = "visible";
-    document.getElementById("points").innerHTML = "Points: " + points;
-    wait();
-
-  });
-}
-
-function wait() {
-  setTimeout(() => document.getElementById("points").style.visibility = "hidden", 3000)
-}
-function updateTasks(setTasksList, setCounter) {
-  var list = new Array();
-  //let list = [];
-
-  DB.collection("Tasks")
-    .get()
-    .then(tasksDB => {
-      tasksDB.forEach(taskDB => {
-        let taskInfo = [];
-        taskInfo.push(taskDB.get("task"));
-        taskInfo.push(taskDB.get("points"));
-        taskInfo.push(taskDB.get("completed"));
-
-        list.push(taskInfo);
-      });
-      setTasksList(list);
-
-      setCounter(1);
-
-
-    });
-}
-
-function addTask(event) {
-  event.preventDefault();
-
-  console.log("saved my G");
-  let title = event.target.elements.title.value;
-  let points = parseInt(event.target.elements.points.value);
-  if (title == "") {
-    alert("Must enter a title");
-  } else if (points == "") {
-    alert("Must enter points");
-  } else {
-    console.log(title);
-    console.log(points);
-    DB.collection("Tasks")
-      .doc(title)
-      .set({
-        points: points,
-        completed: false,
-        task: title
-      });
-  }
-
-  event.target.elements.title.value = "";
-  event.target.elements.points.value = "";
-}
 
 function AddTaskForm(props) {
 
@@ -264,37 +231,114 @@ function AddTaskForm(props) {
   );
 }
 
-function checkUser(e, setIsLoggedIn) {
-  e.preventDefault();
-  console.log("function called");
+function addTask(event) {
+  event.preventDefault();
 
-  let username = e.target.elements.username.value;
-  let password = e.target.elements.password.value;
-
-  if (username == "") {
-    alert("Must enter a username");
-  } else if (password == "") {
-    alert("Must enter a password");
+  console.log("saved my G");
+  let title = event.target.elements.title.value;
+  let points = parseInt(event.target.elements.points.value);
+  if (title == "") {
+    alert("Must enter a title");
+  } else if (points == "") {
+    alert("Must enter points");
   } else {
-    var docRef = DB.collection("Users").doc(username);
-    docRef.get().then(function (doc) {
-      if (doc.exists) {
-        if (password === doc.data().password) {
-          console.log("passwords match");
-          sessionStorage.setItem("user", username); //saves to local storage
-          setIsLoggedIn(true);
-        } else {
-          console.log("passwords dont match");
-          alert("Either the username or password is incorrect")
-        }
-      } else {
-        console.log("no info found");
-      }
-    });
+    console.log(title);
+    console.log(points);
+    DB.collection("Tasks")
+      .doc(title)
+      .set({
+        points: points,
+        completed: false,
+        task: title
+      });
   }
-  
-  e.target.elements.username.value = "";
-  e.target.elements.password.value = "";
+
+  event.target.elements.title.value = "";
+  event.target.elements.points.value = "";
 }
 
-export default App;
+function displayPoints() {
+
+  DB.collection("Users").doc(sessionStorage.getItem('user')).get().then(userDB => {
+    let points = userDB.get("totalPoints")
+    console.log(points)
+    document.getElementById("points").style.visibility = "visible";
+    document.getElementById("points").innerHTML = "Points: " + points;
+    wait();
+
+  });
+}
+
+function wait() {
+  setTimeout(() => document.getElementById("points").style.visibility = "hidden", 3000)
+}
+
+
+function updateTasks(setTasksList, setCounter) {
+  var list = new Array();
+  //let list = [];
+
+  DB.collection("Tasks")
+    .get()
+    .then(tasksDB => {
+      tasksDB.forEach(taskDB => {
+        let taskInfo = [];
+        taskInfo.push(taskDB.get("task"));
+        taskInfo.push(taskDB.get("points"));
+        taskInfo.push(taskDB.get("completed"));
+
+        list.push(taskInfo);
+      });
+      setTasksList(list);
+
+      setCounter(1);
+
+
+    });
+}
+
+
+
+
+// function Example(props) {
+//   const [show, setShow] = useState(false);
+
+//   const handleClose = () => setShow(false);
+//   const handleShow = () => setShow(true);
+
+//   return (
+//     <>
+    
+    
+//       <Button variant="primary" id = "PopUpButton" onClick={handleShow}>
+//         +
+//       </Button>
+
+//       <Modal show={show} onHide={handleClose}>
+      
+//         <Modal.Header closeButton>
+//           <Modal.Title>Add Task</Modal.Title>
+//         </Modal.Header>
+//         {/* <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body> */}
+//         <Modal.Footer>
+//         <Form id = "kkk">
+//   <Form.Group controlId="formGroupEmail">
+//     <Form.Label>Title</Form.Label>
+//     <Form.Control type="email" placeholder="Enter email" />
+//   </Form.Group>
+//   <Form.Group controlId="formGroupPassword">
+//     <Form.Label>Points</Form.Label>
+//     <Form.Control type="password" placeholder="Password" />
+//   </Form.Group>
+//           <Button variant="secondary" onClick={handleClose}>
+//             Cancel
+//           </Button>
+//           <Button variant="primary" onClick={handleClose}>
+//             Add
+//           </Button>
+// </Form>
+//         </Modal.Footer>
+//       </Modal>
+//     </>
+//   );
+// }
