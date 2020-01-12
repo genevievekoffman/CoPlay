@@ -308,6 +308,10 @@ input{
   visibility: hidden;
 }
 
+#form{
+  display:grid;
+}
+
 .PopUp{
   position: absolute;
   background: white;
@@ -321,7 +325,8 @@ input{
   height: 1,5vw;
   border-radius: 5px;
   background-color: grey;
-  margin-left: 0vw;
+  margin-left: 20vw;
+  margin-top: 0vw;
   font-size: small;
   
 

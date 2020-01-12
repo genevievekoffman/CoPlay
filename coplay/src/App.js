@@ -176,8 +176,9 @@ function AddTaskForm(props) {
   console.log("form opened");
   return (
     <div name="PopUp" className="PopUp">
+    <button name="cancel" className="Cancel" value="Cancel" onClick={props.onCancel} >X</button>
       <div id="grid">
-        <form
+        <form id = "form"
           onSubmit={event => {
             addTask(event);
           }}
@@ -200,7 +201,6 @@ function AddTaskForm(props) {
           </div>
         </form>
 
-        <button name="cancel" className="Cancel" value="Cancel" onClick={props.onCancel} > cancel </button>
         
          
       

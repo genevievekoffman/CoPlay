@@ -120,7 +120,7 @@ function AddRewardForm(props) {
           value="Cancel"
           onClick={props.onCancel}
         >
-          Cancel
+        X
         </button>
       </div>
     </div>
