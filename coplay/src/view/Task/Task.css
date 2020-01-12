@@ -2,11 +2,8 @@
 .task{
     display: flex;
     justify-content: center;
-     
-    padding: 20px;
+    padding: 10px;
     margin: 0.5em;
-     
-
     font-family: Avenir-Light;
     color: black;
     text-align: center;
@@ -51,18 +48,40 @@ input{
 }
 
 #Cancel{
-     width: 4vw;
+     width: 5vw;
     background-color:gray;
     margin-top: 20px;
-    margin-left: 2vw;
+    margin-left: 4vw;
+    
     border-radius: 5px;
+
 }
 
 #Save{
-    width: 4vw;
+    width: 5vw;
+    border-radius: 5px;
+    margin-top: 1vw;
+    margin-left: 4vw;
     background-color: cornflowerblue;
 
 }
 
  
- 
+.x{
+    font-family: DFWaWaSC-W5;
+    font-size: 15vw;
+    color: #FFFFFF;
+     
+    
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#TitleAddTask{
+    text-align: center;
+    font-weight: 600;
+    margin-top: 200px;
+    font-size: 4.5mm;
+}

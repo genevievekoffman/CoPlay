@@ -224,6 +224,7 @@
 }
 
 
+
 input{
   margin-bottom: 10px;
   width: 30%;
@@ -273,7 +274,12 @@ input{
 }
  
  
- 
+ #Save {
+  width: 4vw;
+  height: 2vw;
+  margin-left: 5vw;
+  background-color: cornflowerblue;
+}
 
 
 
@@ -283,8 +289,8 @@ input{
   width: 3vw;
   height: 3vw;
   text-align: center;
-  margin-left: 34vw;
-  
+  margin-left: 50vw;
+  margin-top: 10vw;
   
   font-size: 130%;
   outline: none;
@@ -309,6 +315,7 @@ input{
 
 #form{
   display:grid;
+  
 }
 
 .PopUp{
@@ -316,20 +323,11 @@ input{
   background: white;
   margin-top: -30vh;
   z-index: 99;
-}
-
- 
-.Cancel{
-  width: 4vw;
-  height: 1,5vw;
-  border-radius: 5px;
-  background-color: grey;
-  margin-left: 15vw;
-  margin-top: 0vw;
-  font-size: small;
   
-
+  
 }
+
+
 
 #addtask{
 text-align: center;
@@ -358,6 +356,8 @@ text-align: center;
   color: #648AD1;
 }
 
-.link{
-  text-align: center;
+.PopUp{
+  margin-left: 20vw;
+  
+  
 }

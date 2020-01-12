@@ -90,7 +90,7 @@ function AddRewardForm(props) {
   console.log("form opened");
   return (
     <div name="PopUp" className="PopUp">
-      <div id="grid">
+      <div id="gridd">
         <form
           onSubmit={event => {
             addReward(event, db);
@@ -103,12 +103,14 @@ function AddRewardForm(props) {
             placeholder="Title"
             id="Title"
           ></input>
+          <div id="Align" >
           <input
             type="text"
             name="points"
             placeholder="Points"
             id="Points"
           ></input>
+          </div>
           <div className="button">
             <input type="submit" name="save" id="Save" value="Save"></input>
           </div>
@@ -120,7 +122,7 @@ function AddRewardForm(props) {
           value="Cancel"
           onClick={props.onCancel}
         >
-        X
+        Cancel
         </button>
       </div>
     </div>

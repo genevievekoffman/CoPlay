@@ -14,6 +14,7 @@
     display: grid;
     
     
+    
   }
 
   .PopUp{
@@ -21,13 +22,71 @@
     display:grid;
     margin-top: -30vh;
     z-index: 99;
+    background-color: white;
+    
+    
   }
 
-  #grid{
-      display: grid;
-  }
+  
 
   .AddReward{
       margin-left:30vw;
       margin-top: 10vh;
+  }
+
+  .addRewardbtn{
+    border-radius: 50%;
+  background-color: rgb(105, 105, 231);
+  width: 3vw;
+  height: 3vw;
+  text-align: center;
+  margin-left: 60vw;
+  margin-top: 7vw;
+  
+  font-size: 130%;
+  outline: none;
+  cursor: pointer;
+  }
+
+  #TitleAddReward{
+    margin-top: 10vw;
+    margin-left: 3.5vw;
+    margin-bottom: 1vw;
+    font-weight: 600;
+    
+  }
+
+  #Title{
+    margin-left: auto;
+    
+    
+  }
+
+  #Points{
+    margin-right: auto;
+  }
+
+  .Cancel{
+    width: 5vw;
+    height: 2.5vw;
+    margin-left:4vw;
+    margin-top: 2vw;
+    background-color: gray;
+    border-radius: 5px;
+  }
+
+  #gridd{
+    margin-left: 13vw;
+  }
+
+  .Align{
+    display: grid;
+    grid-template-columns: 50px;
+  }
+
+  
+  
+  .PopUp{
+    margin-left: 30vw;
+    
   }

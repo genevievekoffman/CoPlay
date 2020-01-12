@@ -10,6 +10,7 @@ import Task from "./view/Task/Task";
 
 import Rewards from './view/pages/Rewards/Rewards';
 
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -77,7 +78,7 @@ function App() {
             <div></div>
             <div></div>
             <li className="link">
-              <Link to="/">Task Page</Link>
+              <Link to="/">Tasks Page</Link>
             </li>
             <li className="link">
               <Link to="/rewardspage">Rewards page</Link>
@@ -88,7 +89,7 @@ function App() {
           </ul>
           <Switch>
             <Route exact path="/">
-              <Tasks />
+              <Tasks db = {DB} />
             </Route>
             <Route path="/rewardspage">
               <Rewards db = {DB} />
@@ -180,7 +181,7 @@ function AddTaskForm(props) {
   console.log("form opened");
   return (
     <div name="PopUp" className="PopUp">
-    <button name="cancel" className="Cancel" value="Cancel" onClick={props.onCancel} >X</button>
+    
       <div id="grid">
         <form id = "form"
           onSubmit={event => {
@@ -205,6 +206,7 @@ function AddTaskForm(props) {
           </div>
         </form>
 
+        <button name="cancel" id="Cancel" value="Cancel" onClick={props.onCancel} >Cancel </button>
         
          
       
