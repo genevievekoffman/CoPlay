@@ -12,7 +12,7 @@ function Task(props) {
       <div className="task" key={index}>
         <div>
           {taskCompleted ? (
-            "Completed"
+            <div className = "x"> x </div>
           ) : (
             <button
               onClick={() =>
@@ -31,7 +31,7 @@ function Task(props) {
   } else {
     return (
       <div className="task" key={index}>
-        Completed <br></br>
+        <div className = "x"> x </div> <br></br>
         {task[0]} <br></br>
         {task[1]}
         <br></br>
