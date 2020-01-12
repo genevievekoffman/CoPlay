@@ -7,7 +7,16 @@ import Task from "./view/Task/Task";
 // import Form from 'react-bootstrap/Form';
 
 //pages
-import Rewards from "./view/pages/Rewards/Rewards";
+
+import Rewards from './view/pages/Rewards/Rewards';
+
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
@@ -34,31 +43,30 @@ function App() {
 
   //const [points, setPoints] = useState(false);
 
+
   if (!isLoggedIn) {
     return (
       <div className="App">
-        <form
-          onSubmit={event => {
-            checkUser(event, setIsLoggedIn);
-          }}
-        >
-          <div id="container">
-            <div id="LogIn">CoPlay</div>
-            <input
-              type="text"
-              name="username"
-              id="name"
-              placeholder="username"
-            ></input>
-            <input
-              type="text"
-              name="password"
-              id="password"
-              placeholder="password"
-            ></input>
-            <input type="submit" id="submit" value="Verify Credentials"></input>
-          </div>
-        </form>
+
+        <div className="grid">
+          <div id="leftSide"></div>
+          <div id="LogIn">Coplay</div>
+          <div id="slogan">Coexisting sounds hard but<br></br>CoPlay sounds like fun</div>
+
+          <img id="logo" src="./sketchImages/coplayLogo.jpeg"></img>
+          <div id="signIn">Sign in to Coplay</div>
+          <form id="signInForm" onSubmit={event => { checkUser(event, setIsLoggedIn); }}>
+            <div id="formFlex">
+              <div id="userLabel">Username</div>
+              <input type="text" name="username" id="name"></input>
+              <br></br>
+              <div id="passwordLabel">Password</div>
+              <input type="text" name="password" id="password"></input>
+              <br></br>
+              <input type="submit" id="submitLogin" value="Sign In"></input>
+            </div>
+          </form>
+        </div>
       </div>
     );
   } else {
@@ -80,6 +88,7 @@ function App() {
             </Route>
             <Route path="/rewardspage">
               <Rewards DB = {DB} />
+
             </Route>
           </Switch>
         </div>
@@ -134,6 +143,7 @@ function Tasks() {
 
   return (
     <div className="App2">
+
       <div>
         <h4>
           {tasksLists.map((task, index) => {
@@ -142,17 +152,25 @@ function Tasks() {
         </h4>
       </div>
 
+
       <div className="AddTask" name="AddTask">
         {showForm && <AddTaskForm onCancel={() => setShowForm(false)} />}
 
-        <button
-          className="addTaskBtn"
-          id="PopUp"
-          onClick={() => setShowForm(!showForm)}
-        >
+        <button className="addTaskBtn" id="PopUp" onClick={() => setShowForm(!showForm)}>
           +
-        </button>
+          </button>
       </div>
+
+      <div id="points" className="points"></div>
+      <img className="profileIcon" src="sketchImages/profileheadbig.png" onClick={
+        displayPoints
+
+      }></img>
+
+    </div>
+  );
+}
+
 
       <div id="points" className="points"></div>
       <img
@@ -200,6 +218,7 @@ function AddTaskForm(props) {
         >
           Cancel
         </button>
+
       </div>
     </div>
   );
@@ -280,6 +299,7 @@ function updateTasks(setTasksList, setCounter) {
 
 //   return (
 //     <>
+
 
 //       <Button variant="primary" id = "PopUpButton" onClick={handleShow}>
 //         +
