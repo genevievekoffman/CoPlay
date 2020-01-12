@@ -8,7 +8,7 @@ import Reward from '../../Reward/Reward';
 function Rewards(props) {   
     const [rewardsLists, setRewardsList] = useState([]);
     const [counter, setCounter] = useState(0);
-  const [showForm, setShowForm] = React.useState(false);
+    const [showForm, setShowForm] = React.useState(false);
     const {db} = props;
 
     if (counter == 0) {

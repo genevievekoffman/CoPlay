@@ -17,9 +17,6 @@ import {
   Link
 } from "react-router-dom";
 
-
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
 //Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAQrMqvW5LWBc2rXz-ve-jdgUnwXGtT9Gk",
@@ -87,7 +84,7 @@ function App() {
               <Tasks />
             </Route>
             <Route path="/rewardspage">
-              <Rewards DB = {DB} />
+              <Rewards db = {DB} />
 
             </Route>
           </Switch>
@@ -172,15 +169,6 @@ function Tasks() {
 }
 
 
-      <div id="points" className="points"></div>
-      <img
-        className="profileIcon"
-        src="sketchImages/profileheadbig.png"
-        onClick={displayPoints}
-      ></img>
-    </div>
-  );
-}
 
 function AddTaskForm(props) {
   console.log("form opened");
