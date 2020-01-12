@@ -2,7 +2,7 @@
 #LogIn {
 
   justify-self: center;
-
+  width:5vw;
   font-size: 6vw;
   line-height: 40vh;
   grid-area: LogIn;
@@ -13,6 +13,18 @@
   color: black;
   font-family: Krungthep;
 
+}
+
+.btn{
+  width:6vw;
+
+}
+ #kkk{
+   margin-left:0vw;
+ }
+
+#PopUpButton{
+  margin-right:5vw;
 }
 
 #name {
@@ -77,17 +89,23 @@
 
 form {
   display: grid;
+  padding:34px;
+  
+  
+
+  
 }
 
 #grid{
-  display:grid
-
+  display:grid;
+  background-color: rgb(255, 255, 255);
+  border-radius: 50px;
 }
 
-#grid{
-  display:grid
 
-}
+
+
+
 
 html {
   background: #f9f9f9;
@@ -112,13 +130,17 @@ html {
       width: 70vw
     }
 
-
+#PopUp{
+  margin-bottom:0px;
+  margin-right:0px;
+}
 } 
 
   .AddTask {
   display: grid;
   margin-top: 100px;
   margin-left: 40vw;
+  
 }
 
 
@@ -130,6 +152,7 @@ html {
   background-color:#D8D8D8;
   background: rgba(164,164,164,20%);
  
+ 
 }
 
 .App{
@@ -138,15 +161,9 @@ html {
   flex-direction: column;
 }
 
-
-h2{
-  margin-left: 43vw;
-  margin-top: 7vw;
-}
 .AddTaskPopUp{
   display: grid;
   margin-top: 100px;
-  margin-left: 40vw;
   
 }
 
@@ -170,10 +187,9 @@ input{
 }
 
 #Cancel{
-  width: 4vw;
-  height: 2vw;
+  width: 40vw;
+  height: 3vw;
   background-color:gray;
-  margin-top: 20px;
   margin-left: 2vw;
   border-radius: 5px;
 }
@@ -222,8 +238,9 @@ input{
   width: 3vw;
   height: 3vw;
   text-align: center;
-  margin-left: 13vw;
-  margin-top: 15vw;
+  margin-left: 34vw;
+  
+  
   font-size: 130%;
   outline: none;
   cursor: pointer;
@@ -231,6 +248,8 @@ input{
 
 #PopUp {
   position: absolute;
+  
+  
 }
 
 .profileIcon{
@@ -243,4 +262,27 @@ input{
   visibility: hidden;
 }
 
+.PopUp{
+  position: absolute;
+  background: white;
+  margin-top: -30vh;
+  z-index: 99;
+}
+
  
+.Cancel{
+  width: 4vw;
+  height: 1,5vw;
+  border-radius: 5px;
+  background-color: grey;
+  margin-left: 0vw;
+  font-size: small;
+  
+
+}
+
+#addtask{
+text-align: center;
+
+}
+
