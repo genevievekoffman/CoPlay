@@ -200,15 +200,10 @@ function AddTaskForm(props) {
           </div>
         </form>
 
-        <button
-          name="cancel"
-          className="Cancel"
-          value="Cancel"
-          onClick={props.onCancel}
-        >
-          Cancel
-        </button>
-
+        <button name="cancel" className="Cancel" value="Cancel" onClick={props.onCancel} > cancel </button>
+        
+         
+      
       </div>
     </div>
   );
@@ -323,3 +318,4 @@ function updateTasks(setTasksList, setCounter) {
 //     </>
 //   );
 // }
+
