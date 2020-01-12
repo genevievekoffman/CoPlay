@@ -70,8 +70,8 @@ function addReward(event, db) {
   } else if (points == "") {
     alert("Must enter points");
   } else {
-    parseInt(points)
-    console.log("The Reward" + title + "has been added with a cost of" + points);
+    points = parseInt(points);
+    console.log("The Reward " + title + " has been added with a cost of " + points);
     db.collection("Rewards")
       .doc(title)
       .set({

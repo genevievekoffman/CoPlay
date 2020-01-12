@@ -224,8 +224,8 @@ function addTask(event) {
   } else if (points == "") {
     alert("Must enter points");
   } else {
-    parseInt(points)
-    console.log("The task " + title + "has been added with a reward of" + points);
+    points = parseInt(points)
+    console.log("The task " + title + " has been added with a reward of " + points);
     DB.collection("Tasks")
       .doc(title)
       .set({
