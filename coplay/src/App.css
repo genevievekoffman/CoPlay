@@ -140,9 +140,7 @@
 .App2{
   justify-content: center;
   display: flex;
-  flex-direction: column;
-  background-color:#D8D8D8;
-  background: rgba(164,164,164,20%);
+  flex-direction: column;  
 }
 
 .App{
