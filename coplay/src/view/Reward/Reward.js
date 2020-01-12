@@ -7,7 +7,7 @@ function Reward(props) {
     return (
         <div className="reward" key={index}>
             <div>
-                <button className="claim" onClick={() => deductPoints(reward[1], db)} class>Claim</button>
+                <button className="claim" onClick={() => deductPoints(reward[1], db)}>Claim</button>
             </div>
             <div>
                 {reward[0]} <br />
