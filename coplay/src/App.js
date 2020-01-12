@@ -85,7 +85,7 @@ function App() {
               <Tasks />
             </Route>
             <Route path="/rewardspage">
-              <Rewards />
+              <Rewards db = {DB} />
             </Route>
           </Switch>
         </div>
