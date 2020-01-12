@@ -73,12 +73,18 @@ function App() {
         <div>
            
           <ul className = "topNav">
-            <li>
+            <div></div>
+            <div></div>
+            <div></div>
+            <li className="link">
               <Link to="/">Task Page</Link>
             </li>
-            <li>
+            <li className="link">
               <Link to="/rewardspage">Rewards page</Link>
             </li>
+            <div></div>
+            <div></div>
+            <div></div>
           </ul>
           <Switch>
             <Route exact path="/">

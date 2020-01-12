@@ -348,8 +348,8 @@ text-align: center;
   align-items: center;
   overflow: hidden;
   color: black;
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(8, auto);
 }
 
 .topNav a {
@@ -363,4 +363,8 @@ text-align: center;
 
 .topNav a:hover {
   color: #648AD1;
+}
+
+.link{
+  text-align: center;
 }
