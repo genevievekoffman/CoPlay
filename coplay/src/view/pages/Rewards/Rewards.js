@@ -4,7 +4,7 @@ import firebase from "firebase";
 
 function Rewards(props) {
   const [showForm, setShowForm] = React.useState(false);
-  const {DB} = props;
+  const {db} = props;
   return (
     <div>
       This is the Rewards Page lorem This is the Rewards Page lorem This is the
@@ -22,10 +22,10 @@ function Rewards(props) {
       is the Rewards Page lorem This is the Rewards Page lorem This is the
       Rewards Page lorem This is the Rewards Page lorem
       <div className="AddReward" name="AddReward">
-        {showForm && <AddRewardForm DB = {DB} onCancel={() => setShowForm(false)} />}
+        {showForm && <AddRewardForm db = {db} onCancel={() => setShowForm(false)} />}
 
         <button
-          className="addRewardBtn"
+          className="addRewardbtn"
           id="PopUp"
           onClick={() => setShowForm(!showForm)}
         >
@@ -37,14 +37,14 @@ function Rewards(props) {
 }
 
 function AddRewardForm(props) {
-  const { DB } = props;
+  const { db } = props;
   console.log("form opened");
   return (
     <div name="PopUp" className="PopUp">
       <div id="grid">
         <form
           onSubmit={event => {
-            addReward(event, DB);
+            addReward(event, db);
           }}
         >
           <div id="TitleAddReward">Add Reward</div>
@@ -78,7 +78,7 @@ function AddRewardForm(props) {
   );
 }
 
-function addReward(event, DB) {
+function addReward(event, db) {
   event.preventDefault();
 
   console.log("saved my G");
@@ -91,7 +91,7 @@ function addReward(event, DB) {
   } else {
     console.log(title);
     console.log(points);
-    DB.collection("Rewards")
+    db.collection("Rewards")
       .doc(title)
       .set({
         value: points,
