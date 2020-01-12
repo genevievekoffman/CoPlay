@@ -220,6 +220,7 @@
   display: grid;
   margin-top: 100px;
   
+  
 }
 
 
@@ -323,7 +324,7 @@ input{
   height: 1,5vw;
   border-radius: 5px;
   background-color: grey;
-  margin-left: 20vw;
+  margin-left: 15vw;
   margin-top: 0vw;
   font-size: small;
   

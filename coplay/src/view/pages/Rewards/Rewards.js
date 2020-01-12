@@ -64,14 +64,14 @@ function addReward(event, db) {
 
   console.log("saved my G");
   let title = event.target.elements.title.value;
-  let points = parseInt(event.target.elements.points.value);
+  let points = event.target.elements.points.value;
   if (title == "") {
     alert("Must enter a title");
   } else if (points == "") {
     alert("Must enter points");
   } else {
-    console.log(title);
-    console.log(points);
+    parseInt(points)
+    console.log("The Reward" + title + "has been added with a cost of" + points);
     db.collection("Rewards")
       .doc(title)
       .set({

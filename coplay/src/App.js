@@ -119,8 +119,6 @@ function checkUser(e, setIsLoggedIn) {
           console.log("passwords dont match");
           alert("Either the username or password is incorrect");
         }
-      } else {
-        console.log("no info found");
       }
     });
   }
@@ -214,14 +212,14 @@ function addTask(event) {
 
   console.log("saved my G");
   let title = event.target.elements.title.value;
-  let points = parseInt(event.target.elements.points.value);
+  let points = event.target.elements.points.value;
   if (title == "") {
     alert("Must enter a title");
   } else if (points == "") {
     alert("Must enter points");
   } else {
-    console.log(title);
-    console.log(points);
+    parseInt(points)
+    console.log("The task " + title + "has been added with a reward of" + points);
     DB.collection("Tasks")
       .doc(title)
       .set({
