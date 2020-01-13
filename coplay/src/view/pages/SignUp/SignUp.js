@@ -8,6 +8,7 @@ function SignUp(props){
             <div id="leftCol"></div>
             <div id="LogIn">Coplay</div>
             <div id="slogan">Coexisting sounds hard but<br></br>CoPlay sounds like fun</div>
+             
             
              
             <form id="createUserForm" onSubmit={event => { registerUser(event, db, setIsRegistering); }}>
@@ -20,6 +21,7 @@ function SignUp(props){
                     <br></br>
                     <input type="submit" id="submitLogin" value="Create Account"></input> 
                 </div>
+                <img src="sketchImages/lego.png"></img>
                  
             </form>
              
