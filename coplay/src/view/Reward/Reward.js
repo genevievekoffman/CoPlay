@@ -27,7 +27,7 @@ function Reward(props) {
     </div>
   );
 }
-
+//callback is the arrow function 13
 function deductPoints(points, db, callback) {
   console.log(points);
   db.collection("Users")
