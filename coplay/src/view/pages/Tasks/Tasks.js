@@ -70,38 +70,38 @@ function AddTaskForm(props) {
     const {db} = props;
   return (
     <div class="container">
-         <div class="row">
-             <div class="col-md-12">
-                
-                <div class="modal fade" id="myModal">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
+    <div class="row">
+        <div class="col-md-12">
+           
+           <div class="modal fade" id="myModal">
+               <div class="modal-dialog">
+                   <div class="modal-content">
 
-                        <div class="modal-header">
-                         <h3>Add Task</h3>
-                        </div>
-                        <div class="modal-body">
-                            <input type="text" placeholder="Title" id="Title"/> 
-                            <input type="text" placeholder="Points" id="Points"/> 
-                            
-                        </div>
-                        <div class="modal-footer">
-                            <input class="btn btn-primary" id="Save" data-dismiss="modal" value="Save"/>
-                            <input class="btn btn-primary" id="Cancel" data-dismiss="modal" value="Cancel"/>
-                        </div>
-   
-                    </div>
-                    </div>
-                </div>
+                   <div class="modal-header">
+                    <h3>Add Task</h3>
+                   </div>
+                   <div class="modal-body">
+                       <input type="text" placeholder="Title" id="Title"/> 
+                       <input type="text" placeholder="Points" id="Points"/>
+                       
+                   </div>
+                   <div class="modal-footer">
+                       <input class="btn btn-primary" id="Save" data-dismiss="modal" value="Save"/>
+                       <input class="btn btn-primary" id="Cancel" data-dismiss="modal" value="Cancel"/>
+                   </div>
+
+               </div>
+               </div>
+           </div>
 
 
-            <a href="#" data-toggle="modal" data-target="#myModal" id="plus">+</a>
-             </div>
-
-    
-          </div>
-
+       <a href="#" data-toggle="modal" data-target="#myModal" id="plus">+</a>
         </div>
+
+
+     </div>
+
+   </div>
   );
 }
 
