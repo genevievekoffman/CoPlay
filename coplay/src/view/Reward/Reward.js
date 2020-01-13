@@ -8,6 +8,7 @@ function Reward(props) {
   //passed an array of rewards
   const { reward, index, db } = props;
   const [showModal, setShowModal] = useState(false);
+  const [failModal, setFailModal] = useState(false);
 
   const handleCheckboxClick = () =>
     deductPoints(reward[1], db, () => setShowModal(true));
@@ -23,7 +24,7 @@ function Reward(props) {
         </div>
         <div className="rewardSmall">{reward[1]}</div>
       </div>
-      <Example show={showModal} onHide={() => setShowModal(false)} />
+      <PurchaseSuccess show={showModal} onHide={() => setShowModal(false)} />
     </div>
   );
 }
@@ -55,7 +56,24 @@ function deductPoints(points, db, callback) {
     });
 }
 
-function Example(props) {
+function PurchaseSuccess(props) {
+  return (
+    <div>
+      <Modal show={props.show} onHide={props.onHide}>
+        <Modal.Header closeButton>
+          <Modal.Title>Success</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>You have sucessfully purchased this reward</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={props.onHide}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </div>
+  );
+}
+function PurchaseFail(props) {
   return (
     <div>
       <Modal show={props.show} onHide={props.onHide}>
