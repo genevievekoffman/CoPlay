@@ -17,6 +17,7 @@ function Rewards(props) {
      
     return (
         <div> 
+         
             <h4>
             {rewardsLists.map((reward, index) => {
                 return <Reward reward = {reward} key = {index} db={db} />;
@@ -96,7 +97,9 @@ function AddRewardForm(props) {
             addReward(event, db);
           }}
         >
+          
           <div id="TitleAddReward">Add Reward</div>
+          
           <input
             type="text"
             name="title"
