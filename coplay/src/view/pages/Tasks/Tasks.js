@@ -25,7 +25,7 @@ function Tasks(props) {
     
     
           <div className="AddTask" name="AddTask">
-            {showForm && <AddTaskForm onCancel={() => setShowForm(false)} />}
+            {showForm && <AddTaskForm db = {db} onCancel={() => setShowForm(false)} />}
     
             <button className="addTaskBtn" id="PopUp" onClick={() => setShowForm(!showForm)}>
               +
