@@ -4,17 +4,28 @@ import './SignUp.css';
 function SignUp(props){
     const {db, setIsRegistering} = props;
     return (
-        <div> 
-            <form onSubmit={event => { registerUser(event, db, setIsRegistering); }}>
-                <input type="text" name="username" placeholder="username"></input>
-                <br></br>
-                <input type="text" name="password" placeholder="password"></input>
-                <br></br>
-                <input type="submit" value="continue"></input> 
+        <div className = "grid"> 
+            <div id="leftCol"></div>
+            <div id="LogIn">Coplay</div>
+            <div id="slogan">Coexisting sounds hard but<br></br>CoPlay sounds like fun</div>
+            
+             
+            <form id="createUserForm" onSubmit={event => { registerUser(event, db, setIsRegistering); }}>
+                <div id = "formFlex">
+                    <div id="userLabel">Username</div>
+                    <input type="text" name="username" id="name"></input>
+                    <br></br>
+                    <div id="passwordLabel">Password</div>
+                    <input type="text" name="password" id="password"></input>
+                    <br></br>
+                    <input type="submit" id="submitLogin" value="Create Account"></input> 
+                </div>
+                 
             </form>
              
         </div>
  
+        
     )
 }
 

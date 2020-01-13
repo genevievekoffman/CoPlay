@@ -68,8 +68,7 @@ function App() {
                 <input type="submit" id="submitLogin" value="Sign In"></input>
                  
               </div>
-            </form>
-             
+            </form> 
           </div>
         </div>
       );
