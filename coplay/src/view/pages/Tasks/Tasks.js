@@ -25,7 +25,7 @@ function Tasks(props) {
     
     
           <div className="AddTask" name="AddTask">
-            {showForm && <AddTaskForm db = {db} onCancel={() => setShowForm(false)} />}
+            {showForm && <AddTaskForm onCancel={() => setShowForm(false)} />}
     
             <button className="addTaskBtn" id="PopUp" onClick={() => setShowForm(!showForm)}>
               +
@@ -69,37 +69,39 @@ function updateTasks(setTasksList, setCounter, db) {
 function AddTaskForm(props) {
     const {db} = props;
   return (
-    <div name="PopUp" className="PopUp">
-      <div id="grid">
-        <form id = "form"
-          onSubmit={event => {
-            addTask(event, db);
-          }}
-        >
-          <div id="TitleAddTask">Add Task</div>
-          <input
-            type="text"
-            name="title"
-            placeholder="Title"
-            id="Title"
-          ></input>
-          <input
-            type="text"
-            name="points"
-            placeholder="Points"
-            id="Points"
-          ></input>
-          <div className="button">
-            <input type="submit" name="save" id="Save" value="Save"></input>
-          </div>
-        </form>
+    <div class="container">
+         <div class="row">
+             <div class="col-md-12">
+                
+                <div class="modal fade" id="myModal">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
 
-        <button name="cancel" id="Cancel" value="Cancel" onClick={props.onCancel} >Cancel </button>
-        
-         
-      
-      </div>
-    </div>
+                        <div class="modal-header">
+                         <h3>Add Task</h3>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" placeholder="Title" id="Title"/> 
+                            <input type="text" placeholder="Points" id="Points"/> 
+                            
+                        </div>
+                        <div class="modal-footer">
+                            <input class="btn btn-primary" id="Save" data-dismiss="modal" value="Save"/>
+                            <input class="btn btn-primary" id="Cancel" data-dismiss="modal" value="Cancel"/>
+                        </div>
+   
+                    </div>
+                    </div>
+                </div>
+
+
+            <a href="#" data-toggle="modal" data-target="#myModal" id="plus">+</a>
+             </div>
+
+    
+          </div>
+
+        </div>
   );
 }
 
@@ -115,7 +117,7 @@ function addTask(event, db) {
   } else if (points == "") {
     alert("Must enter points");
   } else {
-    points = parseInt(points);
+    parseInt(points)
     console.log("The task " + title + "has been added with a reward of" + points);
     db.collection("Tasks")
       .doc(title)
