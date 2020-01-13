@@ -25,7 +25,7 @@ function Tasks(props) {
     
     
           <div className="AddTask" name="AddTask">
-            {showForm && <AddTaskForm db = {db} onCancel={() => setShowForm(false)} />}
+            {showForm && <AddTaskForm db = {db} setTasksList = {setTasksList} setCounter = {setCounter} onCancel={() => setShowForm(false)} />}
     
             <button className="addTaskBtn" id="PopUp" onClick={() => setShowForm(!showForm)}>
               +
@@ -67,13 +67,13 @@ function updateTasks(setTasksList, setCounter, db) {
 
 
 function AddTaskForm(props) {
-    const {db} = props;
+    const {db, setTasksList, setCounter} = props;
   return (
     <div name="PopUp" className="PopUp">
       <div id="grid">
         <form id = "form"
           onSubmit={event => {
-            addTask(event, db);
+            addTask(event, db, setTasksList, setCounter);
           }}
         >
           <div id="TitleAddTask">Add Task</div>
@@ -104,7 +104,7 @@ function AddTaskForm(props) {
 }
 
 
-function addTask(event, db) {
+function addTask(event, db, setTasksList, setCounter) {
   event.preventDefault();
 
   console.log("saved my G");
@@ -128,6 +128,7 @@ function addTask(event, db) {
 
   event.target.elements.title.value = "";
   event.target.elements.points.value = "";
+  updateTasks(setTasksList, setCounter, db);
 }
 
 function displayPoints(db) {

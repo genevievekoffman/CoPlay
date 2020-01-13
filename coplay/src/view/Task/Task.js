@@ -5,9 +5,10 @@ function Task(props) {
   //passed an array of tasks
   const { task, index, db } = props;
   task.completed = task[2];
+  console.log("Running", task.completed )
   const [taskCompleted, setTaskCompleted] = useState(task.completed);
 
-  if (task.completed === false) {
+  if (task.completed == false) {
     return (
       <div className="task" key={index}>
         <div>
