@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import firebase from "firebase";
-import Task from "./view/Task/Task";
-// import Button from 'react-bootstrap/Button';
+ // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
 // import Form from 'react-bootstrap/Form';
 
 //pages
 
 import Rewards from './view/pages/Rewards/Rewards';
-
+import Tasks from './view/pages/Tasks/Tasks';
 
 import {
   BrowserRouter as Router,
@@ -136,151 +135,7 @@ function checkUser(e, setIsLoggedIn) {
 
 export default App;
 
-function Tasks() {
-  const [counter, setCounter] = useState(0);
-  const [tasksLists, setTasksList] = useState([]);
-  const [showForm, setShowForm] = useState(false);
-
-  if (counter == 0) {
-    updateTasks(setTasksList, setCounter);
-  }
-
-  return (
-    <div className="App2">
-
-      <div>
-        <h4>
-          {tasksLists.map((task, index) => {
-            return <Task task={task} key={index} db={DB} />;
-          })}
-        </h4>
-      </div>
-
-
-      <div className="AddTask" name="AddTask">
-        {showForm && <AddTaskForm onCancel={() => setShowForm(false)} />}
-
-        <button className="addTaskBtn" id="PopUp" onClick={() => setShowForm(!showForm)}>
-          +
-          </button>
-      </div>
-
-      <div id="points" className="points"></div>
-      <img className="profileIcon" src="sketchImages/profileheadbig.png" onClick={
-        displayPoints
-
-      }></img>
-
-    </div>
-  );
-}
-
-
-
-function AddTaskForm(props) {
-  console.log("form opened");
-  return (
-    <div name="PopUp" className="PopUp">
-    
-      <div id="grid">
-        <form id = "form"
-          onSubmit={event => {
-            addTask(event);
-          }}
-        >
-          <div id="TitleAddTask">Add Task</div>
-          <input
-            type="text"
-            name="title"
-            placeholder="Title"
-            id="Title"
-          ></input>
-          <input
-            type="text"
-            name="points"
-            placeholder="Points"
-            id="Points"
-          ></input>
-          <div className="button">
-            <input type="submit" name="save" id="Save" value="Save"></input>
-          </div>
-        </form>
-
-        <button name="cancel" id="Cancel" value="Cancel" onClick={props.onCancel} >Cancel </button>
-        
-         
-      
-      </div>
-    </div>
-  );
-}
-
-function addTask(event) {
-  event.preventDefault();
-
-  console.log("saved my G");
-  let title = event.target.elements.title.value;
-  let points = event.target.elements.points.value;
-  if (title == "") {
-    alert("Must enter a title");
-  } else if (points == "") {
-    alert("Must enter points");
-  } else {
-    points = parseInt(points)
-    console.log("The task " + title + " has been added with a reward of " + points);
-    DB.collection("Tasks")
-      .doc(title)
-      .set({
-        points: points,
-        completed: false,
-        task: title
-      });
-  }
-
-  event.target.elements.title.value = "";
-  event.target.elements.points.value = "";
-}
-
-function displayPoints() {
-  DB.collection("Users")
-    .doc(sessionStorage.getItem("user"))
-    .get()
-    .then(userDB => {
-      let points = userDB.get("totalPoints");
-      console.log(points);
-      document.getElementById("points").style.visibility = "visible";
-      document.getElementById("points").innerHTML = "Points: " + points;
-      wait();
-    });
-}
-
-function wait() {
-  setTimeout(
-    () => (document.getElementById("points").style.visibility = "hidden"),
-    3000
-  );
-}
-
-function updateTasks(setTasksList, setCounter) {
-  var list = new Array();
-  //let list = [];
-
-  DB.collection("Tasks")
-    .get()
-    .then(tasksDB => {
-      tasksDB.forEach(taskDB => {
-        let taskInfo = [];
-        taskInfo.push(taskDB.get("task"));
-        taskInfo.push(taskDB.get("points"));
-        taskInfo.push(taskDB.get("completed"));
-
-        list.push(taskInfo);
-      });
-      setTasksList(list);
-
-      setCounter(1);
-    });
-}
+  
 
 // function Example(props) {
 //   const [show, setShow] = useState(false);
