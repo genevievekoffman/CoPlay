@@ -52,11 +52,13 @@ function App() {
            
           <div className="grid">
             <div id="leftSide"></div>
-            <div id="LogIn">Coplay</div>
+            <div id="LogIn">Coplay</div> 
             <div id="slogan">Coexisting sounds hard but<br></br>CoPlay sounds like fun</div>
   
             {/* <img id="logo" src="./sketchImages/coplayLogo.jpeg"></img> */}
-            <div id="signIn">Sign in to Coplay</div>
+            <div id="signIn">Sign in to Coplay
+            </div>
+            
             <form id="signInForm" onSubmit={event => { checkUser(event, setIsLoggedIn); }}>
               <div id="formFlex">
                 <div id="userLabel">Username</div>
@@ -66,8 +68,8 @@ function App() {
                 <input type="text" name="password" id="password"></input>
                 <br></br>
                 <input type="submit" id="submitLogin" value="Sign In"></input>
-                 
               </div>
+               
             </form> 
           </div>
         </div>
