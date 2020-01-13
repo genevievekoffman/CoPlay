@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import firebase from "firebase";
+
  // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
 // import Form from 'react-bootstrap/Form';
@@ -16,6 +17,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
+
+
 
 //Firebase
 const firebaseConfig = {
@@ -70,6 +73,7 @@ function App() {
     //someone is logged in
     return (
       <Router>
+        
         <div>
            
           <ul className = "topNav">
@@ -86,6 +90,8 @@ function App() {
             <div></div>
             <div></div>
           </ul>
+
+         
           <Switch>
             <Route exact path="/">
               <Tasks db = {DB} />
@@ -133,7 +139,6 @@ function checkUser(e, setIsLoggedIn) {
   e.target.elements.password.value = "";
 }
 
-export default App;
 
-  
 
+export default App

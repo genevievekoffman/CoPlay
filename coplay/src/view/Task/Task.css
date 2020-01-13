@@ -3,7 +3,6 @@
     display: flex;
     justify-content: center;
     padding: 10px;
-    margin: 0.5em;
     font-family: Avenir-Light;
     color: black;
     text-align: center;
@@ -33,7 +32,6 @@
 
 .containers{
     display: grid;
-    
     margin-top: 100px;
     margin-left: 40vw;
 }
@@ -43,7 +41,6 @@ input{
     margin-bottom: 10px;
     width: 12vw;
     height: 2vw;
-    ;
     
 }
 
@@ -86,4 +83,29 @@ input{
     font-size: 4.5mm;
 }
 
+.container{
+    
+    text-align: center;
+    position: relative;
+    right: 50%;
+}
 
+.modal-body{
+    display: grid;
+    grid-template-columns: 25% auto 25% ;
+    
+}
+
+#Title{
+    border: 1px solid rgb(90, 90, 219);
+    grid-column-start: 2 ;
+    width: 100%;
+    padding: 4%;
+    
+}
+#Points{
+    border: 1px solid rgb(90, 90, 219);
+    grid-column-start: 2 ;
+    width: 100%;
+    padding: 4%;
+}

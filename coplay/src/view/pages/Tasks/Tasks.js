@@ -6,7 +6,7 @@ function Tasks(props) {
   const { db } = props;
   const [counter, setCounter] = useState(0);
   const [tasksLists, setTasksList] = useState([]);
-  const [showForm, setShowForm] = useState(false);
+  const [showForm, setShowForm] = useState(true);
 
   if (counter == 0) {
     updateTasks(setTasksList, setCounter, db);
@@ -14,6 +14,10 @@ function Tasks(props) {
 
   return (
     <div className="App2">
+      <div className="AddTask" name="AddTask">
+        {showForm && <AddTaskForm db = {db} onCancel={() => setShowForm(false)} />}
+
+      </div>
       <div>
         <h4>
           {tasksLists.map((task, index) => {
@@ -22,17 +26,7 @@ function Tasks(props) {
         </h4>
       </div>
 
-      <div className="AddTask" name="AddTask">
-        {showForm && <AddTaskForm db = {db} onCancel={() => setShowForm(false)} />}
-
-        <button
-          className="addTaskBtn"
-          id="PopUp"
-          onClick={() => setShowForm(!showForm)}
-        >
-          +
-        </button>
-      </div>
+      
 
       <div id="points" className="points"></div>
       <img
@@ -70,9 +64,10 @@ function updateTasks(setTasksList, setCounter, db) {
 function AddTaskForm(props) {
   const { db } = props;
   return (
-    <div class="container">
+    <div class="container"> <button data-toggle="modal" data-target="#myModal" id="plus" className="btn btn-primary">+</button>
     <div class="row">
         <div class="col-md-12">
+       
            
            <div class="modal fade" id="myModal">
                <div class="modal-dialog">
@@ -82,8 +77,8 @@ function AddTaskForm(props) {
                     <h3>Add Task</h3>
                    </div>
                    <div class="modal-body">
-                       <input type="text" placeholder="Title" id="Title"/> 
-                       <input type="text" placeholder="Points" id="Points"/>
+                       <input type="text" placeholder="Title" id="Title" className="m-1"/> 
+                       <input type="text" placeholder="Points" id="Points" className="m-1"/>
                        
                    </div>
                    <div class="modal-footer">
@@ -96,7 +91,9 @@ function AddTaskForm(props) {
            </div>
 
 
-       <a href="#" data-toggle="modal" data-target="#myModal" id="plus">+</a>
+      
+       
+       
         </div>
 
 
