@@ -55,7 +55,7 @@ function App() {
             <div id="LogIn">Coplay</div>
             <div id="slogan">Coexisting sounds hard but<br></br>CoPlay sounds like fun</div>
   
-            <img id="logo" src="./sketchImages/coplayLogo.jpeg"></img>
+            {/* <img id="logo" src="./sketchImages/coplayLogo.jpeg"></img> */}
             <div id="signIn">Sign in to Coplay</div>
             <form id="signInForm" onSubmit={event => { checkUser(event, setIsLoggedIn); }}>
               <div id="formFlex">

@@ -46,11 +46,11 @@
   user-select: none;
 }
 
-#logo{
+/* #logo{
   height: 90vh;
   opacity: 0.2;
   z-index: -1;
-}
+} */
 
 #signIn{
   grid-column-start: 3;
