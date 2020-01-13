@@ -7,6 +7,7 @@ function Tasks(props) {
     const [counter, setCounter] = useState(0);
     const [tasksLists, setTasksList] = useState([]);
     const [showForm, setShowForm] = useState(false);
+    const [visible, setVisible] = useState(false);
 
     if (counter == 0) {
         updateTasks(setTasksList, setCounter, db);
@@ -31,12 +32,17 @@ function Tasks(props) {
               +
               </button>
           </div>
-    
-          <div id="points" className="points"></div>
+               
+               
+          {/* <div id="points" className="points"> 
+           
+          {(!visible) ? (<div style =  {{visibility: visible}} className = "points">checking </div>): ""}
+          </div>
           <img className="profileIcon" src="sketchImages/blackprofileicon.png" onClick={
-            displayPoints(db)
-    
-          }></img>
+             
+            displayPoints(db, setVisible)
+             
+          }></img> */}
     
         </div>
       );
@@ -130,22 +136,23 @@ function addTask(event, db) {
   event.target.elements.points.value = "";
 }
 
-function displayPoints(db) {
-  db.collection("Users")
-    .doc(sessionStorage.getItem("user"))
-    .get()
-    .then(userDB => {
-      let points = userDB.get("totalPoints");
-      console.log(points);
-      document.getElementById("points").style.visibility = "visible";
-      document.getElementById("points").innerHTML = "Points: " + points;
-      wait();
-    });
-}
+// function displayPoints(db, setVisible) {
+//   db.collection("Users")
+//     .doc(sessionStorage.getItem("user"))
+//     .get()
+//     .then(userDB => {
+//       let points = userDB.get("totalPoints");
+//       console.log(points);
+//       setVisible(true);
+//       // document.getElementById("points").style.visibility = "visible";
+//       // document.getElementById("points").innerHTML = "Points: " + points;
+//       wait(setVisible);
+//     });
+// }
 
-function wait() {
-  setTimeout(
-    () => (document.getElementById("points").style.visibility = "hidden"),
-    3000
-  );
-}
+// function wait(setVisible) {
+//   setTimeout(
+//     () => (setVisible(false)),
+//     3000
+//   );
+// }
