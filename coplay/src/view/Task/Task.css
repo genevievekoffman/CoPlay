@@ -2,10 +2,10 @@
 .task{
     display: flex;
     justify-content: center;
-    padding: 10px;
+    padding: 17px;
     font-family: Avenir-Light;
     color: black;
-    float:left;
+    
      
 }
 
