@@ -201,8 +201,11 @@
 
   .AddTask {
   display: grid;
-  margin-top: 100px;
-  margin-left: 40vw;
+  margin-top: 2vw;
+  margin-left: 25vw ;
+  
+  
+
 }
 
 
@@ -211,6 +214,9 @@
   justify-content: center;
   display: flex;
   flex-direction: column;  
+  margin-top: -10vh;
+  
+  
 }
 
 .App{
@@ -374,11 +380,24 @@ text-align: center;
 #plus{
   width: 3vw;
   height: 3vw;
-  margin-bottom: 50px;
-  margin-right: 4vw;
+  margin-bottom: 40px;
+  margin-right: 2vw;
   position: relative;
+<<<<<<< Updated upstream
   left: 50%;
   transform: translateX(-500%);
-
   
+
+=======
+  left: 20%;
+  align-items: center;
+  
+>>>>>>> Stashed changes
+  
+
+}
+
+h4{
+  margin-left: 0;
+  transform: translateX(-5%);
 }

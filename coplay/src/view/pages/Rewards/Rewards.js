@@ -8,7 +8,7 @@ import Reward from '../../Reward/Reward';
 function Rewards(props) {   
     const [rewardsLists, setRewardsList] = useState([]);
     const [counter, setCounter] = useState(0);
-    const [showForm, setShowForm] = React.useState(false);
+    const [showForm, setShowForm] = React.useState(true);
     const {db} = props;
 
     if (counter == 0) {
@@ -17,7 +17,7 @@ function Rewards(props) {
      
     return (
         <div> 
-         
+         <button data-toggle="modal" data-target="#myModal" id="rewardPlus" className=".btn-default">+</button>
             <h4>
             {rewardsLists.map((reward, index) => {
                 return <Reward reward = {reward} key = {index} db={db} />;
@@ -26,13 +26,7 @@ function Rewards(props) {
     <div className="AddReward" name="AddReward">
         {showForm && <AddRewardForm db = {db} setRewardsList = {setRewardsList} setCounter ={setCounter} onCancel={() => setShowForm(false)} />}
 
-        <button
-          className="addRewardbtn"
-          id="PopUp"
-          onClick={() => setShowForm(!showForm)}
-        >
-          +
-        </button>
+       
       </div>
         </div>
  
@@ -91,45 +85,43 @@ function AddRewardForm(props) {
   const { db, setRewardsList, setCounter } = props;
   console.log("form opened");
   return (
-    <div name="PopUp" className="PopUp">
-      <div id="gridd">
-        <form
-          onSubmit={event => {
-            addReward(event, db, setRewardsList, setCounter);
-          }}
-        >
-          
-          <div id="TitleAddReward">Add Reward</div>
-          
-          <input
-            type="text"
-            name="title"
-            placeholder="Title"
-            id="Title"
-          ></input>
-          <div id="Align" >
-          <input
-            type="text"
-            name="points"
-            placeholder="Points"
-            id="Points"
-          ></input>
-          </div>
-          <div className="button">
-            <input type="submit" name="save" id="Save" value="Save"></input>
-          </div>
-        </form>
+    <div class="container"> 
+    <div class="row">
+        <div class="col-md-12">
+       
+           
+           <div class="modal fade" id="myModal">
+               <div class="modal-dialog">
+                   <div class="modal-content">
 
-        <button
-          name="cancel"
-          className="Cancel"
-          value="Cancel"
-          onClick={props.onCancel}
-        >
-        Cancel
-        </button>
-      </div>
-    </div>
+                   <div class="modal-header">
+                    <h3>Add Task</h3>
+                   </div>
+                   <div class="modal-body">
+                       <input type="text" placeholder="Title" id="Title" className="m-1"/> 
+                       <input type="text" placeholder="Points" id="Points" className="m-1"/>
+                       
+                   </div>
+                   <div class="modal-footer">
+                       <input class="btn btn-primary" id="Save" data-dismiss="modal" value="Save"/>
+                       <input class="btn btn-primary" id="Cancel" data-dismiss="modal" value="Cancel"/>
+                   </div>
+
+               </div>
+               </div>
+           </div>
+
+
+      
+       
+       
+        </div>
+
+
+     </div>
+
+   </div>
+
   );
 }
 
