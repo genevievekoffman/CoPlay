@@ -89,8 +89,88 @@ function AddRewardForm(props) {
   const { db } = props;
   console.log("form opened");
   return (
+    <div class="container"> <button data-toggle="modal" data-target="#myModal" id="plus" className=".btn-default">+</button>
+    <div class="row">
+
+        <div class="col-md-12">
+          <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3>Add Task</h3>
+                </div>
+                <form
+                  onSubmit={event => {
+                    addReward(event, db, setTasksList, setCounter);
+                  }}
+                >
+                <div class="modal-body">
+                  <input
+                    type="text"
+                    name = "title"
+                    placeholder="Title"
+                    id="Title"
+                    className="m-1"
+                  />
+                  <input
+                    type="text"
+                    name = "points"
+                    placeholder="Points"
+                    id="Points"
+                    className="m-1"
+                  />
+                </div>
+                <div class="modal-footer">
+                  <input
+                    class="btn btn-primary"
+                    type = "submit"
+                    id="Save"
+                    value="Save"
+                    name = "save"
+                  />
+                  <input
+                    class="btn btn-primary"
+                    id="Cancel"
+                    value="Cancel"
+                    type = "button"
+                    // onClick = {props.onCancel}
+                  />
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
     
-    <div class="container"> <button data-toggle="modal" data-target="#myModal" id="rewardPlus" className=".btn-default">+</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /*<div class="container"> <button data-toggle="modal" data-target="#myModal" id="rewardPlus" className=".btn-default">+</button>
     <div class="row">
       <div class="col-md-12">
 
@@ -124,5 +204,5 @@ function AddRewardForm(props) {
 
   );
 }
-
+*/
 
