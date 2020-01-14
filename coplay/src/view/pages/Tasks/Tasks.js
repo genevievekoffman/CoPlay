@@ -16,7 +16,7 @@ function Tasks(props) {
     <div className="App2">
       <div className="AddTask" name="AddTask">
         {showForm && (
-          <AddTaskForm db={db} onCancel={() => setShowForm(false)} />
+          <AddTaskForm db={db} setTasksList = {setTasksList} setCounter = {setCounter} onCancel={() => setShowForm(false)} />
         )}
       </div>
       <div>
@@ -63,7 +63,7 @@ function updateTasks(setTasksList, setCounter, db) {
 
 
 function AddTaskForm(props) {
-  const { db } = props;
+  const { db, setTasksList, setCounter } = props;
   return (
     <div class="container">
       {" "}
@@ -83,15 +83,22 @@ function AddTaskForm(props) {
                 <div class="modal-header">
                   <h3>Add Task</h3>
                 </div>
+                <form
+                  onSubmit={event => {
+                    addTask(event, db, setTasksList, setCounter);
+                  }}
+                >
                 <div class="modal-body">
                   <input
                     type="text"
+                    name = "title"
                     placeholder="Title"
                     id="Title"
                     className="m-1"
                   />
                   <input
                     type="text"
+                    name = "points"
                     placeholder="Points"
                     id="Points"
                     className="m-1"
@@ -100,17 +107,20 @@ function AddTaskForm(props) {
                 <div class="modal-footer">
                   <input
                     class="btn btn-primary"
+                    type = "submit"
                     id="Save"
-                    data-dismiss="modal"
                     value="Save"
+                    name = "save"
                   />
                   <input
                     class="btn btn-primary"
                     id="Cancel"
-                    data-dismiss="modal"
                     value="Cancel"
+                    type = "button"
+                    // onClick = {props.onCancel}
                   />
                 </div>
+                </form>
               </div>
             </div>
           </div>
@@ -131,7 +141,7 @@ function addTask(event, db, setTasksList, setCounter) {
   } else if (points == "") {
     alert("Must enter points");
   } else {
-    parseInt(points);
+    points = parseInt(points);
     console.log(
       "The task " + title + "has been added with a reward of" + points
     );

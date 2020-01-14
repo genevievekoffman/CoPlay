@@ -8,7 +8,7 @@ import Reward from '../../Reward/Reward';
 function Rewards(props) {   
     const [rewardsLists, setRewardsList] = useState([]);
     const [counter, setCounter] = useState(0);
-    const [showForm, setShowForm] = React.useState(false);
+    const [showForm, setShowForm] = React.useState(true);
     const {db} = props;
 
     if (counter == 0) {
@@ -18,22 +18,15 @@ function Rewards(props) {
     return (
         <div> 
          
+    <div className="AddReward" name="AddReward">
+        {showForm && <AddRewardForm db = {db} onCancel={() => setShowForm(false)} />}
+
+      </div>
             <h4>
             {rewardsLists.map((reward, index) => {
                 return <Reward reward = {reward} key = {index} db={db} />;
             })}
             </h4>
-    <div className="AddReward" name="AddReward">
-        {showForm && <AddRewardForm db = {db} setRewardsList = {setRewardsList} setCounter ={setCounter} onCancel={() => setShowForm(false)} />}
-
-        <button
-          className="addRewardbtn"
-          id="PopUp"
-          onClick={() => setShowForm(!showForm)}
-        >
-          +
-        </button>
-      </div>
         </div>
  
     )
@@ -60,7 +53,7 @@ function updateRewards(setRewardsList, setCounter, db){
     });
 }
  
-function addReward(event, db, setRewardsList, setCounter) {
+function addReward(event, db) {
   event.preventDefault();
 
   console.log("saved my G");
@@ -83,51 +76,73 @@ function addReward(event, db, setRewardsList, setCounter) {
 
   event.target.elements.title.value = "";
   event.target.elements.points.value = "";
-  updateRewards(setRewardsList, setCounter, db);
 }
 
 
 function AddRewardForm(props) {
-  const { db, setRewardsList, setCounter } = props;
+  const { db } = props;
   console.log("form opened");
   return (
-    <div name="PopUp" className="PopUp">
-      <div id="gridd">
-        <form
-          onSubmit={event => {
-            addReward(event, db, setRewardsList, setCounter);
-          }}
-        >
-          
-          <div id="TitleAddReward">Add Reward</div>
-          
-          <input
-            type="text"
-            name="title"
-            placeholder="Title"
-            id="Title"
-          ></input>
-          <div id="Align" >
-          <input
-            type="text"
-            name="points"
-            placeholder="Points"
-            id="Points"
-          ></input>
+    <div class="container">
+      {" "}
+      <button
+        data-toggle="modal"
+        data-target="#myModal"
+        id="plus"
+        className="btn btn-primary"
+      >
+        +
+      </button>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3>Add Reward</h3>
+                </div>
+                <form
+                  onSubmit={event => {
+                    addReward(event, db);
+                  }}
+                >
+                <div class="modal-body">
+                  <input
+                    type="text"
+                    name = "title"
+                    placeholder="Title"
+                    id="Title"
+                    className="m-1"
+                  />
+                  <input
+                    type="text"
+                    name = "points"
+                    placeholder="Points"
+                    id="Points"
+                    className="m-1"
+                  />
+                </div>
+                <div class="modal-footer">
+                  <input
+                    class="btn btn-primary"
+                    type = "submit"
+                    id="Save"
+                    value="Save"
+                    name = "save"
+                  />
+                  <input
+                    class="btn btn-primary"
+                    id="Cancel"
+                    value="Cancel"
+                    type = "button"
+                    // onClick = {props.onCancel}
+                  />
+                </div>
+                </form>
+              </div>
+            </div>
           </div>
-          <div className="button">
-            <input type="submit" name="save" id="Save" value="Save"></input>
-          </div>
-        </form>
-
-        <button
-          name="cancel"
-          className="Cancel"
-          value="Cancel"
-          onClick={props.onCancel}
-        >
-        Cancel
-        </button>
+        </div>
       </div>
     </div>
   );
