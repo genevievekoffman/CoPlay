@@ -99,7 +99,19 @@ input{
 .modal-footer{
   display: flex;
   justify-content: space-between;
+  margin-right: 13vw;
   
+  
+  
+
+}
+
+#fdp{
+   
+}
+
+#pd{
+   
 }
 
 

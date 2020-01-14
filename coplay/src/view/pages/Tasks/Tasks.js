@@ -86,36 +86,19 @@ function AddTaskForm(props) {
                   }}
                 >
                 <div class="modal-body">
-                  <input
-                    type="text"
-                    name = "title"
-                    placeholder="Title"
-                    id="Title"
-                    className="m-1"
-                  />
-                  <input
-                    type="text"
-                    name = "points"
-                    placeholder="Points"
-                    id="Points"
-                    className="m-1"
-                  />
+                  <input type="text" name = "title" placeholder="Title" id="Title"  className="m-1" />
+                  
+                  <input type="text" name = "points"  placeholder="Points"  id="Points" className="m-1"/>
+                    
+                  
                 </div>
                 <div class="modal-footer">
-                  <input
-                    class="btn btn-primary"
-                    type = "submit"
-                    id="Save"
-                    value="Save"
-                    name = "save"
-                  />
-                  <input
-                    class="btn btn-primary"
-                    id="Cancel"
-                    value="Cancel"
-                    type = "button"
-                    // onClick = {props.onCancel}
-                  />
+              
+                 
+                  <button type="button" class="btn btn-primary btn-sm" id="fdp">Save</button>
+                  <button type="button" class="btn btn-secondary btn-sm" id="pd">Cancel</button>
+                  
+                
                 </div>
                 </form>
               </div>

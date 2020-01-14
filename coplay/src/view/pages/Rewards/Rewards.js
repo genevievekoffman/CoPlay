@@ -84,6 +84,7 @@ function addReward(event, db, setRewardsList, setCounter) {
 
 
 function AddRewardForm(props) {
+
   const [counter, setCounter] = useState(0);
   const [tasksLists, setTasksList] = useState([]);
   const { db } = props;
@@ -97,7 +98,7 @@ function AddRewardForm(props) {
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h3>Add Task</h3>
+                  <h3>Add Reward</h3>
                 </div>
                 <form
                   onSubmit={event => {
@@ -105,36 +106,16 @@ function AddRewardForm(props) {
                   }}
                 >
                 <div class="modal-body">
-                  <input
-                    type="text"
-                    name = "title"
-                    placeholder="Title"
-                    id="Title"
-                    className="m-1"
-                  />
-                  <input
-                    type="text"
-                    name = "points"
-                    placeholder="Points"
-                    id="Points"
-                    className="m-1"
-                  />
+                  <input  type="text" name = "title" placeholder="Title" id="Title" className="m-1" />
+                  <input type="text"  name = "points" placeholder="Points" id="Points"  className="m-1"/>
+              
                 </div>
+                
                 <div class="modal-footer">
-                  <input
-                    class="btn btn-primary"
-                    type = "submit"
-                    id="Save"
-                    value="Save"
-                    name = "save"
-                  />
-                  <input
-                    class="btn btn-primary"
-                    id="Cancel"
-                    value="Cancel"
-                    type = "button"
-                    // onClick = {props.onCancel}
-                  />
+                <button type="button" class="btn btn-primary btn-sm" id="fdp">Save</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="pd" onclick="shoot()">Cancel</button>
+                
+
                 </div>
                 </form>
               </div>
