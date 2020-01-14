@@ -149,27 +149,6 @@ function AddRewardForm(props) {
 
     
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /*<div class="container"> <button data-toggle="modal" data-target="#myModal" id="rewardPlus" className=".btn-default">+</button>
     <div class="row">
       <div class="col-md-12">
