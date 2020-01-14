@@ -11,6 +11,8 @@ import firebase from "firebase";
 import Rewards from './view/pages/Rewards/Rewards';
 import Tasks from './view/pages/Tasks/Tasks';
 
+import SignUp from './view/pages/SignUp/SignUp';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -38,6 +40,7 @@ const DB = firebase.firestore();
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isRegistering, setIsRegistering] = useState(false);
 
   //useEffect(() => updateTasks(setTasksList), []);
 
@@ -45,30 +48,43 @@ function App() {
 
 
   if (!isLoggedIn) {
-    return (
-      <div className="App">
-
-        <div className="grid">
-          <div id="leftSide"></div>
-          <div id="LogIn">Coplay</div>
-          <div id="slogan">Coexisting sounds hard but<br></br>CoPlay sounds like fun</div>
-
-          <img id="logo" src="./sketchImages/coplayLogo.jpeg"></img>
-          <div id="signIn">Sign in to Coplay</div>
-          <form id="signInForm" onSubmit={event => { checkUser(event, setIsLoggedIn); }}>
-            <div id="formFlex">
-              <div id="userLabel">Username</div>
-              <input type="text" name="username" id="name"></input>
-              <br></br>
-              <div id="passwordLabel">Password</div>
-              <input type="text" name="password" id="password"></input>
-              <br></br>
-              <input type="submit" id="submitLogin" value="Sign In"></input>
+    if(!isRegistering){  
+      return (
+        <div className="App">
+          <button onClick ={ () => newUser(setIsRegistering)}> Don't have an account? Sign up here </button>
+           
+          <div className="grid">
+            <div id="leftSide"></div>
+            <div id="LogIn">Coplay</div> 
+            <div id="slogan">Coexisting sounds hard but<br></br>CoPlay sounds like fun</div>
+  
+            {/* <img id="logo" src="./sketchImages/coplayLogo.jpeg"></img> */}
+            <div id="signIn">Sign in to Coplay
             </div>
-          </form>
+            
+            <form id="signInForm" onSubmit={event => { checkUser(event, setIsLoggedIn); }}>
+              <div id="formFlex">
+                <div id="userLabel">Username</div>
+                <input type="text" name="username" id="name"></input>
+                <br></br>
+                <div id="passwordLabel">Password</div>
+                <input type="text" name="password" id="password"></input>
+                <br></br>
+                <input type="submit" id="submitLogin" value="Sign In"></input>
+              </div>
+               
+            </form> 
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else { //they clicked the create new user 
+      return(
+        <div className="App3">
+          <SignUp db = {DB} setIsRegistering = {setIsRegistering} />
+        </div>
+      )
+    }
+     
   } else {
     //someone is logged in
     return (
@@ -97,8 +113,7 @@ function App() {
               <Tasks db = {DB} />
             </Route>
             <Route path="/rewardspage">
-              <Rewards db = {DB} />
-
+              <Rewards db = {DB} /> 
             </Route>
           </Switch>
            
@@ -139,6 +154,11 @@ function checkUser(e, setIsLoggedIn) {
   e.target.elements.password.value = "";
 }
 
+
+function newUser(setIsRegistering){
+  console.log("new user clicked")
+  setIsRegistering(true);
+}
 
 
 export default App

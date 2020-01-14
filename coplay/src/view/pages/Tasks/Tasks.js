@@ -3,6 +3,7 @@ import "./Tasks.css";
 import Task from "../../Task/Task";
 
 function Tasks(props) {
+
   const { db } = props;
   const [counter, setCounter] = useState(0);
   const [tasksLists, setTasksList] = useState([]);
@@ -36,24 +37,32 @@ function Tasks(props) {
       ></img>
     </div>
   );
+
 }
 
 export default Tasks;
 
 function updateTasks(setTasksList, setCounter, db) {
-  var list = new Array();
-  //let list = [];
 
-  db.collection("Tasks")
-    .get()
-    .then(tasksDB => {
-      tasksDB.forEach(taskDB => {
-        let taskInfo = [];
-        taskInfo.push(taskDB.get("task"));
-        taskInfo.push(taskDB.get("points"));
-        taskInfo.push(taskDB.get("completed"));
+    var list = new Array();
+    //let list = [];
+  
+    db.collection("Tasks")
+      .get()
+      .then(tasksDB => {
+        tasksDB.forEach(taskDB => {
+          let taskInfo = [];
+          taskInfo.push(taskDB.get("task"));
+          taskInfo.push(taskDB.get("points"));
+          taskInfo.push(taskDB.get("completed"));
+  
+          list.push(taskInfo);
+        });
+        setTasksList(list);
+        console.log(list)
+  
+        setCounter(1);
 
-        list.push(taskInfo);
       });
       setTasksList(list);
 
@@ -62,6 +71,7 @@ function updateTasks(setTasksList, setCounter, db) {
 }
 
 function AddTaskForm(props) {
+
   const { db } = props;
   return (
     <div class="container"> <button data-toggle="modal" data-target="#myModal" id="plus" className="btn btn-primary">+</button>
@@ -90,7 +100,6 @@ function AddTaskForm(props) {
                </div>
            </div>
 
-
       
        
        
@@ -103,7 +112,7 @@ function AddTaskForm(props) {
   );
 }
 
-function addTask(event, db) {
+function addTask(event, db, setTasksList, setCounter) {
   event.preventDefault();
 
   console.log("saved my G");
@@ -129,24 +138,26 @@ function addTask(event, db) {
 
   event.target.elements.title.value = "";
   event.target.elements.points.value = "";
+  updateTasks(setTasksList, setCounter, db);
 }
 
-function displayPoints(db) {
-  db.collection("Users")
-    .doc(sessionStorage.getItem("user"))
-    .get()
-    .then(userDB => {
-      let points = userDB.get("totalPoints");
-      console.log(points);
-      document.getElementById("points").style.visibility = "visible";
-      document.getElementById("points").innerHTML = "Points: " + points;
-      wait();
-    });
-}
+// function displayPoints(db, setVisible) {
+//   db.collection("Users")
+//     .doc(sessionStorage.getItem("user"))
+//     .get()
+//     .then(userDB => {
+//       let points = userDB.get("totalPoints");
+//       console.log(points);
+//       setVisible(true);
+//       // document.getElementById("points").style.visibility = "visible";
+//       // document.getElementById("points").innerHTML = "Points: " + points;
+//       wait(setVisible);
+//     });
+// }
 
-function wait() {
-  setTimeout(
-    () => (document.getElementById("points").style.visibility = "hidden"),
-    3000
-  );
-}
+// function wait(setVisible) {
+//   setTimeout(
+//     () => (setVisible(false)),
+//     3000
+//   );
+// }

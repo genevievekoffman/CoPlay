@@ -24,7 +24,7 @@ function Rewards(props) {
             })}
             </h4>
     <div className="AddReward" name="AddReward">
-        {showForm && <AddRewardForm db = {db} onCancel={() => setShowForm(false)} />}
+        {showForm && <AddRewardForm db = {db} setRewardsList = {setRewardsList} setCounter ={setCounter} onCancel={() => setShowForm(false)} />}
 
         <button
           className="addRewardbtn"
@@ -60,7 +60,7 @@ function updateRewards(setRewardsList, setCounter, db){
     });
 }
  
-function addReward(event, db) {
+function addReward(event, db, setRewardsList, setCounter) {
   event.preventDefault();
 
   console.log("saved my G");
@@ -83,18 +83,19 @@ function addReward(event, db) {
 
   event.target.elements.title.value = "";
   event.target.elements.points.value = "";
+  updateRewards(setRewardsList, setCounter, db);
 }
 
 
 function AddRewardForm(props) {
-  const { db } = props;
+  const { db, setRewardsList, setCounter } = props;
   console.log("form opened");
   return (
     <div name="PopUp" className="PopUp">
       <div id="gridd">
         <form
           onSubmit={event => {
-            addReward(event, db);
+            addReward(event, db, setRewardsList, setCounter);
           }}
         >
           
