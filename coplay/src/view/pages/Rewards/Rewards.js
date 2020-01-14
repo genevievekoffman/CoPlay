@@ -17,16 +17,18 @@ function Rewards(props) {
      
     return (
         <div> 
-         
+
     <div className="AddReward" name="AddReward">
         {showForm && <AddRewardForm db = {db} onCancel={() => setShowForm(false)} />}
 
       </div>
+
             <h4>
             {rewardsLists.map((reward, index) => {
                 return <Reward reward = {reward} key = {index} db={db} />;
             })}
             </h4>
+
         </div>
  
     )
@@ -83,6 +85,7 @@ function AddRewardForm(props) {
   const { db } = props;
   console.log("form opened");
   return (
+
     <div class="container">
       {" "}
       <button
@@ -145,6 +148,7 @@ function AddRewardForm(props) {
         </div>
       </div>
     </div>
+
   );
 }
 

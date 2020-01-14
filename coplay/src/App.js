@@ -107,6 +107,7 @@ function App() {
             <div></div>
           </ul>
 
+          <h1>Family Chores</h1>
          
           <Switch>
             <Route exact path="/">
