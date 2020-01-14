@@ -5,7 +5,7 @@ function Task(props) {
   //passed an array of tasks
   const { task, index, db } = props;
   task.completed = task[2];
-  console.log("Running", task[0], task.completed)
+  //console.log("Running", task[0], task.completed)
   const [taskCompleted, setTaskCompleted] = useState(task.completed);
 
   return (

@@ -57,7 +57,7 @@ function updateTasks(setTasksList, setCounter, db) {
         list.push(taskInfo);
       });
       setTasksList(list);
-      console.log(list);
+      //console.log(list);
 
       setCounter(1);
     });
