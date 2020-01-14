@@ -211,6 +211,9 @@
   justify-content: center;
   display: flex;
   flex-direction: column;  
+  margin-top: -10vh;
+  
+  
 }
 
 .App{
@@ -371,11 +374,18 @@ text-align: center;
   margin-bottom: 40px;
   margin-right: 2vw;
   position: relative;
+<<<<<<< Updated upstream
   left: 50%;
   transform: translateX(-500%);
   
 
+=======
+  left: 20%;
+  align-items: center;
   
+>>>>>>> Stashed changes
+  
+
 }
 
 h4{
