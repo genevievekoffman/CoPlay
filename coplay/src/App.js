@@ -10,6 +10,7 @@ import firebase from "firebase";
 
 import Rewards from './view/pages/Rewards/Rewards';
 import Tasks from './view/pages/Tasks/Tasks';
+import LeaderBoard from './view/pages/LeaderBoard/LeaderBoard'
 
 import SignUp from './view/pages/SignUp/SignUp';
 
@@ -97,6 +98,9 @@ function App() {
             <div></div>
             <div></div>
             <li className="link">
+              <Link to="/leaderboardpage">Leaderboard Page</Link>
+            </li>
+            <li className="link">
               <Link to="/">Tasks Page</Link>
             </li>
             <li className="link">
@@ -110,6 +114,9 @@ function App() {
           <h1>Family Chores</h1>
          
           <Switch>
+            <Route exact path="/leaderboardpage">
+              <LeaderBoard db = {DB} />
+            </Route>
             <Route exact path="/">
               <Tasks db = {DB} />
             </Route>
