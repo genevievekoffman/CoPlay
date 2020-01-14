@@ -14,6 +14,8 @@ import LeaderBoard from './view/pages/LeaderBoard/LeaderBoard'
 
 import SignUp from './view/pages/SignUp/SignUp';
 
+import Groups from './view/pages/Groups/Groups'
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -89,44 +91,45 @@ function App() {
   } else {
     //someone is logged in
     return (
-      <Router>
+      <Groups db = {DB}/>
+      // <Router>
         
-        <div>
+      //   <div>
            
-          <ul className = "topNav">
-            <div></div>
-            <div></div>
-            <div></div>
-            <li className="link">
-              <Link to="/leaderboardpage">Leaderboard Page</Link>
-            </li>
-            <li className="link">
-              <Link to="/">Tasks Page</Link>
-            </li>
-            <li className="link">
-              <Link to="/rewardspage">Rewards page</Link>
-            </li>
-            <div></div>
-            <div></div>
-            <div></div>
-          </ul>
+      //     <ul className = "topNav">
+      //       <div></div>
+      //       <div></div>
+      //       <div></div>
+      //       <li className="link">
+      //         <Link to="/leaderboardpage">Leaderboard Page</Link>
+      //       </li>
+      //       <li className="link">
+      //         <Link to="/">Tasks Page</Link>
+      //       </li>
+      //       <li className="link">
+      //         <Link to="/rewardspage">Rewards page</Link>
+      //       </li>
+      //       <div></div>
+      //       <div></div>
+      //       <div></div>
+      //     </ul>
 
-          <h1>Family Chores</h1>
+      //     <h1>Family Chores</h1>
          
-          <Switch>
-            <Route exact path="/leaderboardpage">
-              <LeaderBoard db = {DB} />
-            </Route>
-            <Route exact path="/">
-              <Tasks db = {DB} />
-            </Route>
-            <Route path="/rewardspage">
-              <Rewards db = {DB} /> 
-            </Route>
-          </Switch>
+      //     <Switch>
+      //       <Route exact path="/leaderboardpage">
+      //         <LeaderBoard db = {DB} />
+      //       </Route>
+      //       <Route exact path="/">
+      //         <Tasks db = {DB} />
+      //       </Route>
+      //       <Route path="/rewardspage">
+      //         <Rewards db = {DB} /> 
+      //       </Route>
+      //     </Switch>
            
-        </div>
-      </Router>
+      //   </div>
+      // </Router>
     );
   }
 }
