@@ -178,7 +178,7 @@ function addTask(event, db, setTasksList, setCounter) {
   } else {
     points = parseInt(points);
     console.log(
-      "The task " + title + "has been added with a reward of" + points
+      "The task " + title + " has been added with a reward of " + points
     );
     db.collection("Tasks")
       .doc(title)
