@@ -58,7 +58,8 @@ function updateTasks(setTasksList, setCounter, db) {
       console.log(list);
 
       setCounter(1);
-} 
+    });
+}
 
 
 function AddTaskForm(props) {
