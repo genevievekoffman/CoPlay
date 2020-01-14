@@ -293,17 +293,17 @@ input{
 
 
 .addTaskBtn {
-  border-radius: 50%;
-  background-color: rgb(105, 105, 231);
-  width: 3vw;
-  height: 3vw;
+  background-color: whitesmoke;
+  width: 4vw;
+  height: 4vw;
   text-align: center;
   margin-left: 50vw;
   margin-top: 10vw;
-  
   font-size: 130%;
   outline: none;
   cursor: pointer;
+
+
 }
 
 #PopUp {
@@ -368,5 +368,17 @@ text-align: center;
 .PopUp{
   margin-left: 20vw;
   
+  
+}
+
+#plus{
+  width: 3vw;
+  height: 3vw;
+  margin-bottom: 50px;
+  margin-right: 4vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-500%);
+
   
 }

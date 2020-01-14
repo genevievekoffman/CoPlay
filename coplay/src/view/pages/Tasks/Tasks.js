@@ -1,56 +1,49 @@
-import React, {useState} from 'react';
-import './Tasks.css';
-import Task from '../../Task/Task';
+import React, { useState } from "react";
+import "./Tasks.css";
+import Task from "../../Task/Task";
 
 function Tasks(props) {
-    const {db} = props;
-    const [counter, setCounter] = useState(0);
-    const [tasksLists, setTasksList] = useState([]);
-    const [showForm, setShowForm] = useState(false);
-    const [visible, setVisible] = useState(false);
 
-    if (counter == 0) {
-        updateTasks(setTasksList, setCounter, db);
-    }
+  const { db } = props;
+  const [counter, setCounter] = useState(0);
+  const [tasksLists, setTasksList] = useState([]);
+  const [showForm, setShowForm] = useState(true);
 
-    return (
-        <div className="App2">
-    
-          <div>
-            <h4>
-              {tasksLists.map((task, index) => {
-                return <Task task={task} key={index} db={db} />;
-              })}
-            </h4>
-          </div>
-    
-    
-          <div className="AddTask" name="AddTask">
-            {showForm && <AddTaskForm db = {db} setTasksList = {setTasksList} setCounter = {setCounter} onCancel={() => setShowForm(false)} />}
-    
-            <button className="addTaskBtn" id="PopUp" onClick={() => setShowForm(!showForm)}>
-              +
-              </button>
-          </div>
-               
-               
-          {/* <div id="points" className="points"> 
-           
-          {(!visible) ? (<div style =  {{visibility: visible}} className = "points">checking </div>): ""}
-          </div>
-          <img className="profileIcon" src="sketchImages/blackprofileicon.png" onClick={
-             
-            displayPoints(db, setVisible)
-             
-          }></img> */}
-    
-        </div>
-      );
+  if (counter == 0) {
+    updateTasks(setTasksList, setCounter, db);
+  }
+
+  return (
+    <div className="App2">
+      <div className="AddTask" name="AddTask">
+        {showForm && <AddTaskForm db = {db} onCancel={() => setShowForm(false)} />}
+
+      </div>
+      <div>
+        <h4>
+          {tasksLists.map((task, index) => {
+            return <Task task={task} key={index} db={db} />;
+          })}
+        </h4>
+      </div>
+
+      
+
+      <div id="points" className="points"></div>
+      <img
+        className="profileIcon"
+        src="sketchImages/blackprofileicon.png"
+        onClick={displayPoints(db)}
+      ></img>
+    </div>
+  );
+
 }
 
-export default Tasks;   
+export default Tasks;
 
 function updateTasks(setTasksList, setCounter, db) {
+
     var list = new Array();
     //let list = [];
   
@@ -69,47 +62,55 @@ function updateTasks(setTasksList, setCounter, db) {
         console.log(list)
   
         setCounter(1);
+
       });
-  }
+      setTasksList(list);
 
-
-function AddTaskForm(props) {
-    const {db, setTasksList, setCounter} = props;
-  return (
-    <div name="PopUp" className="PopUp">
-      <div id="grid">
-        <form id = "form"
-          onSubmit={event => {
-            addTask(event, db, setTasksList, setCounter);
-          }}
-        >
-          <div id="TitleAddTask">Add Task</div>
-          <input
-            type="text"
-            name="title"
-            placeholder="Title"
-            id="Title"
-          ></input>
-          <input
-            type="text"
-            name="points"
-            placeholder="Points"
-            id="Points"
-          ></input>
-          <div className="button">
-            <input type="submit" name="save" id="Save" value="Save"></input>
-          </div>
-        </form>
-
-        <button name="cancel" id="Cancel" value="Cancel" onClick={props.onCancel} >Cancel </button>
-        
-         
-      
-      </div>
-    </div>
-  );
+      setCounter(1);
+    });
 }
 
+function AddTaskForm(props) {
+
+  const { db } = props;
+  return (
+    <div class="container"> <button data-toggle="modal" data-target="#myModal" id="plus" className="btn btn-primary">+</button>
+    <div class="row">
+        <div class="col-md-12">
+       
+           
+           <div class="modal fade" id="myModal">
+               <div class="modal-dialog">
+                   <div class="modal-content">
+
+                   <div class="modal-header">
+                    <h3>Add Task</h3>
+                   </div>
+                   <div class="modal-body">
+                       <input type="text" placeholder="Title" id="Title" className="m-1"/> 
+                       <input type="text" placeholder="Points" id="Points" className="m-1"/>
+                       
+                   </div>
+                   <div class="modal-footer">
+                       <input class="btn btn-primary" id="Save" data-dismiss="modal" value="Save"/>
+                       <input class="btn btn-primary" id="Cancel" data-dismiss="modal" value="Cancel"/>
+                   </div>
+
+               </div>
+               </div>
+           </div>
+
+      
+       
+       
+        </div>
+
+
+     </div>
+
+   </div>
+  );
+}
 
 function addTask(event, db, setTasksList, setCounter) {
   event.preventDefault();
@@ -122,8 +123,10 @@ function addTask(event, db, setTasksList, setCounter) {
   } else if (points == "") {
     alert("Must enter points");
   } else {
-    points = parseInt(points);
-    console.log("The task " + title + "has been added with a reward of" + points);
+    parseInt(points);
+    console.log(
+      "The task " + title + "has been added with a reward of" + points
+    );
     db.collection("Tasks")
       .doc(title)
       .set({
