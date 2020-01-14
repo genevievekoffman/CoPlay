@@ -42,6 +42,7 @@ function Reward(props) {
     </div>
   );
 }
+
 //revealSuccessTask is the arrow function handleChecboxClick
 function deductPoints(points, db, revealSuccessTask, revealFailTask) {
   console.log(points);
