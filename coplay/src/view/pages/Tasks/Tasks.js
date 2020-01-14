@@ -3,7 +3,6 @@ import "./Tasks.css";
 import Task from "../../Task/Task";
 
 function Tasks(props) {
-
   const { db } = props;
   const [counter, setCounter] = useState(0);
   const [tasksLists, setTasksList] = useState([]);
@@ -16,8 +15,9 @@ function Tasks(props) {
   return (
     <div className="App2">
       <div className="AddTask" name="AddTask">
-        {showForm && <AddTaskForm db = {db} onCancel={() => setShowForm(false)} />}
-
+        {showForm && (
+          <AddTaskForm db={db} onCancel={() => setShowForm(false)} />
+        )}
       </div>
       <div>
         <h4>
@@ -27,88 +27,95 @@ function Tasks(props) {
         </h4>
       </div>
 
-      
-
       <div id="points" className="points"></div>
-      <img
+      {/* <img
         className="profileIcon"
         src="sketchImages/blackprofileicon.png"
         onClick={displayPoints(db)}
-      ></img>
+      ></img> */}
     </div>
   );
-
 }
 
 export default Tasks;
 
 function updateTasks(setTasksList, setCounter, db) {
+  var list = new Array();
+  //let list = [];
 
-    var list = new Array();
-    //let list = [];
-  
-    db.collection("Tasks")
-      .get()
-      .then(tasksDB => {
-        tasksDB.forEach(taskDB => {
-          let taskInfo = [];
-          taskInfo.push(taskDB.get("task"));
-          taskInfo.push(taskDB.get("points"));
-          taskInfo.push(taskDB.get("completed"));
-  
-          list.push(taskInfo);
-        });
-        setTasksList(list);
-        console.log(list)
-  
-        setCounter(1);
+  db.collection("Tasks")
+    .get()
+    .then(tasksDB => {
+      tasksDB.forEach(taskDB => {
+        let taskInfo = [];
+        taskInfo.push(taskDB.get("task"));
+        taskInfo.push(taskDB.get("points"));
+        taskInfo.push(taskDB.get("completed"));
 
+        list.push(taskInfo);
       });
       setTasksList(list);
+      console.log(list);
 
       setCounter(1);
     });
 }
 
 function AddTaskForm(props) {
-
   const { db } = props;
   return (
-    <div class="container"> <button data-toggle="modal" data-target="#myModal" id="plus" className="btn btn-primary">+</button>
-    <div class="row">
+    <div class="container">
+      {" "}
+      <button
+        data-toggle="modal"
+        data-target="#myModal"
+        id="plus"
+        className="btn btn-primary"
+      >
+        +
+      </button>
+      <div class="row">
         <div class="col-md-12">
-       
-           
-           <div class="modal fade" id="myModal">
-               <div class="modal-dialog">
-                   <div class="modal-content">
-
-                   <div class="modal-header">
-                    <h3>Add Task</h3>
-                   </div>
-                   <div class="modal-body">
-                       <input type="text" placeholder="Title" id="Title" className="m-1"/> 
-                       <input type="text" placeholder="Points" id="Points" className="m-1"/>
-                       
-                   </div>
-                   <div class="modal-footer">
-                       <input class="btn btn-primary" id="Save" data-dismiss="modal" value="Save"/>
-                       <input class="btn btn-primary" id="Cancel" data-dismiss="modal" value="Cancel"/>
-                   </div>
-
-               </div>
-               </div>
-           </div>
-
-      
-       
-       
+          <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3>Add Task</h3>
+                </div>
+                <div class="modal-body">
+                  <input
+                    type="text"
+                    placeholder="Title"
+                    id="Title"
+                    className="m-1"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Points"
+                    id="Points"
+                    className="m-1"
+                  />
+                </div>
+                <div class="modal-footer">
+                  <input
+                    class="btn btn-primary"
+                    id="Save"
+                    data-dismiss="modal"
+                    value="Save"
+                  />
+                  <input
+                    class="btn btn-primary"
+                    id="Cancel"
+                    data-dismiss="modal"
+                    value="Cancel"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-
-
-     </div>
-
-   </div>
+      </div>
+    </div>
   );
 }
 
