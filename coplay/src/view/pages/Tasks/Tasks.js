@@ -18,7 +18,9 @@ function Tasks(props) {
         {showForm && <AddTaskForm db = {db} onCancel={() => setShowForm(false)} />}
 
       </div>
+      
       <div>
+        
         <h4>
           {tasksLists.map((task, index) => {
             return <Task task={task} key={index} db={db} />;
@@ -64,7 +66,7 @@ function updateTasks(setTasksList, setCounter, db) {
 function AddTaskForm(props) {
   const { db } = props;
   return (
-    <div class="container"> <button data-toggle="modal" data-target="#myModal" id="plus" className="btn btn-primary">+</button>
+    <div class="container"> <button data-toggle="modal" data-target="#myModal" id="plus" className=".btn-default">+</button>
     <div class="row">
         <div class="col-md-12">
        

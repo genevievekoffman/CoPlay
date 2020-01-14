@@ -99,7 +99,7 @@ input{
 .modal-footer{
   display: flex;
   justify-content: space-between;
-  border: 1px solid black;
+  
 }
 
 
@@ -115,4 +115,9 @@ input{
     grid-column-start: 2 ;
     width: 100%;
     padding: 4%;
+}
+
+h1{
+    font-family: 'Courier New', Courier, monospace;
+    margin-left: 35vw;
 }

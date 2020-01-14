@@ -198,8 +198,11 @@
 
   .AddTask {
   display: grid;
-  margin-top: 100px;
-  margin-left: 40vw;
+  margin-top: 2vw;
+  margin-left: 25vw ;
+  
+  
+
 }
 
 
@@ -365,11 +368,17 @@ text-align: center;
 #plus{
   width: 3vw;
   height: 3vw;
-  margin-bottom: 50px;
-  margin-right: 4vw;
+  margin-bottom: 40px;
+  margin-right: 2vw;
   position: relative;
   left: 50%;
   transform: translateX(-500%);
+  
 
   
+}
+
+h4{
+  margin-left: 0;
+  transform: translateX(-5%);
 }
