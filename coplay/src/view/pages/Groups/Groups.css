@@ -1,0 +1,39 @@
+.groupPageTitle{
+    font-family: Krungthep;
+    font-size: 3em;
+    text-align: center;
+    margin: 0.2em;
+}
+
+.groupContainer{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5em;
+}
+
+@media only screen and (max-width: 1200px){
+    .groupContainer{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media only screen and (max-width: 800px){
+    .groupContainer{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media only screen and (max-width: 520px){
+    .groupContainer{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+.addGroupButton{
+    display: block;
+    margin:0 auto;
+    margin-bottom: 1em;
+    width: 2em;
+    height: 2em;
+    font-size: 1.8em;
+}

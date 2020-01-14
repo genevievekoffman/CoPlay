@@ -9,6 +9,7 @@ import firebase from "firebase";
 
 import Rewards from './view/pages/Rewards/Rewards';
 import Tasks from './view/pages/Tasks/Tasks';
+import Groups from './view/pages/Groups/Groups'
 
 import SignUp from './view/pages/SignUp/SignUp';
 
@@ -85,34 +86,36 @@ function App() {
   } else {
     //someone is logged in
     return (
-      <Router>
-        <div>
+      <Groups db = {DB}/>
+
+      // <Router>
+      //   <div>
            
-          <ul className = "topNav">
-            <div></div>
-            <div></div>
-            <div></div>
-            <li className="link">
-              <Link to="/">Tasks Page</Link>
-            </li>
-            <li className="link">
-              <Link to="/rewardspage">Rewards page</Link>
-            </li>
-            <div></div>
-            <div></div>
-            <div></div>
-          </ul>
-          <Switch>
-            <Route exact path="/">
-              <Tasks db = {DB} />
-            </Route>
-            <Route path="/rewardspage">
-              <Rewards db = {DB} /> 
-            </Route>
-          </Switch>
+      //     <ul className = "topNav">
+      //       <div></div>
+      //       <div></div>
+      //       <div></div>
+      //       <li className="link">
+      //         <Link to="/">Tasks Page</Link>
+      //       </li>
+      //       <li className="link">
+      //         <Link to="/rewardspage">Rewards page</Link>
+      //       </li>
+      //       <div></div>
+      //       <div></div>
+      //       <div></div>
+      //     </ul>
+      //     <Switch>
+      //       <Route exact path="/">
+      //         <Tasks db = {DB} />
+      //       </Route>
+      //       <Route path="/rewardspage">
+      //         <Rewards db = {DB} /> 
+      //       </Route>
+      //     </Switch>
            
-        </div>
-      </Router>
+      //   </div>
+      // </Router>
     );
   }
 }
