@@ -30,11 +30,11 @@ function Tasks(props) {
       
 
       <div id="points" className="points"></div>
-      <img
+      {/* <img
         className="profileIcon"
         src="sketchImages/blackprofileicon.png"
         onClick={displayPoints(db)}
-      ></img>
+      ></img> */}
     </div>
   );
 
@@ -67,8 +67,8 @@ function updateTasks(setTasksList, setCounter, db) {
       setTasksList(list);
 
       setCounter(1);
-    });
-}
+} 
+
 
 function AddTaskForm(props) {
 
