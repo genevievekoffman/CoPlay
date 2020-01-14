@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Groups.css'
 import Group from '../../Group/Group'
 
+
 function Groups(props) {
     const { db } = props;
     const [groupsList, setGroupsList] = useState([])
@@ -14,9 +15,9 @@ function Groups(props) {
     return (
         <div>
             <header className="groupPageTitle" >Your Groups</header>
-            <AddGroupForm db = {db}/>
-
-
+            {
+                <AddGroupForm db = {db}/>
+            }
             <div className="groupContainer">
                 {groupsList.map((group, index) => {
                     return <Group group={group} key={index} db={db} />
@@ -43,18 +44,49 @@ function fetchMyGroups(db, setGroupsList, setCounter) {
     });
 }
 
-function AddGroupForm(props) {
+function addGroupUser(db, title){
+    db.collection("Users")
+    .doc(sessionStorage.getItem("user")).collection("Groups").doc(title)
+    .set({
+      myGroup: title
+    });
+  }
+  
+  function addGroup(event, db) {
+    event.preventDefault();
+  
+    console.log("Group added");
+    let title = event.target.elements.title.value;
+    if (title == "") {
+      alert("Must enter a title");
+    } else if (title == "") {
+      alert("Must enter points");
+    } else {
+      console.log("The Group " + title + " has been added");
+      db.collection("Groups")
+        .doc(title)
+        .set({
+          name: title
+        });
+        addGroupUser(db, title)
+    }
+  
+    event.target.elements.title.value = "";
+  }
+  
+  
+  function AddGroupForm(props) {
     const { db } = props;
     console.log("form opened");
     return (
-      <div class="container"> <button data-toggle="modal" data-target="#myModal" id="plus" className=".btn-default">+</button>
-      <div class="row">
+      <div className="container"> <button data-toggle="modal" data-target="#myModal" id="plus" className="addGroupButton">+</button>
+      <div className="row">
   
-          <div class="col-md-12">
-            <div class="modal fade" id="myModal">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
+          <div className="col-md-12">
+            <div className="modal fade" id="myModal">
+              <div className="modal-dialog">
+                <div className="modal-content">
+                  <div className="modal-header">
                     <h3>Add a Group</h3>
                   </div>
                   <form
@@ -62,7 +94,7 @@ function AddGroupForm(props) {
                       addGroup(event, db);
                     }}
                   >
-                  <div class="modal-body">
+                  <div className="modal-body">
                     <input
                       type="text"
                       name = "title"
@@ -72,16 +104,16 @@ function AddGroupForm(props) {
                     />
                   
                   </div>
-                  <div class="modal-footer">
+                  <div className="modal-footer">
                     <input
-                      class="btn btn-primary"
+                      className="btn btn-primary"
                       type = "submit"
                       id="Save"
                       value="Save"
                       name = "save"
                     />
                     <input
-                      class="btn btn-primary"
+                      className="btn btn-primary"
                       id="Cancel"
                       value="Cancel"
                       type = "button"
@@ -97,38 +129,4 @@ function AddGroupForm(props) {
       </div>
     );
   }
-
-function addGroup(event, db) {
-  event.preventDefault();
-
-  console.log("Group added");
-  let title = event.target.elements.title.value;
-  if (title == "") {
-    alert("Must enter a title");
-  } else if (title == "") {
-    alert("Must enter points");
-  } else {
-    console.log("The Group " + title + " has been added");
-    db.collection("Groups")
-      .doc(title)
-      .set({
-        name: title
-      });
-      addGroupUser(db, title)
-  }
-
-  event.target.elements.title.value = "";
-}
-
-function addGroupUser(db, title){
-    //find current user
-    console.log("Adding the group " + title + " to user " + sessionStorage.getItem("user"))
-    db.collection("Users")
-    .doc(sessionStorage.getItem("user")).collection("Groups").doc(title)
-    .set({
-      name: title
-    });
-    //add to their doc name, myGroup:
-  }
-
 
