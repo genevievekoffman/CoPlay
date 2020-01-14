@@ -46,11 +46,11 @@
   user-select: none;
 }
 
-#logo{
+/* #logo{
   height: 90vh;
   opacity: 0.2;
   z-index: -1;
-}
+} */
 
 #signIn{
   grid-column-start: 3;
@@ -64,6 +64,7 @@
   font-size: 2vw;
   font-family: Avenir;
   user-select: none;
+   
 }
 
 #signInForm{
@@ -129,7 +130,9 @@
   height: 5vh;
 }
 
-
+.lego{
+  height: 30vh;
+}
 @media only screen and (max-width: 520px){
   .grid{
     grid-template-columns: repeat(5,30vw);
@@ -217,6 +220,12 @@
 }
 
 .App{
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.App3{
   justify-content: center;
   display: flex;
   flex-direction: column;

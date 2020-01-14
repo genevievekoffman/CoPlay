@@ -15,8 +15,9 @@ function Tasks(props) {
   return (
     <div className="App2">
       <div className="AddTask" name="AddTask">
-        {showForm && <AddTaskForm db = {db} onCancel={() => setShowForm(false)} />}
-
+        {showForm && (
+          <AddTaskForm db={db} setTasksList = {setTasksList} setCounter = {setCounter} onCancel={() => setShowForm(false)} />
+        )}
       </div>
       
       <div>
@@ -28,14 +29,12 @@ function Tasks(props) {
         </h4>
       </div>
 
-      
-
       <div id="points" className="points"></div>
-      <img
+      {/* <img
         className="profileIcon"
         src="sketchImages/blackprofileicon.png"
         onClick={displayPoints(db)}
-      ></img>
+      ></img> */}
     </div>
   );
 }
@@ -58,54 +57,74 @@ function updateTasks(setTasksList, setCounter, db) {
         list.push(taskInfo);
       });
       setTasksList(list);
+      console.log(list);
 
       setCounter(1);
     });
 }
 
+
 function AddTaskForm(props) {
-  const { db } = props;
+  const { db, setTasksList, setCounter } = props;
   return (
     <div class="container"> <button data-toggle="modal" data-target="#myModal" id="plus" className=".btn-default">+</button>
     <div class="row">
+
         <div class="col-md-12">
-       
-           
-           <div class="modal fade" id="myModal">
-               <div class="modal-dialog">
-                   <div class="modal-content">
-
-                   <div class="modal-header">
-                    <h3>Add Task</h3>
-                   </div>
-                   <div class="modal-body">
-                       <input type="text" placeholder="Title" id="Title" className="m-1"/> 
-                       <input type="text" placeholder="Points" id="Points" className="m-1"/>
-                       
-                   </div>
-                   <div class="modal-footer">
-                       <input class="btn btn-primary" id="Save" data-dismiss="modal" value="Save"/>
-                       <input class="btn btn-primary" id="Cancel" data-dismiss="modal" value="Cancel"/>
-                   </div>
-
-               </div>
-               </div>
-           </div>
-
-
-      
-       
-       
+          <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3>Add Task</h3>
+                </div>
+                <form
+                  onSubmit={event => {
+                    addTask(event, db, setTasksList, setCounter);
+                  }}
+                >
+                <div class="modal-body">
+                  <input
+                    type="text"
+                    name = "title"
+                    placeholder="Title"
+                    id="Title"
+                    className="m-1"
+                  />
+                  <input
+                    type="text"
+                    name = "points"
+                    placeholder="Points"
+                    id="Points"
+                    className="m-1"
+                  />
+                </div>
+                <div class="modal-footer">
+                  <input
+                    class="btn btn-primary"
+                    type = "submit"
+                    id="Save"
+                    value="Save"
+                    name = "save"
+                  />
+                  <input
+                    class="btn btn-primary"
+                    id="Cancel"
+                    value="Cancel"
+                    type = "button"
+                    // onClick = {props.onCancel}
+                  />
+                </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
-
-
-     </div>
-
-   </div>
+      </div>
+    </div>
   );
 }
 
-function addTask(event, db) {
+function addTask(event, db, setTasksList, setCounter) {
   event.preventDefault();
 
   console.log("saved my G");
@@ -116,7 +135,7 @@ function addTask(event, db) {
   } else if (points == "") {
     alert("Must enter points");
   } else {
-    parseInt(points);
+    points = parseInt(points);
     console.log(
       "The task " + title + "has been added with a reward of" + points
     );
@@ -131,24 +150,26 @@ function addTask(event, db) {
 
   event.target.elements.title.value = "";
   event.target.elements.points.value = "";
+  updateTasks(setTasksList, setCounter, db);
 }
 
-function displayPoints(db) {
-  db.collection("Users")
-    .doc(sessionStorage.getItem("user"))
-    .get()
-    .then(userDB => {
-      let points = userDB.get("totalPoints");
-      console.log(points);
-      document.getElementById("points").style.visibility = "visible";
-      document.getElementById("points").innerHTML = "Points: " + points;
-      wait();
-    });
-}
+// function displayPoints(db, setVisible) {
+//   db.collection("Users")
+//     .doc(sessionStorage.getItem("user"))
+//     .get()
+//     .then(userDB => {
+//       let points = userDB.get("totalPoints");
+//       console.log(points);
+//       setVisible(true);
+//       // document.getElementById("points").style.visibility = "visible";
+//       // document.getElementById("points").innerHTML = "Points: " + points;
+//       wait(setVisible);
+//     });
+// }
 
-function wait() {
-  setTimeout(
-    () => (document.getElementById("points").style.visibility = "hidden"),
-    3000
-  );
-}
+// function wait(setVisible) {
+//   setTimeout(
+//     () => (setVisible(false)),
+//     3000
+//   );
+// }
