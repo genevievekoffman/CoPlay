@@ -5,7 +5,6 @@ import Reward from "../../Reward/Reward";
 function Rewards(props) {
   const [rewardsLists, setRewardsList] = useState([]);
   const [counter, setCounter] = useState(0);
-  const [showForm, setShowForm] = React.useState(true);
   const { db, groupID } = props;
 
   if (counter == 0) {
@@ -15,22 +14,17 @@ function Rewards(props) {
   return (
     <div>
       <div className="AddReward" name="AddReward">
-        {showForm && (
-          <AddRewardForm
-            db={db}
-            setRewardsList={setRewardsList}
-            setCounter={setCounter}
-            onCancel={() => setShowForm(false)}
-            groupID={groupID}
-          />
-        )}
+        <AddRewardForm
+          db={db}
+          setRewardsList={setRewardsList}
+          setCounter={setCounter}
+          groupID={groupID}
+        />
       </div>
 
       <h4>
         {rewardsLists.map((reward, index) => {
-          return (
-            <Reward reward={reward} key={index} db={db}/>
-          );
+          return <Reward reward={reward} key={index} db={db} />;
         })}
       </h4>
     </div>
@@ -58,11 +52,9 @@ function updateRewards(setRewardsList, setCounter, db, groupID) {
       setRewardsList(list);
       //console.log(list);
 
-
       setCounter(1);
     });
 }
-
 
 function AddRewardForm(props) {
   const { db, setRewardsList, setCounter, groupID } = props;
@@ -107,20 +99,8 @@ function AddRewardForm(props) {
                     />
                   </div>
                   <div class="modal-footer">
-                    <input
-                      class="btn btn-primary btn-sm"
-                      type="submit"
-                      id="savee"
-                      value="Save"
-                      name="save"
-                    />
-                    <input
-                      class="btn btn-primary btn-sm"
-                      id="cancell"
-                      value="Cancel"
-                      type="button"
-                      onClick={props.onCancel}
-                    />
+                  <button type="button" class="btn btn-primary btn-sm" id="savee" data-dismiss="modal">Save</button>
+                  <button type="button" class="btn btn-secondary btn-sm" id="cancell" data-dismiss="modal">Cancel</button>
                   </div>
                 </form>
               </div>
@@ -133,7 +113,6 @@ function AddRewardForm(props) {
 }
 
 function addReward(event, db, setRewardsList, setCounter, groupID) {
-
   event.preventDefault();
 
   console.log("saved my G");

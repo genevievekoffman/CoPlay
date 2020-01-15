@@ -30,10 +30,5 @@
 }
 
 .addGroupButton{
-    display: block;
-    margin:0 auto;
-    margin-bottom: 1em;
-    width: 2em;
-    height: 2em;
-    font-size: 1.8em;
+    margin-left: 80vw;
 }

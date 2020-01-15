@@ -6,8 +6,6 @@ function Tasks(props) {
   const { db, groupID } = props;
   const [counter, setCounter] = useState(0);
   const [tasksLists, setTasksList] = useState([]);
-  const [showForm, setShowForm] = useState(true);
-  
 
   if (counter == 0) {
     updateTasks(setTasksList, setCounter, db, groupID);
@@ -16,15 +14,12 @@ function Tasks(props) {
   return (
     <div className="App2">
       <div className="AddTask" name="AddTask">
-        {showForm && (
-          <AddTaskForm
-            db={db}
-            setTasksList={setTasksList}
-            setCounter={setCounter}
-            groupID={groupID}
-            onCancel={() => setShowForm(false)}
-          />
-        )}
+        <AddTaskForm
+          db={db}
+          setTasksList={setTasksList}
+          setCounter={setCounter}
+          groupID={groupID}
+        />
       </div>
 
       <div>
@@ -72,7 +67,6 @@ function updateTasks(setTasksList, setCounter, db, groupID) {
 }
 
 function AddTaskForm(props) {
-
   const { db, setTasksList, setCounter, groupID } = props;
 
   return (
@@ -87,21 +81,18 @@ function AddTaskForm(props) {
         +
       </button>
       <div class="row">
- 
         <div class="col-md-12">
           <div class="modal fade" id="myModal">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
                   <h3>Add Task</h3>
- 
                 </div>
                 <form
                   onSubmit={event => {
-                    addTask(event, db, setTasksList, setCounter);
+                    addTask(event, db, setTasksList, setCounter, groupID);
                   }}
                 >
-
                   <div class="modal-body">
                     <input
                       type="text"
@@ -119,25 +110,22 @@ function AddTaskForm(props) {
                     />
                   </div>
                   <div class="modal-footer">
-                     
-                  <button type="button" class="btn btn-primary btn-sm" id="savee" data-dismiss="modal">Save</button>
-                  <button type="button" class="btn btn-secondary btn-sm" id="cancell" data-dismiss="modal">Cancel</button>
-                      {/* <button
-                      class="btn btn-primary btn-sm"
-                      type="submit"
-                      id="savee"
-                      value="Save"
-                      name="save"
-                    />
                     <button
+                      type="button submit"
                       class="btn btn-primary btn-sm"
-                      id="cancell"
-                      value="Cancel"
+                      id="savee"
+                    >
+                      Save
+                    </button>
+                    <button
                       type="button"
-                      onClick={props.onCancel}
-                    /> */}
+                      class="btn btn-secondary btn-sm"
+                      id="cancell"
+                      data-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
                   </div>
-
                 </form>
               </div>
             </div>
@@ -147,8 +135,6 @@ function AddTaskForm(props) {
     </div>
   );
 }
-
-
 
 function addTask(event, db, setTasksList, setCounter, groupID) {
   event.preventDefault();
@@ -165,10 +151,7 @@ function addTask(event, db, setTasksList, setCounter, groupID) {
   } else {
     points = parseInt(points);
     console.log(
-
       "The task " + title + " has been added with a reward of " + points
-
-
     );
     db.collection("Groups")
       .doc(groupID)
