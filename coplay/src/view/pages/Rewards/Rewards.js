@@ -112,8 +112,8 @@ function AddRewardForm(props) {
                 </div>
                 
                 <div class="modal-footer">
-                <button type="button" class="btn btn-primary btn-sm" id="fdp">Save</button>
-                <button type="button" class="btn btn-secondary btn-sm" id="pd" onclick="shoot()">Cancel</button>
+                <button type="button" class="btn btn-primary btn-sm" id="savee">Save</button>
+                <button type="button" class="btn btn-secondary btn-sm" id="cancell">Cancel</button>
                 
 
                 </div>

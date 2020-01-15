@@ -44,7 +44,7 @@ input{
     
 }
 
-#Cancel{
+/*#Cancel{
      width: 5vw;
     background-color:gray;
     margin-top: 20px;
@@ -62,7 +62,7 @@ input{
     background-color: cornflowerblue;
 
 }
-
+*/
  
 .x{
     font-family: DFWaWaSC-W5;
@@ -99,7 +99,7 @@ input{
 .modal-footer{
   display: flex;
   justify-content: space-between;
-  margin-right: 13vw;
+  
   
   
   
@@ -130,3 +130,11 @@ h1{
 
 
 
+#savee{
+      
+ margin-right: 10vw;
+}
+
+#cancell{
+ margin-right: 7vw;
+}
