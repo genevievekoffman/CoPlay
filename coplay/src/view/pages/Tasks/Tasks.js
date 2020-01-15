@@ -22,7 +22,6 @@ function Tasks(props) {
             setTasksList={setTasksList}
             setCounter={setCounter}
             groupID={groupID}
-            onCancel={() => setShowForm(false)}
           />
         )}
       </div>
@@ -119,20 +118,10 @@ function AddTaskForm(props) {
                     />
                   </div>
                   <div class="modal-footer">
-                      <input
-                      class="btn btn-primary btn-sm"
-                      type="submit"
-                      id="savee"
-                      value="Save"
-                      name="save"
-                    />
-                    <input
-                      class="btn btn-primary btn-sm"
-                      id="cancell"
-                      value="Cancel"
-                      type="button"
-                      onClick={props.onCancel}
-                    />
+                     
+                  <button type="button submit" class="btn btn-primary btn-sm" id="savee">Save</button>
+                  <button type="button" class="btn btn-secondary btn-sm" id="cancell" data-dismiss="modal">Cancel</button>
+                     
                   </div>
 
                 </form>
