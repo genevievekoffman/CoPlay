@@ -49,6 +49,7 @@ function addGroupUser(db, title){
     .doc(sessionStorage.getItem("user")).collection("Groups").doc(title)
     .set({
       name: title
+      
     });
   }
   
@@ -66,7 +67,8 @@ function addGroupUser(db, title){
       db.collection("Groups")
         .doc(title)
         .set({
-          name: title
+          name: title,
+          ID : Date.now()
         });
         addGroupUser(db, title)
     }
