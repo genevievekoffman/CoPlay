@@ -3,20 +3,25 @@ import "./Tasks.css";
 import Task from "../../Task/Task";
 
 function Tasks(props) {
-  const { db } = props;
+  const { db, groupID } = props;
   const [counter, setCounter] = useState(0);
   const [tasksLists, setTasksList] = useState([]);
   const [showForm, setShowForm] = useState(true);
 
   if (counter == 0) {
-    updateTasks(setTasksList, setCounter, db);
+    updateTasks(setTasksList, setCounter, db, groupID);
   }
 
   return (
     <div className="App2">
       <div className="AddTask" name="AddTask">
         {showForm && (
-          <AddTaskForm db={db} setTasksList = {setTasksList} setCounter = {setCounter} onCancel={() => setShowForm(false)} />
+          <AddTaskForm 
+          db={db} 
+          setTasksList = {setTasksList} 
+          setCounter = {setCounter} 
+          groupID = {groupID} 
+          onCancel={() => setShowForm(false)} />
         )}
       </div>
       
@@ -41,11 +46,11 @@ function Tasks(props) {
 
 export default Tasks;
 
-function updateTasks(setTasksList, setCounter, db) {
+function updateTasks(setTasksList, setCounter, db, groupID) {
   var list = new Array();
   //let list = [];
 
-  db.collection("Tasks")
+  db.collection("Groups").doc(groupID).collection("Tasks")
     .get()
     .then(tasksDB => {
       tasksDB.forEach(taskDB => {
@@ -65,44 +70,82 @@ function updateTasks(setTasksList, setCounter, db) {
 
 
 function AddTaskForm(props) {
-  const { db }= props;
-  return(
-    <div class="container"> <button data-toggle="modal" data-target="#myModal" id="plus" className=".btn-default">+</button>
-    <div class="row">
-      <div class="col-md-12">
-
-        <div class="modal fade" id="myModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-
-              <div class="modal-header">
-                <h3>Add Task</h3>
+  const { db, setTasksList, setCounter, groupID } = props; 
+  return (
+    <div class="container">
+      {" "}
+      <button
+        data-toggle="modal"
+        data-target="#myModal"
+        id="plus"
+        className=".btn-default"
+      >
+        +
+      </button>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h3>Add Task</h3>
                 </div>
-                <div class="modal-body">
-                    <input type="text" placeholder="Title" id="Title" className="m-1"></input>
-                    <input type="text" placeholder="Points" id="Points" className="m-1"></input>
-                    </div>
-                    <div class="modal-footer">
-                      <input class="btn brn-primary" id="Save" data-dismiss="modal" value="Save"></input>
-                      <input class="btn brn-primary" id="Cancel" data-dismiss="modal" value="Cancel"></input>
-                      </div>
-
-                      </div>
-                      </div>
-                      </div>
-                      </div>
-                      </div>
-                      </div>
-                      
+                <form
+                  onSubmit={event => {
+                    addTask(event, db, setTasksList, setCounter, groupID);
+                  }}
+                >
+                  <div class="modal-body">
+                    <input
+                      type="text"
+                      name="title"
+                      placeholder="Title"
+                      id="Title"
+                      className="m-1"
+                    />
+                    <input
+                      type="text"
+                      name="points"
+                      placeholder="Points"
+                      id="Points"
+                      className="m-1"
+                    />
+                  </div>
+                  <div class="modal-footer">
+                    <input
+                      class="btn btn-primary"
+                      type="submit"
+                      id="Save"
+                      value="Save"
+                      name="save"
+                    />
+                    <input
+                      class="btn btn-primary"
+                      id="Cancel"
+                      value="Cancel"
+                      type="button"
+                      // onClick = {props.onCancel}
+                    />
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
-function addTask(event, db, setTasksList, setCounter) {
+
+function addTask(event, db, setTasksList, setCounter, groupID) {
   event.preventDefault();
 
   console.log("saved my G");
   let title = event.target.elements.title.value;
   let points = event.target.elements.points.value;
+  console.log(groupID);
+
   if (title == "") {
     alert("Must enter a title");
   } else if (points == "") {
@@ -110,9 +153,11 @@ function addTask(event, db, setTasksList, setCounter) {
   } else {
     points = parseInt(points);
     console.log(
-      "The task " + title + "has been added with a reward of" + points
+      "The task " + title + "has been added with a reward of " + points
     );
-    db.collection("Tasks")
+    db.collection("Groups")
+      .doc(groupID)
+      .collection("Tasks")
       .doc(title)
       .set({
         points: points,
@@ -123,7 +168,7 @@ function addTask(event, db, setTasksList, setCounter) {
 
   event.target.elements.title.value = "";
   event.target.elements.points.value = "";
-  updateTasks(setTasksList, setCounter, db);
+  updateTasks(setTasksList, setCounter, db, groupID);
 }
 
 // function displayPoints(db, setVisible) {

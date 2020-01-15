@@ -129,7 +129,7 @@ function App() {
                 <LeaderBoard db = {DB} />
               </Route>
               <Route exact path="/">
-                <Tasks db = {DB} />
+                <Tasks db = {DB} groupID = {task}/>
               </Route>
               <Route path="/rewardspage">
                 <Rewards db = {DB} /> 
