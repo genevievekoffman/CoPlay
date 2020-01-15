@@ -30,8 +30,8 @@
   
 
   .AddReward{
-      margin-left:30vw;
-      margin-top: 10vh;
+      margin-left:27vw;
+      
   }
 
   .addRewardbtn{
@@ -103,4 +103,8 @@
   outline: none;
   cursor: pointer;
 
+  }
+
+  @media only screen and (max-width: 600px) {
+    
   }
