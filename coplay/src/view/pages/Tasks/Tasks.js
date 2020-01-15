@@ -119,7 +119,10 @@ function AddTaskForm(props) {
                     />
                   </div>
                   <div class="modal-footer">
-                      <button
+                     
+                  <button type="button" class="btn btn-primary btn-sm" id="savee" data-dismiss="modal">Save</button>
+                  <button type="button" class="btn btn-secondary btn-sm" id="cancell" data-dismiss="modal">Cancel</button>
+                      {/* <button
                       class="btn btn-primary btn-sm"
                       type="submit"
                       id="savee"
@@ -132,7 +135,7 @@ function AddTaskForm(props) {
                       value="Cancel"
                       type="button"
                       onClick={props.onCancel}
-                    />
+                    /> */}
                   </div>
 
                 </form>
