@@ -2,30 +2,19 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import firebase from "firebase";
 
-
-import Rewards from './view/pages/Rewards/Rewards';
-import Tasks from './view/pages/Tasks/Tasks';
-import LeaderBoard from './view/pages/LeaderBoard/LeaderBoard';
-
+import Rewards from "./view/pages/Rewards/Rewards";
+import Tasks from "./view/pages/Tasks/Tasks";
+import LeaderBoard from "./view/pages/LeaderBoard/LeaderBoard";
 
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
 // import Form from 'react-bootstrap/Form';
 
- 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
- 
- 
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import SignUp from './view/pages/SignUp/SignUp';
+import SignUp from "./view/pages/SignUp/SignUp";
 
-import Groups from './view/pages/Groups/Groups'
- 
+import Groups from "./view/pages/Groups/Groups";
 
 //Firebase
 const firebaseConfig = {
@@ -43,40 +32,47 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 const DB = firebase.firestore();
 
- 
-
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
 
   const [homePage, setHomePage] = useState(false); //for changing to task page from groups
   const [groupID, setGroupID] = useState("");
-  const [name, setName] = useState("")
+  const [name, setName] = useState("");
   //useEffect(() => updateTasks(setTasksList), []);
 
   //const [points, setPoints] = useState(false);
-const style  = {
-  '@media (min-width : 500px' : {
-    width : "400px"
-  }
-}
+  const style = {
+    "@media (min-width : 500px": {
+      width: "400px"
+    }
+  };
 
   if (!isLoggedIn) {
-    if(!isRegistering){  
+    if (!isRegistering) {
       return (
-        <div className="App" >
-          <button onClick ={ () => newUser(setIsRegistering)}> Don't have an account? Sign up here </button>
-           
+        <div className="App">
+          <button onClick={() => newUser(setIsRegistering)}>
+            {" "}
+            Don't have an account? Sign up here{" "}
+          </button>
+
           <div className="grid">
             <div id="leftSide"></div>
-            <div id="LogIn">Coplay</div> 
-            <div id="slogan">Coexisting sounds hard but<br></br>CoPlay sounds like fun</div>
-  
-            {/* <img id="logo" src="./sketchImages/coplayLogo.jpeg"></img> */}
-            <div id="signIn">Sign in to Coplay
+            <div id="LogIn">Coplay</div>
+            <div id="slogan">
+              Coexisting sounds hard but<br></br>CoPlay sounds like fun
             </div>
-            
-            <form id="signInForm" onSubmit={event => { checkUser(event, setIsLoggedIn); }}>
+
+            {/* <img id="logo" src="./sketchImages/coplayLogo.jpeg"></img> */}
+            <div id="signIn">Sign in to Coplay</div>
+
+            <form
+              id="signInForm"
+              onSubmit={event => {
+                checkUser(event, setIsLoggedIn);
+              }}
+            >
               <div id="formFlex">
                 <div id="userLabel">Username</div>
                 <input type="text" name="username" id="name"></input>
@@ -86,66 +82,68 @@ const style  = {
                 <br></br>
                 <input type="submit" id="submitLogin" value="Sign In"></input>
               </div>
-               
-            </form> 
+            </form>
           </div>
         </div>
       );
-    } else { //they clicked the create new user 
-      return(
+    } else {
+      //they clicked the create new user
+      return (
         <div className="App3">
-          <SignUp db = {DB} setIsRegistering = {setIsRegistering} />
+          <SignUp db={DB} setIsRegistering={setIsRegistering} />
         </div>
-      )
+      );
     }
-     
-  } else {//someone is logged in
-      if(!homePage){
-        return (
-          <Groups db = {DB} setGroupID = {setGroupID} setHomePage = {setHomePage} setName = {setName}/> 
-        );
-      }
-      return(
-        //use task state to get the name of the group 
-        <Router>
-          <div> 
-            <ul className = "topNav">
-              <div></div>
-              <div></div>
-              <div></div>
-              <li className="link">
-                <Link to="/leaderboardpage">Leaderboard Page</Link>
-              </li>
-              <li className="link">
-                <Link to="/">Tasks Page</Link>
-              </li>
-              <li className="link">
-                <Link to="/rewardspage">Rewards page</Link>
-              </li>
-              <div></div>
-              <div></div>
-              <div></div>
-            </ul>
+  } else {
+    //someone is logged in
+    if (!homePage) {
+      return (
+        <Groups
+          db={DB}
+          setGroupID={setGroupID}
+          setHomePage={setHomePage}
+          setName={setName}
+        />
+      );
+    }
+    return (
+      //use task state to get the name of the group
+      <Router>
+        <div>
+          <ul className="topNav">
+            <div></div>
+            <div></div>
+            <div></div>
+            <li className="link">
+              <Link to="/leaderboardpage">Leaderboard Page</Link>
+            </li>
+            <li className="link">
+              <Link to="/">Tasks Page</Link>
+            </li>
+            <li className="link">
+              <Link to="/rewardspage">Rewards page</Link>
+            </li>
+            <div></div>
+            <div></div>
+            <div></div>
+          </ul>
 
-            <h1>{name}</h1>
-            
-            <Switch>
-              <Route exact path="/leaderboardpage">
-                <LeaderBoard db = {DB} />
-              </Route>
-              <Route exact path="/">
-                <Tasks db = {DB} groupID = {groupID}/>
-              </Route>
-              <Route path="/rewardspage">
-                <Rewards db = {DB} groupID = {groupID} /> 
-              </Route>
-            </Switch>
-            
-          </div>
-        </Router>
-      )
-     
-     
+          <h1>{name}</h1>
+
+          <Switch>
+            <Route exact path="/leaderboardpage">
+              <LeaderBoard db={DB} />
+            </Route>
+            <Route exact path="/">
+              <Tasks db={DB} groupID={groupID} />
+            </Route>
+            <Route path="/rewardspage">
+              <Rewards db={DB} groupID={groupID} />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+    );
   }
 }
 
@@ -180,12 +178,9 @@ function checkUser(e, setIsLoggedIn) {
   e.target.elements.password.value = "";
 }
 
-
-function newUser(setIsRegistering){
-  console.log("new user clicked")
+function newUser(setIsRegistering) {
+  console.log("new user clicked");
   setIsRegistering(true);
 }
 
-
-export default App
- 
+export default App;
