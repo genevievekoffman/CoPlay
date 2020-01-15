@@ -6,6 +6,10 @@ function Tasks(props) {
   const { db, groupID } = props;
   const [counter, setCounter] = useState(0);
   const [tasksLists, setTasksList] = useState([]);
+  const [visible, setVisible] = useState(false)
+  const [points, setPoints] = useState(" ")
+
+ 
 
   if (counter == 0) {
     updateTasks(setTasksList, setCounter, db, groupID);
@@ -29,13 +33,20 @@ function Tasks(props) {
           })}
         </h4>
       </div>
+      
+      {visible ? (
+          <div id="points" className="points"> {points} </div>
+        ) : (
+            
+      <img
+      className="profileIcon"
+      src="sketchImages/blackprofileicon.png"
+      onClick={() => {displayPoints(db, setVisible, visible, setPoints)}}
+      
+    ></img>
+          )}
 
-      <div id="points" className="points"></div>
-      {/* <img
-        className="profileIcon"
-        src="sketchImages/blackprofileicon.png"
-        onClick={displayPoints(db)}
-      ></img> */}
+      
     </div>
   );
 }
@@ -169,19 +180,18 @@ function addTask(event, db, setTasksList, setCounter, groupID) {
   updateTasks(setTasksList, setCounter, db, groupID);
 }
 
-// function displayPoints(db, setVisible) {
-//   db.collection("Users")
-//     .doc(sessionStorage.getItem("user"))
-//     .get()
-//     .then(userDB => {
-//       let points = userDB.get("totalPoints");
-//       console.log(points);
-//       setVisible(true);
-//       // document.getElementById("points").style.visibility = "visible";
-//       // document.getElementById("points").innerHTML = "Points: " + points;
-//       wait(setVisible);
-//     });
-// }
+function displayPoints(db, setVisible, visible, setPoints) {
+  db.collection("Users")
+    .doc(sessionStorage.getItem("user"))
+    .get()
+    .then(userDB => {
+      let points = userDB.get("totalPoints");
+      setPoints(points);
+      console.log(points);
+      setVisible(!visible);
+  
+    });
+}
 
 // function wait(setVisible) {
 //   setTimeout(

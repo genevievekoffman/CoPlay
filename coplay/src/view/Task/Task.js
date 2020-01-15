@@ -32,7 +32,15 @@ function Task(props) {
 }
 
 function completeTask(task, points, db, setTaskCompleted, groupID) {
-  console.log("*************", groupID)
+  db.collection("Users")
+    .doc(sessionStorage.getItem("user"))
+    .get()
+    .then(userDB => {
+      let totalPoints = userDB.get("totalPoints");
+      console.log("You have " + (totalPoints + points) + " points now that " + points + " has been added to your account")
+    })
+
+
   setTaskCompleted(true);
   db.collection("Groups")
     .doc(groupID)
