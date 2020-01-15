@@ -45,12 +45,16 @@ function App() {
   //useEffect(() => updateTasks(setTasksList), []);
 
   //const [points, setPoints] = useState(false);
-
+const style  = {
+  '@media (min-width : 500px' : {
+    width : "400px"
+  }
+}
 
   if (!isLoggedIn) {
     if(!isRegistering){  
       return (
-        <div className="App">
+        <div className="App" >
           <button onClick ={ () => newUser(setIsRegistering)}> Don't have an account? Sign up here </button>
            
           <div className="grid">

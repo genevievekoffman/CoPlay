@@ -69,6 +69,7 @@ function AddTaskForm(props) {
   const [counter, setCounter] = useState(0);
   const [tasksLists, setTasksList] = useState([]);
   const { db }= props;
+  
   return(
     <div class="container"> <button data-toggle="modal" data-target="#myModal" id="plus" className=".btn-default">+</button>
     <div class="row">

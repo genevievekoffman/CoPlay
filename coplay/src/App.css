@@ -396,3 +396,14 @@ h4{
   margin-left: 0;
   transform: translateX(-5%);
 }
+
+
+@media (min-width : 600px){
+   
+
+  /*#plus{
+      width: 5vw;
+      height: 5vw;
+  } */
+   
+}
