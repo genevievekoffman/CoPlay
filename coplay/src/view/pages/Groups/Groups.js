@@ -44,17 +44,17 @@ function fetchMyGroups(db, setGroupsList, setCounter) {
     });
 }
 
-function addGroupUser(db, title){
+function addGroupUser(db, title, ID){
     db.collection("Users")
-    .doc(sessionStorage.getItem("user")).collection("Groups").doc(title)
+    .doc(sessionStorage.getItem("user")).collection("Groups").doc(ID)
     .set({
       name: title
-      
     });
   }
   
   function addGroup(event, db) {
     event.preventDefault();
+    let ID;
   
     console.log("Group added");
     let title = event.target.elements.title.value;
@@ -64,13 +64,13 @@ function addGroupUser(db, title){
       alert("Must enter points");
     } else {
       console.log("The Group " + title + " has been added");
+      ID = "a" + Date.now()
       db.collection("Groups")
-        .doc(title)
+        .doc(ID)
         .set({
-          name: title,
-          ID : Date.now()
+          name: title
         });
-        addGroupUser(db, title)
+        addGroupUser(db, title, ID)
     }
   
     event.target.elements.title.value = "";
