@@ -1,0 +1,14 @@
+.group{
+    text-align: center;
+    border: 1px solid black;
+    padding: 1em;
+    font-family: Avenir-Heavy;
+    font-size:  3.8vh;
+    border-radius: 10px;
+}
+
+.group:hover{
+    color: gray;
+    box-shadow: 5px 5px;
+    cursor: pointer;
+}

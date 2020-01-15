@@ -2,25 +2,30 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import firebase from "firebase";
 
- // import Button from 'react-bootstrap/Button';
-// import Modal from 'react-bootstrap/Modal';
-// import Form from 'react-bootstrap/Form';
-
-//pages
 
 import Rewards from './view/pages/Rewards/Rewards';
 import Tasks from './view/pages/Tasks/Tasks';
+import LeaderBoard from './view/pages/LeaderBoard/LeaderBoard';
 
-import SignUp from './view/pages/SignUp/SignUp';
 
+// import Button from 'react-bootstrap/Button';
+// import Modal from 'react-bootstrap/Modal';
+// import Form from 'react-bootstrap/Form';
+
+ 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+ 
+ 
 
+import SignUp from './view/pages/SignUp/SignUp';
 
+import Groups from './view/pages/Groups/Groups'
+ 
 
 //Firebase
 const firebaseConfig = {
@@ -38,10 +43,15 @@ firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 const DB = firebase.firestore();
 
+ 
+
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
 
+  const [homePage, setHomePage] = useState(false); //for changing to task page from groups
+  const [groupID, setGroupID] = useState("");
+  const [name, setName] = useState("")
   //useEffect(() => updateTasks(setTasksList), []);
 
   //const [points, setPoints] = useState(false);
@@ -89,42 +99,53 @@ const style  = {
       )
     }
      
-  } else {
-    //someone is logged in
-    return (
-      <Router>
-        
-        <div>
-           
-          <ul className = "topNav">
-            <div></div>
-            <div></div>
-            <div></div>
-            <li className="link">
-              <Link to="/">Tasks Page</Link>
-            </li>
-            <li className="link">
-              <Link to="/rewardspage">Rewards page</Link>
-            </li>
-            <div></div>
-            <div></div>
-            <div></div>
-          </ul>
+  } else {//someone is logged in
+      if(!homePage){
+        return (
+          <Groups db = {DB} setGroupID = {setGroupID} setHomePage = {setHomePage} setName = {setName}/> 
+        );
+      }
+      return(
+        //use task state to get the name of the group 
+        <Router>
+          <div> 
+            <ul className = "topNav">
+              <div></div>
+              <div></div>
+              <div></div>
+              <li className="link">
+                <Link to="/leaderboardpage">Leaderboard Page</Link>
+              </li>
+              <li className="link">
+                <Link to="/">Tasks Page</Link>
+              </li>
+              <li className="link">
+                <Link to="/rewardspage">Rewards page</Link>
+              </li>
+              <div></div>
+              <div></div>
+              <div></div>
+            </ul>
 
-          <h1>Family Chores</h1>
-         
-          <Switch>
-            <Route exact path="/">
-              <Tasks db = {DB} />
-            </Route>
-            <Route path="/rewardspage">
-              <Rewards db = {DB} /> 
-            </Route>
-          </Switch>
-           
-        </div>
-      </Router>
-    );
+            <h1>{name}</h1>
+            
+            <Switch>
+              <Route exact path="/leaderboardpage">
+                <LeaderBoard db = {DB} />
+              </Route>
+              <Route exact path="/">
+                <Tasks db = {DB} groupID = {groupID}/>
+              </Route>
+              <Route path="/rewardspage">
+                <Rewards db = {DB}  /> 
+              </Route>
+            </Switch>
+            
+          </div>
+        </Router>
+      )
+     
+     
   }
 }
 
@@ -167,3 +188,4 @@ function newUser(setIsRegistering){
 
 
 export default App
+ 

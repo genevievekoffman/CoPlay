@@ -3,26 +3,30 @@ import "./Tasks.css";
 import Task from "../../Task/Task";
 
 function Tasks(props) {
-  const { db } = props;
+  const { db, groupID } = props;
   const [counter, setCounter] = useState(0);
   const [tasksLists, setTasksList] = useState([]);
   const [showForm, setShowForm] = useState(true);
   
 
   if (counter == 0) {
-    updateTasks(setTasksList, setCounter, db);
+    updateTasks(setTasksList, setCounter, db, groupID);
   }
 
   return (
     <div className="App2">
       <div className="AddTask" name="AddTask">
         {showForm && (
-          <AddTaskForm db={db} setTasksList = {setTasksList} setCounter = {setCounter} onCancel={() => setShowForm(false)} />
+          <AddTaskForm 
+          db={db} 
+          setTasksList = {setTasksList} 
+          setCounter = {setCounter} 
+          groupID = {groupID} 
+          onCancel={() => setShowForm(false)} />
         )}
       </div>
-      
+
       <div>
-        
         <h4>
           {tasksLists.map((task, index) => {
             return <Task task={task} key={index} db={db} />;
@@ -42,11 +46,11 @@ function Tasks(props) {
 
 export default Tasks;
 
-function updateTasks(setTasksList, setCounter, db) {
+function updateTasks(setTasksList, setCounter, db, groupID) {
   var list = new Array();
   //let list = [];
 
-  db.collection("Tasks")
+  db.collection("Groups").doc(groupID).collection("Tasks")
     .get()
     .then(tasksDB => {
       tasksDB.forEach(taskDB => {
@@ -58,14 +62,14 @@ function updateTasks(setTasksList, setCounter, db) {
         list.push(taskInfo);
       });
       setTasksList(list);
-      console.log(list);
+      //console.log(list);
 
       setCounter(1);
     });
 }
 
-
 function AddTaskForm(props) {
+ 
   const [counter, setCounter] = useState(0);
   const [tasksLists, setTasksList] = useState([]);
   const { db }= props;
@@ -74,12 +78,28 @@ function AddTaskForm(props) {
     <div class="container"> <button data-toggle="modal" data-target="#myModal" id="plus" className=".btn-default">+</button>
     <div class="row">
 
+ 
+  const { db, setTasksList, setCounter, groupID } = props; 
+  return (
+    <div class="container">
+      {" "}
+      <button
+        data-toggle="modal"
+        data-target="#myModal"
+        id="plus"
+        className=".btn-default"
+      >
+        +
+      </button>
+      <div class="row">
+ 
         <div class="col-md-12">
           <div class="modal fade" id="myModal">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
                   <h3>Add Task</h3>
+ 
                 </div>
                 <form
                   onSubmit={event => {
@@ -145,13 +165,52 @@ function AddTaskForm(props) {
                       
  // );
 //}
+ 
+                </div>
+                <form
+                  onSubmit={event => {
+                    addTask(event, db, setTasksList, setCounter, groupID);
+                  }}
+                >
+                  <div class="modal-body">
+                    <input
+                      type="text"
+                      name="title"
+                      placeholder="Title"
+                      id="Title"
+                      className="m-1"
+                    />
+                    <input
+                      type="text"
+                      name="points"
+                      placeholder="Points"
+                      id="Points"
+                      className="m-1"
+                    />
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-sm"  id="savee" data-dismiss="modal">Save</button>
+                  <button type="button" class="btn btn-secondary btn-sm" id="cancell" data-dismiss="modal">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-function addTask(event, db, setTasksList, setCounter) {
+
+function addTask(event, db, setTasksList, setCounter, groupID) {
   event.preventDefault();
 
   console.log("saved my G");
   let title = event.target.elements.title.value;
   let points = event.target.elements.points.value;
+  console.log(groupID);
+
   if (title == "") {
     alert("Must enter a title");
   } else if (points == "") {
@@ -159,9 +218,15 @@ function addTask(event, db, setTasksList, setCounter) {
   } else {
     points = parseInt(points);
     console.log(
+
       "The task " + title + " has been added with a reward of " + points
+
+      "The task " + title + "has been added with a reward of " + points
+
     );
-    db.collection("Tasks")
+    db.collection("Groups")
+      .doc(groupID)
+      .collection("Tasks")
       .doc(title)
       .set({
         points: points,
@@ -172,7 +237,7 @@ function addTask(event, db, setTasksList, setCounter) {
 
   event.target.elements.title.value = "";
   event.target.elements.points.value = "";
-  updateTasks(setTasksList, setCounter, db);
+  updateTasks(setTasksList, setCounter, db, groupID);
 }
 
 // function displayPoints(db, setVisible) {

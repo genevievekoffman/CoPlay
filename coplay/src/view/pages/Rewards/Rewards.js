@@ -49,6 +49,7 @@ function updateRewards(setRewardsList, setCounter, db){
 
             list.push(rewardInfo);
         });
+        list.sort((a,b) => a[1] - b[1]) 
         setRewardsList(list);
 
         setCounter(1);
