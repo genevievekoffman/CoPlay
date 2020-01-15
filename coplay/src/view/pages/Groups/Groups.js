@@ -60,8 +60,6 @@ function addGroupUser(db, title, ID){
     let title = event.target.elements.title.value;
     if (title == "") {
       alert("Must enter a title");
-    } else if (title == "") {
-      alert("Must enter points");
     } else {
       console.log("The Group " + title + " has been added");
       ID = "a" + Date.now()
