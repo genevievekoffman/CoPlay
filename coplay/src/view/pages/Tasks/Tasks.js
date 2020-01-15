@@ -70,14 +70,6 @@ function updateTasks(setTasksList, setCounter, db, groupID) {
 
 function AddTaskForm(props) {
  
-  const [counter, setCounter] = useState(0);
-  const [tasksLists, setTasksList] = useState([]);
-  const { db }= props;
-  
-  return(
-    <div class="container"> <button data-toggle="modal" data-target="#myModal" id="plus" className=".btn-default">+</button>
-    <div class="row">
-
  
   const { db, setTasksList, setCounter, groupID } = props; 
   return (
@@ -133,76 +125,6 @@ function AddTaskForm(props) {
 
 
 
-    /*<div class="container"> <button data-toggle="modal" data-target="#myModal" id="plus" className=".btn-default">+</button>
-    <div class="row">
-      <div class="col-md-12">
-
-        <div class="modal fade" id="myModal">
-          <div class="modal-dialog">
-            <div class="modal-content">
-
-              <div class="modal-header">
-                <h3>Add Task</h3>
-                </div>
-                <div class="modal-body">
-                    <input type="text" placeholder="Title" id="Title" className="m-1"></input>
-                    <input type="text" placeholder="Points" id="Points" className="m-1"></input>
-                    </div>
-                    <div class="modal-footer">
-                      <input class="btn brn-primary" id="Save" data-dismiss="modal" value="Save"></input>
-                      <input class="btn brn-primary" id="Cancel" data-dismiss="modal" value="Cancel"></input>
-                      </div>
-
-                      </div>
-                      </div>
-                      </div>
-                      </div>
-                      </div>
-                      </div>
-                      
-                     */
-                      
-                      
- // );
-//}
- 
-                </div>
-                <form
-                  onSubmit={event => {
-                    addTask(event, db, setTasksList, setCounter, groupID);
-                  }}
-                >
-                  <div class="modal-body">
-                    <input
-                      type="text"
-                      name="title"
-                      placeholder="Title"
-                      id="Title"
-                      className="m-1"
-                    />
-                    <input
-                      type="text"
-                      name="points"
-                      placeholder="Points"
-                      id="Points"
-                      className="m-1"
-                    />
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-sm"  id="savee" data-dismiss="modal">Save</button>
-                  <button type="button" class="btn btn-secondary btn-sm" id="cancell" data-dismiss="modal">Cancel</button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-
 function addTask(event, db, setTasksList, setCounter, groupID) {
   event.preventDefault();
 
@@ -221,7 +143,6 @@ function addTask(event, db, setTasksList, setCounter, groupID) {
 
       "The task " + title + " has been added with a reward of " + points
 
-      "The task " + title + "has been added with a reward of " + points
 
     );
     db.collection("Groups")
