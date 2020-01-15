@@ -51,15 +51,20 @@ function App() {
 
   const [homePage, setHomePage] = useState(false); //for changing to task page from groups
   const [groupID, setGroupID] = useState("");
+  const [name, setName] = useState("")
   //useEffect(() => updateTasks(setTasksList), []);
 
   //const [points, setPoints] = useState(false);
-
+const style  = {
+  '@media (min-width : 500px' : {
+    width : "400px"
+  }
+}
 
   if (!isLoggedIn) {
     if(!isRegistering){  
       return (
-        <div className="App">
+        <div className="App" >
           <button onClick ={ () => newUser(setIsRegistering)}> Don't have an account? Sign up here </button>
            
           <div className="grid">
@@ -97,7 +102,7 @@ function App() {
   } else {//someone is logged in
       if(!homePage){
         return (
-          <Groups db = {DB} setGroupID = {setGroupID} setHomePage = {setHomePage}/> 
+          <Groups db = {DB} setGroupID = {setGroupID} setHomePage = {setHomePage} setName = {setName}/> 
         );
       }
       return(
@@ -122,7 +127,7 @@ function App() {
               <div></div>
             </ul>
 
-            <h1>{groupID}</h1>
+            <h1>{name}</h1>
             
             <Switch>
               <Route exact path="/leaderboardpage">
@@ -183,3 +188,4 @@ function newUser(setIsRegistering){
 
 
 export default App
+ 

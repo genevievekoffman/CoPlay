@@ -58,9 +58,11 @@ function updateRewards(setRewardsList, setCounter, db, groupID) {
       setRewardsList(list);
       //console.log(list);
 
+
       setCounter(1);
     });
 }
+
 
 function AddRewardForm(props) {
   const { db, setRewardsList, setCounter, groupID } = props;
@@ -106,15 +108,15 @@ function AddRewardForm(props) {
                   </div>
                   <div class="modal-footer">
                     <input
-                      class="btn btn-primary"
+                      class="btn btn-primary btn-sm"
                       type="submit"
-                      id="Save"
+                      id="savee"
                       value="Save"
                       name="save"
                     />
                     <input
-                      class="btn btn-primary"
-                      id="Cancel"
+                      class="btn btn-primary btn-sm"
+                      id="cancell"
                       value="Cancel"
                       type="button"
                       onClick={props.onCancel}
@@ -131,6 +133,7 @@ function AddRewardForm(props) {
 }
 
 function addReward(event, db, setRewardsList, setCounter, groupID) {
+
   event.preventDefault();
 
   console.log("saved my G");
@@ -159,5 +162,6 @@ function addReward(event, db, setRewardsList, setCounter, groupID) {
 
   event.target.elements.title.value = "";
   event.target.elements.points.value = "";
+
   updateRewards(setRewardsList, setCounter, db, groupID);
 }

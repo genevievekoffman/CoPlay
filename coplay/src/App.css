@@ -396,3 +396,11 @@ h4{
   margin-left: 0;
   transform: translateX(-5%);
 }
+
+#savee{
+  margin-right: 13vw;
+}
+
+#cancell{
+  margin-right: 5vw;
+}

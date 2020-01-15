@@ -44,7 +44,7 @@ input{
     
 }
 
-#Cancel{
+/*#Cancel{
      width: 5vw;
     background-color:gray;
     margin-top: 20px;
@@ -62,7 +62,7 @@ input{
     background-color: cornflowerblue;
 
 }
-
+*/
  
 .x{
     font-family: DFWaWaSC-W5;
@@ -100,7 +100,13 @@ input{
   display: flex;
   justify-content: space-between;
   
+  
+  
+  
+
 }
+
+
 
 
 #Title{
@@ -120,4 +126,22 @@ input{
 h1{
     font-family: 'Courier New', Courier, monospace;
     margin-left: 35vw;
+}
+
+#savee{
+            
+    
+}
+
+#cancell{
+
+}
+
+#savee{
+      
+ margin-right: 10vw;
+}
+
+#cancell{
+ margin-right: 7vw;
 }
