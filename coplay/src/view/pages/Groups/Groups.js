@@ -65,27 +65,32 @@ function addGroupUser(db, title, ID) {
     });
 }
 
-function addGroup(event, db) {
-  event.preventDefault();
-  let ID;
-
-  console.log("Group added");
-  let title = event.target.elements.title.value;
-  if (title == "") {
-    alert("Must enter a title");
-  } else {
-    console.log("The Group " + title + " has been added");
-    ID = "a" + Date.now();
-    db.collection("Groups")
-      .doc(ID)
-      .set({
-        name: title
-      });
-    addGroupUser(db, title, ID);
+ 
+ 
+  
+  function addGroup(event, db) { //add the username 
+    event.preventDefault();
+    let ID;
+  
+    let title = event.target.elements.title.value;
+    if (title == "") {
+      alert("Must enter a title");
+    } else {
+      console.log("The Group " + title + " has been added");
+      ID = "a" + Date.now()
+      db.collection("Groups")
+        .doc(ID)
+        .set({
+          name: title
+        }) 
+        addGroupUser(db, title, ID)
+    }
+  
+    event.target.elements.title.value = "";
   }
-
-  event.target.elements.title.value = "";
-}
+  
+  
+   
 
 function AddGroupForm(props) {
   const { db } = props;
@@ -101,6 +106,7 @@ function AddGroupForm(props) {
       >
         +
       </button>
+ 
       <div className="row">
         <div className="col-md-12">
           <div className="modal fade" id="myModal">
