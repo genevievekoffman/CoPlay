@@ -25,7 +25,7 @@ function Tasks(props) {
       <div>
         <h4>
           {tasksLists.map((task, index) => {
-            return <Task task={task} key={index} db={db} />;
+            return <Task task={task} key={index} db={db} groupID = {groupID}/>;
           })}
         </h4>
       </div>
@@ -70,7 +70,7 @@ function AddTaskForm(props) {
   const { db, setTasksList, setCounter, groupID } = props;
 
   return (
-    <div class="container">
+    <div className="container">
       {" "}
       <button
         data-toggle="modal"
@@ -80,12 +80,12 @@ function AddTaskForm(props) {
       >
         +
       </button>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
+      <div className="row">
+        <div className="col-md-12">
+          <div className="modal fade" id="myModal">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
                   <h3>Add Task</h3>
                 </div>
                 <form
@@ -93,7 +93,7 @@ function AddTaskForm(props) {
                     addTask(event, db, setTasksList, setCounter, groupID);
                   }}
                 >
-                  <div class="modal-body">
+                  <div className="modal-body">
                     <input
                       type="text"
                       name="title"
@@ -109,17 +109,17 @@ function AddTaskForm(props) {
                       className="m-1"
                     />
                   </div>
-                  <div class="modal-footer">
+                  <div className="modal-footer">
                     <button
                       type="button submit"
-                      class="btn btn-primary btn-sm"
+                      className="btn btn-primary btn-sm"
                       id="savee"
                     >
                       Save
                     </button>
                     <button
                       type="button"
-                      class="btn btn-secondary btn-sm"
+                      className="btn btn-secondary btn-sm"
                       id="cancell"
                       data-dismiss="modal"
                     >

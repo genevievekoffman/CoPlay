@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import "./Task.css";
 
+
 function Task(props) {
   //passed an array of tasks
-  const { task, index, db } = props;
-  task.completed = task[2];
-  //console.log("Running", task[0], task.completed)
-  const [taskCompleted, setTaskCompleted] = useState(task.completed);
+  const { task, index, db, groupID } = props;
+ 
+  let completion = task[2];
+  // console.log("Running", task[0], task.completed)
+  const [taskCompleted, setTaskCompleted] = useState(completion);
 
   return (
     <div className="task" key={index}>
@@ -16,7 +18,7 @@ function Task(props) {
         ) : (
             <button className="checkBox"
               onClick={() =>
-                completeTask(task[0], task[1], db, setTaskCompleted)
+                completeTask(task[0], task[1], db, setTaskCompleted, groupID)
               }
             >
 
@@ -29,13 +31,16 @@ function Task(props) {
   );
 }
 
-function completeTask(task, points, db, setTaskCompleted) {
-  db.collection("Tasks")
+function completeTask(task, points, db, setTaskCompleted, groupID) {
+  console.log("*************", groupID)
+  setTaskCompleted(true);
+  db.collection("Groups")
+    .doc(groupID)
+    .collection("Tasks")
     .doc(task)
     .update({
       completed: true
     });
-  setTaskCompleted(true);
 
   db.collection("Users")
     .doc(sessionStorage.getItem("user"))
