@@ -137,7 +137,7 @@ const style  = {
                 <Tasks db = {DB} groupID = {groupID}/>
               </Route>
               <Route path="/rewardspage">
-                <Rewards db = {DB}  /> 
+                <Rewards db = {DB} groupID = {groupID} /> 
               </Route>
             </Switch>
             

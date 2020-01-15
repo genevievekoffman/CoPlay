@@ -17,12 +17,13 @@ function Tasks(props) {
     <div className="App2">
       <div className="AddTask" name="AddTask">
         {showForm && (
-          <AddTaskForm 
-          db={db} 
-          setTasksList = {setTasksList} 
-          setCounter = {setCounter} 
-          groupID = {groupID} 
-          onCancel={() => setShowForm(false)} />
+          <AddTaskForm
+            db={db}
+            setTasksList={setTasksList}
+            setCounter={setCounter}
+            groupID={groupID}
+            onCancel={() => setShowForm(false)}
+          />
         )}
       </div>
 
@@ -50,7 +51,9 @@ function updateTasks(setTasksList, setCounter, db, groupID) {
   var list = new Array();
   //let list = [];
 
-  db.collection("Groups").doc(groupID).collection("Tasks")
+  db.collection("Groups")
+    .doc(groupID)
+    .collection("Tasks")
     .get()
     .then(tasksDB => {
       tasksDB.forEach(taskDB => {
@@ -69,9 +72,9 @@ function updateTasks(setTasksList, setCounter, db, groupID) {
 }
 
 function AddTaskForm(props) {
- 
- 
-  const { db, setTasksList, setCounter, groupID } = props; 
+
+  const { db, setTasksList, setCounter, groupID } = props;
+
   return (
     <div class="container">
       {" "}
@@ -98,21 +101,40 @@ function AddTaskForm(props) {
                     addTask(event, db, setTasksList, setCounter);
                   }}
                 >
-                <div class="modal-body">
-                  <input type="text" name = "title" placeholder="Title" id="Title"  className="m-1" />
-                  
-                  <input type="text" name = "points"  placeholder="Points"  id="Points" className="m-1"/>
-                    
-                  
-                </div>
-                <div class="modal-footer">
-              
-                 
-                  <button type="button" class="btn btn-primary btn-sm"  id="savee" data-dismiss="modal">Save</button>
-                  <button type="button" class="btn btn-secondary btn-sm" id="cancell" data-dismiss="modal">Cancel</button>
-                  
-                
-                </div>
+
+                  <div class="modal-body">
+                    <input
+                      type="text"
+                      name="title"
+                      placeholder="Title"
+                      id="Title"
+                      className="m-1"
+                    />
+                    <input
+                      type="text"
+                      name="points"
+                      placeholder="Points"
+                      id="Points"
+                      className="m-1"
+                    />
+                  </div>
+                  <div class="modal-footer">
+                      <button
+                      class="btn btn-primary btn-sm"
+                      type="submit"
+                      id="savee"
+                      value="Save"
+                      name="save"
+                    />
+                    <button
+                      class="btn btn-primary btn-sm"
+                      id="cancell"
+                      value="Cancel"
+                      type="button"
+                      onClick={props.onCancel}
+                    />
+                  </div>
+
                 </form>
               </div>
             </div>
