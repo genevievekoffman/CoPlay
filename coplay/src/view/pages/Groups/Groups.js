@@ -35,13 +35,11 @@ function fetchMyGroups(db, setGroupsList, setCounter) {
     db.collection("Users").doc(sessionStorage.getItem('user')).collection("Groups").get().then(groupsDB => {
         groupsDB.forEach(groupDB => {
             let groupInfo = [];
-            groupInfo.push(groupDB
-              .get("name")
-              )
-
+            groupInfo.push(groupDB.get("name"))
+            groupInfo.push(groupDB.get("ID"))
             list.push(groupInfo)
         });
-        console.log("GROUPS LIST: " + list)
+        //console.log("GROUPS LIST: " + list) //[ ["name", "ID"] , index]
         setGroupsList(list);
         setCounter(1);
     });
