@@ -4,7 +4,7 @@ import Group from '../../Group/Group'
 
 
 function Groups(props) {
-    const { db } = props;
+    const { db, setTask, setTaskPage } = props;
     const [groupsList, setGroupsList] = useState([])
     const [counter, setCounter] = useState(0);
 
@@ -20,7 +20,7 @@ function Groups(props) {
             }
             <div className="groupContainer">
                 {groupsList.map((group, index) => {
-                    return <Group group={group} key={index} db={db} />
+                    return <Group group={group} key={index} setTask={setTask} setTaskPage ={setTaskPage} />
                 })}
             </div>
         </div>
@@ -36,9 +36,10 @@ function fetchMyGroups(db, setGroupsList, setCounter) {
         groupsDB.forEach(groupDB => {
             let groupInfo = [];
             groupInfo.push(groupDB.get("name"))
-
+            groupInfo.push(groupDB.get("ID"))
             list.push(groupInfo)
         });
+        //console.log("GROUPS LIST: " + list) //[ ["name", "ID"] , index]
         setGroupsList(list);
         setCounter(1);
     });
@@ -48,7 +49,8 @@ function addGroupUser(db, title, ID){
     db.collection("Users")
     .doc(sessionStorage.getItem("user")).collection("Groups").doc(ID)
     .set({
-      name: title
+      name: title,
+      ID: ID
     });
   }
   
@@ -67,7 +69,7 @@ function addGroupUser(db, title, ID){
         .doc(ID)
         .set({
           name: title
-        });
+        }) 
         addGroupUser(db, title, ID)
     }
   

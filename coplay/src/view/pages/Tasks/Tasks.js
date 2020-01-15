@@ -3,27 +3,25 @@ import "./Tasks.css";
 import Task from "../../Task/Task";
 
 function Tasks(props) {
-  const { groupID } = props;
-  const { db } = props;
+  const { db, groupID } = props;
   const [counter, setCounter] = useState(0);
   const [tasksLists, setTasksList] = useState([]);
   const [showForm, setShowForm] = useState(true);
 
   if (counter == 0) {
-    updateTasks(setTasksList, setCounter, db);
+    updateTasks(setTasksList, setCounter, db, groupID);
   }
 
   return (
     <div className="App2">
       <div className="AddTask" name="AddTask">
         {showForm && (
-          <AddTaskForm
-            groupID={groupID}
-            db={db}
-            setTasksList={setTasksList}
-            setCounter={setCounter}
-            onCancel={() => setShowForm(false)}
-          />
+          <AddTaskForm 
+          db={db} 
+          setTasksList = {setTasksList} 
+          setCounter = {setCounter} 
+          groupID = {groupID} 
+          onCancel={() => setShowForm(false)} />
         )}
       </div>
 
@@ -47,11 +45,11 @@ function Tasks(props) {
 
 export default Tasks;
 
-function updateTasks(setTasksList, setCounter, db) {
+function updateTasks(setTasksList, setCounter, db, groupID) {
   var list = new Array();
   //let list = [];
 
-  db.collection("Tasks")
+  db.collection("Groups").doc(groupID).collection("Tasks")
     .get()
     .then(tasksDB => {
       tasksDB.forEach(taskDB => {
@@ -70,8 +68,7 @@ function updateTasks(setTasksList, setCounter, db) {
 }
 
 function AddTaskForm(props) {
-  const { db, setTasksList, setCounter } = props;
-  const { groupID } = props;
+  const { db, setTasksList, setCounter, groupID } = props; 
   return (
     <div class="container">
       {" "}
@@ -168,7 +165,7 @@ function addTask(event, db, setTasksList, setCounter, groupID) {
 
   event.target.elements.title.value = "";
   event.target.elements.points.value = "";
-  updateTasks(setTasksList, setCounter, db);
+  updateTasks(setTasksList, setCounter, db, groupID);
 }
 
 // function displayPoints(db, setVisible) {

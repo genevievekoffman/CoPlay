@@ -95,7 +95,7 @@ function AddRewardForm(props) {
             <div class="modal-content">
 
               <div class="modal-header">
-                <h3>Add Task</h3>
+                <h3>Add Reward</h3>
                 </div>
                 <div class="modal-body">
                     <input type="text" placeholder="Title" id="Title" className="m-1"></input>
