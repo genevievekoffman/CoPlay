@@ -4,7 +4,7 @@ import Group from '../../Group/Group'
 
 
 function Groups(props) {
-    const { db, setTask, setTaskPage } = props;
+    const { db, setHome, setHomePage } = props;
     const [groupsList, setGroupsList] = useState([])
     const [counter, setCounter] = useState(0);
 
@@ -20,7 +20,7 @@ function Groups(props) {
             }
             <div className="groupContainer">
                 {groupsList.map((group, index) => {
-                    return <Group group={group} key={index} setTask={setTask} setTaskPage ={setTaskPage} />
+                    return <Group group={group} key={index} setHome={setHome} setHomePage ={setHomePage} />
                 })}
             </div>
         </div>
