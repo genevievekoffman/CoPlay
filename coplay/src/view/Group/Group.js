@@ -5,13 +5,13 @@ import './Group.css';
  
 
 function Group(props){
-    const {group, index, setTask, setTaskPage} = props;
+    const {group, index, setHome, setHomePage} = props;
     //group should be ["name", "ID"]
     console.log(group)
     return(
         <div className = "group" key = {index} onClick = { () => {
-            setTask(group[1]);
-            setTaskPage(true); //changes screen
+            setHome(group[1]);
+            setHomePage(true); //changes screen
             }}>
             {group[0]}
         </div>

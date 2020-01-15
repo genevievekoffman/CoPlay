@@ -49,8 +49,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
 
-  const [taskPage, setTaskPage] = useState(false); //for changing to task page from groups
-  const [task, setTask] = useState("");
+  const [homePage, setHomePage] = useState(false); //for changing to task page from groups
+  const [home, setHome] = useState("");
   //useEffect(() => updateTasks(setTasksList), []);
 
   //const [points, setPoints] = useState(false);
@@ -95,9 +95,9 @@ function App() {
     }
      
   } else {//someone is logged in
-      if(!taskPage){
+      if(!homePage){
         return (
-          <Groups db = {DB} setTask = {setTask} setTaskPage = {setTaskPage}/> 
+          <Groups db = {DB} setHome = {setHome} setHomePage = {setHomePage}/> 
         );
       }
       return(
@@ -122,17 +122,17 @@ function App() {
               <div></div>
             </ul>
 
-            <h1>{task}</h1>
+            <h1>{home}</h1>
             
             <Switch>
               <Route exact path="/leaderboardpage">
                 <LeaderBoard db = {DB} />
               </Route>
               <Route exact path="/">
-                <Tasks db = {DB} groupID = {task}/>
+                <Tasks db = {DB} groupID = {home}/>
               </Route>
               <Route path="/rewardspage">
-                <Rewards db = {DB} /> 
+                <Rewards db = {DB}  /> 
               </Route>
             </Switch>
             
