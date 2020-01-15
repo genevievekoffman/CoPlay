@@ -36,8 +36,7 @@ function updateLeaderBoard(setUsersLists, db, setCounter){
 
             list.push(userInfo);
         })
-        console.log("users list: " + list);
-        list.sort((a,b) => a[1] - b[1]) //will return pos number if a>b 
+        list.sort((a,b) => b[1] - a[1])  
         setUsersLists(list);
         setCounter(1);
     })

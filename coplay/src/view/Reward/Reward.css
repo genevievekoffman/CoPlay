@@ -2,14 +2,12 @@
 .reward{
     display: flex;
     justify-content: center;
-     
     padding: 20px;
     margin: 0.5em;
-     
-
     font-family: Avenir-Light;
     color: black;
     text-align: center;
+    
 }
 
 .checkBox{
