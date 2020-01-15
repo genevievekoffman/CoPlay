@@ -67,12 +67,17 @@ function addGroupUser(db, title, ID) {
 }
 
  
-// function addUserToGroup(db, username, groupID){
-//   db.collection("Groups")
-//   .doc(groupID)
-//   .collection("Users")
-//   .doc(username)
-// }
+function addUserToGroup(db, username, groupID){
+  db.collection("Groups")
+  .doc(groupID)
+  .collection("Users")
+  .doc(username)
+  .set({
+    username: username,
+    admin: true,
+    totalPoints: 0
+  })
+}
   
 function addGroup(event, db) {
   event.preventDefault();
@@ -80,7 +85,7 @@ function addGroup(event, db) {
 
   console.log("Group added");
   let title = event.target.elements.title.value;
-  if (title == "") {
+  if (title === "") {
     alert("Must enter a title");
   } else {
     console.log("The Group " + title + " has been added");
@@ -91,6 +96,7 @@ function addGroup(event, db) {
         name: title
       });
     addGroupUser(db, title, ID);
+    addUserToGroup(db, sessionStorage.getItem("user"), ID)
   }
 
   event.target.elements.title.value = "";
