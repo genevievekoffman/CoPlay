@@ -54,11 +54,10 @@ function addGroupUser(db, title, ID){
     });
   }
   
-  function addGroup(event, db) {
+  function addGroup(event, db) { //add the username 
     event.preventDefault();
     let ID;
   
-    console.log("Group added");
     let title = event.target.elements.title.value;
     if (title == "") {
       alert("Must enter a title");
