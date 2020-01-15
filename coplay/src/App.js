@@ -86,36 +86,36 @@ function App() {
   } else {
     //someone is logged in
     return (
-      <Groups db = {DB}/>
+      // <Groups db = {DB}/>
 
-      // <Router>
-      //   <div>
+      <Router>
+        <div>
            
-      //     <ul className = "topNav">
-      //       <div></div>
-      //       <div></div>
-      //       <div></div>
-      //       <li className="link">
-      //         <Link to="/">Tasks Page</Link>
-      //       </li>
-      //       <li className="link">
-      //         <Link to="/rewardspage">Rewards page</Link>
-      //       </li>
-      //       <div></div>
-      //       <div></div>
-      //       <div></div>
-      //     </ul>
-      //     <Switch>
-      //       <Route exact path="/">
-      //         <Tasks db = {DB} />
-      //       </Route>
-      //       <Route path="/rewardspage">
-      //         <Rewards db = {DB} /> 
-      //       </Route>
-      //     </Switch>
+          <ul className = "topNav">
+            <div></div>
+            <div></div>
+            <div></div>
+            <li className="link">
+              <Link to="/">Tasks Page</Link>
+            </li>
+            <li className="link">
+              <Link to="/rewardspage">Rewards page</Link>
+            </li>
+            <div></div>
+            <div></div>
+            <div></div>
+          </ul>
+          <Switch>
+            <Route exact path="/">
+              <Tasks db = {DB} />
+            </Route>
+            <Route path="/rewardspage">
+              <Rewards db = {DB} /> 
+            </Route>
+          </Switch>
            
-      //   </div>
-      // </Router>
+        </div>
+      </Router>
     );
   }
 }
