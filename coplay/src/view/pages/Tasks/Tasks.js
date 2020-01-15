@@ -98,7 +98,7 @@ function AddTaskForm(props) {
                 </div>
                 <form
                   onSubmit={event => {
-                    addTask(event, db, setTasksList, setCounter);
+                    addTask(event, db, setTasksList, setCounter, groupID);
                   }}
                 >
 
@@ -119,14 +119,14 @@ function AddTaskForm(props) {
                     />
                   </div>
                   <div class="modal-footer">
-                      <button
+                      <input
                       class="btn btn-primary btn-sm"
                       type="submit"
                       id="savee"
                       value="Save"
                       name="save"
                     />
-                    <button
+                    <input
                       class="btn btn-primary btn-sm"
                       id="cancell"
                       value="Cancel"
