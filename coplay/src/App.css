@@ -324,9 +324,6 @@ input{
   cursor: pointer;
 }
 
-#points{
-  visibility: hidden;
-}
 
 #form{
   display:grid;
