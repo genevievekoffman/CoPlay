@@ -34,6 +34,7 @@ function Groups(props) {
 
 export default Groups;
 
+
 function fetchMyGroups(db, setGroupsList, setCounter) {
   let list = [];
 
@@ -66,29 +67,34 @@ function addGroupUser(db, title, ID) {
 }
 
  
- 
+// function addUserToGroup(db, username, groupID){
+//   db.collection("Groups")
+//   .doc(groupID)
+//   .collection("Users")
+//   .doc(username)
+// }
   
-  function addGroup(event, db) { //add the username 
-    event.preventDefault();
-    let ID;
-  
-    let title = event.target.elements.title.value;
-    if (title == "") {
-      alert("Must enter a title");
-    } else {
-      console.log("The Group " + title + " has been added");
-      ID = "a" + Date.now()
-      db.collection("Groups")
-        .doc(ID)
-        .set({
-          name: title
-        }) 
-        addGroupUser(db, title, ID)
-    }
-  
-    event.target.elements.title.value = "";
+function addGroup(event, db) {
+  event.preventDefault();
+  let ID;
+
+  console.log("Group added");
+  let title = event.target.elements.title.value;
+  if (title == "") {
+    alert("Must enter a title");
+  } else {
+    console.log("The Group " + title + " has been added");
+    ID = "a" + Date.now();
+    db.collection("Groups")
+      .doc(ID)
+      .set({
+        name: title
+      });
+    addGroupUser(db, title, ID);
   }
-  
+
+  event.target.elements.title.value = "";
+}
   
    
 
@@ -106,7 +112,6 @@ function AddGroupForm(props) {
       >
         +
       </button>
- 
       <div className="row">
         <div className="col-md-12">
           <div className="modal fade" id="myModal">
@@ -130,8 +135,20 @@ function AddGroupForm(props) {
                     />
                   </div>
                   <div className="modal-footer">
-                  <button type="button" class="btn btn-primary btn-sm" id="savee" data-dismiss="modal">Save</button>
-                  <button type="button" class="btn btn-secondary btn-sm" id="cancell" data-dismiss="modal">Cancel</button>
+                    <input
+                      className="btn btn-primary"
+                      type="submit"
+                      id="Save"
+                      value="Save"
+                      name="save"
+                    />
+                    <input
+                      className="btn btn-primary"
+                      id="Cancel"
+                      value="Cancel"
+                      type="button"
+                      // onClick = {props.onCancel}
+                    />
                   </div>
                 </form>
               </div>
@@ -142,3 +159,4 @@ function AddGroupForm(props) {
     </div>
   );
 }
+
