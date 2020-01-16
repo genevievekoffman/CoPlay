@@ -106,7 +106,6 @@ function addGroup(event, db) {
 
 function AddGroupForm(props) {
   const { db } = props;
-  console.log("form opened");
   return (
     <div className="container">
       {" "}

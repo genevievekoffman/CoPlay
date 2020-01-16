@@ -24,7 +24,8 @@ function Rewards(props) {
 
       <h4>
         {rewardsLists.map((reward, index) => {
-          return <Reward reward={reward} key={index} db={db} groupID={groupID} />;
+
+          return <Reward reward={reward} key={index} db={db} groupID ={groupID}/>;
         })}
       </h4>
     </div>
@@ -59,7 +60,7 @@ function updateRewards(setRewardsList, setCounter, db, groupID) {
 function AddRewardForm(props) {
   const { db, setRewardsList, setCounter, groupID } = props;
   return (
-    <div class="container">
+    <div className="container">
       {" "}
       <button
         data-toggle="modal"
@@ -69,12 +70,12 @@ function AddRewardForm(props) {
       >
         +
       </button>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
+      <div className="row">
+        <div className="col-md-12">
+          <div className="modal fade" id="myModal">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
                   <h3>Add Reward</h3>
                 </div>
                 <form
@@ -82,7 +83,7 @@ function AddRewardForm(props) {
                     addReward(event, db, setRewardsList, setCounter, groupID);
                   }}
                 >
-                  <div class="modal-body">
+                  <div className="modal-body">
                     <input
                       type="text"
                       name="title"
@@ -98,9 +99,9 @@ function AddRewardForm(props) {
                       className="m-1"
                     />
                   </div>
-                  <div class="modal-footer">
-                  <button type="button" class="btn btn-primary btn-sm" id="savee" data-dismiss="modal">Save</button>
-                  <button type="button" class="btn btn-secondary btn-sm" id="cancell" data-dismiss="modal">Cancel</button>
+                  <div className="modal-footer">
+                  <button type="button submit" className="btn btn-primary btn-sm" id="savee">Save</button>
+                  <button type="button" className="btn btn-secondary btn-sm" id="cancell" data-dismiss="modal">Cancel</button>
                   </div>
                 </form>
               </div>

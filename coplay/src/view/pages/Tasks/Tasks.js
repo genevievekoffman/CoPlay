@@ -192,10 +192,3 @@ function displayPoints(db, setVisible, visible, setPoints) {
   
     });
 }
-
-// function wait(setVisible) {
-//   setTimeout(
-//     () => (setVisible(false)),
-//     3000
-//   );
-// }
