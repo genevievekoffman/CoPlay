@@ -57,8 +57,7 @@ async function registerUser(e, db, setIsRegistering) {
         .doc(username)
         .set({
           name: username,
-          password: password,
-          totalPoints: 0
+          password: password 
         });
        
       setIsRegistering(false);

@@ -26,7 +26,8 @@ function Rewards(props) {
 
       <h4>
         {rewardsLists.map((reward, index) => {
-          return <Reward reward={reward} key={index} db={db} />;
+
+          return <Reward reward={reward} key={index} db={db} groupID ={groupID}/>;
         })}
       </h4>
 
@@ -126,6 +127,7 @@ function AddRewardForm(props) {
                     />
                   </div>
                   <div className="modal-footer">
+
                     <input
                       className="btn btn-primary btn-sm"
                       type="submit"
@@ -140,6 +142,7 @@ function AddRewardForm(props) {
                       type="button"
                       data-dismiss="modal"
                     />
+
                   </div>
                 </form>
               </div>

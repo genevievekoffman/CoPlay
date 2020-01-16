@@ -31,7 +31,7 @@ function Task(props) {
   );
 }
 
-function completeTask(task, points, db, setTaskCompleted, groupID) {
+function completeTask(task, points, db, setTaskCompleted, groupID) { //should also update in Groups
   db.collection("Users")
     .doc(sessionStorage.getItem("user"))
     .get()
@@ -50,18 +50,31 @@ function completeTask(task, points, db, setTaskCompleted, groupID) {
       completed: true
     });
 
-  db.collection("Users")
+  db.collection("Groups")  
+    .doc(groupID)
+    .collection("Users")
     .doc(sessionStorage.getItem("user"))
     .get()
     .then(function (doc) {
       let total = doc.get("totalPoints") + points;
 
-      db.collection("Users")
-        .doc(sessionStorage.getItem("user"))
-        .update({
-          totalPoints: total
-        });
+      // db.collection("Users") //points are updated in Users Collection for the specific user
+      //   .doc(sessionStorage.getItem("user"))
+      //   .update({
+      //     totalPoints: total
+      //   });
+
+      db.collection("Groups") //points are updated in Groups Collection for the specific user 
+      .doc(groupID)
+      .collection("Users")
+      .doc(sessionStorage.getItem("user"))
+      .update({
+        totalPoints: total
+      })
     });
+
+   
+  
 }
 
 export default Task;
