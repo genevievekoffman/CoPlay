@@ -24,7 +24,7 @@ function Groups(props) {
         <br></br>
         <input type="submit" value="Submit"></input>
       </form>
-      {<AddGroupForm db={db} />}
+      {<AddGroupForm db={db} setGroupsList={setGroupsList} setCounter={setCounter}/>}
       <div className="groupContainer">
         {groupsList.map((group, index) => {
           return (
@@ -87,7 +87,7 @@ function addUserToGroup(db, username, groupID) {
     });
 }
 
-function addGroup(event, db) {
+function addGroup(event, db, setGroupsList, setCounter) {
   event.preventDefault();
   let ID;
 
@@ -109,10 +109,11 @@ function addGroup(event, db) {
   }
 
   event.target.elements.title.value = "";
+  fetchMyGroups(db, setGroupsList, setCounter)
 }
 
 function AddGroupForm(props) {
-  const { db } = props;
+  const { db, setGroupsList, setCounter} = props;
   return (
     <div className="container">
       {" "}
@@ -134,7 +135,7 @@ function AddGroupForm(props) {
                 </div>
                 <form
                   onSubmit={event => {
-                    addGroup(event, db);
+                    addGroup(event, db, setGroupsList, setCounter);
                   }}
                 >
                   <div className="modal-body">

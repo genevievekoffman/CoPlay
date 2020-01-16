@@ -60,6 +60,7 @@ function updateTasks(setTasksList, setCounter, db, groupID) {
   db.collection("Groups")
     .doc(groupID)
     .collection("Tasks")
+    .orderBy('time', 'asc')
     .get()
     .then(tasksDB => {
       tasksDB.forEach(taskDB => {
@@ -171,7 +172,8 @@ function addTask(event, db, setTasksList, setCounter, groupID) {
       .set({
         points: points,
         completed: false,
-        task: title
+        task: title,
+        time: Date.now()
       });
   }
 

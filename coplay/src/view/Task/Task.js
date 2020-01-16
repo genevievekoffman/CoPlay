@@ -4,7 +4,7 @@ import "./Task.css";
 
 function Task(props) {
   //passed an array of tasks
-  const { task, index, db, groupID } = props;
+  const { task, index, db, groupID} = props;
  
   let completion = task[2];
   // console.log("Running", task[0], task.completed)
@@ -58,12 +58,6 @@ function completeTask(task, points, db, setTaskCompleted, groupID) { //should al
     .then(function (doc) {
       let total = doc.get("totalPoints") + points;
 
-      // db.collection("Users") //points are updated in Users Collection for the specific user
-      //   .doc(sessionStorage.getItem("user"))
-      //   .update({
-      //     totalPoints: total
-      //   });
-
       db.collection("Groups") //points are updated in Groups Collection for the specific user 
       .doc(groupID)
       .collection("Users")
@@ -72,9 +66,6 @@ function completeTask(task, points, db, setTaskCompleted, groupID) { //should al
         totalPoints: total
       })
     });
-
-   
-  
 }
 
 export default Task;
