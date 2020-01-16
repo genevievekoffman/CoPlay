@@ -68,6 +68,7 @@ function updateRewards(setRewardsList, setCounter, db, groupID) {
   db.collection("Groups")
     .doc(groupID)
     .collection("Rewards")
+    .orderBy('time', 'asc')
     .get()
     .then(RewardsDB => {
       RewardsDB.forEach(RewardDB => {
@@ -177,7 +178,8 @@ function addReward(event, db, setRewardsList, setCounter, groupID) {
       .doc(title)
       .set({
         points: points,
-        reward: title
+        reward: title,
+        time: Date.now()
       });
   }
 

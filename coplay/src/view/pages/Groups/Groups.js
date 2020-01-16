@@ -25,8 +25,7 @@ function Groups(props) {
         <br></br>
         <input type="submit" value="Submit"></input>
       </form>
-      {<AddGroupForm db={db} setGroupsList = {setGroupsList}  setCounter = {setCounter} />}
-
+      {<AddGroupForm db={db} setGroupsList={setGroupsList} setCounter={setCounter}/>}
       <div className="groupContainer">
         {groupsList.map((group, index) => {
           return (
@@ -90,7 +89,6 @@ function addUserToGroup(db, username, groupID) {
 }
 
 function addGroup(event, db, setGroupsList, setCounter) {
-
   event.preventDefault();
   let ID;
 
@@ -112,8 +110,9 @@ function addGroup(event, db, setGroupsList, setCounter) {
   }
 
   event.target.elements.title.value = "";
-  fetchMyGroups(db, setGroupsList, setCounter);
+  fetchMyGroups(db, setGroupsList, setCounter)
 }
+
 
 function AddGroupForm(props) {
 
