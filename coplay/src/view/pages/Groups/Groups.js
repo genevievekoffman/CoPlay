@@ -18,7 +18,7 @@ function Groups(props) {
       <form
         className="joinGroupForm"
         onSubmit={event => {
-          joinGroup(event, db);
+          joinGroup(event, db, setGroupsList, setCounter);
         }}
       >
         <input type="text" placeholder="group ID" name="groupID"></input>{" "}
@@ -179,7 +179,7 @@ function AddGroupForm(props) {
 }
 
 
-async function joinGroup(e, db) {
+async function joinGroup(e, db, setGroupsList, setCounter) {
   e.preventDefault();
 
   let groupID = e.target.elements.groupID.value;
@@ -208,6 +208,8 @@ async function joinGroup(e, db) {
       alert("Sorry this group does not exist");
     }
     console.log("information has been saved");
+
+    fetchMyGroups(db, setGroupsList, setCounter)
   }
 }
 
