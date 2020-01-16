@@ -9,8 +9,6 @@ function Tasks(props) {
   const [visible, setVisible] = useState(false)
   const [points, setPoints] = useState(" ")
 
- 
-
   if (counter == 0) {
     updateTasks(setTasksList, setCounter, db, groupID);
   }
@@ -35,15 +33,26 @@ function Tasks(props) {
       </div>
       
       {visible ? (
+        <div>
           <div id="points" className="points"> {points} </div>
+          
+          <img
+      className="profileIcon"
+      src="sketchImages/blackprofileicon.png"
+      onClick={() => {displayPoints(db, setVisible, visible, setPoints, groupID)}}
+      
+    ></img>
+          </div>
         ) : (
-            
+       <div>   
+         <div id="points" className="points"></div>
       <img
       className="profileIcon"
       src="sketchImages/blackprofileicon.png"
-      onClick={() => {displayPoints(db, setVisible, visible, setPoints)}}
+      onClick={() => {displayPoints(db, setVisible, visible, setPoints, groupID)}}
       
     ></img>
+    </div>
           )}
 
       
@@ -182,15 +191,17 @@ function addTask(event, db, setTasksList, setCounter, groupID) {
   updateTasks(setTasksList, setCounter, db, groupID);
 }
 
-function displayPoints(db, setVisible, visible, setPoints) {
-  db.collection("Users")
+function displayPoints(db, setVisible, visible, setPoints, groupID) {
+  db.collection("Groups")
+  .doc(groupID)
+  .collection("Users")
     .doc(sessionStorage.getItem("user"))
     .get()
     .then(userDB => {
       let points = userDB.get("totalPoints");
+      console.log(userDB.get("totalPoints"))
       setPoints(points);
       console.log(points);
       setVisible(!visible);
-  
     });
 }

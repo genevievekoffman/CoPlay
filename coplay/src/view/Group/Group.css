@@ -3,7 +3,7 @@
     border: 1px solid black;
     padding: 1em;
     font-family: Avenir-Heavy;
-    font-size:  3.8vh;
+     
     border-radius: 10px;
 }
 
@@ -11,4 +11,13 @@
     color: gray;
     box-shadow: 5px 5px;
     cursor: pointer;
+}
+
+.groupName{
+    font-size:  3.8vh;
+}
+
+.subInfo{
+    size: 0.5 vh;
+    color: black
 }
