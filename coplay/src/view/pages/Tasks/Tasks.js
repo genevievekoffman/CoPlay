@@ -9,8 +9,6 @@ function Tasks(props) {
   const [visible, setVisible] = useState(false)
   const [points, setPoints] = useState(" ")
 
- 
-
   if (counter == 0) {
     updateTasks(setTasksList, setCounter, db, groupID);
   }
