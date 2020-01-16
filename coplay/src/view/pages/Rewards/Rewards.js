@@ -6,6 +6,8 @@ function Rewards(props) {
   const [rewardsLists, setRewardsList] = useState([]);
   const [counter, setCounter] = useState(0);
   const { db, groupID } = props;
+  const [visible, setVisible] = useState(false);
+  const [points, setPoints] = useState(" ");
 
   if (counter == 0) {
     updateRewards(setRewardsList, setCounter, db, groupID);
@@ -27,6 +29,31 @@ function Rewards(props) {
           return <Reward reward={reward} key={index} db={db} />;
         })}
       </h4>
+
+      {visible ? (
+        <div>
+          <div id="points" className="points">
+            {" "}
+            {points}{" "}
+          </div>
+
+          <img
+            className="profileIcon"
+            src="sketchImages/blackprofileicon.png"
+            onClick={() => {
+              displayPoints(db, setVisible, visible, setPoints);
+            }}
+          ></img>
+        </div>
+      ) : (
+        <img
+          className="profileIcon"
+          src="sketchImages/blackprofileicon.png"
+          onClick={() => {
+            displayPoints(db, setVisible, visible, setPoints);
+          }}
+        ></img>
+      )}
     </div>
   );
 }
@@ -59,7 +86,7 @@ function updateRewards(setRewardsList, setCounter, db, groupID) {
 function AddRewardForm(props) {
   const { db, setRewardsList, setCounter, groupID } = props;
   return (
-    <div class="container">
+    <div className="container">
       {" "}
       <button
         data-toggle="modal"
@@ -69,12 +96,12 @@ function AddRewardForm(props) {
       >
         +
       </button>
-      <div class="row">
-        <div class="col-md-12">
-          <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
+      <div className="row">
+        <div className="col-md-12">
+          <div className="modal fade" id="myModal">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
                   <h3>Add Reward</h3>
                 </div>
                 <form
@@ -82,7 +109,7 @@ function AddRewardForm(props) {
                     addReward(event, db, setRewardsList, setCounter, groupID);
                   }}
                 >
-                  <div class="modal-body">
+                  <div className="modal-body">
                     <input
                       type="text"
                       name="title"
@@ -98,9 +125,21 @@ function AddRewardForm(props) {
                       className="m-1"
                     />
                   </div>
-                  <div class="modal-footer">
-                  <button type="button" class="btn btn-primary btn-sm" id="savee" data-dismiss="modal">Save</button>
-                  <button type="button" class="btn btn-secondary btn-sm" id="cancell" data-dismiss="modal">Cancel</button>
+                  <div className="modal-footer">
+                    <input
+                      className="btn btn-primary btn-sm"
+                      type="submit"
+                      id="savee"
+                      value="Save"
+                      name="save"
+                    />
+                    <input
+                      className="btn btn-secondary btn-sm"
+                      id="cancell"
+                      value="Cancel"
+                      type="button"
+                      data-dismiss="modal"
+                    />
                   </div>
                 </form>
               </div>
@@ -143,4 +182,16 @@ function addReward(event, db, setRewardsList, setCounter, groupID) {
   event.target.elements.points.value = "";
 
   updateRewards(setRewardsList, setCounter, db, groupID);
+}
+
+function displayPoints(db, setVisible, visible, setPoints) {
+  db.collection("Users")
+    .doc(sessionStorage.getItem("user"))
+    .get()
+    .then(userDB => {
+      let points = userDB.get("totalPoints");
+      setPoints(points);
+      console.log(points);
+      setVisible(!visible);
+    });
 }

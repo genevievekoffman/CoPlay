@@ -35,15 +35,26 @@ function Tasks(props) {
       </div>
       
       {visible ? (
+        <div>
           <div id="points" className="points"> {points} </div>
+          
+          <img
+      className="profileIcon"
+      src="sketchImages/blackprofileicon.png"
+      onClick={() => {displayPoints(db, setVisible, visible, setPoints)}}
+      
+    ></img>
+          </div>
         ) : (
-            
+       <div>   
+         <div id="points" className="points"></div>
       <img
       className="profileIcon"
       src="sketchImages/blackprofileicon.png"
       onClick={() => {displayPoints(db, setVisible, visible, setPoints)}}
       
     ></img>
+    </div>
           )}
 
       
