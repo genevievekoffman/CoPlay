@@ -14,7 +14,13 @@ function Group(props){
             setName(group[0])
             setHomePage(true); //changes screen 
             }}>
-            {group[0]}
+            <div className = "groupName">
+                {group[0]}
+            </div>
+             
+            <div className = "subInfo">
+                {group[1]}
+            </div> 
         </div>
     )
 }
