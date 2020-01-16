@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 
 function Reward(props) {
   //passed an array of rewards
-  const { reward, index, db } = props;
+  const { reward, index, db, groupID } = props;
   const [showModal, setShowModal] = useState(false);
   const [failModal, setFailModal] = useState(false);
 
@@ -17,7 +17,7 @@ function Reward(props) {
     setFailModal(true);
   };
   const handleCheckboxClick = () =>
-    deductPoints(reward[1], db, revealSuccessTask, revealFailTask);
+    deductPoints(reward[1], db, revealSuccessTask, revealFailTask, groupID);
 
   return (
     <div className="reward" key={index}>
@@ -44,8 +44,7 @@ function Reward(props) {
 }
 
 //revealSuccessTask is the arrow function handleChecboxClick
-function deductPoints(points, db, revealSuccessTask, revealFailTask) {
-  console.log(points);
+function deductPoints(points, db, revealSuccessTask, revealFailTask, groupID) {
   db.collection("Users")
     .doc(sessionStorage.getItem("user"))
     .get()
@@ -56,12 +55,19 @@ function deductPoints(points, db, revealSuccessTask, revealFailTask) {
         let balance = doc.get("totalPoints") - points;
         console.log("Your balance is " + balance);
 
-        db.collection("Users")
+        db.collection("Users")  //deducts points in Users collection for current user
           .doc(sessionStorage.getItem("user"))
           .update({
             totalPoints: balance
           });
-        console.log("Adin is gay");
+        
+        db.collection("Groups") //deducts points in Groups collection for current user
+          .doc(groupID)
+          .collection("Users")
+          .doc(sessionStorage.getItem("user"))
+          .update({
+            totalPoints: balance
+          });
         revealSuccessTask();
         //this does setShowModal(true); as set in the function handleCheckboxClick
       } else {
