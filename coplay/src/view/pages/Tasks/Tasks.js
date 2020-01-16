@@ -41,7 +41,7 @@ function Tasks(props) {
           <img
       className="profileIcon"
       src="sketchImages/blackprofileicon.png"
-      onClick={() => {displayPoints(db, setVisible, visible, setPoints)}}
+      onClick={() => {displayPoints(db, setVisible, visible, setPoints, groupID)}}
       
     ></img>
           </div>
@@ -51,7 +51,7 @@ function Tasks(props) {
       <img
       className="profileIcon"
       src="sketchImages/blackprofileicon.png"
-      onClick={() => {displayPoints(db, setVisible, visible, setPoints)}}
+      onClick={() => {displayPoints(db, setVisible, visible, setPoints, groupID)}}
       
     ></img>
     </div>
@@ -191,15 +191,17 @@ function addTask(event, db, setTasksList, setCounter, groupID) {
   updateTasks(setTasksList, setCounter, db, groupID);
 }
 
-function displayPoints(db, setVisible, visible, setPoints) {
-  db.collection("Users")
+function displayPoints(db, setVisible, visible, setPoints, groupID) {
+  db.collection("Groups")
+  .doc(groupID)
+  .collection("Users")
     .doc(sessionStorage.getItem("user"))
     .get()
     .then(userDB => {
       let points = userDB.get("totalPoints");
+      console.log(userDB.get("totalPoints"))
       setPoints(points);
       console.log(points);
       setVisible(!visible);
-  
     });
 }

@@ -42,7 +42,7 @@ function Rewards(props) {
             className="profileIcon"
             src="sketchImages/blackprofileicon.png"
             onClick={() => {
-              displayPoints(db, setVisible, visible, setPoints);
+              displayPoints(db, setVisible, visible, setPoints, groupID);
             }}
           ></img>
         </div>
@@ -51,7 +51,7 @@ function Rewards(props) {
           className="profileIcon"
           src="sketchImages/blackprofileicon.png"
           onClick={() => {
-            displayPoints(db, setVisible, visible, setPoints);
+            displayPoints(db, setVisible, visible, setPoints, groupID);
           }}
         ></img>
       )}
@@ -187,12 +187,15 @@ function addReward(event, db, setRewardsList, setCounter, groupID) {
   updateRewards(setRewardsList, setCounter, db, groupID);
 }
 
-function displayPoints(db, setVisible, visible, setPoints) {
-  db.collection("Users")
+function displayPoints(db, setVisible, visible, setPoints, groupID) {
+  db.collection("Groups")
+  .doc(groupID)
+  .collection("Users")
     .doc(sessionStorage.getItem("user"))
     .get()
     .then(userDB => {
       let points = userDB.get("totalPoints");
+      console.log(userDB.get("totalPoints"))
       setPoints(points);
       console.log(points);
       setVisible(!visible);
