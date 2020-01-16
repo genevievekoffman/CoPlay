@@ -55,11 +55,11 @@ function deductPoints(points, db, revealSuccessTask, revealFailTask, groupID) {
         let balance = doc.get("totalPoints") - points;
         console.log("Your balance is " + balance);
 
-        db.collection("Users")  //deducts points in Users collection for current user
-          .doc(sessionStorage.getItem("user"))
-          .update({
-            totalPoints: balance
-          });
+        // db.collection("Users")  //deducts points in Users collection for current user
+        //   .doc(sessionStorage.getItem("user"))
+        //   .update({
+        //     totalPoints: balance
+        //   });
         
         db.collection("Groups") //deducts points in Groups collection for current user
           .doc(groupID)

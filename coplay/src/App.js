@@ -149,7 +149,7 @@ function App() {
 
 function checkUser(e, setIsLoggedIn) {
   e.preventDefault();
-  console.log("function called");
+   
 
   let username = e.target.elements.username.value;
   let password = e.target.elements.password.value;
