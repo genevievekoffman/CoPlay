@@ -13,6 +13,7 @@ function Groups(props) {
 
   return (
     <div>
+
       <header className="groupPageTitle">My Groups</header>
       <form
         className="joinGroupForm"
@@ -24,7 +25,8 @@ function Groups(props) {
         <br></br>
         <input type="submit" value="Submit"></input>
       </form>
-      {<AddGroupForm db={db} />}
+      {<AddGroupForm db={db} setGroupsList = {setGroupsList}  setCounter = {setCounter} />}
+
       <div className="groupContainer">
         {groupsList.map((group, index) => {
           return (
@@ -87,7 +89,8 @@ function addUserToGroup(db, username, groupID) {
     });
 }
 
-function addGroup(event, db) {
+function addGroup(event, db, setGroupsList, setCounter) {
+
   event.preventDefault();
   let ID;
 
@@ -109,10 +112,14 @@ function addGroup(event, db) {
   }
 
   event.target.elements.title.value = "";
+  fetchMyGroups(db, setGroupsList, setCounter);
 }
 
 function AddGroupForm(props) {
-  const { db } = props;
+
+  const { db, setGroupsList, setCounter } = props;
+  console.log("form opened");
+
   return (
     <div className="container">
       {" "}
@@ -134,7 +141,7 @@ function AddGroupForm(props) {
                 </div>
                 <form
                   onSubmit={event => {
-                    addGroup(event, db);
+                    addGroup(event, db, setGroupsList, setCounter);
                   }}
                 >
                   <div className="modal-body">
@@ -148,18 +155,18 @@ function AddGroupForm(props) {
                   </div>
                   <div className="modal-footer">
                     <input
-                      className="btn btn-primary"
+                      className="btn btn-primary btn-sm"
                       type="submit"
-                      id="Save"
+                      id="savee"
                       value="Save"
                       name="save"
                     />
                     <input
-                      className="btn btn-primary"
-                      id="Cancel"
+                      className="btn btn-secondary btn-sm"
+                      id="cancell"
                       value="Cancel"
                       type="button"
-                      // onClick = {props.onCancel}
+                      data-dismiss="modal"
                     />
                   </div>
                 </form>
@@ -171,6 +178,7 @@ function AddGroupForm(props) {
     </div>
   );
 }
+
 
 async function joinGroup(e, db) {
   e.preventDefault();

@@ -6,6 +6,8 @@ function Rewards(props) {
   const [rewardsLists, setRewardsList] = useState([]);
   const [counter, setCounter] = useState(0);
   const { db, groupID } = props;
+  const [visible, setVisible] = useState(false);
+  const [points, setPoints] = useState(" ");
 
   if (counter == 0) {
     updateRewards(setRewardsList, setCounter, db, groupID);
@@ -28,6 +30,31 @@ function Rewards(props) {
           return <Reward reward={reward} key={index} db={db} groupID ={groupID}/>;
         })}
       </h4>
+
+      {visible ? (
+        <div>
+          <div id="points" className="points">
+            {" "}
+            {points}{" "}
+          </div>
+
+          <img
+            className="profileIcon"
+            src="sketchImages/blackprofileicon.png"
+            onClick={() => {
+              displayPoints(db, setVisible, visible, setPoints);
+            }}
+          ></img>
+        </div>
+      ) : (
+        <img
+          className="profileIcon"
+          src="sketchImages/blackprofileicon.png"
+          onClick={() => {
+            displayPoints(db, setVisible, visible, setPoints);
+          }}
+        ></img>
+      )}
     </div>
   );
 }
@@ -100,8 +127,22 @@ function AddRewardForm(props) {
                     />
                   </div>
                   <div className="modal-footer">
-                  <button type="button submit" className="btn btn-primary btn-sm" id="savee">Save</button>
-                  <button type="button" className="btn btn-secondary btn-sm" id="cancell" data-dismiss="modal">Cancel</button>
+
+                    <input
+                      className="btn btn-primary btn-sm"
+                      type="submit"
+                      id="savee"
+                      value="Save"
+                      name="save"
+                    />
+                    <input
+                      className="btn btn-secondary btn-sm"
+                      id="cancell"
+                      value="Cancel"
+                      type="button"
+                      data-dismiss="modal"
+                    />
+
                   </div>
                 </form>
               </div>
@@ -144,4 +185,16 @@ function addReward(event, db, setRewardsList, setCounter, groupID) {
   event.target.elements.points.value = "";
 
   updateRewards(setRewardsList, setCounter, db, groupID);
+}
+
+function displayPoints(db, setVisible, visible, setPoints) {
+  db.collection("Users")
+    .doc(sessionStorage.getItem("user"))
+    .get()
+    .then(userDB => {
+      let points = userDB.get("totalPoints");
+      setPoints(points);
+      console.log(points);
+      setVisible(!visible);
+    });
 }
