@@ -24,7 +24,7 @@ function Rewards(props) {
 
       <h4>
         {rewardsLists.map((reward, index) => {
-          return <Reward reward={reward} key={index} db={db} />;
+          return <Reward reward={reward} key={index} db={db} groupID={groupID} />;
         })}
       </h4>
     </div>
