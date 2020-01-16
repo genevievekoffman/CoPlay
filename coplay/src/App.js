@@ -111,7 +111,7 @@ function App() {
       <Router>
         <div>
           <ul className="topNav">
-            <div></div>
+            <button onClick = {() => setHomePage(false)}>Back</button>
             <div></div>
             <div></div>
             <li className="link">
