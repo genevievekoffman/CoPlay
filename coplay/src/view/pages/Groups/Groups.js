@@ -119,7 +119,7 @@ function AddGroupForm(props) {
 
   const { db, setGroupsList, setCounter } = props;
   console.log("form opened");
-=
+
   return (
     <div className="container">
       {" "}
