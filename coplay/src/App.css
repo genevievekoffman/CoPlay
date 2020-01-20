@@ -1,214 +1,148 @@
-.grid{
+.screen{
   display: grid;
-  grid-template-columns: repeat(5, 26vw);
-  grid-template-rows: repeat(7, 10vh);
+  grid-template-columns: repeat(1, 100vw);
   height: 100vh;
+  width: 100vw;
 }
 
-#leftSide{
-  grid-column-start: 1;
-  grid-column-end: span 2;
-  grid-row-start: 1;
-  grid-row-end: span 7;
-
-  background: #648AD1;
-
-  width: 40vw;
-  height: 100vh;
+.top{
+  height: 50vh;
+  position: relative;
 }
 
-#LogIn {
+.pinkBubble{
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 100%;
+  background-color: #DC7070;
+  right: 10%;
+  bottom: 0.1%;
+}
+
+.blueBubble{
+  position: absolute;
+  width: 275px;
+  height: 275px;
+  border-radius: 100%;
+  background-color: #65B6D2;
+  bottom: 23%;
+  left: 38%;
+  text-align: center;
+  color: #000000;
+  font-size: 7vh;
+  line-height: 275px;
+  font-family: Avenir-Light;
+}
+
+.bottom{
+  margin:0 auto;
+}
+
+.signInForm{
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 26vw);
+  grid-template-rows: repeat(6, 7vh);
+  row-gap: 0.5vh;
+}
+
+.userLabel{
   grid-column-start: 1;
-  grid-column-end: span 2;
+  grid-column-end: span 1;
   grid-row-start: 1;
   grid-row-end: span 1;
-  line-height: 20vh;
 
-  font-size: 2vw;
-  padding-left: 2em;
-  color: black;
-  font-family: Krungthep;
-
-  height: 10vh;
-  user-select: none;
+  position: absolute;
+  bottom: 0;
+  opacity: 0.8;
+  font-family: Avenir-Light;
+  font-size: 3vh;
+  color: #000000;
 }
 
-#slogan{
+.name {
   grid-column-start: 1;
-  grid-column-end: span 2;
-  grid-row-start: 3;
-  grid-row-end: span 1;
-
-  font-size: 2vw;
-  padding-left: 1em;
-
-  font-family: Avenir;
-  user-select: none;
-}
-
-/* #logo{
-  height: 90vh;
-  opacity: 0.2;
-  z-index: -1;
-} */
-
-#signIn{
-  grid-column-start: 3;
-  grid-column-end: span 2;
+  grid-column-end: span 3;
   grid-row-start: 2;
   grid-row-end: span 1;
 
-  line-height: 24vh;
-
-  height: 3vh;
-  font-size: 2vw;
-  font-family: Avenir;
-  user-select: none;
-   
+  border: 1px solid #000000;
+  border-radius: 9px;
+  width: 78vw;
+  height: 7vh;
 }
 
-#signInForm{
-  grid-column-start: 3;
-  grid-column-end: span 3;
+.passwordLabel{
+  grid-column-start: 1;
+  grid-column-end: span 1;
   grid-row-start: 3;
-  grid-row-end: span 4;
+  grid-row-end: span 1;
+
+  position: absolute;
+  bottom: 0;
+  opacity: 0.8;
+  font-family: Avenir-Light;
+  font-size: 3vh;
+  color: #000000;
 }
 
-#formFlex{
-  grid-column-start: 3;
+.password {
+  grid-column-start: 1;
+  grid-column-end: span 1;
+  grid-row-start: 4;
+  grid-row-end: span 1;
+
+  border: 1px solid #000000;
+  border-radius: 9px;
+  width: 78vw;
+  height: 7vh;
+}
+
+.submitLogin {
+  grid-column-start: 1;
   grid-column-end: span 3;
-  grid-row-start: 3;
-  grid-row-end: span 4;
+  grid-row-start: 5;
+  grid-row-end: span 1;
 
-  background: none;
-
-  display: flex;
-  flex-direction: column;
-  padding-top: 4.1em;
+  font-family: Avenir-Light;
+  background: #A7E59D;
+  border-radius: 4px;
+  font-size: 3vh;
+  width: 78vw;
+  height: 7vh;
+  margin-top: 4.5vh;
 }
 
-#userLabel{
-  font-family: Avenir-Heavy;
-  font-size: 1.5vw;
-  user-select: none;
+.signUp{
+  grid-column-start: 3;
+  grid-column-end: span 1;
+  grid-row-start: 6;
+  grid-row-end: span 1;
+
+  position: absolute;
+  bottom: 0;
+  font-family: Avenir-Light;
+  text-decoration:underline;
+  display:inline-block;
+  right: 0;
+  margin-top: 10vh;
 }
 
-#name {
-  opacity: 0.53;
-  background: #D8D8D8;
-  border: 2px solid #979797;
-  border-radius: 10px;
-
-  width: 30vw;
-  height: 5vh;
-  margin-top: 0.3em;
-}
-
-#passwordLabel{
-  font-family: Avenir-Heavy;
-  font-size: 1.5vw;
-  user-select: none;
-}
-
-#password {
-  opacity: 0.53;
-  background: #D8D8D8;
-  border: 2px solid #979797;
-  border-radius: 10px;
-
-  width: 30vw;
-  height: 5vh;
-  margin-top: 0.3em;
-}
-
-#submitLogin {
-  background: #648AD1;
-  border-radius: 10px;
-  color: white;
-  font-family: Avenir-Heavy;
-  font-size: 1.3vw;
-  height: 5vh;
+.signUp:hover{
+  color: gray;
+  cursor: pointer;
 }
 
 .lego{
   height: 30vh;
 }
-@media only screen and (max-width: 520px){
-  .grid{
-    grid-template-columns: repeat(5,30vw);
-  }
-
-  #leftSide{
-    display: none;
-  }
-
-  #LogIn {
-    display: none;
-  }
-
-  #slogan{
-    display: none;
-  }
-
-  #signIn{
-    grid-column-start: 2;
-    grid-column-end: span 2;
-    grid-row-start: 2;
-    grid-row-end: span 1;
-
-    line-height: 28vh;;
-  
-    font-size: 3.9vw;
-  }
-
-  #signInForm{
-    grid-column-start: 2;
-    grid-column-end: span 3;
-    grid-row-start: 3;
-    grid-row-end: span 4;
-  }
-
-  #formFlex{
-    grid-column-start: 1;
-    grid-column-end: span 5;
-    grid-row-start: 1;
-    grid-row-end: span 7;
-  }
-
-  #userLabel{
-    font-size: 2.5vw;
-  }
-  
-  #name {
-    width: 40vw;
-  }
-  
-  #passwordLabel{
-    font-size: 2.5vw;
-  }
-  
-  #password {
-    width: 40vw;
-  }
-  
-  #submitLogin {
-    font-size: 2.3vw;
-    width: 18vw;
-  }
-}
-
-
 
   .AddTask {
   display: grid;
   margin-top: 2vw;
   margin-left: 25vw ;
-  
-  
-
 }
-
-
 
 .App2{
   justify-content: center;
