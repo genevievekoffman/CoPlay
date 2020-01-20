@@ -1,0 +1,24 @@
+
+
+
+<svg width="282px" height="68px" viewBox="0 0 282 68"  >
+     
+    <title>Group 4</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Groups" transform="translate(-19.000000, -241.000000)">
+            <g id="Group-4" transform="translate(19.000000, 241.000000)">
+                <g id="Group" opacity="0.600888207">
+                    <rect id="Rectangle" fill="#DCA162" x="0" y="0" width="282" height="68" rx="15"></rect>
+                    <text id="Dongles" font-family="Avenir-Book, Avenir" font-size="20" font-weight="normal" fill="#000000">
+                        <tspan x="19" y="41">Dongles</tspan>
+                    </text>
+                </g>
+                <g id="Group-2" transform="translate(225.000000, 0.000000)">
+                    <path d="M0,0 L44,0 C51.1797017,-1.31888981e-15 57,5.82029825 57,13 L57,55 C57,62.1797017 51.1797017,68 44,68 L0,68 L0,68 L0,0 Z" id="Rectangle" fill="#DCA162"></path>
+                    <polyline id="Line-10" stroke="#6D6B6B" stroke-linecap="square" points="26 25 33 34.2008919 26 43"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
