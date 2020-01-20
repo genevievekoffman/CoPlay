@@ -9,7 +9,7 @@ function Tasks(props) {
   const [visible, setVisible] = useState(false)
   const [points, setPoints] = useState(" ")
 
-  if (counter == 0) {
+  if (counter === 0) {
     updateTasks(setTasksList, setCounter, db, groupID);
   }
 
@@ -165,9 +165,9 @@ function addTask(event, db, setTasksList, setCounter, groupID) {
   let points = event.target.elements.points.value;
   console.log(groupID);
 
-  if (title == "") {
+  if (title === "") {
     alert("Must enter a title");
-  } else if (points == "") {
+  } else if (points === "") {
     alert("Must enter points");
   } else {
     points = parseInt(points);

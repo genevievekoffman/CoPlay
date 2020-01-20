@@ -195,6 +195,8 @@ function AddGroupForm(props) {
                       id="savee"
                       value="Save"
                       name="save"
+                      data-toggle="modal"
+                      data-target="#myModal"
                     >
                       Save
                     </button>
@@ -269,7 +271,7 @@ async function checkGroup(groupID, db) {
   let exists = false;
   const IDgroupsDB = await db.collection("Groups").get();
   IDgroupsDB.forEach(groupDB => {
-    if (groupDB.get("ID") == groupID) {
+    if (groupDB.get("ID") === groupID) {
       exists = true;
     }
   });
@@ -281,7 +283,7 @@ async function getName(groupID, db) {
   let name;
   const IDgroupsDB = await db.collection("Groups").get();
   IDgroupsDB.forEach(groupDB => {
-    if (groupDB.get("ID") == groupID) {
+    if (groupDB.get("ID") === groupID) {
       name = groupDB.get("name");
     }
   });

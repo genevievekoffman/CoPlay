@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./SignUp.css";
 
 //function to make sure no usernames are the same
@@ -27,6 +27,7 @@ function SignUp(props) {
           <input type="text" name="password" className="password"></input>
           <br></br>
           <input type="submit" className="submitLogin" value="create account"></input>
+          <div className="backToLogin" onClick={() => setIsRegistering(false)}>back to login</div>
         </form>
       </div>
     </div>
@@ -41,9 +42,9 @@ async function registerUser(e, db, setIsRegistering) {
   let username = e.target.elements.username.value;
   let password = e.target.elements.password.value;
 
-  if (username == "") {
+  if (username === "") {
     alert("Must enter a username");
-  } else if (password == "") {
+  } else if (password === "") {
     alert("Must enter a password");
   } else {
     const available = await checkUsername(username, db);
