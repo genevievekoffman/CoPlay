@@ -257,37 +257,6 @@ input{
   cursor: pointer;
 
 }
-
-
-
-
- 
-
-.top-nav {
-  padding-top: 0.5vw;
-  overflow: hidden;
-  color: black;
-  height:5vw;
-  font-size: 1.5vw;
-  font-family: sans-serif;
-  background: white;
-  
-}
-
-.top-nav a {
-  float: left;
-  padding: 14px 16px;
-  text-decoration: none;
-  color:black;
-}
-
-.top-nav a:hover {
-  color: #0B598C;
-  background: #96C6E5;
-  border-radius: 10px;
-
-}
- 
  
  #Save {
   width: 4vw;
@@ -394,10 +363,11 @@ h4{
   transform: translateX(-5%);
 }
 
-#savee{
+/*#savee{
   margin-right: 13vw;
 }
 
 #cancell{
-  margin-right: 5vw;
+  margin-right: 2vw;
 }
+*/

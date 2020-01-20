@@ -111,7 +111,7 @@ function App() {
       <Router>
         <div>
           <ul className="topNav">
-            <div></div>
+            <button onClick = {() => setHomePage(false)}>Back to Groups</button>
             <div></div>
             <div></div>
             <li className="link">
@@ -123,7 +123,7 @@ function App() {
             <li className="link">
               <Link to="/rewardspage">Rewards page</Link>
             </li>
-            <div></div>
+            <button onClick = {() => setIsLoggedIn(false)}>Log Out</button>
             <div></div>
             <div></div>
           </ul>
