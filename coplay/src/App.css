@@ -252,7 +252,6 @@ text-align: center;
  
 .topNav{
   align-items: center;
-  overflow: hidden;
   color: black;
   display: grid;
   grid-template-columns: repeat(8, auto);
@@ -275,6 +274,11 @@ text-align: center;
   margin-left: 20vw;
   
   
+}
+
+#collasible-nav-dropdown{
+  z-index: 99;
+  overflow:visible;
 }
 
  

@@ -2,9 +2,14 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import firebase from "firebase";
 
+import { Manager, Reference, Popper } from "react-popper";
+
 import Rewards from "./view/pages/Rewards/Rewards";
 import Tasks from "./view/pages/Tasks/Tasks";
 import LeaderBoard from "./view/pages/LeaderBoard/LeaderBoard";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
 
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
@@ -70,12 +75,20 @@ function App() {
                 <div className="passwordLabel">password</div>
                 <input type="text" name="password" className="password"></input>
                 <br></br>
-                <input type="submit" className="submitLogin" value="login"></input>
-                <div className="signUp" onClick={() => newUser(setIsRegistering)}>sign up</div>
+                <input
+                  type="submit"
+                  className="submitLogin"
+                  value="login"
+                ></input>
+                <div
+                  className="signUp"
+                  onClick={() => newUser(setIsRegistering)}
+                >
+                  sign up
+                </div>
               </form>
             </div>
           </div>
-
         </div>
       );
     } else {
@@ -103,21 +116,28 @@ function App() {
       <Router>
         <div>
           <ul className="topNav">
-            <button onClick={() => setHomePage(false)}>Back to Groups</button>
-            <div></div>
-            <div></div>
-            <li className="link">
-              <Link to="/leaderboardpage">Leaderboard Page</Link>
-            </li>
-            <li className="link">
-              <Link to="/">Tasks Page</Link>
-            </li>
-            <li className="link">
-              <Link to="/rewardspage">Rewards page</Link>
-            </li>
-            <button onClick={() => setIsLoggedIn(false)}>Log Out</button>
-            <div></div>
-            <div></div>
+            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" eventKey="1">
+              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+              <button onClick={() => setHomePage(false)}>Back to Groups</button>
+              <Navbar.Collapse id="responsive-navbar-nav">
+                {/* <Nav className="mr-auto"> */}
+                  <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+                    <li className="link">
+                      <Link to="/leaderboardpage">Leaderboard Page</Link>
+                    </li>
+                    <li className="link">
+                      <Link to="/">Tasks Page</Link>
+                    </li>
+                    <li className="link">
+                      <Link to="/rewardspage">Rewards page</Link>
+                    </li>
+                  </NavDropdown>
+                {/* </Nav> */}
+                <Nav>
+                  <button onClick={() => setIsLoggedIn(false)}>Log Out</button>
+                </Nav>
+              </Navbar.Collapse>
+            </Navbar>
           </ul>
 
           <h1>{name}</h1>
@@ -142,7 +162,6 @@ function App() {
 function checkUser(e, setIsLoggedIn) {
   e.preventDefault();
 
-
   let username = e.target.elements.username.value;
   let password = e.target.elements.password.value;
 
@@ -152,7 +171,7 @@ function checkUser(e, setIsLoggedIn) {
     alert("Must enter a password");
   } else {
     var docRef = DB.collection("Users").doc(username);
-    docRef.get().then(function (doc) {
+    docRef.get().then(function(doc) {
       if (doc.exists) {
         if (password === doc.data().password) {
           console.log("passwords match");
