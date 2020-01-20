@@ -52,14 +52,10 @@ function App() {
     if (!isRegistering) {
       return (
         <div className="App">
-          {/* <button onClick={() => newUser(setIsRegistering)}>
-            {" "}
-            Don't have an account? Sign up here{" "}
-          </button> */}
-
           <div className="screen">
             <div className="top">
-              <img src="./sketchImages/loginBubbles.jpeg" className="bubbles"></img>
+              <div className="pinkBubble"></div>
+              <div className="blueBubble">Coplay</div>
             </div>
             <div className="bottom">
               <form
@@ -74,7 +70,8 @@ function App() {
                 <div className="passwordLabel">password</div>
                 <input type="text" name="password" className="password"></input>
                 <br></br>
-                <input type="submit" id="submitLogin" value="login"></input>
+                <input type="submit" className="submitLogin" value="login"></input>
+                <div className="signUp" onClick={() => newUser(setIsRegistering)}>sign up</div>
               </form>
             </div>
           </div>
