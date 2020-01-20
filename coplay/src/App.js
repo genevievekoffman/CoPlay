@@ -103,33 +103,42 @@ function App() {
       <Router>
         <div>
           <ul className="topNav">
-            <button onClick={() => setHomePage(false)}>Back to Groups</button>
-            <div></div>
-            <div></div>
             <li className="link">
-              <Link to="/leaderboardpage">Leaderboard Page</Link>
+              <Link to="/groups">Back to Groups</Link>
+            </li>
+            <li className="link">
+              <Link to="/leaderboard">Leaderboard Page</Link>
             </li>
             <li className="link">
               <Link to="/">Tasks Page</Link>
             </li>
             <li className="link">
-              <Link to="/rewardspage">Rewards page</Link>
+              <Link to="/rewards">Rewards page</Link>
             </li>
-            <button onClick={() => setIsLoggedIn(false)}>Log Out</button>
-            <div></div>
-            <div></div>
+            <li className="link">
+              <Link to = "/login">Log Out</Link>
+            </li>
           </ul>
 
           <h1>{name}</h1>
 
           <Switch>
-            <Route exact path="/leaderboardpage">
+          <Route exact path="/groups">
+              <Groups db={DB}
+          setGroupID={setGroupID}
+          setHomePage={setHomePage}
+          setName={setName} />
+            </Route>
+            <Route exact path="/leaderboard">
               <LeaderBoard db={DB} groupID={groupID} />
             </Route>
             <Route exact path="/">
               <Tasks db={DB} groupID={groupID} />
             </Route>
-            <Route path="/rewardspage">
+            <Route path="/rewards">
+              <Rewards db={DB} groupID={groupID} />
+            </Route>
+            <Route path="/login">
               <Rewards db={DB} groupID={groupID} />
             </Route>
           </Switch>
