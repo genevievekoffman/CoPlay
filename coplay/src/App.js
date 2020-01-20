@@ -102,19 +102,19 @@ function App() {
       //use task state to get the name of the group
       <Router>
         <div>
-          <ul className="topNav">
-            <li onClick={() => setHomePage(false)}>Back to Groups</li>
-            <li className="link">
+          <div className="topNav">
+            <div className="link" onClick={() => setHomePage(false)}>Back to Groups</div>
+            <div className="link">
               <Link to="/leaderboardpage">Leaderboard Page</Link>
-            </li>
-            <li className="link">
+            </div>
+            <div className="link">
               <Link to="/">Tasks Page</Link>
-            </li>
-            <li className="link">
+            </div>
+            <div className="link">
               <Link to="/rewardspage">Rewards page</Link>
-            </li>
-            <li onClick={() => setIsLoggedIn(false)}>Log Out</li>
-          </ul>
+            </div>
+            <div className="link" onClick={() => setIsLoggedIn(false)}>Log Out</div>
+          </div>
 
           <h1>{name}</h1>
 
