@@ -1,10 +1,14 @@
 .group{
     text-align: center;
-    border: 1px solid black;
-    padding: 1em;
-    font-family: Avenir-Heavy;
-     
-    border-radius: 10px;
+    padding-top: 1.5em; 
+    padding-bottom: 1.5em; 
+    margin:1em; 
+
+    background: #DCA162;
+    border-radius: 15px;
+    font-family: Avenir-Book;
+ 
+    opacity: 60%;
 }
 
 .group:hover{
@@ -14,10 +18,23 @@
 }
 
 .groupName{
-    font-size:  3.8vh;
+    float:left;
+    margin-left:0.8em;
+    font-size:  3.4vh;
+    font-family: Avenir-Book;
+    color: #000000;
 }
 
-.subInfo{
+.rightBox{
+    background: white;
+    border-radius: 0 13px 13px 0;
+    opacity: 100%;
+    
+}
+
+/* .subInfo{
     size: 0.5 vh;
     color: black
-}
+} */
+
+

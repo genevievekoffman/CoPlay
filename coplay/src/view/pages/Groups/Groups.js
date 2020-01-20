@@ -6,6 +6,7 @@ function Groups(props) {
   const { db, setGroupID, setHomePage, setName } = props;
   const [groupsList, setGroupsList] = useState([]);
   const [counter, setCounter] = useState(0);
+  const [visibleJOIN, setVisibleJOIN] = useState(false);
 
   if (counter < 1) {
     fetchMyGroups(db, setGroupsList, setCounter);
@@ -13,19 +14,49 @@ function Groups(props) {
 
   return (
     <div>
-
       <header className="groupPageTitle">My Groups</header>
-      <form
-        className="joinGroupForm"
-        onSubmit={event => {
-          joinGroup(event, db, setGroupsList, setCounter);
-        }}
-      >
-        <input type="text" placeholder="group ID" name="groupID"></input>{" "}
-        <br></br>
-        <input type="submit" value="Submit"></input>
-      </form>
-      {<AddGroupForm db={db} setGroupsList={setGroupsList} setCounter={setCounter}/>}
+
+      <div className="groupButtons">
+        {
+          <AddGroupForm
+            db={db}
+            setGroupsList={setGroupsList}
+            setCounter={setCounter}
+          />
+        }
+
+        <button
+          onClick={() => {
+            joinClicked(setVisibleJOIN);
+          }}
+        >
+          {" "}
+          JOIN A GROUP{" "}
+        </button>
+      </div>
+
+      {visibleJOIN ? (
+        <form
+          className="joinGroupForm"
+          onSubmit={event => {
+            joinGroup(event, db, setGroupsList, setCounter);
+          }}
+        >
+          <input type="text" placeholder="group ID" name="groupID"></input>{" "}
+          <br></br>
+          <input type="submit" value="Submit"></input>
+          <button
+            onClick={() => {
+              cancelJoin(setVisibleJOIN);
+            }}
+          >
+            Cancel
+          </button>
+        </form>
+      ) : (
+        ""
+      )}
+
       <div className="groupContainer">
         {groupsList.map((group, index) => {
           return (
@@ -44,6 +75,13 @@ function Groups(props) {
 }
 
 export default Groups;
+
+function cancelJoin(setVisibleJOIN) {
+  setVisibleJOIN(false);
+}
+function joinClicked(setVisibleJOIN) {
+  setVisibleJOIN(true);
+}
 
 function fetchMyGroups(db, setGroupsList, setCounter) {
   let list = [];
@@ -110,12 +148,10 @@ function addGroup(event, db, setGroupsList, setCounter) {
   }
 
   event.target.elements.title.value = "";
-  fetchMyGroups(db, setGroupsList, setCounter)
+  fetchMyGroups(db, setGroupsList, setCounter);
 }
 
-
 function AddGroupForm(props) {
-
   const { db, setGroupsList, setCounter } = props;
   console.log("form opened");
 
@@ -159,14 +195,18 @@ function AddGroupForm(props) {
                       id="savee"
                       value="Save"
                       name="save"
-                    >Save</button>
+                    >
+                      Save
+                    </button>
                     <button
                       className="btn btn-secondary btn-sm"
                       id="cancell"
                       value="Cancel"
                       type="button"
                       data-dismiss="modal"
-                    >Cancel</button>
+                    >
+                      Cancel
+                    </button>
                   </div>
                 </form>
               </div>
@@ -177,7 +217,6 @@ function AddGroupForm(props) {
     </div>
   );
 }
-
 
 async function joinGroup(e, db, setGroupsList, setCounter) {
   e.preventDefault();
@@ -209,7 +248,7 @@ async function joinGroup(e, db, setGroupsList, setCounter) {
     }
     console.log("information has been saved");
 
-    fetchMyGroups(db, setGroupsList, setCounter)
+    fetchMyGroups(db, setGroupsList, setCounter);
   }
 }
 
