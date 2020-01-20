@@ -52,38 +52,34 @@ function App() {
     if (!isRegistering) {
       return (
         <div className="App">
-          <button onClick={() => newUser(setIsRegistering)}>
+          {/* <button onClick={() => newUser(setIsRegistering)}>
             {" "}
             Don't have an account? Sign up here{" "}
-          </button>
+          </button> */}
 
-          <div className="grid">
-            <div id="leftSide"></div>
-            <div id="LogIn">Coplay</div>
-            <div id="slogan">
-              Coexisting sounds hard but<br></br>CoPlay sounds like fun
+          <div className="screen">
+            <div className="top">
+              <img src="./sketchImages/loginBubbles.jpeg" className="bubbles"></img>
             </div>
-
-            {/* <img id="logo" src="./sketchImages/coplayLogo.jpeg"></img> */}
-            <div id="signIn">Sign in to Coplay</div>
-
-            <form
-              id="signInForm"
-              onSubmit={event => {
-                checkUser(event, setIsLoggedIn);
-              }}
-            >
-              <div id="formFlex">
-                <div id="userLabel">Username</div>
-                <input type="text" name="username" id="name"></input>
+            <div className="bottom">
+              <form
+                className="signInForm"
+                onSubmit={event => {
+                  checkUser(event, setIsLoggedIn);
+                }}
+              >
+                <div className="userLabel">username</div>
+                <input type="text" name="username" className="name"></input>
                 <br></br>
-                <div id="passwordLabel">Password</div>
-                <input type="text" name="password" id="password"></input>
+                <div className="passwordLabel">password</div>
+                <input type="text" name="password" className="password"></input>
                 <br></br>
-                <input type="submit" id="submitLogin" value="Sign In"></input>
-              </div>
-            </form>
+                <input type="submit" id="submitLogin" value="login"></input>
+              </form>
+            </div>
           </div>
+
+
         </div>
       );
     } else {
@@ -111,7 +107,7 @@ function App() {
       <Router>
         <div>
           <ul className="topNav">
-            <button onClick = {() => setHomePage(false)}>Back to Groups</button>
+            <button onClick={() => setHomePage(false)}>Back to Groups</button>
             <div></div>
             <div></div>
             <li className="link">
@@ -123,7 +119,7 @@ function App() {
             <li className="link">
               <Link to="/rewardspage">Rewards page</Link>
             </li>
-            <button onClick = {() => setIsLoggedIn(false)}>Log Out</button>
+            <button onClick={() => setIsLoggedIn(false)}>Log Out</button>
             <div></div>
             <div></div>
           </ul>
@@ -132,7 +128,7 @@ function App() {
 
           <Switch>
             <Route exact path="/leaderboardpage">
-              <LeaderBoard db={DB} groupID={groupID}/>
+              <LeaderBoard db={DB} groupID={groupID} />
             </Route>
             <Route exact path="/">
               <Tasks db={DB} groupID={groupID} />
@@ -149,7 +145,7 @@ function App() {
 
 function checkUser(e, setIsLoggedIn) {
   e.preventDefault();
-   
+
 
   let username = e.target.elements.username.value;
   let password = e.target.elements.password.value;
@@ -160,7 +156,7 @@ function checkUser(e, setIsLoggedIn) {
     alert("Must enter a password");
   } else {
     var docRef = DB.collection("Users").doc(username);
-    docRef.get().then(function(doc) {
+    docRef.get().then(function (doc) {
       if (doc.exists) {
         if (password === doc.data().password) {
           console.log("passwords match");

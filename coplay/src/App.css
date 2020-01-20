@@ -1,124 +1,49 @@
-.grid{
+.screen{
   display: grid;
-  grid-template-columns: repeat(5, 26vw);
-  grid-template-rows: repeat(7, 10vh);
+  grid-template-columns: repeat(1, 100vw);
   height: 100vh;
 }
 
-#leftSide{
-  grid-column-start: 1;
-  grid-column-end: span 2;
-  grid-row-start: 1;
-  grid-row-end: span 7;
-
-  background: #648AD1;
-
-  width: 40vw;
-  height: 100vh;
-}
-
-#LogIn {
-  grid-column-start: 1;
-  grid-column-end: span 2;
-  grid-row-start: 1;
-  grid-row-end: span 1;
-  line-height: 20vh;
-
-  font-size: 2vw;
-  padding-left: 2em;
-  color: black;
-  font-family: Krungthep;
-
-  height: 10vh;
-  user-select: none;
-}
-
-#slogan{
-  grid-column-start: 1;
-  grid-column-end: span 2;
-  grid-row-start: 3;
-  grid-row-end: span 1;
-
-  font-size: 2vw;
-  padding-left: 1em;
-
-  font-family: Avenir;
-  user-select: none;
-}
-
-/* #logo{
-  height: 90vh;
-  opacity: 0.2;
-  z-index: -1;
-} */
-
-#signIn{
-  grid-column-start: 3;
-  grid-column-end: span 2;
-  grid-row-start: 2;
-  grid-row-end: span 1;
-
-  line-height: 24vh;
-
-  height: 3vh;
-  font-size: 2vw;
-  font-family: Avenir;
-  user-select: none;
-   
-}
-
-#signInForm{
-  grid-column-start: 3;
-  grid-column-end: span 3;
-  grid-row-start: 3;
-  grid-row-end: span 4;
-}
-
-#formFlex{
-  grid-column-start: 3;
-  grid-column-end: span 3;
-  grid-row-start: 3;
-  grid-row-end: span 4;
-
-  background: none;
-
+.signInForm{
   display: flex;
   flex-direction: column;
-  padding-top: 4.1em;
+  align-items: center;
 }
 
-#userLabel{
-  font-family: Avenir-Heavy;
-  font-size: 1.5vw;
-  user-select: none;
+.userLabel{
+  opacity: 0.8;
+  font-family: Avenir-Light;
+  font-size: 3vh;
+  color: #000000;
 }
 
-#name {
+.bubbles{
+  width: 100vw;
+}
+
+.name {
   opacity: 0.53;
   background: #D8D8D8;
   border: 2px solid #979797;
   border-radius: 10px;
-
-  width: 30vw;
+  width: 50vw;
   height: 5vh;
-  margin-top: 0.3em;
 }
 
-#passwordLabel{
-  font-family: Avenir-Heavy;
-  font-size: 1.5vw;
-  user-select: none;
+.passwordLabel{
+  opacity: 0.8;
+  font-family: Avenir-Light;
+  font-size: 3vh;
+  color: #000000;
 }
 
-#password {
+.password {
   opacity: 0.53;
   background: #D8D8D8;
   border: 2px solid #979797;
   border-radius: 10px;
-
-  width: 30vw;
+  width: 50vw;
   height: 5vh;
-  margin-top: 0.3em;
 }
 
 #submitLogin {
