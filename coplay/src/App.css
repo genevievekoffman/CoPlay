@@ -253,8 +253,8 @@ text-align: center;
   align-items: center;
   overflow: hidden;
   color: black;
-  display: grid;
-  grid-template-columns: repeat(8, auto);
+  display: flex;
+  flex-direction: row;
 }
 
 .topNav a {
