@@ -132,12 +132,12 @@ function AddTaskForm(props) {
                   </div>
                   <div className="modal-footer">
                     <button
+                      data-toggle="modal"
+                      data-target="#myModal"
                       type="button submit"
                       className="btn btn-primary btn-sm"
                       id="savee"
-                    >
-                      Save
-                    </button>
+                    >Save</button>
                     <button
                       type="button"
                       className="btn btn-secondary btn-sm"

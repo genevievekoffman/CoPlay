@@ -27,7 +27,7 @@ function Rewards(props) {
       <h4>
         {rewardsLists.map((reward, index) => {
 
-          return <Reward reward={reward} key={index} db={db} groupID ={groupID}/>;
+          return <Reward reward={reward} key={index} db={db} groupID={groupID} />;
         })}
       </h4>
 
@@ -47,14 +47,14 @@ function Rewards(props) {
           ></img>
         </div>
       ) : (
-        <img
-          className="profileIcon"
-          src="sketchImages/blackprofileicon.png"
-          onClick={() => {
-            displayPoints(db, setVisible, visible, setPoints, groupID);
-          }}
-        ></img>
-      )}
+          <img
+            className="profileIcon"
+            src="sketchImages/blackprofileicon.png"
+            onClick={() => {
+              displayPoints(db, setVisible, visible, setPoints, groupID);
+            }}
+          ></img>
+        )}
     </div>
   );
 }
@@ -129,11 +129,13 @@ function AddRewardForm(props) {
                   </div>
                   <div className="modal-footer">
 
-                  <button
+                    <button
+                      data-toggle="modal"
+                      data-target="#myModal"
                       type="button submit"
                       className="btn btn-primary btn-sm"
                       id="savee"
-                      
+
                     >
                       Save
                     </button>
@@ -193,8 +195,8 @@ function addReward(event, db, setRewardsList, setCounter, groupID) {
 
 function displayPoints(db, setVisible, visible, setPoints, groupID) {
   db.collection("Groups")
-  .doc(groupID)
-  .collection("Users")
+    .doc(groupID)
+    .collection("Users")
     .doc(sessionStorage.getItem("user"))
     .get()
     .then(userDB => {
