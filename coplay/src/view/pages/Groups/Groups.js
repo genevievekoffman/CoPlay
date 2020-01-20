@@ -37,23 +37,30 @@ function Groups(props) {
       </div>
 
       {visibleJOIN ? (
-        <form
+        <div className = "joinScreen">
+          <form
           className="joinGroupForm"
           onSubmit={event => {
             joinGroup(event, db, setGroupsList, setCounter);
           }}
         >
-          <input type="text" placeholder="group ID" name="groupID"></input>{" "}
+          <div className="groupIDlabel">Group ID</div>
+           
+          <input type="text" className = "groupID"  name="groupID"></input> 
           <br></br>
-          <input type="submit" value="Submit"></input>
-          <button
+          <input type="submit" className = "submitBtn" value="Submit"></input>
+          
+        </form>
+        <button className = "cancelJoinBtn"
             onClick={() => {
               cancelJoin(setVisibleJOIN);
             }}
           >
             Cancel
           </button>
-        </form>
+
+        </div>
+         
       ) : (
         ""
       )}

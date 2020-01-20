@@ -40,8 +40,10 @@
     margin-left: 80vw;
 } */
 
-.joinGroupForm{
-    border: 1px solid black;
+.joinGroupForm{ 
+    justify-content: center;
+    display: flex;
+    flex-direction: column
 }
 
 .joinBtn{
@@ -64,4 +66,49 @@
     height: 8vh;
     width: 7em;
     
+}
+
+.joinScreen{
+    border: 3px solid black;
+    background: white;
+    height: 50vh;
+    width: 15em;
+    position: absolute; 
+    border-radius: 8px;
+    margin: 0 auto; 
+     
+    
+}
+
+.groupID{
+    border: 1px solid black;
+    height: 5vh;
+    width: 10em;
+    border-radius: 9px;
+}
+
+.groupIDlabel{
+    height: 5vh;
+    width: 10em;
+    opacity: 0.8;
+    font-family: Avenir-Light;
+    font-size: 3vh;
+    color: #000000;
+    text-align: left;
+    margin:0 auto; 
+}
+
+.submitBtn{
+    height: 5vh;
+    width: 10em;
+    background: #A7E59D;
+    margin: 2em;
+}
+
+.cancelJoinBtn{
+    height: 5vh;
+    width: 10em;
+    background: #F04242;
+    margin-left: 2em;
+    margin-right: 2em;
 }
