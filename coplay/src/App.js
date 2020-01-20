@@ -55,7 +55,7 @@ function App() {
           <div className="screen">
             <div className="top">
               <div className="pinkBubble"></div>
-              <div className="blueBubble">Coplay</div>
+              <div className="blueBubble">Login</div>
             </div>
             <div className="bottom">
               <form
@@ -75,7 +75,6 @@ function App() {
               </form>
             </div>
           </div>
-
 
         </div>
       );
