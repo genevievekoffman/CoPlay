@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="9px" height="18px" viewBox="0 0 9 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Line 10</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Groups" transform="translate(-269.000000, -266.000000)">
+            <g id="Group-4" transform="translate(19.000000, 241.000000)">
+                <g id="Group" opacity="0.600888207" fill="#DCA162">
+                    <rect id="Rectangle" x="0" y="0" width="282" height="68" rx="15"></rect>
+                </g>
+                <g id="Group-2" transform="translate(225.000000, 0.000000)">
+                    <path d="M0,0 L44,0 C51.1797017,-1.31888981e-15 57,5.82029825 57,13 L57,55 C57,62.1797017 51.1797017,68 44,68 L0,68 L0,68 L0,0 Z" id="Rectangle" fill="#DCA162"></path>
+                    <polyline id="Line-10" stroke="#6D6B6B" stroke-linecap="square" points="26 25 33 34.2008919 26 43"></polyline>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
