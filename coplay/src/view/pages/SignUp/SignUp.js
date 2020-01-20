@@ -8,30 +8,27 @@ function SignUp(props) {
   const { db, setIsRegistering } = props;
 
   return (
-    <div className="grid">
-      <div id="leftCol"></div>
-      <div id="LogIn">Coplay</div>
-      <div id="slogan">
-        Coexisting sounds hard but<br></br>CoPlay sounds like fun
+    <div className="screen">
+      <div className="top">
+        <div className="blueBubbleRev">Sign Up</div>
+        <div className="pinkBubbleRev"></div>
       </div>
-
-      <form
-        id="createUserForm"
-        onSubmit={event => {
-          registerUser(event, db, setIsRegistering);
-        }}
-      >
-        <div id="formFlex">
-          <div id="userLabel">Username</div>
-          <input type="text" name="username" id="name"></input>
+      <div className="bottom">
+        <form
+          className="createUserForm"
+          onSubmit={event => {
+            registerUser(event, db, setIsRegistering);
+          }}
+        >
+          <div className="userLabel">username</div>
+          <input type="text" name="username" className="name"></input>
           <br></br>
-          <div id="passwordLabel">Password</div>
-          <input type="text" name="password" id="password"></input>
+          <div className="passwordLabel">password</div>
+          <input type="text" name="password" className="password"></input>
           <br></br>
-          <input type="submit" id="submitLogin" value="Create Account"></input>
-        </div>
-        <img src="sketchImages/lego.png"></img>
-      </form>
+          <input type="submit" className="submitLogin" value="create account"></input>
+        </form>
+      </div>
     </div>
   );
 }
@@ -57,9 +54,9 @@ async function registerUser(e, db, setIsRegistering) {
         .doc(username)
         .set({
           name: username,
-          password: password 
+          password: password
         });
-       
+
       setIsRegistering(false);
     } else {
       alert("Username already exists, choose a different username");
