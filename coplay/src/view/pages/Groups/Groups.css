@@ -7,7 +7,7 @@
 }
 
 .groupButtons{
-    border: 1px solid red;
+  
     display: flex;
     margin:1em;
 
@@ -38,10 +38,27 @@
     }
 }
 
-.addGroupButton{
+/* .addGroupButton{
     margin-left: 80vw;
-}
+} */
 
 .joinGroupForm{
     border: 1px solid black;
+}
+
+.joinBtn{
+    opacity: 0.6;
+    background: #F04242;
+    border-radius: 22.5px;
+    font-family: Avenir-Book;
+    font-size: 3vh;
+    color: #000000;
+}
+
+.createBtn{
+    background: #A7E59D;
+    border-radius: 22.5px;
+    font-family: Avenir-Book;
+    font-size: 3vh;
+    color: #000000;
 }

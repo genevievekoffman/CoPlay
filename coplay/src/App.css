@@ -343,20 +343,7 @@ text-align: center;
   
 }
 
-#plus{
-  width: 3vw;
-  height: 3vw;
-  margin-bottom: 40px;
-  margin-right: 2vw;
-  position: relative;
-  margin-top: 60px;
-  left: 50%;
-  transform: translateX(-500%);
-  
-
-  
-
-}
+ 
 
 h4{
   margin-left: 0;

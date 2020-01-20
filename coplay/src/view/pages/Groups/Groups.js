@@ -7,6 +7,7 @@ function Groups(props) {
   const [groupsList, setGroupsList] = useState([]);
   const [counter, setCounter] = useState(0);
   const [visibleJOIN, setVisibleJOIN] = useState(false);
+ 
 
   if (counter < 1) {
     fetchMyGroups(db, setGroupsList, setCounter);
@@ -25,13 +26,13 @@ function Groups(props) {
           />
         }
 
-        <button
+        <button className = "joinBtn"
           onClick={() => {
             joinClicked(setVisibleJOIN);
           }}
         >
-          {" "}
-          JOIN A GROUP{" "}
+           
+          Join 
         </button>
       </div>
 
@@ -65,7 +66,7 @@ function Groups(props) {
               key={index}
               setGroupID={setGroupID}
               setHomePage={setHomePage}
-              setName={setName}
+              setName={setName} 
             />
           );
         })}
@@ -153,19 +154,18 @@ function addGroup(event, db, setGroupsList, setCounter) {
 
 function AddGroupForm(props) {
   const { db, setGroupsList, setCounter } = props;
-  console.log("form opened");
 
   return (
-    <div className="container">
-      {" "}
-      <button
+    <div> 
+      <button className = "createBtn"
         data-toggle="modal"
         data-target="#myModal"
         id="plus"
-        className="addGroupButton"
+        // className="addGroupButton"
       >
-        +
+        Create
       </button>
+      
       <div className="row">
         <div className="col-md-12">
           <div className="modal fade" id="myModal">

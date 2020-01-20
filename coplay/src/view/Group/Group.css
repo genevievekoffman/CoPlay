@@ -1,4 +1,4 @@
-.group{
+/* .group{
     text-align: center;
     padding-top: 1.5em; 
     padding-bottom: 1.5em; 
@@ -9,13 +9,13 @@
     font-family: Avenir-Book;
  
     opacity: 60%;
-}
+} */
 
-.group:hover{
+/* .group:hover{
     color: gray;
     box-shadow: 5px 5px;
     cursor: pointer;
-}
+} */
 
 .groupName{
     background: #dca16294;
@@ -23,21 +23,28 @@
     color: rgba(0, 0, 0, 0.678);
     display: flex;
     justify-content: space-between;
+    margin:1em;
 
 }
 
 .right_box{
-    width: 100px;
+    width: 80px;
     background: #dca162;
     border-radius: 0px 15px 15px 0pc;
     padding: 20px;
+    justify-content: center;
     
 }
 
 .left_box{
     padding: 20px;
+    font-family: Avenir-Book;
+    font-size: 3.5vh;
 }
-
+ 
+.rightarrow{
+    height: 3.5vh;
+}
 /* .subInfo{
     size: 0.5 vh;
     color: black
