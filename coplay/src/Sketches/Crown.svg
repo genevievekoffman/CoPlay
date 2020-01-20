@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="50px" height="41px" viewBox="0 0 50 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>crown</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="iPhone-SE-Copy-2" transform="translate(-258.000000, -118.000000)" stroke="#000000">
+            <g id="crown" transform="translate(258.000000, 118.000000)">
+                <polygon id="Line-14" fill="#E4CB68" stroke-linecap="square" points="10.954833 36 2 10.4540586 17.0131849 23.5062487 24.6956617 3 33.3092229 23.5062487 47 10.4540586 41.1564014 36"></polygon>
+                <circle id="Oval" fill="#E4CB68" cx="48" cy="9" r="1.5"></circle>
+                <circle id="Oval" fill="#E4CB68" cx="2" cy="9" r="1.5"></circle>
+                <circle id="Oval" fill="#E4CB68" cx="25" cy="2" r="1.5"></circle>
+                <rect id="Rectangle" fill="#E4CB68" x="11.5" y="38.5" width="29" height="2"></rect>
+                <ellipse id="Oval" fill="#E13131" cx="25.5" cy="26" rx="2" ry="5.5"></ellipse>
+            </g>
+        </g>
+    </g>
+</svg>
