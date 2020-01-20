@@ -18,6 +18,7 @@ function Groups(props) {
       <header className="groupPageTitle">My Groups</header>
 
       <div className="groupButtons">
+         
         {
           <AddGroupForm
             db={db}
@@ -31,7 +32,6 @@ function Groups(props) {
             joinClicked(setVisibleJOIN);
           }}
         >
-           
           Join 
         </button>
       </div>

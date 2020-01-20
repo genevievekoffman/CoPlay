@@ -44,6 +44,7 @@
  
 .rightarrow{
     height: 3.5vh;
+    justify-content: center;
 }
 /* .subInfo{
     size: 0.5 vh;
