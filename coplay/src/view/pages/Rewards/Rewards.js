@@ -129,20 +129,22 @@ function AddRewardForm(props) {
                   </div>
                   <div className="modal-footer">
 
-                    <input
+                  <button
+                      type="button submit"
                       className="btn btn-primary btn-sm"
-                      type="submit"
                       id="savee"
-                      value="Save"
-                      name="save"
-                    />
-                    <input
+                      
+                    >
+                      Save
+                    </button>
+                    <button
+                      type="button"
                       className="btn btn-secondary btn-sm"
                       id="cancell"
-                      value="Cancel"
-                      type="button"
                       data-dismiss="modal"
-                    />
+                    >
+                      Cancel
+                    </button>
 
                   </div>
                 </form>
