@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import "./Rewards.css";
 import Reward from "../../Reward/Reward";
 
+import star from "../../../Sketches/Star.svg";
+
+
 function Rewards(props) {
   const [rewardsLists, setRewardsList] = useState([]);
   const [counter, setCounter] = useState(0);
   const { db, groupID } = props;
-  const [visible, setVisible] = useState(false);
   const [points, setPoints] = useState(" ");
 
   if (counter === 0) {
@@ -32,30 +34,13 @@ function Rewards(props) {
         })}
       </h4>
 
-      {visible ? (
-        <div>
-          <div id="points" className="points">
-            {" "}
-            {points}{" "}
-          </div>
-
-          <img
-            className="profileIcon"
-            src="sketchImages/blackprofileicon.png"
-            onClick={() => {
-              displayPoints(db, setVisible, visible, setPoints, groupID);
-            }}
-          ></img>
-        </div>
-      ) : (
-          <img
-            className="profileIcon"
-            src="sketchImages/blackprofileicon.png"
-            onClick={() => {
-              displayPoints(db, setVisible, visible, setPoints, groupID);
-            }}
-          ></img>
-        )}
+       
+      <div className = "pointsHolder">  
+          <img src={star} className="star" alt="star" className = "star" />
+          {displayPoints(db, setPoints, groupID)}
+          <div id="points" className="points"> {points} </div> 
+      </div>
+         
     </div>
   );
 }
@@ -194,7 +179,7 @@ function addReward(event, db, setRewardsList, setCounter, groupID) {
   updateRewards(setRewardsList, setCounter, db, groupID);
 }
 
-function displayPoints(db, setVisible, visible, setPoints, groupID) {
+function displayPoints(db, setPoints, groupID) {
   db.collection("Groups")
     .doc(groupID)
     .collection("Users")
@@ -202,9 +187,8 @@ function displayPoints(db, setVisible, visible, setPoints, groupID) {
     .get()
     .then(userDB => {
       let points = userDB.get("totalPoints");
-      console.log(userDB.get("totalPoints"))
+       
       setPoints(points);
-      console.log(points);
-      setVisible(!visible);
+       
     });
 }
