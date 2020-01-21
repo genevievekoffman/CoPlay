@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import "./Groups.css";
 import Group from "../../Group/Group";
 
+//component
+import twoCircles from "../../../Sketches/Twocircles.svg";
+
 function Groups(props) {
   const { db, setGroupID, setHomePage, setName } = props;
   const [groupsList, setGroupsList] = useState([]);
   const [counter, setCounter] = useState(0);
   const [visibleJOIN, setVisibleJOIN] = useState(false);
- 
+  const [circlesClicked, setCirclesClicked] = useState(0);
 
   if (counter < 1) {
     fetchMyGroups(db, setGroupsList, setCounter);
@@ -15,10 +18,18 @@ function Groups(props) {
 
   return (
     <div>
+      <img
+        src={twoCircles}
+        className="twoCircles"
+        alt="twoCircles"
+        onClick={() => {
+          twoCirclesClicked(setCirclesClicked, circlesClicked);
+        }}
+      />
+
       <header className="groupPageTitle">My Groups</header>
 
       <div className="groupButtons">
-         
         {
           <AddGroupForm
             db={db}
@@ -27,57 +38,74 @@ function Groups(props) {
           />
         }
 
-        <button className = "joinBtn"
+        <button
+          className="joinBtn"
           onClick={() => {
             joinClicked(setVisibleJOIN);
           }}
         >
-          Join 
+          Join
         </button>
       </div>
 
       {visibleJOIN ? (
-        <div className = "joinScreen">
+        <div className="joinScreen">
           <form
-          className="joinGroupForm"
-          onSubmit={event => {
-            joinGroup(event, db, setGroupsList, setCounter);
-          }}
-        >
-          <div className="groupIDlabel">Group ID</div>
-           
-          <input type="text" className = "groupID"  name="groupID"></input> 
-          <br></br>
-          <input type="submit" className = "submitBtn" value="Submit"></input>
-          
-        </form>
-        <button className = "cancelJoinBtn"
+            className="joinGroupForm"
+            onSubmit={event => {
+              joinGroup(event, db, setGroupsList, setCounter);
+            }}
+          >
+            <div className="groupIDlabel">Group ID</div>
+
+            <input type="text" className="groupID" name="groupID"></input>
+            <br></br>
+            <input type="submit" className="submitBtn" value="Submit"></input>
+          </form>
+          <button
+            className="cancelJoinBtn"
             onClick={() => {
               cancelJoin(setVisibleJOIN);
             }}
           >
             Cancel
           </button>
-
         </div>
-         
       ) : (
         ""
       )}
 
-      <div className="groupContainer">
-        {groupsList.map((group, index) => {
-          return (
-            <Group
-              group={group}
-              key={index}
-              setGroupID={setGroupID}
-              setHomePage={setHomePage}
-              setName={setName} 
-            />
-          );
-        })}
-      </div>
+      {circlesClicked === 1 ? ( //1->they clicked it (group ID's are shown)
+        <div className="groupContainer">
+          {groupsList.map((group, index) => {
+            return (
+              <Group
+                group={group}
+                key={index}
+                setGroupID={setGroupID}
+                setHomePage={setHomePage}
+                setName={setName}
+                ids = {true}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <div className="groupContainer">
+          {groupsList.map((group, index) => {
+            return (
+              <Group
+                group={group}
+                key={index}
+                setGroupID={setGroupID}
+                setHomePage={setHomePage}
+                setName={setName}
+                ids = {false}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
@@ -163,8 +191,9 @@ function AddGroupForm(props) {
   const { db, setGroupsList, setCounter } = props;
 
   return (
-    <div> 
-      <button className = "createBtn"
+    <div>
+      <button
+        className="createBtn"
         data-toggle="modal"
         data-target="#myModal"
         id="plus"
@@ -172,7 +201,7 @@ function AddGroupForm(props) {
       >
         Create
       </button>
-      
+
       <div className="row">
         <div className="col-md-12">
           <div className="modal fade" id="myModal">
@@ -295,4 +324,12 @@ async function getName(groupID, db) {
     }
   });
   return name;
+}
+
+function twoCirclesClicked(setCirclesClicked, circlesClicked) {
+  if (circlesClicked === 0){
+    setCirclesClicked(1);
+  } else {
+    setCirclesClicked(0);
+  }  
 }
