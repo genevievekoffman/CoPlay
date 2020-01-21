@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import "./App.css";
 import firebase from "firebase";
 
@@ -36,7 +36,7 @@ firebase.analytics();
 const DB = firebase.firestore();
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem("loggedIn"));
   const [isRegistering, setIsRegistering] = useState(false);
 
   const [homePage, setHomePage] = useState(false); //for changing to task page from groups
@@ -132,18 +132,17 @@ function App() {
                 <Nav>
                 </Nav>
               {/* </Navbar.Collapse> */}
-                  <button id = "NavButton LogOut" onClick={() => setIsLoggedIn(false)}>Log Out</button>
+                  <button id = "NavButton LogOut" onClick={() => checkLogin(setIsLoggedIn)}>Log Out</button>
             </Navbar>
 
-
-          <h1>{name}</h1>
+           
 
           <Switch>
             <Route exact path="/leaderboardpage">
               <LeaderBoard db={DB} groupID={groupID} />
             </Route>
             <Route exact path="/">
-              <Tasks db={DB} groupID={groupID} />
+              <Tasks db={DB} groupID={groupID} name = {name} />
             </Route>
             <Route path="/rewardspage">
               <Rewards db={DB} groupID={groupID} />
@@ -172,7 +171,8 @@ function checkUser(e, setIsLoggedIn) {
         if (password === doc.data().password) {
           console.log("passwords match");
           sessionStorage.setItem("user", username); //saves to local storage
-          setIsLoggedIn(true);
+          sessionStorage.setItem("loggedIn", true)
+          setIsLoggedIn(sessionStorage.getItem("loggedIn"));
         } else {
           console.log("passwords dont match");
           alert("Either the username or password is incorrect");
@@ -188,6 +188,16 @@ function checkUser(e, setIsLoggedIn) {
 function newUser(setIsRegistering) {
   console.log("new user clicked");
   setIsRegistering(true);
+}
+
+function checkLogin(setIsLoggedIn){
+  console.log("running")
+  sessionStorage.removeItem("loggedIn")
+  sessionStorage.removeItem("user")
+
+  setTimeout(function() {
+    setIsLoggedIn(false)
+  }, 500)
 }
 
 export default App;

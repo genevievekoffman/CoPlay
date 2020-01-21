@@ -140,7 +140,7 @@ function deleteTaskClicked(task, groupID, db, setTaskDeleted) {
     .doc(task)
     .delete();
   setTaskDeleted(true)
-  window.location.reload()
+  //window.location.reload()
 }
 
 export default Task;

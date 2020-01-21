@@ -2,10 +2,14 @@ import React, { useState } from "react";
 import "./Groups.css";
 import Group from "../../Group/Group";
 
+//component
+import twoCircles from "../../../Sketches/Twocircles.svg";
+
 function Groups(props) {
   const { db, setGroupID, setHomePage, setName } = props;
   const [groupsList, setGroupsList] = useState([]);
   const [counter, setCounter] = useState(0);
+
 
   if (counter < 1) {
     fetchMyGroups(db, setGroupsList, setCounter);
@@ -13,6 +17,15 @@ function Groups(props) {
 
   return (
     <div>
+      <img
+        src={twoCircles}
+        className="twoCircles"
+        alt="twoCircles"
+        onClick={() => {
+          twoCirclesClicked(setCirclesClicked, circlesClicked);
+        }}
+      />
+
       <header className="groupPageTitle">My Groups</header>
 
       <div className="groupButtons">
@@ -23,6 +36,7 @@ function Groups(props) {
             setCounter={setCounter}
           />
         }
+            
         <JoinGroupForm
           db={db}
           setGroupsList={setGroupsList}
@@ -43,6 +57,40 @@ function Groups(props) {
           );
         })}
       </div>
+
+
+      {circlesClicked === 1 ? ( //1->they clicked it (group ID's are shown)
+        <div className="groupContainer">
+          {groupsList.map((group, index) => {
+            return (
+              <Group
+                group={group}
+                key={index}
+                setGroupID={setGroupID}
+                setHomePage={setHomePage}
+                setName={setName}
+                ids = {true}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <div className="groupContainer">
+          {groupsList.map((group, index) => {
+            return (
+              <Group
+                group={group}
+                key={index}
+                setGroupID={setGroupID}
+                setHomePage={setHomePage}
+                setName={setName}
+                ids = {false}
+              />
+            );
+          })}
+        </div>
+      )}
+
     </div>
   );
 }
@@ -322,4 +370,12 @@ async function getName(groupID, db) {
     }
   });
   return name;
+}
+
+function twoCirclesClicked(setCirclesClicked, circlesClicked) {
+  if (circlesClicked === 0){
+    setCirclesClicked(1);
+  } else {
+    setCirclesClicked(0);
+  }  
 }
