@@ -19,6 +19,7 @@ function Group(props) {
         onClick={() => {
           setGroupID(group[1]);
           setName(group[0]);
+          sessionStorage.setItem("onTasks", true);
           setHomePage(true); //changes screen
         }}
       >

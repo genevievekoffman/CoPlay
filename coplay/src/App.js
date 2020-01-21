@@ -39,7 +39,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem("loggedIn"));
   const [isRegistering, setIsRegistering] = useState(false);
 
-  const [homePage, setHomePage] = useState(false); //for changing to task page from groups
+  const [homePage, setHomePage] = useState(sessionStorage.getItem("onTasks")); //for changing to task page from groups
   const [groupID, setGroupID] = useState("");
   const [name, setName] = useState("");
   //useEffect(() => updateTasks(setTasksList), []);
@@ -114,7 +114,7 @@ function App() {
         <div>
             <Navbar collapseOnSelect expand="lg" variant="light">
               {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" /> */}
-              <button id = "NavButton GroupOut" onClick={() => setHomePage(false)}>Back to Groups</button>
+              <button id = "NavButton GroupOut" onClick={() => {sessionStorage.removeItem("onTasks"); setHomePage(false)}}>Back to Groups</button>
               {/* <Navbar.Collapse id="responsive-navbar-nav"> */}
                 <Nav className="mr-auto">
                   <NavDropdown title="Pages" id="collasible-nav-dropdown">
@@ -194,6 +194,7 @@ function checkLogin(setIsLoggedIn){
   console.log("running")
   sessionStorage.removeItem("loggedIn")
   sessionStorage.removeItem("user")
+  sessionStorage.removeItem("onTasks")
 
   setTimeout(function() {
     setIsLoggedIn(false)
