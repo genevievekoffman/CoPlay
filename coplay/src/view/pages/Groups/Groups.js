@@ -9,7 +9,7 @@ function Groups(props) {
   const { db, setGroupID, setHomePage, setName } = props;
   const [groupsList, setGroupsList] = useState([]);
   const [counter, setCounter] = useState(0);
-
+  const [circlesClicked, setCirclesClicked] = useState(0);
 
   if (counter < 1) {
     fetchMyGroups(db, setGroupsList, setCounter);
@@ -42,20 +42,6 @@ function Groups(props) {
           setGroupsList={setGroupsList}
           setCounter={setCounter}
         />
-      </div>
-
-      <div className="groupContainer">
-        {groupsList.map((group, index) => {
-          return (
-            <Group
-              group={group}
-              key={index}
-              setGroupID={setGroupID}
-              setHomePage={setHomePage}
-              setName={setName}
-            />
-          );
-        })}
       </div>
 
 
