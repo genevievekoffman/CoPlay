@@ -197,7 +197,7 @@ function checkLogin(setIsLoggedIn){
 
   setTimeout(function() {
     setIsLoggedIn(false)
-  }, 1000)
+  }, 500)
 }
 
 export default App;
