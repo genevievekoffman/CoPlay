@@ -7,7 +7,7 @@ import crown from "../../Sketches/Crown.svg";
 function Leader(props) {
     const { user, index } = props;
 
-    if (sessionStorage.getItem("user") == user[0]) { //current user
+    if (sessionStorage.getItem("user") === user[0]) { //current user
         return(
             <div className = "leaderMe" key={index}> 
             {user[0]}, 

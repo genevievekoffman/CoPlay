@@ -250,10 +250,11 @@ text-align: center;
 
  
 .topNav{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 1em;
+  align-items: center;
+  color: black;
+  display: grid;
+  grid-template-columns: repeat(8, auto);
+
 }
 
 .topNav a {
@@ -280,6 +281,11 @@ text-align: center;
   
 }
 
+#collasible-nav-dropdown{
+  z-index: 99;
+  overflow:visible;
+}
+
  
 
 h4{
@@ -287,11 +293,22 @@ h4{
   transform: translateX(-5%);
 }
 
-/*#savee{
-  margin-right: 13vw;
+.navbar{
+  justify-content: space-between;
+  position:absolute;
+  flex-wrap: nowrap !important;
 }
 
-#cancell{
-  margin-right: 2vw;
+#NavButton{
+  position: absolute;
+  justify-content: space-between;
 }
-*/
+
+#GroupOut{
+  margin-left: 0;
+}
+
+#LogOut{
+  margin-right: 0;
+
+}
