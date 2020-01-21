@@ -77,6 +77,7 @@ function updateTasks(setTasksList, setCounter, db, groupID) {
         taskInfo.push(taskDB.get("task"));
         taskInfo.push(taskDB.get("points"));
         taskInfo.push(taskDB.get("completed"));
+        taskInfo.push(taskDB.get("completedBy"))
 
         list.push(taskInfo);
       });
@@ -182,7 +183,8 @@ function addTask(event, db, setTasksList, setCounter, groupID) {
         points: points,
         completed: false,
         task: title,
-        time: Date.now()
+        time: Date.now(),
+        completedBy: null
       });
   }
 

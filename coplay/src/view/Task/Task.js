@@ -81,7 +81,8 @@ function completeTask(task, points, db, setTaskCompleted, groupID) {
     .collection("Tasks")
     .doc(task)
     .update({
-      completed: true
+      completed: true,
+      completedBy: sessionStorage.getItem("user")
     });
 
   db.collection("Groups")
