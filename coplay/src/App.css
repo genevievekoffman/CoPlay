@@ -288,11 +288,22 @@ h4{
   transform: translateX(-5%);
 }
 
-/*#savee{
-  margin-right: 13vw;
+.navbar{
+  justify-content: space-between;
+  position:absolute;
+  flex-wrap: nowrap !important;
 }
 
-#cancell{
-  margin-right: 2vw;
+#NavButton{
+  position: absolute;
+  justify-content: space-between;
 }
-*/
+
+#GroupOut{
+  margin-left: 0;
+}
+
+#LogOut{
+  margin-right: 0;
+
+}

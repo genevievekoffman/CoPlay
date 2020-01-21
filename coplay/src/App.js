@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import firebase from "firebase";
 
-import { Manager, Reference, Popper } from "react-popper";
-
 import Rewards from "./view/pages/Rewards/Rewards";
 import Tasks from "./view/pages/Tasks/Tasks";
 import LeaderBoard from "./view/pages/LeaderBoard/LeaderBoard";
@@ -112,33 +110,30 @@ function App() {
       );
     }
     return (
-      //use task state to get the name of the group
       <Router>
         <div>
-          <ul className="topNav">
-            <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" eventKey="1">
-              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <button onClick={() => setHomePage(false)}>Back to Groups</button>
-              <Navbar.Collapse id="responsive-navbar-nav">
-                {/* <Nav className="mr-auto"> */}
-                  <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
-                    <li className="link">
+            <Navbar collapseOnSelect expand="lg" variant="light">
+              {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" /> */}
+              <button id = "NavButton GroupOut" onClick={() => setHomePage(false)}>Back to Groups</button>
+              {/* <Navbar.Collapse id="responsive-navbar-nav"> */}
+                <Nav className="mr-auto">
+                  <NavDropdown title="Pages" id="collasible-nav-dropdown">
+                    <li className="link" onSelect={() => null}>
                       <Link to="/leaderboardpage">Leaderboard Page</Link>
                     </li>
-                    <li className="link">
+                    <li className="link" eventKey="1" >
                       <Link to="/">Tasks Page</Link>
                     </li>
                     <li className="link">
                       <Link to="/rewardspage">Rewards page</Link>
                     </li>
                   </NavDropdown>
-                {/* </Nav> */}
-                <Nav>
-                  <button onClick={() => setIsLoggedIn(false)}>Log Out</button>
                 </Nav>
-              </Navbar.Collapse>
+                <Nav>
+                </Nav>
+              {/* </Navbar.Collapse> */}
+                  <button id = "NavButton LogOut" onClick={() => setIsLoggedIn(false)}>Log Out</button>
             </Navbar>
-          </ul>
 
           <h1>{name}</h1>
 
