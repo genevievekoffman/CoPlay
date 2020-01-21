@@ -91,8 +91,8 @@ function AddTaskForm(props) {
   const { db, setTasksList, setCounter, groupID } = props;
 
   return (
-    <div className="container">
-      {" "}
+    <div className="addTaskBtn">
+       
       <button
         data-toggle="modal"
         data-target="#myModal"
