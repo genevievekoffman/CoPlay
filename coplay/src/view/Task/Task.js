@@ -8,10 +8,10 @@ function Task(props) {
   //passed an array of tasks
   const { task, index, db, groupID, setTaskDeleted } = props;
   const [taskWasClicked, setTaskWasClicked] = useState(false);
+  const [totalCompleted, setTotalCompleted] = useState(0) //getCompCount(db,groupID,task)
 
-  let completion = task[2];
-  // console.log("Running", task[0], task.completed)
-  const [taskCompleted, setTaskCompleted] = useState(completion);
+  //let completion = task[2];  //amount of times completed
+  //const [taskCompleted, setTaskCompleted] = useState(completion);
 
   return (
     <div
@@ -19,7 +19,7 @@ function Task(props) {
       key={index}
        
     >
-      <div>
+      {/* <div>
         {taskCompleted ? (
           <div className="checkBox"> X </div>
         ) : (
@@ -30,7 +30,7 @@ function Task(props) {
             }
           ></button>
         )}
-      </div>
+      </div> */}
 
       <div className="aTask" onClick={() => {
         taskClicked(task, setTaskWasClicked);
@@ -41,19 +41,20 @@ function Task(props) {
             <img src={pinkarrow} className="pinkarrow" alt="pinkarrow" />
 
             <div className="subInfo">
-              {task[1]} points
-              {taskCompleted ? (
+              {task[1]} points <br></br>
+              completed count: {totalCompleted}
+              
                 <div>
-                  <div>completed by</div>
-                  <div>@{task[3]}</div>
+                  {/* <div>completed by</div>
+                  <div>@{task[3]}</div> */}
                   <div className="twoBtns">
                     <button
                       className="taskResetBtn"
                       onClick={() => {
-                        resetTaskClicked();
+                        completeTask(task[0], task[1], db, groupID, setTotalCompleted)
                       }}
                     >
-                      Reset
+                      Complete
                     </button>
                     <button
                       className="taskResetBtn"
@@ -65,9 +66,7 @@ function Task(props) {
                     </button>
                   </div>
                 </div>
-              ) : (
-                <div> incomplete </div>
-              )}
+                
             </div>
           </div>
         ) : (
@@ -78,7 +77,7 @@ function Task(props) {
   );
 }
 
-function completeTask(task, points, db, setTaskCompleted, groupID) {
+function completeTask(task, points, db, groupID, setTotalCompleted) {
   //should also update in Groups
   db.collection("Users")
     .doc(sessionStorage.getItem("user"))
@@ -93,16 +92,26 @@ function completeTask(task, points, db, setTaskCompleted, groupID) {
           " has been added to your account"
       );
     });
-
-  setTaskCompleted(true);
+ 
+    //get the amount of times completed from firebase and update it +1
   db.collection("Groups")
     .doc(groupID)
     .collection("Tasks")
     .doc(task)
-    .update({
-      completed: true,
-      completedBy: sessionStorage.getItem("user")
-    });
+    .get()
+    .then(taskDB => {
+      let totalTimesCompleted = taskDB.get("completedCount");
+      let total = totalTimesCompleted+1;
+      setTotalCompleted(total);
+        db.collection("Groups")
+        .doc(groupID)
+        .collection("Tasks")
+        .doc(task)
+        .update({
+          completedCount: total,
+          completedBy: sessionStorage.getItem("user") //most recent user who completed it 
+        })
+    }) 
 
   db.collection("Groups")
     .doc(groupID)
@@ -111,6 +120,7 @@ function completeTask(task, points, db, setTaskCompleted, groupID) {
     .get()
     .then(function(doc) {
       let total = doc.get("totalPoints") + points;
+       
 
       db.collection("Groups") //points are updated in Groups Collection for the specific user
         .doc(groupID)
@@ -128,9 +138,7 @@ function taskClicked(task, setTaskWasClicked) {
   setTaskWasClicked(true);
 }
 
-function resetTaskClicked() {
-  console.log("reset button clicked");
-}
+ 
 
 function deleteTaskClicked(task, groupID, db, setTaskDeleted) {
   console.log("delete button clicked");
@@ -144,3 +152,16 @@ function deleteTaskClicked(task, groupID, db, setTaskDeleted) {
 }
 
 export default Task;
+
+
+// function getCompCount(db,groupID, task){
+//   db.collection("Groups")
+//   .doc(groupID)
+//   .collection("Tasks")
+//   .doc(task)
+//   .get()
+//   .then(taskDB => {
+//     let totalTimesCompleted = taskDB.get("completedCount"); 
+//     }
+//   )
+// }

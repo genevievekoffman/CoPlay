@@ -84,8 +84,9 @@ function updateTasks(setTasksList, setCounter, db, groupID) {
         let taskInfo = [];
         taskInfo.push(taskDB.get("task"));
         taskInfo.push(taskDB.get("points"));
-        taskInfo.push(taskDB.get("completed"));
+        taskInfo.push(taskDB.get("completedCount"));
         taskInfo.push(taskDB.get("completedBy"));
+
 
         list.push(taskInfo);
       });
@@ -185,11 +186,11 @@ function addTask(event, db, setTasksList, setCounter, groupID) {
       .collection("Tasks")
       .doc(title)
       .set({
-        points: points,
-        completed: false,
+        points: points, 
         task: title,
         time: Date.now(),
-        completedBy: null
+        completedBy: null,
+        completedCount: 0
       });
   }
 
