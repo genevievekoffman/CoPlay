@@ -175,6 +175,8 @@ function addTask(event, db, setTasksList, setCounter, groupID) {
     alert("Must enter a title");
   } else if (points === "") {
     alert("Must enter points");
+  } else if (parseInt(points) <= 0) {
+    alert("Invalid Input. Stay Positive!")
   } else {
     points = parseInt(points);
     console.log(
