@@ -1,12 +1,11 @@
 
 .reward{
     display: flex;
-    justify-content: center;
     padding: 20px;
     margin: 0.5em;
     font-family: Avenir-Light;
-    color: black;
-    text-align: center;
+    color: black; 
+    float:left;
     
 }
 
@@ -23,9 +22,15 @@
 }
 
 .rewardBig{
-    font-size: 1.5vw;
+    font-size: 0.8em;
+    float:left;
 }
 
 .rewardSmall{
-    font-size: 1vw;
+    font-size: 0.8em;
+    margin-left: 1em;
+}
+
+.star{
+    height: 2em;
 }

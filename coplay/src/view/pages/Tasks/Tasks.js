@@ -6,7 +6,7 @@ import Task from "../../Task/Task";
 import plus from "../../../Sketches/Plus.svg";
 
 function Tasks(props) {
-  const { db, groupID } = props;
+  const { db, groupID, name } = props;
   const [counter, setCounter] = useState(0);
   const [tasksLists, setTasksList] = useState([]);
   const [visible, setVisible] = useState(false);
@@ -24,9 +24,12 @@ function Tasks(props) {
 
   return (
     <div className="App2">
-       
-
+      <div className = "taskTitle">
+          {name}
+      </div>
+        
       <div className = "tasksMappedContainer">
+         
         <h4>
           {tasksLists.map((task, index) => {
             return (
