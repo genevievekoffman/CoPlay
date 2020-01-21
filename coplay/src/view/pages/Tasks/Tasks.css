@@ -32,3 +32,9 @@
   margin-top: 2em;
   padding-bottom:0.5em;
 }
+
+.pointsHolder{
+  position: absolute;
+  bottom: 1em;
+  left: 1em; 
+}
