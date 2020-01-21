@@ -5,9 +5,6 @@ import firebase from "firebase";
 import Rewards from "./view/pages/Rewards/Rewards";
 import Tasks from "./view/pages/Tasks/Tasks";
 import LeaderBoard from "./view/pages/LeaderBoard/LeaderBoard";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
@@ -101,42 +98,33 @@ function App() {
     //someone is logged in
     if (!homePage) {
       return (
+        <div>
+        <button id = "NavButton LogOut" onClick={() => checkLogin(setIsLoggedIn)}>Log Out</button>
         <Groups
           db={DB}
           setGroupID={setGroupID}
           setHomePage={setHomePage}
           setName={setName}
         />
+        </div>
       );
     }
     return (
       <Router>
         <div>
-            <Navbar collapseOnSelect expand="lg" variant="light">
-              {/* <Navbar.Toggle aria-controls="responsive-navbar-nav" /> */}
+          <div id = "dock">
               <button id = "NavButton GroupOut" onClick={() => setHomePage(false)}>Back to Groups</button>
-              {/* <Navbar.Collapse id="responsive-navbar-nav"> */}
-                <Nav className="mr-auto">
-                  <NavDropdown title="Pages" id="collasible-nav-dropdown">
-                    <li className="link" onSelect={() => null}>
-                      <Link to="/leaderboardpage">Leaderboard Page</Link>
-                    </li>
-                    <li className="link" eventKey="1" >
-                      <Link to="/">Tasks Page</Link>
-                    </li>
-                    <li className="link">
-                      <Link to="/rewardspage">Rewards page</Link>
-                    </li>
-                  </NavDropdown>
-                </Nav>
-                <Nav>
-                </Nav>
-              {/* </Navbar.Collapse> */}
+                    <div className="link" onSelect={() => null}>
+                      <Link to="/leaderboardpage">Leaderboard</Link>
+                    </div>
+                    <div className="link" eventKey="1">
+                      <Link to="/">Tasks</Link>
+                    </div>
+                    <div className="link">
+                      <Link to="/rewardspage">Rewards</Link>
+                    </div>
                   <button id = "NavButton LogOut" onClick={() => checkLogin(setIsLoggedIn)}>Log Out</button>
-            </Navbar>
-
-           
-
+                  </div>
           <Switch>
             <Route exact path="/leaderboardpage">
               <LeaderBoard db={DB} groupID={groupID} />
