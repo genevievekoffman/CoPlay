@@ -153,7 +153,6 @@ function addGroup(event, db, setGroupsList, setCounter) {
 
 function AddGroupForm(props) {
   const { db, setGroupsList, setCounter } = props;
-  console.log("ADD GROUP TIME");
   return (
     <div>
       <button
@@ -222,7 +221,6 @@ function AddGroupForm(props) {
 }
 function JoinGroupForm(props) {
   const { db, setGroupsList, setCounter } = props;
-  console.log("JOIN GROUP TIME");
   return (
     <div>
       <button
