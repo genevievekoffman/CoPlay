@@ -163,3 +163,21 @@ h1{
     flex-direction: row;
     margin-top: 0.5em;
 }
+
+.twoBtns{
+    display: flex;
+    justify-content: space-between;
+    margin-right:1em;
+}
+.taskResetBtn{
+    background: #F04242;
+    border-radius: 13.5px;
+     
+    font-family: Avenir-Light;
+    font-size: 2.8vh;
+    color: #000000;
+    text-align: center;
+
+    margin-left: 1em; 
+    padding: 0.2em;
+}

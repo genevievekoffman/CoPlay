@@ -6,7 +6,7 @@ import pinkarrow from "../../Sketches/Pinkarrow.svg";
 
 function Task(props) {
   //passed an array of tasks
-  const { task, index, db, groupID } = props;
+  const { task, index, db, groupID, setTaskDeleted } = props;
   const [taskWasClicked, setTaskWasClicked] = useState(false);
 
   let completion = task[2];
@@ -17,9 +17,7 @@ function Task(props) {
     <div
       className="task"
       key={index}
-      onClick={() => {
-        taskClicked(task, setTaskWasClicked);
-      }}
+       
     >
       <div>
         {taskCompleted ? (
@@ -32,29 +30,50 @@ function Task(props) {
             }
           ></button>
         )}
-
-         
       </div>
 
-       
-      <div className = "aTask">
+      <div className="aTask" onClick={() => {
+        taskClicked(task, setTaskWasClicked);
+      }}>
         {task[0]} <br></br>
-         
-        {taskWasClicked ? 
-        <div className = "subInfoContainer">
-          <img src={pinkarrow} className="pinkarrow" alt="pinkarrow" />
-           
-          <div className="subInfo">
-            {task[1]} points
-            {taskCompleted ? (
-              <div> complete </div>
-            ):(<div> incomplete </div>)}
-          </div>  
-        </div> : ""}
+        {taskWasClicked ? (
+          <div className="subInfoContainer">
+            <img src={pinkarrow} className="pinkarrow" alt="pinkarrow" />
 
+            <div className="subInfo">
+              {task[1]} points
+              {taskCompleted ? (
+                <div>
+                  <div>completed by</div>
+                  <div>@{task[3]}</div>
+                  <div className="twoBtns">
+                    <button
+                      className="taskResetBtn"
+                      onClick={() => {
+                        resetTaskClicked();
+                      }}
+                    >
+                      Reset
+                    </button>
+                    <button
+                      className="taskResetBtn"
+                      onClick={() => {
+                        deleteTaskClicked(task[0], groupID, db, setTaskDeleted);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div> incomplete </div>
+              )}
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
-       
-       
     </div>
   );
 }
@@ -106,7 +125,22 @@ function completeTask(task, points, db, setTaskCompleted, groupID) {
 function taskClicked(task, setTaskWasClicked) {
   //drop down
   console.log("task " + task[0] + "clicked, worth: " + task[1]);
-  setTaskWasClicked(true)
+  setTaskWasClicked(true);
+}
+
+function resetTaskClicked() {
+  console.log("reset button clicked");
+}
+
+function deleteTaskClicked(task, groupID, db, setTaskDeleted) {
+  console.log("delete button clicked");
+  db.collection("Groups")
+    .doc(groupID)
+    .collection("Tasks")
+    .doc(task)
+    .delete();
+  setTaskDeleted(true)
+  window.location.reload()
 }
 
 export default Task;
