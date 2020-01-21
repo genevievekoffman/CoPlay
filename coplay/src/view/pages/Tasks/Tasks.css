@@ -19,6 +19,16 @@
 }
 
 .tasksMappedContainer{
-  margin-top: 5em;
+  
   margin-left: 1em;
+  align-items: center;
+}
+
+.taskTitle{
+  font-family: Avenir-Black;
+  font-size: 5.5vh;
+  color: #000000;
+  text-align: center;
+  margin-top: 2em;
+  padding-bottom:0.5em;
 }

@@ -15,6 +15,7 @@ function Rewards(props) {
 
   return (
     <div>
+      <div className="rewardsTitle">Rewards</div>
       <div className="AddReward" name="AddReward">
         <AddRewardForm
           db={db}

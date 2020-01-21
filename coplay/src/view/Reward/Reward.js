@@ -4,6 +4,9 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 
+//component
+import star from "../../Sketches/Star.svg";
+
 function Reward(props) {
   //passed an array of rewards
   const { reward, index, db, groupID } = props;
@@ -20,16 +23,20 @@ function Reward(props) {
     deductPoints(reward[1], db, revealSuccessTask, revealFailTask, groupID);
 
   return (
-    <div className="reward" key={index}>
+    <div className="reward" key={index} >
       <div>
         <button className="checkBox" onClick={handleCheckboxClick}></button>
       </div>
-      <div>
-        <div className="rewardBig">
+
+       
+      <div className="rewardBig">
           {reward[0]} <br />
-        </div>
-        <div className="rewardSmall">{reward[1]}</div>
       </div>
+      <div className="rewardSmall">
+        {reward[1]} <img src={star} className="star" alt="star" className = "star" />
+      </div>
+ 
+       
       <PurchaseSuccess
         showSuccess={showModal}
         hideSuccess={() => setShowModal(false)}

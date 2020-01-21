@@ -135,14 +135,14 @@ function App() {
                   <button id = "NavButton LogOut" onClick={() => checkLogin(setIsLoggedIn)}>Log Out</button>
             </Navbar>
 
-          <h1>{name}</h1>
+           
 
           <Switch>
             <Route exact path="/leaderboardpage">
               <LeaderBoard db={DB} groupID={groupID} />
             </Route>
             <Route exact path="/">
-              <Tasks db={DB} groupID={groupID} />
+              <Tasks db={DB} groupID={groupID} name = {name} />
             </Route>
             <Route path="/rewardspage">
               <Rewards db={DB} groupID={groupID} />
