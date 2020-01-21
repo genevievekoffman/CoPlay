@@ -9,7 +9,7 @@ import star from "../../Sketches/Star.svg";
 
 function Reward(props) {
   //passed an array of rewards
-  const { reward, index, db, groupID } = props;
+  const { reward, index, db, groupID, setPointsDisplay } = props;
   const [showModal, setShowModal] = useState(false);
   const [failModal, setFailModal] = useState(false);
 
@@ -20,7 +20,7 @@ function Reward(props) {
     setFailModal(true);
   };
   const handleCheckboxClick = () =>
-    deductPoints(reward[1], db, revealSuccessTask, revealFailTask, groupID);
+    deductPoints(reward[1], db, revealSuccessTask, revealFailTask, groupID, setPointsDisplay);
 
   return (
     <div className="reward" key={index} >
@@ -51,7 +51,7 @@ function Reward(props) {
 }
 
 //revealSuccessTask is the arrow function handleChecboxClick
-function deductPoints(points, db, revealSuccessTask, revealFailTask, groupID) {
+function deductPoints(points, db, revealSuccessTask, revealFailTask, groupID, setPointsDisplay) {
   console.log("Deducting points")
   db.collection("Groups").doc(groupID).collection("Users")
     .doc(sessionStorage.getItem("user"))
@@ -70,6 +70,7 @@ function deductPoints(points, db, revealSuccessTask, revealFailTask, groupID) {
           .update({
             totalPoints: balance
           });
+        setPointsDisplay(true);
         revealSuccessTask();
         //this does setShowModal(true); as set in the function handleCheckboxClick
       } else {

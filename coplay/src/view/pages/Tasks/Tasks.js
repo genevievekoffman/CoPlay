@@ -12,6 +12,7 @@ function Tasks(props) {
   const [tasksLists, setTasksList] = useState([]);
   const [points, setPoints] = useState(" ");
   const [taskDeleted, setTaskDeleted] = useState(false);
+  const [pointsDisplay, setPointsDisplay] = useState(false);
 
   if (counter === 0) {
     updateTasks(setTasksList, setCounter, db, groupID);
@@ -20,6 +21,11 @@ function Tasks(props) {
   if (taskDeleted) {
     //Can we delete this since we reload the window ?? ?
     updateTasks(setTasksList, setCounter, db, groupID);
+  }
+
+  if(pointsDisplay){
+    displayPoints(db, setPoints, groupID, setPointsDisplay)
+    setPointsDisplay(false);
   }
 
   return (
@@ -39,6 +45,7 @@ function Tasks(props) {
                 db={db}
                 groupID={groupID}
                 setTaskDeleted={setTaskDeleted}
+                setPointsDisplay={setPointsDisplay}
               />
             );
           })}

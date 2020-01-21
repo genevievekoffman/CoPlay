@@ -10,9 +10,15 @@ function Rewards(props) {
   const [counter, setCounter] = useState(0);
   const { db, groupID } = props;
   const [points, setPoints] = useState(" ");
+  const [pointsDisplay, setPointsDisplay] = useState(false);
 
   if (counter === 0) {
     updateRewards(setRewardsList, setCounter, db, groupID);
+  }
+
+  if(pointsDisplay){
+    displayPoints(db, setPoints, groupID, setPointsDisplay)
+    setPointsDisplay(false);
   }
 
   return (
@@ -30,7 +36,7 @@ function Rewards(props) {
       <h4>
         {rewardsLists.map((reward, index) => {
 
-          return <Reward reward={reward} key={index} db={db} groupID={groupID} />;
+          return <Reward reward={reward} key={index} db={db} groupID={groupID} setPointsDisplay={setPointsDisplay} />;
         })}
       </h4>
 
@@ -182,7 +188,7 @@ function addReward(event, db, setRewardsList, setCounter, groupID) {
   updateRewards(setRewardsList, setCounter, db, groupID);
 }
 
-function displayPoints(db, setPoints, groupID) {
+function displayPoints(db, setPoints, groupID, setPointsDisplay) {
   db.collection("Groups")
     .doc(groupID)
     .collection("Users")

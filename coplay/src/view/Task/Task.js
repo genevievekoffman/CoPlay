@@ -6,7 +6,7 @@ import pinkarrow from "../../Sketches/Pinkarrow.svg";
 
 function Task(props) {
   //passed an array of tasks
-  const { task, index, db, groupID, setTaskDeleted } = props;
+  const { task, index, db, groupID, setTaskDeleted, setPointsDisplay } = props;
   const [taskWasClicked, setTaskWasClicked] = useState(false);
 
   let completion = task[2];
@@ -26,7 +26,7 @@ function Task(props) {
           <button
             className="checkBox"
             onClick={() =>
-              completeTask(task[0], task[1], db, setTaskCompleted, groupID)
+              completeTask(task[0], task[1], db, setTaskCompleted, groupID, setPointsDisplay)
             }
           ></button>
         )}
@@ -78,7 +78,7 @@ function Task(props) {
   );
 }
 
-function completeTask(task, points, db, setTaskCompleted, groupID) {
+function completeTask(task, points, db, setTaskCompleted, groupID, setPointsDisplay) {
   //should also update in Groups
   db.collection("Users")
     .doc(sessionStorage.getItem("user"))
@@ -120,6 +120,8 @@ function completeTask(task, points, db, setTaskCompleted, groupID) {
           totalPoints: total
         });
     });
+
+  setPointsDisplay(true)
 }
 
 function taskClicked(task, setTaskWasClicked) {
