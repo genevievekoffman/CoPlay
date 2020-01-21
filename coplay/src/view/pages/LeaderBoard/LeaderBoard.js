@@ -7,7 +7,7 @@ function LeaderBoard(props) {
     const [usersLists, setUsersLists] = useState([]);
     const [counter, setCounter] = useState(0);
 
-    if (counter == 0) {
+    if (counter === 0) {
         updateLeaderBoard(setUsersLists, db, setCounter, groupID);
     }
      

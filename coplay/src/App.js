@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import "./App.css";
 import firebase from "firebase";
 
@@ -58,7 +58,7 @@ function App() {
           <div className="screen">
             <div className="top">
               <div className="pinkBubble"></div>
-              <div className="blueBubble">Login</div>
+              <div className="blueBubble">Coplay</div>
             </div>
             <div className="bottom">
               <form
@@ -135,6 +135,7 @@ function App() {
                   <button id = "NavButton LogOut" onClick={() => setIsLoggedIn(false)}>Log Out</button>
             </Navbar>
 
+
           <h1>{name}</h1>
 
           <Switch>
@@ -160,9 +161,9 @@ function checkUser(e, setIsLoggedIn) {
   let username = e.target.elements.username.value;
   let password = e.target.elements.password.value;
 
-  if (username == "") {
+  if (username === "") {
     alert("Must enter a username");
-  } else if (password == "") {
+  } else if (password === "") {
     alert("Must enter a password");
   } else {
     var docRef = DB.collection("Users").doc(username);

@@ -112,5 +112,18 @@
   font-size: 3vh;
   width: 78vw;
   height: 7vh;
-  margin-top: 4.5vh;
+}
+
+.backToLogin{
+  grid-column-start: 3;
+  grid-column-end: span 1;
+  grid-row-start: 6;
+  grid-row-end: span 1;
+
+  position: absolute;
+  bottom: 0;
+  font-family: Avenir-Light;
+  text-decoration:underline;
+  display:inline-block;
+  right: 0;
 }

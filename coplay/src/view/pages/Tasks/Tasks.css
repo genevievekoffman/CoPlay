@@ -9,3 +9,16 @@
   #cancell{
     margin-right: 5vw;
   }
+
+   
+
+.plusBtn{
+  position: absolute;
+  bottom: 1em;
+  right: 1em; 
+}
+
+.tasksMappedContainer{
+  margin-top: 5em;
+  margin-left: 1em;
+}

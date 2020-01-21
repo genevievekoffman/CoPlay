@@ -2,19 +2,46 @@ import React, { useState } from "react";
 import "./Tasks.css";
 import Task from "../../Task/Task";
 
+//component
+import plus from "../../../Sketches/Plus.svg";
+
 function Tasks(props) {
   const { db, groupID } = props;
   const [counter, setCounter] = useState(0);
   const [tasksLists, setTasksList] = useState([]);
-  const [visible, setVisible] = useState(false)
-  const [points, setPoints] = useState(" ")
+  const [visible, setVisible] = useState(false);
+  const [points, setPoints] = useState(" ");
+  const [taskDeleted, setTaskDeleted] = useState(false);
 
-  if (counter == 0) {
+  if (counter === 0) {
+    updateTasks(setTasksList, setCounter, db, groupID);
+  }
+
+  if (taskDeleted) {
+    //Can we delete this since we reload the window ?? ?
     updateTasks(setTasksList, setCounter, db, groupID);
   }
 
   return (
     <div className="App2">
+       
+
+      <div className = "tasksMappedContainer">
+        <h4>
+          {tasksLists.map((task, index) => {
+            return (
+              <Task
+                task={task}
+                key={index}
+                db={db}
+                groupID={groupID}
+                setTaskDeleted={setTaskDeleted}
+              />
+            );
+          })}
+        </h4>
+      </div>
+
       <div className="AddTask" name="AddTask">
         <AddTaskForm
           db={db}
@@ -24,38 +51,33 @@ function Tasks(props) {
         />
       </div>
 
-      <div>
-        <h4>
-          {tasksLists.map((task, index) => {
-            return <Task task={task} key={index} db={db} groupID = {groupID}/>;
-          })}
-        </h4>
-      </div>
-      
       {visible ? (
         <div>
-          <div id="points" className="points"> {points} </div>
-          
-          <img
-      className="profileIcon"
-      src="sketchImages/blackprofileicon.png"
-      onClick={() => {displayPoints(db, setVisible, visible, setPoints, groupID)}}
-      
-    ></img>
+          <div id="points" className="points">
+            {" "}
+            {points}{" "}
           </div>
-        ) : (
-       <div>   
-         <div id="points" className="points"></div>
-      <img
-      className="profileIcon"
-      src="sketchImages/blackprofileicon.png"
-      onClick={() => {displayPoints(db, setVisible, visible, setPoints, groupID)}}
-      
-    ></img>
-    </div>
-          )}
 
-      
+          <img
+            className="profileIcon"
+            src="sketchImages/blackprofileicon.png"
+            onClick={() => {
+              displayPoints(db, setVisible, visible, setPoints, groupID);
+            }}
+          ></img>
+        </div>
+      ) : (
+        <div>
+          <div id="points" className="points"></div>
+          <img
+            className="profileIcon"
+            src="sketchImages/blackprofileicon.png"
+            onClick={() => {
+              displayPoints(db, setVisible, visible, setPoints, groupID);
+            }}
+          ></img>
+        </div>
+      )}
     </div>
   );
 }
@@ -69,7 +91,7 @@ function updateTasks(setTasksList, setCounter, db, groupID) {
   db.collection("Groups")
     .doc(groupID)
     .collection("Tasks")
-    .orderBy('time', 'asc')
+    .orderBy("time", "asc")
     .get()
     .then(tasksDB => {
       tasksDB.forEach(taskDB => {
@@ -77,6 +99,7 @@ function updateTasks(setTasksList, setCounter, db, groupID) {
         taskInfo.push(taskDB.get("task"));
         taskInfo.push(taskDB.get("points"));
         taskInfo.push(taskDB.get("completed"));
+        taskInfo.push(taskDB.get("completedBy"));
 
         list.push(taskInfo);
       });
@@ -91,15 +114,10 @@ function AddTaskForm(props) {
   const { db, setTasksList, setCounter, groupID } = props;
 
   return (
-    <div className="container">
-      {" "}
-      <button
-        data-toggle="modal"
-        data-target="#myModal"
-        id="plus"
-        className=".btn-default"
-      >
-        +
+    <div>
+       
+      <button className="plusBtn" data-toggle="modal" data-target="#myModal">
+        {<img src={plus} alt="plus" />}
       </button>
       <div className="row">
         <div className="col-md-12">
@@ -137,7 +155,9 @@ function AddTaskForm(props) {
                       type="button submit"
                       className="btn btn-primary btn-sm"
                       id="savee"
-                    >Save</button>
+                    >
+                      Save
+                    </button>
                     <button
                       type="button"
                       className="btn btn-secondary btn-sm"
@@ -165,9 +185,9 @@ function addTask(event, db, setTasksList, setCounter, groupID) {
   let points = event.target.elements.points.value;
   console.log(groupID);
 
-  if (title == "") {
+  if (title === "") {
     alert("Must enter a title");
-  } else if (points == "") {
+  } else if (points === "") {
     alert("Must enter points");
   } else {
     points = parseInt(points);
@@ -182,7 +202,8 @@ function addTask(event, db, setTasksList, setCounter, groupID) {
         points: points,
         completed: false,
         task: title,
-        time: Date.now()
+        time: Date.now(),
+        completedBy: null
       });
   }
 
@@ -193,13 +214,13 @@ function addTask(event, db, setTasksList, setCounter, groupID) {
 
 function displayPoints(db, setVisible, visible, setPoints, groupID) {
   db.collection("Groups")
-  .doc(groupID)
-  .collection("Users")
+    .doc(groupID)
+    .collection("Users")
     .doc(sessionStorage.getItem("user"))
     .get()
     .then(userDB => {
       let points = userDB.get("totalPoints");
-      console.log(userDB.get("totalPoints"))
+      console.log(userDB.get("totalPoints"));
       setPoints(points);
       console.log(points);
       setVisible(!visible);

@@ -111,7 +111,7 @@
   font-size: 3vh;
   width: 78vw;
   height: 7vh;
-  margin-top: 4.5vh;
+  margin-top: 3.5vh;
 }
 
 .signUp{
@@ -126,7 +126,6 @@
   text-decoration:underline;
   display:inline-block;
   right: 0;
-  margin-top: 10vh;
 }
 
 .signUp:hover{
@@ -255,10 +254,10 @@ text-align: center;
   color: black;
   display: grid;
   grid-template-columns: repeat(8, auto);
+
 }
 
 .topNav a {
-  float: left;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
@@ -268,6 +267,12 @@ text-align: center;
 
 .topNav a:hover {
   color: #648AD1;
+}
+
+.link:hover{
+  text-decoration: underline;
+  color: #648AD1;
+  cursor: pointer;
 }
 
 .PopUp{

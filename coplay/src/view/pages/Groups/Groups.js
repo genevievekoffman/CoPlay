@@ -37,23 +37,30 @@ function Groups(props) {
       </div>
 
       {visibleJOIN ? (
-        <form
+        <div className = "joinScreen">
+          <form
           className="joinGroupForm"
           onSubmit={event => {
             joinGroup(event, db, setGroupsList, setCounter);
           }}
         >
-          <input type="text" placeholder="group ID" name="groupID"></input>{" "}
+          <div className="groupIDlabel">Group ID</div>
+           
+          <input type="text" className = "groupID"  name="groupID"></input> 
           <br></br>
-          <input type="submit" value="Submit"></input>
-          <button
+          <input type="submit" className = "submitBtn" value="Submit"></input>
+          
+        </form>
+        <button className = "cancelJoinBtn"
             onClick={() => {
               cancelJoin(setVisibleJOIN);
             }}
           >
             Cancel
           </button>
-        </form>
+
+        </div>
+         
       ) : (
         ""
       )}
@@ -195,6 +202,8 @@ function AddGroupForm(props) {
                       id="savee"
                       value="Save"
                       name="save"
+                      data-toggle="modal"
+                      data-target="#myModal"
                     >
                       Save
                     </button>
@@ -269,7 +278,7 @@ async function checkGroup(groupID, db) {
   let exists = false;
   const IDgroupsDB = await db.collection("Groups").get();
   IDgroupsDB.forEach(groupDB => {
-    if (groupDB.get("ID") == groupID) {
+    if (groupDB.get("ID") === groupID) {
       exists = true;
     }
   });
@@ -281,7 +290,7 @@ async function getName(groupID, db) {
   let name;
   const IDgroupsDB = await db.collection("Groups").get();
   IDgroupsDB.forEach(groupDB => {
-    if (groupDB.get("ID") == groupID) {
+    if (groupDB.get("ID") === groupID) {
       name = groupDB.get("name");
     }
   });
