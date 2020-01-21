@@ -9,7 +9,8 @@ function Groups(props) {
   const { db, setGroupID, setHomePage, setName } = props;
   const [groupsList, setGroupsList] = useState([]);
   const [counter, setCounter] = useState(0);
-
+  const [visibleJOIN, setVisibleJOIN] = useState(false);
+  const [circlesClicked, setCirclesClicked] = useState(0);
 
   if (counter < 1) {
     fetchMyGroups(db, setGroupsList, setCounter);
@@ -36,28 +37,43 @@ function Groups(props) {
             setCounter={setCounter}
           />
         }
-            
-        <JoinGroupForm
-          db={db}
-          setGroupsList={setGroupsList}
-          setCounter={setCounter}
-        />
+
+        <button
+          className="joinBtn"
+          onClick={() => {
+            joinClicked(setVisibleJOIN);
+          }}
+        >
+          Join
+        </button>
       </div>
 
-      <div className="groupContainer">
-        {groupsList.map((group, index) => {
-          return (
-            <Group
-              group={group}
-              key={index}
-              setGroupID={setGroupID}
-              setHomePage={setHomePage}
-              setName={setName}
-            />
-          );
-        })}
-      </div>
+      {visibleJOIN ? (
+        <div className="joinScreen">
+          <form
+            className="joinGroupForm"
+            onSubmit={event => {
+              joinGroup(event, db, setGroupsList, setCounter);
+            }}
+          >
+            <div className="groupIDlabel">Group ID</div>
 
+            <input type="text" className="groupID" name="groupID"></input>
+            <br></br>
+            <input type="submit" className="submitBtn" value="Submit"></input>
+          </form>
+          <button
+            className="cancelJoinBtn"
+            onClick={() => {
+              cancelJoin(setVisibleJOIN);
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
 
       {circlesClicked === 1 ? ( //1->they clicked it (group ID's are shown)
         <div className="groupContainer">
@@ -90,12 +106,18 @@ function Groups(props) {
           })}
         </div>
       )}
-
     </div>
   );
 }
 
 export default Groups;
+
+function cancelJoin(setVisibleJOIN) {
+  setVisibleJOIN(false);
+}
+function joinClicked(setVisibleJOIN) {
+  setVisibleJOIN(true);
+}
 
 function fetchMyGroups(db, setGroupsList, setCounter) {
   let list = [];
@@ -167,7 +189,7 @@ function addGroup(event, db, setGroupsList, setCounter) {
 
 function AddGroupForm(props) {
   const { db, setGroupsList, setCounter } = props;
-  console.log("ADD GROUP TIME");
+
   return (
     <div>
       <button
@@ -191,7 +213,6 @@ function AddGroupForm(props) {
                 <form
                   onSubmit={event => {
                     addGroup(event, db, setGroupsList, setCounter);
-                    //xxx
                   }}
                 >
                   <div className="modal-body">
@@ -205,18 +226,9 @@ function AddGroupForm(props) {
                   </div>
                   <div className="modal-footer">
                     <button
-                      className="btn btn-secondary btn-sm"
-                      // id="cancell"
-                      value="Cancel"
-                      type="button"
-                      data-dismiss="modal"
-                    >
-                      Cancel
-                    </button>
-                    <button
                       className="btn btn-primary btn-sm"
                       type="submit"
-                      // id="savee"
+                      id="savee"
                       value="Save"
                       name="save"
                       data-toggle="modal"
@@ -224,66 +236,9 @@ function AddGroupForm(props) {
                     >
                       Save
                     </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-function JoinGroupForm(props) {
-  const { db, setGroupsList, setCounter } = props;
-  console.log("JOIN GROUP TIME");
-  return (
-    <div>
-      <button
-        className="joinBtn"
-        data-toggle="modal"
-        data-target="#myModal2"
-        id="join"
-        // className="addGroupButton"
-      >
-        Join
-      </button>
-
-      <div className="row">
-        <div className="col-md-12">
-          <div className="modal fade" id="myModal2">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h3>Join a Group</h3>
-                </div>
-                <form
-                  onSubmit={event => {
-                    console.log("Join Clicked")
-                     joinGroup(event, db, setGroupsList, setCounter);
-                  }}
-                >
-                  <div className="modal-body">
-                    <input
-                      type="text"
-                      name="groupID"
-                      placeholder="Group ID"
-                      id="Code"
-                      className="m-1"
-                    />
-                  </div>
-                  <div className="modal-footer">
-                    <button
-                      className="btn btn-primary btn-sm"
-                      type="submit"
-                      value="Save"
-                      data-toggle="modal"
-                      data-target="#myModal2"
-                    >
-                      Join
-                    </button>
                     <button
                       className="btn btn-secondary btn-sm"
+                      id="cancell"
                       value="Cancel"
                       type="button"
                       data-dismiss="modal"
@@ -302,7 +257,6 @@ function JoinGroupForm(props) {
 }
 
 async function joinGroup(e, db, setGroupsList, setCounter) {
-  console.log("Join group called")
   e.preventDefault();
 
   let groupID = e.target.elements.groupID.value;
