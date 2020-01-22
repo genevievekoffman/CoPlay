@@ -147,9 +147,7 @@
   justify-content: center;
   display: flex;
   flex-direction: column;  
-  margin-top: -10vh;
-  
-  
+  margin-top: -10vh; 
 }
 
 .App{
