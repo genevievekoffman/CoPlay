@@ -1,6 +1,6 @@
 
 .task{
-    display: flex;
+    display: flex; 
     justify-content: center;
     font-family: Avenir-Light;
     color: black;
