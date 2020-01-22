@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Task.css";
 
 //component
@@ -12,7 +12,9 @@ function Task(props) {
 
   //let completion = task[2];  //amount of times completed
   //const [taskCompleted, setTaskCompleted] = useState(completion);
-
+  useEffect(()=>{ //when the component runs, it will invoke this function
+    getCompCount(db, groupID, task[0], setTotalCompleted)
+  }, [])
   return (
     <div
       className="task"
@@ -144,14 +146,16 @@ function deleteTaskClicked(task, groupID, db, setTaskDeleted) {
 export default Task;
 
 
-// function getCompCount(db,groupID, task){
-//   db.collection("Groups")
-//   .doc(groupID)
-//   .collection("Tasks")
-//   .doc(task)
-//   .get()
-//   .then(taskDB => {
-//     let totalTimesCompleted = taskDB.get("completedCount"); 
-//     }
-//   )
-// }
+function getCompCount(db, groupID, task, setTotalCompleted){
+  db.collection("Groups")
+  .doc(groupID)
+  .collection("Tasks")
+  .doc(task)
+  .get()
+  .then(taskDB => {
+    let totalTimesCompleted = taskDB.get("completedCount"); 
+    setTotalCompleted(totalTimesCompleted)
+
+    }
+  )
+}
