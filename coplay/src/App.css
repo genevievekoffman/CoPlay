@@ -133,25 +133,6 @@
   cursor: pointer;
 }
 
-.lego{
-  height: 30vh;
-}
-
-  .AddTask {
-  display: grid;
-  margin-top: 2vw;
-  margin-left: 25vw ;
-}
-
-.App2{
-  justify-content: center;
-  display: flex;
-  flex-direction: column;  
-  margin-top: -10vh;
-  
-  
-}
-
 .App{
   justify-content: center;
   display: flex;
@@ -164,139 +145,10 @@
   flex-direction: column;
 }
 
-.AddTaskPopUp{
-  display: grid;
-  margin-top: 100px;
-  
-  
-}
-
-
-
-input{
-  margin-bottom: 10px;
-  width: 30%;
-  height: 10px;
-  border-top:none;
-  border-left:none;
-  border-right:none;
-  border-bottom: gray;
-  outline:none;
-  font-size: 13px;
-  
-}
-
-#submit{
-  cursor: pointer;
-
-}
- 
- #Save {
-  width: 4vw;
-  height: 2vw;
-  margin-left: 5vw;
-  background-color: cornflowerblue;
-}
-
-
-
-.addTaskBtn {
-  background-color: whitesmoke;
-  width: 4vw;
-  height: 4vw;
-  text-align: center;
-  margin-left: 50vw;
-  margin-top: 10vw;
-  font-size: 130%;
-  outline: none;
-  cursor: pointer;
-
-
-}
-
-#PopUp {
-  position: absolute;
-  
-  
-}
-
-.profileIcon{
-  width: 5vw;
-  padding: 1vw;
-  cursor: pointer;
-}
-
-
-#form{
-  display:grid;
-  
-}
-
-.PopUp{
-  position: absolute;
-  background: white;
-  margin-top: -30vh;
-  z-index: 99;
-  
-  
-}
-
-
-
-#addtask{
-text-align: center;
-
-}
-
- 
-.topNav{
-  align-items: center;
-  color: black;
-  display: grid;
-  grid-template-columns: repeat(8, auto);
-
-}
-
-.topNav a {
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 1em;
-  color:black;
-}
-
-.topNav a:hover {
-  color: #648AD1;
-}
-
 .link:hover{
   text-decoration: underline;
   color: #648AD1;
   cursor: pointer;
-}
-
-.PopUp{
-  margin-left: 20vw;
-  
-  
-}
-
-#collasible-nav-dropdown{
-  z-index: 99;
-  overflow:visible;
-}
-
- 
-
-h4{
-  margin-left: 0;
-  transform: translateX(-5%);
-}
-
-.navbar{
-  justify-content: space-between;
-  position:absolute;
-  flex-wrap: nowrap !important;
 }
 
 #NavButton{
