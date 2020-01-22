@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Groups.css";
 import Group from "../../Group/Group";
 
+
 //component
 import twoCircles from "../../../Sketches/Twocircles.svg";
 
