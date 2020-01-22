@@ -124,3 +124,9 @@
   bottom: 1em;
   left: 1em; 
 }
+
+.rewardsContainer{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}

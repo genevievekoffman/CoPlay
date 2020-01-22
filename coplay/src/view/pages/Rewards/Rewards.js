@@ -33,12 +33,11 @@ function Rewards(props) {
         />
       </div>
 
-      <h4>
-        {rewardsLists.map((reward, index) => {
-
+      <div className = "rewardsContainer">
+        {rewardsLists.map((reward, index) => { 
           return <Reward reward={reward} key={index} db={db} groupID={groupID} setPointsDisplay={setPointsDisplay} />;
         })}
-      </h4>
+      </div>
 
 
       <div className="pointsHolder">
