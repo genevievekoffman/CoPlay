@@ -3,7 +3,7 @@ import "./LeaderBoard.css";
 import Leader from "../../Leader/Leader";
 
 function LeaderBoard(props) {
-  const { db, groupID } = props;
+  const { db, groupID, setLogout} = props;
   const [usersLists, setUsersLists] = useState([]);
   const [counter, setCounter] = useState(0);
 
@@ -13,8 +13,9 @@ function LeaderBoard(props) {
 
   return (
     <div>
+      <button className="logouttest" id="NavButton LogOut" onClick={() => setLogout(true)}>Log Out</button>
       <div className="leaderBoardTitle">LeaderBoard</div>
-
+      
       {usersLists.map((user, index) => {
         return <Leader user={user} key={index} />;
       })}
