@@ -133,6 +133,7 @@ function ConfettiTime(props) {
 }
 
 export default Task;
+
 // function getCompCount(db, groupID, task, setTotalCompleted){
 //   db.collection("Groups")
 //   .doc(groupID)
