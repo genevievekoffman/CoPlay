@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import "./AddReward.css";
 
 import successpopup from "../../Sketches/Successpopup.svg";
+import failpopup from "../../Sketches/Failpopup.svg";
 
 function Addreward(props){
     const {isShowing, setIsShowing, setEnoughPoints, enoughPoints} = props;
@@ -22,7 +23,7 @@ function Addreward(props){
                     </div>
                 ):(
                     <div className = "message"> 
-                    You dont have enough points 
+                        <img src={failpopup} className="failpopup" alt="failpopup" />
                      
                     </div>
                 )}  
