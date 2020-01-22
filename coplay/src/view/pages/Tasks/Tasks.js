@@ -12,28 +12,30 @@ function Tasks(props) {
   const [tasksLists, setTasksList] = useState([]);
   const [points, setPoints] = useState(" ");
   const [taskDeleted, setTaskDeleted] = useState(false);
+  const [taskAdded, setTaskAdded] = useState(false);
   const [pointsDisplay, setPointsDisplay] = useState(false);
 
   if (counter === 0) {
-    updateTasks(setTasksList, setCounter, db, groupID);
+    updateTasks(setTasksList, setCounter, db, groupID, setTaskDeleted, setTaskAdded);
   }
 
-  if (taskDeleted) {
-    //Can we delete this since we reload the window ?? ?
-    updateTasks(setTasksList, setCounter, db, groupID);
+  if (taskDeleted || taskAdded) {
+    updateTasks(setTasksList, setCounter, db, groupID, setTaskDeleted, setTaskAdded);
   }
 
-  if (pointsDisplay) {
-    displayPoints(db, setPoints, groupID, setPointsDisplay);
+  if(pointsDisplay){
+    displayPoints(db, setPoints, groupID)
     setPointsDisplay(false);
   }
 
   return (
     <div className="App2">
-      <div className="taskTitle">{name}</div>
 
-      <div className="tasksMappedContainer">
-        <h4>
+      <div className = "taskTitle">
+          {name}
+      </div>
+        
+      <div className = "tasksMappedContainer">
           {tasksLists.map((task, index) => {
             return (
               <Task
@@ -46,7 +48,6 @@ function Tasks(props) {
               />
             );
           })}
-        </h4>
       </div>
 
 
@@ -56,6 +57,7 @@ function Tasks(props) {
           setTasksList={setTasksList}
           setCounter={setCounter}
           groupID={groupID}
+          setTaskAdded={setTaskAdded}
         />
       </div>
 
@@ -74,7 +76,7 @@ function Tasks(props) {
 export default Tasks;
 
 
-function updateTasks(setTasksList, setCounter, db, groupID) {
+function updateTasks(setTasksList, setCounter, db, groupID, setTaskDeleted, setTaskAdded) {
   var list = new Array();
   //let list = [];
 
@@ -98,11 +100,13 @@ function updateTasks(setTasksList, setCounter, db, groupID) {
       //console.log(list);
 
       setCounter(1);
+      setTaskDeleted(false);
+      setTaskAdded(false);
     });
 }
 
 function AddTaskForm(props) {
-  const { db, setTasksList, setCounter, groupID} = props;
+  const { db, setTasksList, setCounter, groupID, setTaskAdded } = props;
 
   return (
     <div>
@@ -119,13 +123,7 @@ function AddTaskForm(props) {
                 </div>
                 <form
                   onSubmit={event => {
-                    addTask(
-                      event,
-                      db,
-                      setTasksList,
-                      setCounter,
-                      groupID,
-                    );
+                    addTask(event, db, setTasksList, setCounter, groupID, setTaskAdded);
                   }}
                 >
                   <div className="modal-body">
@@ -173,8 +171,7 @@ function AddTaskForm(props) {
   );
 }
 
-function addTask(event, db, setTasksList, setCounter, groupID) {
-
+function addTask(event, db, setTasksList, setCounter, groupID, setTaskAdded) {
   event.preventDefault();
 
   console.log("saved my G");
@@ -210,8 +207,7 @@ function addTask(event, db, setTasksList, setCounter, groupID) {
 
   event.target.elements.title.value = "";
   event.target.elements.points.value = "";
-  updateTasks(setTasksList, setCounter, db, groupID);
- 
+  setTaskAdded(true);
 }
 
 function displayPoints(db, setPoints, groupID) {

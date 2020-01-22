@@ -1,106 +1,16 @@
-#PopUpButton{
-    margin-right:5vw;
-  }
+.AddReward{
+      margin-left:27vw;
+}
 
-  
-#PopUp{
-    margin-bottom:0px;
-    margin-right:0px;
-    position: absolute;
-    
-  }
-
-  .AddRewardPopUp{
-    display: grid;
-  }
-
-  .PopUp{
-    position: absolute;
-    display:grid;
-    margin-top: -30vh;
-    z-index: 99;
-    background-color: white;
-    
-    
-  }
-
- 
-
-  .addRewardbtn{
-    border-radius: 50%;
-  background-color: rgb(105, 105, 231);
-  width: 3vw;
-  height: 3vw;
-  text-align: center;
-  margin-left: 60vw;
-  margin-top: 7vw;
-  
-  font-size: 130%;
-  outline: none;
-  cursor: pointer;
-  }
-
-  #TitleAddReward{
-    margin-top: 10vw;
-    margin-left: 3.5vw;
-    margin-bottom: 1vw;
-    font-weight: 600;
-    
-  }
-
-  #Title{
+#Title{
     margin-left: auto;
     
     
-  }
+}
 
-  #Points{
+#Points{
     margin-right: auto;
-  }
-
-  .Cancel{
-    width: 5vw;
-    height: 2.5vw;
-    margin-left:4vw;
-    margin-top: 2vw;
-    background-color: gray;
-    border-radius: 5px;
-  }
-
-  #gridd{
-    margin-left: 13vw;
-  }
-
-  .Align{
-    display: grid;
-    grid-template-columns: 50px;
-  }
-
-  
-  
-  .PopUp{
-    margin-left: 30vw;
-    
-  }
-
-  #rewardPlus{
-  background-color: whitesmoke;
-  width: 3vw;
-  height: 3vw;
-  text-align: center;
-  margin-left: 33vw;
-  margin-bottom: 34px;
-  margin-top: 0;
-  font-size: 130%;
-  outline: none;
-  cursor: pointer;
-
-  }
-
-  @media only screen and (max-width: 600px) {
-    
-  }
-
+}
 
 .rewardsTitle{
     font-family: Avenir-Black;

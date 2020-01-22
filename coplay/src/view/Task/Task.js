@@ -1,4 +1,6 @@
-import React, { useState, useEffect } from "react";
+
+import React, { useState } from "react";
+import Confetti from "react-confetti";
 import "./Task.css";
 
 //component
@@ -7,79 +9,64 @@ import pinkarrow from "../../Sketches/Pinkarrow.svg";
 function Task(props) {
   //passed an array of tasks
   const { task, index, db, groupID, setTaskDeleted, setPointsDisplay } = props;
-  const [taskWasClicked, setTaskWasClicked] = useState(false);
-  const [totalCompleted, setTotalCompleted] = useState(0) //getCompCount(db,groupID,task)
+  const [totalCompleted, setTotalCompleted] = useState(task[4])
+  const [completedBy, setCompletedBy] = useState(task[3])
+  const [visibleComp, setVisibilityComp] = useState(false)
+  const [visibleDel, setVisibilityDel] = useState(false)
+  const [visibleInfo, setVisibilityInfo] = useState(false)
+  const [confetti, setConfetti] = useState(false)
 
   //const [completedCount, setCompletedCount] = useState(false)
  
   //const [taskCompleted, setTaskCompleted] = useState(completion);
 
-  useEffect(()=>{ //when the component runs, it will invoke this function
-    getCompCount(db, groupID, task[0], setTotalCompleted)
-  }, [])
-
-  // if(completedCount){
-  //   getCompCount(db, groupID, task[0], setTotalCompleted)
-  //   setCompletedCount(false);
-  // }
-
-  return (
-    <div
-      className="task"
-      key={index}
-       
-    >
-      
-
-      <div className="aTask" onClick={() => {
-        taskClicked(task, setTaskWasClicked);
-      }}>
-        {task[0]} <br></br>
-        {taskWasClicked ? (
-          <div className="subInfoContainer">
-            <img src={pinkarrow} className="pinkarrow" alt="pinkarrow" />
-
-            <div className="subInfo">
-              {task[1]} points <br></br> 
-                  completed count: {totalCompleted} 
-                <div>
-                  {/* <div>completed by</div>
-                  <div>@{task[3]}</div> */}
-                  <div className="twoBtns">
-                    <button
-                      className="taskCompleteBtn"
-                      onClick={() => {
-                        completeTask(task[0], task[1], db, groupID, setPointsDisplay)
-                      }}
-                    >
-                      Complete
-                    </button>
-                    <button
-                      className="taskCompleteBtn"
-                      onClick={() => {
-                        deleteTaskClicked(task[0], groupID, db, setTaskDeleted);
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </div>
-                
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
+  if (visibleComp) {
+    return (
+      <div className="taskGrid" key={index}>
+        <div className="question">Did you really complete this task?</div>
+        <button className="confirm" onClick={() => { completeTask(task[0], task[1], db, groupID, setTotalCompleted, setPointsDisplay, setCompletedBy, setVisibilityComp, setConfetti, confetti) }}>Yes</button>
+        <button className="deny" onClick={() => setVisibilityComp(false)}>No</button>
       </div>
-    </div>
-  );
+    )
+  } else if (visibleDel) {
+    return (
+      <div className="taskGrid" key={index}>
+        <div className="question">Are you sure you want to delete this task?</div>
+        <button className="confirm" onClick={() => { deleteTaskClicked(task[0], groupID, db, setTaskDeleted); setVisibilityDel(false) }}>Yes</button>
+        <button className="deny" onClick={() => setVisibilityDel(false)}>No</button>
+      </div>
+//   useEffect(()=>{ //when the component runs, it will invoke this function
+//     getCompCount(db, groupID, task[0], setTotalCompleted)
+//   }, [])
+    )
+  } else if (visibleInfo) {
+    return (
+      <div className="taskGrid" key={index}>
+        <div className="description">
+          Points: {task[1]} <br></br>
+          Recently Completed by: {completedBy} <br></br>
+          Times Completed: {totalCompleted}
+        </div>
+        <button className="back" onClick={() => setVisibilityInfo(false)}>Back</button>
+      </div>
+    )
+  } else {
+    return (
+      <div className="taskGrid" key={index}>
+        <div className="taskName">{task[0]}</div>
+        <button className="confirm" onClick={() => { setVisibilityComp(true); console.log(confetti) }}>Complete</button>
+        <button className="deny" onClick={() => setVisibilityDel(true)}>Delete</button>
+        <div className="info" onClick={() => setVisibilityInfo(true)}>i</div>
+        <ConfettiTime confetti={confetti} />
+      </div>
+    )
+  }
 }
 
- 
-function completeTask(task, points, db, groupID, setPointsDisplay) {
- 
- 
-    //get the amount of times completed from firebase and update it +1
+
+
+function completeTask(task, points, db, groupID, setTotalCompleted, setPointsDisplay, setCompletedBy, setVisibilityComp, setConfetti, confetti) {
+  //get the amount of times completed from firebase and update it +1
   db.collection("Groups")
     .doc(groupID)
     .collection("Tasks")
@@ -87,8 +74,10 @@ function completeTask(task, points, db, groupID, setPointsDisplay) {
     .get()
     .then(taskDB => {
       let totalTimesCompleted = taskDB.get("completedCount");
-      let total = totalTimesCompleted+1; 
-        db.collection("Groups")
+      let total = totalTimesCompleted + 1;
+      setTotalCompleted(total);
+      setCompletedBy(sessionStorage.getItem("user"));
+      db.collection("Groups")
         .doc(groupID)
         .collection("Tasks")
         .doc(task)
@@ -96,16 +85,16 @@ function completeTask(task, points, db, groupID, setPointsDisplay) {
           completedCount: total,
           completedBy: sessionStorage.getItem("user") //most recent user who completed it 
         })
-    }) 
+    })
 
   db.collection("Groups")
     .doc(groupID)
     .collection("Users")
     .doc(sessionStorage.getItem("user"))
     .get()
-    .then(function(doc) {
+    .then(function (doc) {
       let total = doc.get("totalPoints") + points;
-       
+
 
       db.collection("Groups") //points are updated in Groups Collection for the specific user
         .doc(groupID)
@@ -114,19 +103,13 @@ function completeTask(task, points, db, groupID, setPointsDisplay) {
         .update({
           totalPoints: total
         });
+      setPointsDisplay(true);
     });
 
-  setPointsDisplay(true)
-  //setCompletedCount(true) //updates the completed number
+  setVisibilityComp(false);
+  setConfetti(true);
+  setTimeout(() => { setConfetti(false) }, 5000)
 }
-
-function taskClicked(task, setTaskWasClicked) {
-  //drop down
-  console.log("task " + task[0] + "clicked, worth: " + task[1]);
-  setTaskWasClicked(true);
-}
-
- 
 
 function deleteTaskClicked(task, groupID, db, setTaskDeleted) {
   console.log("delete button clicked");
@@ -139,23 +122,27 @@ function deleteTaskClicked(task, groupID, db, setTaskDeleted) {
   //window.location.reload()
 }
 
-export default Task;
-
-
-function getCompCount(db, groupID, task, setTotalCompleted){
-  db.collection("Groups")
-  .doc(groupID)
-  .collection("Tasks")
-  .doc(task)
-  .get()
-  .then(taskDB => {
-    let totalTimesCompleted = taskDB.get("completedCount"); 
-    setTotalCompleted(totalTimesCompleted)
-
-    }
-  )
+function ConfettiTime(props) {
+  if (props.confetti == true) {
+    return (
+      <Confetti />
+    );
+  } else {
+    return (<div></div>);
+  }
 }
 
- 
+export default Task;
+// function getCompCount(db, groupID, task, setTotalCompleted){
+//   db.collection("Groups")
+//   .doc(groupID)
+//   .collection("Tasks")
+//   .doc(task)
+//   .get()
+//   .then(taskDB => {
+//     let totalTimesCompleted = taskDB.get("completedCount"); 
+//     setTotalCompleted(totalTimesCompleted)
 
-
+//     }
+//   )
+// }
