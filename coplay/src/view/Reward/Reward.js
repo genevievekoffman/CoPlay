@@ -85,7 +85,6 @@ function deductPoints(points, db, revealSuccessTask, revealFailTask, groupID, se
 
 function PurchaseSuccess(props) {
   return (
-    <div>
       <Modal show={props.showSuccess} onHide={props.hideSuccess}>
         <Modal.Header closeButton>
           <Modal.Title>Success</Modal.Title>
@@ -97,12 +96,10 @@ function PurchaseSuccess(props) {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
   );
 }
 function PurchaseFail(props) {
   return (
-    <div>
       <Modal show={props.showFailure} onHide={props.hideFailure}>
         <Modal.Header closeButton>
           <Modal.Title>Failure</Modal.Title>
@@ -116,7 +113,6 @@ function PurchaseFail(props) {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
   );
 }
 

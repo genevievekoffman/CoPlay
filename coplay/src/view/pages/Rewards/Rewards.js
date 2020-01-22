@@ -165,7 +165,9 @@ function addReward(event, db, setRewardsList, setCounter, groupID) {
     alert("Must enter points");
   } else if (parseInt(points) <= 0) {
     alert("Invalid Input. Stay Positive!")
-  } else {
+  }  else if (isNaN(parseInt(points)) ){
+    alert("Invalid points entered")
+ }else {
 
     points = parseInt(points);
     console.log(
