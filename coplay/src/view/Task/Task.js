@@ -19,19 +19,6 @@ function Task(props) {
       key={index}
        
     >
-      {/* <div>
-        {taskCompleted ? (
-          <div className="checkBox"> X </div>
-        ) : (
-          <button
-            className="checkBox"
-            onClick={() =>
-              completeTask(task[0], task[1], db, setTaskCompleted, groupID, setPointsDisplay)
-            }
-          ></button>
-        )}
-      </div> */}
-
       <div className="aTask" onClick={() => {
         taskClicked(task, setTaskWasClicked);
       }}>
@@ -142,16 +129,3 @@ function deleteTaskClicked(task, groupID, db, setTaskDeleted) {
 }
 
 export default Task;
-
-
-// function getCompCount(db,groupID, task){
-//   db.collection("Groups")
-//   .doc(groupID)
-//   .collection("Tasks")
-//   .doc(task)
-//   .get()
-//   .then(taskDB => {
-//     let totalTimesCompleted = taskDB.get("completedCount"); 
-//     }
-//   )
-// }

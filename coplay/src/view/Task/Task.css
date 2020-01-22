@@ -1,140 +1,3 @@
-
-.task{
-    display: flex; 
-    justify-content: center;
-    font-family: Avenir-Light;
-    color: black;
-    margin-left: 1em;
-    float:left;
-    margin-top: 1em;
-}
-
-.taskBig{
-    font-size: 1.5vw;
-}
-.taskSmall{
-    font-size: 1vw;
-}
- 
-
-.checkBox{
-    background-color: white;
-    border: 1px solid #DC7070;
-    border-radius: 6px;
-    font-family: Avenir-Light;
-    font-size: 1em;
-    color: #DC7070;
-    text-align: center;
-    width: 1em;
-    height: 1em;
-    
-}
- 
-
-.containers{
-    display: grid;
-    margin-top: 100px;
-    margin-left: 40vw;
-}
-
-
-input{
-    margin-bottom: 10px;
-    height: 3vw;
-    
-}
-
-/*#Cancel{
-     width: 5vw;
-    background-color:gray;
-    margin-top: 20px;
-    margin-left: 4vw;
-    
-    border-radius: 5px;
-
-}
-
-#Save{
-    width: 5vw;
-    border-radius: 5px;
-    margin-top: 1vw;
-    margin-left: 4vw;
-    background-color: cornflowerblue;
-
-}
-*/
- 
-.x{
-    font-family: DFWaWaSC-W5;
-    font-size: 15vw;
-    color: #FFFFFF;
-     
-    
-    position: absolute;
-    top: 15%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-#TitleAddTask{
-    text-align: center;
-    font-weight: 600;
-    margin-top: 200px;
-    font-size: 4.5mm;
-}
-
-.container{
-    
-    text-align: center;
-    position: relative;
-    right: 50%;
-}
-
-.modal-body{
-    grid-template-columns: 25% auto 25% ;
-    
-}
-
-.modal-footer{
-  display: flex;
-  justify-content: flex-start !important;
-  
-}
-
-
-
-
-#Title{
-    border: 1px solid rgb(90, 90, 219);
-    grid-column-start: 2 ;
-    width: 100%;
-    padding: 4%;
-    
-}
-#Points{
-    border: 1px solid rgb(90, 90, 219);
-    grid-column-start: 2 ;
-    width: 100%;
-    padding: 4%;
-}
-
-h1{
-    font-family: 'Courier New', Courier, monospace;
-    margin-left: 35vw;
-}
-
-
-
-#savee{
-      
- margin-right: 10vw;
-}
-
-#cancell{
- margin-right: 7vw;
-}
-
-
 .subInfo{
     border: 1px solid #DC7070;
     border-radius: 6px;
@@ -148,8 +11,12 @@ h1{
 }
 
 .aTask{
-    display: flex;
-    flex-direction: column;
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 15px;
+    padding: 1em;
+    font-family: Avenir-Book;
+    font-size: 3.5vh;
 }
 
 .subInfoContainer{

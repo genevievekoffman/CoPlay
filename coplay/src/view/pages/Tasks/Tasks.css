@@ -19,10 +19,27 @@
 }
 
 .tasksMappedContainer{
-  display: flex;
-  flex-direction: row;
-  margin-left: 1em;
-  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5em;
+}
+
+@media only screen and (max-width: 1200px){
+  .tasksMappedContainer{
+      grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (max-width: 800px){
+  .tasksMappedContainer{
+      grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 520px){
+  .tasksMappedContainer{
+      grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .taskTitle{

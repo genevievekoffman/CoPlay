@@ -35,8 +35,6 @@ function Tasks(props) {
       </div>
         
       <div className = "tasksMappedContainer">
-         
-        <h4>
           {tasksLists.map((task, index) => {
             return (
               <Task
@@ -49,7 +47,6 @@ function Tasks(props) {
               />
             );
           })}
-        </h4>
       </div>
 
       <div className="AddTask" name="AddTask">
