@@ -10,29 +10,26 @@ function Task(props) {
   const [taskWasClicked, setTaskWasClicked] = useState(false);
   const [totalCompleted, setTotalCompleted] = useState(0) //getCompCount(db,groupID,task)
 
-  //let completion = task[2];  //amount of times completed
+  //const [completedCount, setCompletedCount] = useState(false)
+ 
   //const [taskCompleted, setTaskCompleted] = useState(completion);
+
   useEffect(()=>{ //when the component runs, it will invoke this function
     getCompCount(db, groupID, task[0], setTotalCompleted)
   }, [])
+
+  // if(completedCount){
+  //   getCompCount(db, groupID, task[0], setTotalCompleted)
+  //   setCompletedCount(false);
+  // }
+
   return (
     <div
       className="task"
       key={index}
        
     >
-      {/* <div>
-        {taskCompleted ? (
-          <div className="checkBox"> X </div>
-        ) : (
-          <button
-            className="checkBox"
-            onClick={() =>
-              completeTask(task[0], task[1], db, setTaskCompleted, groupID, setPointsDisplay)
-            }
-          ></button>
-        )}
-      </div> */}
+      
 
       <div className="aTask" onClick={() => {
         taskClicked(task, setTaskWasClicked);
@@ -43,23 +40,22 @@ function Task(props) {
             <img src={pinkarrow} className="pinkarrow" alt="pinkarrow" />
 
             <div className="subInfo">
-              {task[1]} points <br></br>
-              completed count: {totalCompleted}
-              
+              {task[1]} points <br></br> 
+                  completed count: {totalCompleted} 
                 <div>
                   {/* <div>completed by</div>
                   <div>@{task[3]}</div> */}
                   <div className="twoBtns">
                     <button
-                      className="taskResetBtn"
+                      className="taskCompleteBtn"
                       onClick={() => {
-                        completeTask(task[0], task[1], db, groupID, setTotalCompleted)
+                        completeTask(task[0], task[1], db, groupID, setPointsDisplay)
                       }}
                     >
                       Complete
                     </button>
                     <button
-                      className="taskResetBtn"
+                      className="taskCompleteBtn"
                       onClick={() => {
                         deleteTaskClicked(task[0], groupID, db, setTaskDeleted);
                       }}
@@ -80,7 +76,7 @@ function Task(props) {
 }
 
  
-function completeTask(task, points, db, groupID, setPointsDisplay, setTotalCompleted) {
+function completeTask(task, points, db, groupID, setPointsDisplay) {
  
  
     //get the amount of times completed from firebase and update it +1
@@ -91,8 +87,7 @@ function completeTask(task, points, db, groupID, setPointsDisplay, setTotalCompl
     .get()
     .then(taskDB => {
       let totalTimesCompleted = taskDB.get("completedCount");
-      let total = totalTimesCompleted+1;
-      setTotalCompleted(total);
+      let total = totalTimesCompleted+1; 
         db.collection("Groups")
         .doc(groupID)
         .collection("Tasks")
@@ -122,6 +117,7 @@ function completeTask(task, points, db, groupID, setPointsDisplay, setTotalCompl
     });
 
   setPointsDisplay(true)
+  //setCompletedCount(true) //updates the completed number
 }
 
 function taskClicked(task, setTaskWasClicked) {
@@ -159,3 +155,7 @@ function getCompCount(db, groupID, task, setTotalCompleted){
     }
   )
 }
+
+ 
+
+
