@@ -107,7 +107,7 @@ function App() {
     if (!homePage) {
       return (
         <div>
-          <button id="NavButton LogOut" onClick={() => checkLogin(setIsLoggedIn)}>Log Out</button>
+          <button id="NavButton LogOut" onClick={() => setLogout(true)}>Log Out</button>
           <Groups
             db={DB}
             setGroupID={setGroupID}
