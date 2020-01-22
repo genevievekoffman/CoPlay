@@ -5,6 +5,8 @@ import firebase from "firebase";
 import Rewards from "./view/pages/Rewards/Rewards";
 import Tasks from "./view/pages/Tasks/Tasks";
 import LeaderBoard from "./view/pages/LeaderBoard/LeaderBoard";
+// import { useSwipeable, Swipeable } from 'react-swipeable'
+
 
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
