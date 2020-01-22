@@ -10,9 +10,15 @@ function Rewards(props) {
   const [counter, setCounter] = useState(0);
   const { db, groupID } = props;
   const [points, setPoints] = useState(" ");
+  const [pointsDisplay, setPointsDisplay] = useState(false);
 
   if (counter === 0) {
     updateRewards(setRewardsList, setCounter, db, groupID);
+  }
+
+  if(pointsDisplay){
+    displayPoints(db, setPoints, groupID, setPointsDisplay)
+    setPointsDisplay(false);
   }
 
   return (
@@ -30,17 +36,17 @@ function Rewards(props) {
       <h4>
         {rewardsLists.map((reward, index) => {
 
-          return <Reward reward={reward} key={index} db={db} groupID={groupID} />;
+          return <Reward reward={reward} key={index} db={db} groupID={groupID} setPointsDisplay={setPointsDisplay} />;
         })}
       </h4>
 
-       
-      <div className = "pointsHolder">  
-          <img src={star} className="star" alt="star" className = "star" />
-          {displayPoints(db, setPoints, groupID)}
-          <div id="points" className="points"> {points} </div> 
+
+      <div className="pointsHolder">
+        <img src={star} className="star" alt="star" className="star" />
+        {displayPoints(db, setPoints, groupID)}
+        <div id="points" className="points"> {points} </div>
       </div>
-         
+
     </div>
   );
 }
@@ -157,7 +163,10 @@ function addReward(event, db, setRewardsList, setCounter, groupID) {
     alert("Must enter a title");
   } else if (points === "") {
     alert("Must enter points");
+  } else if (parseInt(points) <= 0) {
+    alert("Invalid Input. Stay Positive!")
   } else {
+
     points = parseInt(points);
     console.log(
       "The Reward " + title + " has been added with a reward of " + points
@@ -179,7 +188,7 @@ function addReward(event, db, setRewardsList, setCounter, groupID) {
   updateRewards(setRewardsList, setCounter, db, groupID);
 }
 
-function displayPoints(db, setPoints, groupID) {
+function displayPoints(db, setPoints, groupID, setPointsDisplay) {
   db.collection("Groups")
     .doc(groupID)
     .collection("Users")
@@ -187,8 +196,8 @@ function displayPoints(db, setPoints, groupID) {
     .get()
     .then(userDB => {
       let points = userDB.get("totalPoints");
-       
+
       setPoints(points);
-       
+
     });
 }

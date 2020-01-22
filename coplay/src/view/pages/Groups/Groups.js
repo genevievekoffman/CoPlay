@@ -27,7 +27,6 @@ function Groups(props) {
       />
 
       <header className="groupPageTitle">My Groups</header>
-
       <div className="groupButtons">
         {
           <AddGroupForm
@@ -35,16 +34,14 @@ function Groups(props) {
             setGroupsList={setGroupsList}
             setCounter={setCounter}
           />
-        }
-            
+        }       
         <JoinGroupForm
           db={db}
           setGroupsList={setGroupsList}
           setCounter={setCounter}
         />
       </div>
-
-
+      
       {circlesClicked === 1 ? ( //1->they clicked it (group ID's are shown)
         <div className="groupContainer">
           {groupsList.map((group, index) => {
@@ -153,7 +150,6 @@ function addGroup(event, db, setGroupsList, setCounter) {
 
 function AddGroupForm(props) {
   const { db, setGroupsList, setCounter } = props;
-  console.log("ADD GROUP TIME");
   return (
     <div>
       <button
@@ -222,7 +218,6 @@ function AddGroupForm(props) {
 }
 function JoinGroupForm(props) {
   const { db, setGroupsList, setCounter } = props;
-  console.log("JOIN GROUP TIME");
   return (
     <div>
       <button

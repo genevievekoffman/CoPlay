@@ -6,7 +6,7 @@ import pinkarrow from "../../Sketches/Pinkarrow.svg";
 
 function Task(props) {
   //passed an array of tasks
-  const { task, index, db, groupID, setTaskDeleted } = props;
+  const { task, index, db, groupID, setTaskDeleted, setPointsDisplay } = props;
   const [taskWasClicked, setTaskWasClicked] = useState(false);
   const [totalCompleted, setTotalCompleted] = useState(0) //getCompCount(db,groupID,task)
 
@@ -26,7 +26,7 @@ function Task(props) {
           <button
             className="checkBox"
             onClick={() =>
-              completeTask(task[0], task[1], db, setTaskCompleted, groupID)
+              completeTask(task[0], task[1], db, setTaskCompleted, groupID, setPointsDisplay)
             }
           ></button>
         )}
@@ -77,21 +77,9 @@ function Task(props) {
   );
 }
 
-function completeTask(task, points, db, groupID, setTotalCompleted) {
-  //should also update in Groups
-  db.collection("Users")
-    .doc(sessionStorage.getItem("user"))
-    .get()
-    .then(userDB => {
-      let totalPoints = userDB.get("totalPoints");
-      console.log(
-        "You have " +
-          (totalPoints + points) +
-          " points now that " +
-          points +
-          " has been added to your account"
-      );
-    });
+ 
+function completeTask(task, points, db, groupID, setPointsDisplay, setTotalCompleted) {
+ 
  
     //get the amount of times completed from firebase and update it +1
   db.collection("Groups")
@@ -130,6 +118,8 @@ function completeTask(task, points, db, groupID, setTotalCompleted) {
           totalPoints: total
         });
     });
+
+  setPointsDisplay(true)
 }
 
 function taskClicked(task, setTaskWasClicked) {
