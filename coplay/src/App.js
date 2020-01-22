@@ -42,6 +42,8 @@ function App() {
   const [groupID, setGroupID] = useState("");
   const [name, setName] = useState("");
   //useEffect(() => updateTasks(setTasksList), []);
+  const [logout, setLogout] = useState(false)
+
 
   //const [points, setPoints] = useState(false);
   const style = {
@@ -49,6 +51,10 @@ function App() {
       width: "400px"
     }
   };
+
+  if (logout) {
+    checkLogin(setIsLoggedIn, setLogout)
+  }
 
   if (!isLoggedIn) {
     if (!isRegistering) {
@@ -101,38 +107,39 @@ function App() {
     if (!homePage) {
       return (
         <div>
-        <button id = "NavButton LogOut" onClick={() => checkLogin(setIsLoggedIn)}>Log Out</button>
-        <Groups
-          db={DB}
-          setGroupID={setGroupID}
-          setHomePage={setHomePage}
-          setName={setName}
-        />
+          <button id="NavButton LogOut" onClick={() => checkLogin(setIsLoggedIn)}>Log Out</button>
+          <Groups
+            db={DB}
+            setGroupID={setGroupID}
+            setHomePage={setHomePage}
+            setName={setName}
+          />
         </div>
       );
     }
     return (
       <Router>
         <div>
-          <div id = "dock">
-              <button id = "NavButton GroupOut" onClick={() => setHomePage(false)}>Back to Groups</button>
-                    <div className="link" onSelect={() => null}>
-                      <Link to="/leaderboardpage">Leaderboard</Link>
-                    </div>
-                    <div className="link" eventKey="1">
-                      <Link to="/">Tasks</Link>
-                    </div>
-                    <div className="link">
-                      <Link to="/rewardspage">Rewards</Link>
-                    </div>
-                  <button id = "NavButton LogOut" onClick={() => checkLogin(setIsLoggedIn)}>Log Out</button>
-                  </div>
+          <div id="dock">
+            <button id="NavButton GroupOut" onClick={() => setHomePage(false)}>Back to Groups</button>
+            <div className="link" onSelect={() => null}>
+              <Link to="/leaderboardpage">Leaderboard</Link>
+            </div>
+            <div className="link" eventKey="1">
+              <Link to="/">Tasks</Link>
+            </div>
+            <div className="link">
+              <Link to="/rewardspage">Rewards</Link>
+            </div>
+            <div></div>
+          </div>
           <Switch>
             <Route exact path="/leaderboardpage">
-              <LeaderBoard db={DB} groupID={groupID} />
+
+              <LeaderBoard db={DB} groupID={groupID} setLogout={setLogout} />
             </Route>
             <Route exact path="/">
-              <Tasks db={DB} groupID={groupID} name = {name} />
+              <Tasks db={DB} groupID={groupID} name={name} />
             </Route>
             <Route path="/rewardspage">
               <Rewards db={DB} groupID={groupID} />
@@ -156,7 +163,7 @@ function checkUser(e, setIsLoggedIn) {
     alert("Must enter a password");
   } else {
     var docRef = DB.collection("Users").doc(username);
-    docRef.get().then(function(doc) {
+    docRef.get().then(function (doc) {
       if (doc.exists) {
         if (password === doc.data().password) {
           console.log("passwords match");
@@ -180,12 +187,14 @@ function newUser(setIsRegistering) {
   setIsRegistering(true);
 }
 
-function checkLogin(setIsLoggedIn){
+function checkLogin(setIsLoggedIn, setLogout) {
   console.log("running")
   sessionStorage.removeItem("loggedIn")
   sessionStorage.removeItem("user")
 
-  setTimeout(function() {
+  setLogout(false)
+
+  setTimeout(function () {
     setIsLoggedIn(false)
   }, 500)
 }
