@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import "./AddReward.css";
 
+import successpopup from "../../Sketches/Successpopup.svg";
 
 function Addreward(props){
     const {isShowing, setIsShowing, setEnoughPoints, enoughPoints} = props;
@@ -16,7 +17,7 @@ function Addreward(props){
                  
                 {enoughPoints ? (
                     <div className = "message">
-                        YOU HAVE ENOUGH POINTS 
+                        <img src={successpopup} className="successpopup" alt="successpopup" />
                          
                     </div>
                 ):(

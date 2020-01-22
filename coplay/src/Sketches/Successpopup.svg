@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="180px" height="254px" viewBox="0 0 180 254" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Popup</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-124.000000, -58.000000)">
+            <g id="Popup" transform="translate(119.000000, 58.000000)">
+                <g id="Group-5" transform="translate(42.000000, 0.000000)">
+                    <g id="Group-4" fill="#A7E59D">
+                        <circle id="Oval" cx="14.5" cy="26.5" r="9.5"></circle>
+                        <circle id="Oval" cx="24.5" cy="16.5" r="9.5"></circle>
+                        <circle id="Oval" cx="85.5" cy="63.5" r="9.5"></circle>
+                        <circle id="Oval" cx="86" cy="7" r="6"></circle>
+                        <circle id="Oval" cx="15.5" cy="7.5" r="7.5"></circle>
+                        <circle id="Oval" cx="96.5" cy="71.5" r="3.5"></circle>
+                        <circle id="Oval" cx="3" cy="3" r="3"></circle>
+                        <circle id="Oval" cx="102.5" cy="70.5" r="1.5"></circle>
+                        <circle id="Oval" cx="20.5" cy="66.5" r="1.5"></circle>
+                        <circle id="Oval" stroke="#000000" stroke-width="3" cx="53" cy="38" r="35.5"></circle>
+                    </g>
+                    <polyline id="Line-21" stroke="#000000" stroke-width="3" stroke-linecap="square" points="34 44.0770466 47.6246431 57.5127777 72.4818215 19"></polyline>
+                </g>
+                <g id="Group-6" transform="translate(0.000000, 94.000000)">
+                    <text id="Success" font-family="Avenir-Black, Avenir" font-size="25" font-weight="700" fill="#000000">
+                        <tspan x="50.35" y="25">Success</tspan>
+                    </text>
+                    <text id="Yay!-Reward-successf" font-family="Avenir-Book, Avenir" font-size="18" font-weight="normal" fill="#5D5D5D">
+                        <tspan x="47.314" y="66">Yay! Reward </tspan>
+                        <tspan x="4.807" y="91">successfully purchased</tspan>
+                    </text>
+                </g>
+                <rect id="Rectangle-2" stroke="#88CB7D" fill="#A7E59D" x="18.5" y="217.5" width="154" height="36" rx="18"></rect>
+                <text id="ok" font-family="Avenir-Medium, Avenir" font-size="18" font-weight="400" fill="#FFFFFF">
+                    <tspan x="85.983" y="241">ok</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
