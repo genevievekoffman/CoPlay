@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Confetti from "react-confetti";
 import "./Task.css";
 
 //component
@@ -12,6 +13,7 @@ function Task(props) {
   const [visibleComp, setVisibilityComp] = useState(false)
   const [visibleDel, setVisibilityDel] = useState(false)
   const [visibleInfo, setVisibilityInfo] = useState(false)
+  const [confetti, setConfetti] = useState(false)
 
   //let completion = task[2];  //amount of times completed
   //const [taskCompleted, setTaskCompleted] = useState(completion);
@@ -19,17 +21,17 @@ function Task(props) {
   if (visibleComp) {
     return (
       <div className="taskGrid" key={index}>
-          <div className="question">Did you really complete this task?</div>
-          <button className="confirm" onClick={() => {completeTask(task[0], task[1], db, groupID, setTotalCompleted, setPointsDisplay, setCompletedBy); setVisibilityComp(false)}}>Yes</button>
-          <button className="deny" onClick={() => setVisibilityComp(false)}>No</button>
+        <div className="question">Did you really complete this task?</div>
+        <button className="confirm" onClick={() => { completeTask(task[0], task[1], db, groupID, setTotalCompleted, setPointsDisplay, setCompletedBy, setVisibilityComp, setConfetti, confetti) }}>Yes</button>
+        <button className="deny" onClick={() => setVisibilityComp(false)}>No</button>
       </div>
     )
   } else if (visibleDel) {
     return (
       <div className="taskGrid" key={index}>
-          <div className="question">Are you sure you want to delete this task?</div>
-          <button className="confirm" onClick={() => {deleteTaskClicked(task[0], groupID, db, setTaskDeleted); setVisibilityDel(false)}}>Yes</button>
-          <button className="deny" onClick={() => setVisibilityDel(false)}>No</button>
+        <div className="question">Are you sure you want to delete this task?</div>
+        <button className="confirm" onClick={() => { deleteTaskClicked(task[0], groupID, db, setTaskDeleted); setVisibilityDel(false) }}>Yes</button>
+        <button className="deny" onClick={() => setVisibilityDel(false)}>No</button>
       </div>
     )
   } else if (visibleInfo) {
@@ -47,18 +49,17 @@ function Task(props) {
     return (
       <div className="taskGrid" key={index}>
         <div className="taskName">{task[0]}</div>
-        <button className="confirm" onClick={() => setVisibilityComp(true)}>Complete</button>
+        <button className="confirm" onClick={() => { setVisibilityComp(true); console.log(confetti) }}>Complete</button>
         <button className="deny" onClick={() => setVisibilityDel(true)}>Delete</button>
         <div className="info" onClick={() => setVisibilityInfo(true)}>i</div>
+        <ConfettiTime confetti={confetti} />
       </div>
     )
   }
 }
 
 
-function completeTask(task, points, db, groupID, setTotalCompleted, setPointsDisplay, setCompletedBy) {
-
-
+function completeTask(task, points, db, groupID, setTotalCompleted, setPointsDisplay, setCompletedBy, setVisibilityComp, setConfetti, confetti) {
   //get the amount of times completed from firebase and update it +1
   db.collection("Groups")
     .doc(groupID)
@@ -96,11 +97,13 @@ function completeTask(task, points, db, groupID, setTotalCompleted, setPointsDis
         .update({
           totalPoints: total
         });
-        setPointsDisplay(true);
+      setPointsDisplay(true);
     });
+
+  setVisibilityComp(false);
+  setConfetti(true);
+  setTimeout(() => { setConfetti(false) }, 5000)
 }
-
-
 
 function deleteTaskClicked(task, groupID, db, setTaskDeleted) {
   console.log("delete button clicked");
@@ -111,6 +114,16 @@ function deleteTaskClicked(task, groupID, db, setTaskDeleted) {
     .delete();
   setTaskDeleted(true)
   //window.location.reload()
+}
+
+function ConfettiTime(props) {
+  if (props.confetti == true) {
+    return (
+      <Confetti />
+    );
+  } else {
+    return (<div></div>);
+  }
 }
 
 export default Task;
