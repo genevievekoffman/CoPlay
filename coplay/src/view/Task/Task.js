@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import Confetti from "react-confetti";
 import "./Task.css";
@@ -15,7 +16,8 @@ function Task(props) {
   const [visibleInfo, setVisibilityInfo] = useState(false)
   const [confetti, setConfetti] = useState(false)
 
-  //let completion = task[2];  //amount of times completed
+  //const [completedCount, setCompletedCount] = useState(false)
+ 
   //const [taskCompleted, setTaskCompleted] = useState(completion);
 
   if (visibleComp) {
@@ -33,6 +35,9 @@ function Task(props) {
         <button className="confirm" onClick={() => { deleteTaskClicked(task[0], groupID, db, setTaskDeleted); setVisibilityDel(false) }}>Yes</button>
         <button className="deny" onClick={() => setVisibilityDel(false)}>No</button>
       </div>
+//   useEffect(()=>{ //when the component runs, it will invoke this function
+//     getCompCount(db, groupID, task[0], setTotalCompleted)
+//   }, [])
     )
   } else if (visibleInfo) {
     return (
@@ -57,6 +62,7 @@ function Task(props) {
     )
   }
 }
+
 
 
 function completeTask(task, points, db, groupID, setTotalCompleted, setPointsDisplay, setCompletedBy, setVisibilityComp, setConfetti, confetti) {
@@ -127,3 +133,16 @@ function ConfettiTime(props) {
 }
 
 export default Task;
+// function getCompCount(db, groupID, task, setTotalCompleted){
+//   db.collection("Groups")
+//   .doc(groupID)
+//   .collection("Tasks")
+//   .doc(task)
+//   .get()
+//   .then(taskDB => {
+//     let totalTimesCompleted = taskDB.get("completedCount"); 
+//     setTotalCompleted(totalTimesCompleted)
+
+//     }
+//   )
+// }

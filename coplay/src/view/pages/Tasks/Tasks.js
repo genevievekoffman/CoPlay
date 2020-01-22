@@ -3,7 +3,7 @@ import "./Tasks.css";
 import Task from "../../Task/Task";
 
 //component
-import plus from "../../../Sketches/Plus.svg"; 
+import plus from "../../../Sketches/Plus.svg";
 import star from "../../../Sketches/Star.svg";
 
 function Tasks(props) {
@@ -30,6 +30,7 @@ function Tasks(props) {
 
   return (
     <div className="App2">
+
       <div className = "taskTitle">
           {name}
       </div>
@@ -49,6 +50,7 @@ function Tasks(props) {
           })}
       </div>
 
+
       <div className="AddTask" name="AddTask">
         <AddTaskForm
           db={db}
@@ -59,21 +61,20 @@ function Tasks(props) {
         />
       </div>
 
-       
-       
-        <div className = "pointsHolder">  
-          <img src={star} className="star" alt="star" className = "star" />
-          {displayPoints(db, setPoints, groupID)}
-          <div id="points" className="points"> {points} </div> 
+      <div className="pointsHolder">
+        <img src={star} className="star" alt="star" className="star" />
+        {displayPoints(db, setPoints, groupID)}
+        <div id="points" className="points">
+          {" "}
+          {points}{" "}
         </div>
-    
-         
-     
+      </div>
     </div>
   );
 }
 
 export default Tasks;
+
 
 function updateTasks(setTasksList, setCounter, db, groupID, setTaskDeleted, setTaskAdded) {
   var list = new Array();
@@ -109,7 +110,6 @@ function AddTaskForm(props) {
 
   return (
     <div>
-       
       <button className="plusBtn" data-toggle="modal" data-target="#myModal">
         {<img src={plus} alt="plus" />}
       </button>
@@ -184,7 +184,9 @@ function addTask(event, db, setTasksList, setCounter, groupID, setTaskAdded) {
   } else if (points === "") {
     alert("Must enter points");
   } else if (parseInt(points) <= 0) {
-    alert("Invalid Input. Stay Positive!")
+    alert("Invalid Input. Stay Positive!");
+   } else if (isNaN(parseInt(points)) ){
+     alert("Invalid points entered")
   } else {
     points = parseInt(points);
     console.log(
@@ -216,8 +218,7 @@ function displayPoints(db, setPoints, groupID) {
     .get()
     .then(userDB => {
       let points = userDB.get("totalPoints");
-       
+
       setPoints(points);
-       
     });
 }
