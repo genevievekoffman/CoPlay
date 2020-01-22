@@ -13,27 +13,25 @@ function Reward(props) {
   const [showModal, setShowModal] = useState(false);
   const [failModal, setFailModal] = useState(false);
 
-  const revealSuccessTask = () => {
+
+  const revealSuccessTask = () =>  
     setShowModal(true);
-  };
-  const revealFailTask = () => {
-    setFailModal(true);
-  };
-  const handleCheckboxClick = () =>
+ 
+  const revealFailTask = () =>  
+    setFailModal(true);  
+
+  const handleCheckboxClick = () =>  
     deductPoints(reward[1], db, revealSuccessTask, revealFailTask, groupID, setPointsDisplay);
-
-  return (
-    <div className="reward" key={index} >
-      <div>
-        <button className="checkBox" onClick={handleCheckboxClick}></button>
-      </div>
-
-
+     
+  return ( 
+    <div className="reward" key={index} >  
+     
       <div className="rewardBig">
+        <button className="box" onClick={handleCheckboxClick}></button>
         {reward[0]} <br />
-      </div>
+      </div> 
       <div className="rewardSmall">
-        {reward[1]} <img src={star} className="star" alt="star" className="star" />
+        {reward[1]}   <img src={star} className="star" alt="star" className="star" />
       </div>
 
 
@@ -85,7 +83,6 @@ function deductPoints(points, db, revealSuccessTask, revealFailTask, groupID, se
 
 function PurchaseSuccess(props) {
   return (
-    <div>
       <Modal show={props.showSuccess} onHide={props.hideSuccess}>
         <Modal.Header closeButton>
           <Modal.Title>Success</Modal.Title>
@@ -97,12 +94,10 @@ function PurchaseSuccess(props) {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
   );
 }
 function PurchaseFail(props) {
   return (
-    <div>
       <Modal show={props.showFailure} onHide={props.hideFailure}>
         <Modal.Header closeButton>
           <Modal.Title>Failure</Modal.Title>
@@ -116,7 +111,6 @@ function PurchaseFail(props) {
           </Button>
         </Modal.Footer>
       </Modal>
-    </div>
   );
 }
 

@@ -1,36 +1,36 @@
 
 .reward{
     display: flex;
-    padding: 20px;
+    justify-content: space-between;
     margin: 0.5em;
     font-family: Avenir-Light;
     color: black; 
-    float:left;
-    
+    font-size:3.5vh;
+    padding-bottom:0.5em;
+    border-bottom: 1px solid #979797;
 }
 
-.checkBox{
+ 
+.box{
     border: 1px solid #979797;
     border-radius: 6px;
-    font-family: Avenir-Light;
-    font-size: 1.5vw;
+     
     color: #8C8787;
     text-align: center;
-    width: 2vw;
-    height: 2vw;
-    margin-right: 1em;
+     
+    height: 1em; 
 }
 
-.rewardBig{
-    font-size: 0.8em;
+.rewardBig{ 
+    margin-top:0.1em;
     float:left;
 }
 
-.rewardSmall{
-    font-size: 0.8em;
-    margin-left: 1em;
+.rewardSmall{ 
+    float:right;
 }
 
 .star{
     height: 2em;
 }
+ 
