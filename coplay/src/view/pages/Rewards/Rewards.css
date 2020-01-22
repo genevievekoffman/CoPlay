@@ -12,9 +12,6 @@
 
   .AddRewardPopUp{
     display: grid;
-    
-    
-    
   }
 
   .PopUp{
@@ -27,12 +24,7 @@
     
   }
 
-  
-
-  .AddReward{
-      margin-left:27vw;
-      
-  }
+ 
 
   .addRewardbtn{
     border-radius: 50%;
@@ -130,3 +122,11 @@
   display: flex;
   flex-direction: column;
 }
+
+.plusBtn{
+  position: absolute;
+  bottom: 1em;
+  right: 1em; 
+}
+ 
+ 

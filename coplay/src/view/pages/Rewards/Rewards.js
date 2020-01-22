@@ -3,6 +3,7 @@ import "./Rewards.css";
 import Reward from "../../Reward/Reward";
 
 import star from "../../../Sketches/Star.svg";
+import plus from "../../../Sketches/Plus.svg"; 
 
 
 function Rewards(props) {
@@ -22,8 +23,16 @@ function Rewards(props) {
   }
 
   return (
-    <div>
+    <div >
       <div className="rewardsTitle">Rewards</div>
+       
+
+      <div className = "rewardsContainer">
+        {rewardsLists.map((reward, index) => { 
+          return <Reward reward={reward} key={index} db={db} groupID={groupID} setPointsDisplay={setPointsDisplay} />;
+        })}
+      </div>
+
       <div className="AddReward" name="AddReward">
         <AddRewardForm
           db={db}
@@ -32,13 +41,6 @@ function Rewards(props) {
           groupID={groupID}
         />
       </div>
-
-      <div className = "rewardsContainer">
-        {rewardsLists.map((reward, index) => { 
-          return <Reward reward={reward} key={index} db={db} groupID={groupID} setPointsDisplay={setPointsDisplay} />;
-        })}
-      </div>
-
 
       <div className="pointsHolder">
         <img src={star} className="star" alt="star" className="star" />
@@ -79,15 +81,16 @@ function updateRewards(setRewardsList, setCounter, db, groupID) {
 function AddRewardForm(props) {
   const { db, setRewardsList, setCounter, groupID } = props;
   return (
-    <div className="container">
-      {" "}
-      <button
+    <div>  
+
+      <button 
+        className = "plusBtn"
         data-toggle="modal"
         data-target="#myModal"
         id="plus"
         className=".btn-default"
       >
-        +
+        {<img src={plus} alt="plus" />}
       </button>
       <div className="row">
         <div className="col-md-12">
