@@ -1,7 +1,7 @@
 .taskGrid{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(4, 30px);
+    grid-template-rows: repeat(4, 35px);
     column-gap: 10px;
 
     border: 1px solid black;
@@ -19,7 +19,7 @@
     padding: 0.3em;
 }
 
-.complete{
+.confirm{
     grid-column-start: 2;
     grid-column-end: span 2;
     grid-row-start: 3;
@@ -28,11 +28,11 @@
     background: #F04242;
     border-radius: 13.5px;
     font-family: Avenir-Light;
-    font-size: 2.8vh;
+    font-size: 18px;
     color: #000000;
 }
 
-.delete{
+.deny{
     grid-column-start: 4;
     grid-column-end: span 2;
     grid-row-start: 3;
@@ -41,7 +41,7 @@
     background: #F04242;
     border-radius: 13.5px;
     font-family: Avenir-Light;
-    font-size: 2.8vh;
+    font-size: 18px;
     color: #000000;
 }
 
@@ -65,20 +65,34 @@
     font-weight: 600;
 }
 
-.completePopUp{
+.question{
     grid-column-start: 1;
     grid-column-end: span 6;
-    grid-row-start: 1;
-    grid-row-end: span 4;
+    grid-row-start: 2;
+    grid-row-end: span 1;
 
-    visibility: hidden;
+    text-align: center;
 }
 
-.deletePopUp{
+.description{
     grid-column-start: 1;
     grid-column-end: span 6;
     grid-row-start: 1;
-    grid-row-end: span 4;
+    grid-row-end: span 1;
 
-    visibility: hidden;
+    text-align: center;
+}
+
+.back{
+    grid-column-start: 3;
+    grid-column-end: span 2;
+    grid-row-start: 3;
+    grid-row-end: span 1;
+
+    background: #F04242;
+    border-radius: 13.5px;
+    font-family: Avenir-Light;
+    font-size: 18px;
+    color: #000000;
+    margin-top: 0.3em;
 }

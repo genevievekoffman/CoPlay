@@ -17,7 +17,7 @@ function Rewards(props) {
   }
 
   if(pointsDisplay){
-    displayPoints(db, setPoints, groupID, setPointsDisplay)
+    displayPoints(db, setPoints, groupID)
     setPointsDisplay(false);
   }
 
@@ -188,7 +188,7 @@ function addReward(event, db, setRewardsList, setCounter, groupID) {
   updateRewards(setRewardsList, setCounter, db, groupID);
 }
 
-function displayPoints(db, setPoints, groupID, setPointsDisplay) {
+function displayPoints(db, setPoints, groupID) {
   db.collection("Groups")
     .doc(groupID)
     .collection("Users")
