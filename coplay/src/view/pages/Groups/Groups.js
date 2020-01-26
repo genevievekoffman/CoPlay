@@ -4,6 +4,7 @@ import Group from "../../Group/Group";
 
 //joining groups components
 import JoinGroup from "../../../Popups/JoinGroup/JoinGroup";
+import JoinGroupFails from "../../../Popups/JoinGroup/JoinGroupFails"
 
 
 //component
@@ -14,6 +15,7 @@ function Groups(props) {
   const [groupsList, setGroupsList] = useState([]);
   const [counter, setCounter] = useState(0);
   const [circlesClicked, setCirclesClicked] = useState(0);
+  const [isShowingFails, setIsShowingFails] = useState(false)
  
 
   //for joinGroup popup
@@ -49,7 +51,13 @@ function Groups(props) {
           setIsShowing={setIsShowing}
           setCounter = {setCounter}
           db = {db}
+          setIsShowingFails = {setIsShowingFails}
         />
+        <JoinGroupFails
+        isShowingFails = {isShowingFails}
+        setIsShowingFails={setIsShowingFails}
+        />
+        
         <div className = "join_div" onClick = { () => {setIsShowing(true)}}>
           Join
         </div>       

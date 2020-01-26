@@ -1,5 +1,4 @@
- 
- .background{
+.background{
     background: rgba(0,0,0,0.5); 
     position: fixed;
     width:100%;
@@ -8,17 +7,44 @@
     left:0; 
 }
 
-.message{ 
-    padding:2em;
+.msg{ 
     position: absolute;
     background: white;
     top: 50%;
     left:50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid black;
-    border-radius: 1em;
+    transform: translate(-50%, -50%); 
 }
 
 .joinGroupText{
-    border:1px solid black;
+    margin-left:1em;
+    border: 1px solid #838181;
+    width: 75%;
+}
+
+.join_btn{
+    margin-top: 2em;
+    margin-bottom:0.5em;
+    margin-right:0.5em;
+    float: right;
+    padding-left:1em;
+    padding-right:1em;
+    background: #65B6D2;
+    border-radius: 25px;
+    font-family: Avenir-Book;
+    font-size: 2.8vh;
+    color: #FFFFFF;
+}
+
+.joingrouptop{
+    left: 0;
+    right: 0;
+    margin-bottom: 1em;
+}
+
+h5{
+    margin-left:0.5em;
+    opacity: 0.85;
+    font-family: Avenir-Book;
+    font-size: 3vh;
+    color: #838181;
 }
