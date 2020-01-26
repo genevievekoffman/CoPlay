@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="155px" height="254px" viewBox="0 0 155 254" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61.2 (89653) - https://sketch.com -->
+    <title>Popup</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-85.000000, -29.000000)">
+            <g id="Popup" transform="translate(66.000000, 29.000000)">
+                <g id="Group-5" transform="translate(43.000000, 0.000000)">
+                    <g id="Group-4" fill="#F04242">
+                        <circle id="Oval" cx="14.5" cy="26.5" r="9.5"></circle>
+                        <circle id="Oval" cx="24.5" cy="16.5" r="9.5"></circle>
+                        <circle id="Oval" cx="85.5" cy="63.5" r="9.5"></circle>
+                        <circle id="Oval" cx="86" cy="7" r="6"></circle>
+                        <circle id="Oval" cx="15.5" cy="7.5" r="7.5"></circle>
+                        <circle id="Oval" cx="96.5" cy="71.5" r="3.5"></circle>
+                        <circle id="Oval" cx="3" cy="3" r="3"></circle>
+                        <circle id="Oval" cx="102.5" cy="70.5" r="1.5"></circle>
+                        <circle id="Oval" cx="20.5" cy="66.5" r="1.5"></circle>
+                        <circle id="Oval" stroke="#000000" stroke-width="3" cx="53" cy="38" r="35.5"></circle>
+                    </g>
+                    <line x1="40" y1="56.5127777" x2="64.8571783" y2="18" id="Line-21" stroke="#000000" stroke-width="3" stroke-linecap="square"></line>
+                    <line x1="40" y1="56.5127777" x2="64.8571783" y2="18" id="Line-21" stroke="#000000" stroke-width="3" stroke-linecap="square" transform="translate(52.428589, 37.256389) scale(-1, 1) translate(-52.428589, -37.256389) "></line>
+                </g>
+                <g id="Group-6" transform="translate(0.000000, 91.000000)">
+                    <text id="Uh-Oh!" font-family="Avenir-Medium, Avenir" font-size="25" font-weight="400" fill="#000000">
+                        <tspan x="55.45" y="25">Uh Oh!</tspan>
+                    </text>
+                    <text id="We-can’t-find-that-g" font-family="Avenir-Book, Avenir" font-size="18" font-weight="normal" fill="#5D5D5D">
+                        <tspan x="24.499" y="66">We can’t find that </tspan>
+                        <tspan x="25.822" y="91">group. Try again?</tspan>
+                    </text>
+                </g>
+                <rect id="Rectangle-2" stroke="#B92424" fill="#F04242" x="19.5" y="217.5" width="154" height="36" rx="18"></rect>
+                <text id="ok" font-family="Avenir-Medium, Avenir" font-size="18" font-weight="400" fill="#FFFFFF">
+                    <tspan x="86.983" y="241">ok</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

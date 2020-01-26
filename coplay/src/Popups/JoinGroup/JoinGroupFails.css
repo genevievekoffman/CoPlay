@@ -1,0 +1,16 @@
+.backgrnd{
+    background: rgba(0,0,0,0.5);  
+    position: fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0; 
+}
+
+.message{ 
+    position: absolute;
+    background: white;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%, -50%); 
+}

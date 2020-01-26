@@ -1,22 +1,28 @@
-import React,  {useState, useEffect} from "react";
+import React from "react";
 import "./JoinGroup.css";
 
+import joingrouptop from "../../Sketches/JoinGroupTop.svg";  
+
 function JoinGroup(props){ 
-    const {isShowing, setIsShowing, db, setCounter} = props;
+    const {isShowing, setIsShowing, db, setCounter, setIsShowingFails} = props; 
+    
     if (isShowing) {
         return(
             <div>
-                <div className = "background" onClick = {() => {setIsShowing(false)}}> </div>
+                <div className = "background" onClick = {() => {setIsShowing(false)}}>   
+                </div>
 
-                <div className = "message"> 
+                <div className = "msg"> 
                     <form onSubmit={event => { 
-                        joinGroup(event, db, setCounter); 
+                        joinGroup(event, db, setCounter, setIsShowingFails); 
                         setIsShowing(false)
                         }}>
-                        Group ID: 
+                        <img src={joingrouptop} className="joingrouptop" alt="joingrouptop" />
+                        <br></br>
+                        <h5>Group ID</h5>
                         <input type="text" name="groupID" className = "joinGroupText"></input>
                         <br></br>
-                        <input type="submit" value="Join"></input>
+                        <input type="submit" value="Join" className = "join_btn"></input>
                     </form>
                 </div> 
 
@@ -30,7 +36,7 @@ function JoinGroup(props){
  
 export default JoinGroup;
 
-async function joinGroup(e, db, setCounter) {
+async function joinGroup(e, db, setCounter, setIsShowingFails) {
     console.log("Join group called")
     e.preventDefault();
   
@@ -39,7 +45,7 @@ async function joinGroup(e, db, setCounter) {
     //go into Groups and see if groupID exists
   
     if (groupID === "") {
-      alert("Must enter a group ID");
+        setIsShowingFails(true)
     } else {
       const exists = await checkGroup(groupID, db);
       if (exists) {
@@ -58,7 +64,8 @@ async function joinGroup(e, db, setCounter) {
           });
         await updateInUsers(db, groupID);
       } else {
-        alert("Sorry this group does not exist");
+        setIsShowingFails(true)
+        //alert("Sorry this group does not exist");
       }
       console.log("information has been saved");
   
