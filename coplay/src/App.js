@@ -108,7 +108,20 @@ function App() {
     if (!homePage) {
       return (
         <div>
-          <button type="button" class="btn btn-info" id="logout" onClick={()=> setLogout(true)}>LogOut</button>
+          <div class="container">
+     
+     
+     <p>&nbsp; &nbsp;
+       
+         <span class=""></span> &nbsp; 
+       
+     </p>
+     <p>
+       <a href="#" class="btn btn-info btn-lg">
+         <span class="glyphicon glyphicon-off" onClick={() => setLogout(true)}></span> &nbsp;LogOut 
+       </a>
+     </p> 
+   </div>
           <Groups
             db={DB}
             setGroupID={setGroupID}
@@ -122,7 +135,20 @@ function App() {
       <Router>
         <div>
           <div id="dock">
-            <button type="button" class="btn btn-info" id="backtothegroup" onClick={() => setHomePage(false)}>Back to Groups</button>
+          <div class="backtothegroup">
+     
+          <p>&nbsp; &nbsp;
+    
+       
+         <span class=""></span> &nbsp; 
+       
+     </p>
+     <p>
+       <a href="#" class="btn btn-info btn-lg">
+         <span class="glyphicon glyphicon-repeat" onClick={() => setLogout(false)}></span> &nbsp;Back to the group 
+       </a>
+     </p> 
+   </div>
             <div className="link" onSelect={() => null}>
               <Link to="/leaderboardpage">Leaderboard</Link>
             </div>
