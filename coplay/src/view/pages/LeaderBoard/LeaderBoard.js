@@ -35,7 +35,7 @@ function updateLeaderBoard(setUsersLists, db, setCounter, groupID) {
       usersDB.forEach(userDB => {
         let userInfo = [];
         userInfo.push(userDB.get("username"));
-        userInfo.push(userDB.get("totalPoints"));
+        userInfo.push(userDB.get("leaderBoardPoints"));
 
         list.push(userInfo);
       });

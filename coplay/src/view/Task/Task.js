@@ -74,7 +74,7 @@ function completeTask(task, points, db, groupID, setTotalCompleted, setPointsDis
     .get()
     .then(taskDB => {
       let totalTimesCompleted = taskDB.get("completedCount");
-      let total = totalTimesCompleted + 1;
+      let total = totalTimesCompleted + 1; 
       setTotalCompleted(total);
       setCompletedBy(sessionStorage.getItem("user"));
       db.collection("Groups")
@@ -95,13 +95,16 @@ function completeTask(task, points, db, groupID, setTotalCompleted, setPointsDis
     .then(function (doc) {
       let total = doc.get("totalPoints") + points;
 
+      let totalLeaderBoardPoints = doc.get("leaderBoardPoints") + points;
+
 
       db.collection("Groups") //points are updated in Groups Collection for the specific user
         .doc(groupID)
         .collection("Users")
         .doc(sessionStorage.getItem("user"))
         .update({
-          totalPoints: total
+          totalPoints: total,
+          leaderBoardPoints: totalLeaderBoardPoints
         });
       setPointsDisplay(true);
     });
