@@ -111,3 +111,14 @@
     width: 7em;
     text-align: center;
 }
+
+.create_div{
+    background: #A7E59D;
+    border-radius: 22.5px;
+    font-family: Avenir-Book;
+    font-size: 3vh;
+    color: #000000;
+    height: 8vh;
+    width: 7em;
+    text-align: center;
+}
