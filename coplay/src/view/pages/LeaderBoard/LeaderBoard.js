@@ -13,7 +13,7 @@ function LeaderBoard(props) {
 
   return (
     <div>
-      <button className="logouttest" id="NavButton LogOut" onClick={() => setLogout(true)}>Log Out</button>
+      
       <div className="leaderBoardTitle">LeaderBoard</div>
       
       {usersLists.map((user, index) => {

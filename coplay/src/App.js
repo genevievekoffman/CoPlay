@@ -8,6 +8,7 @@ import LeaderBoard from "./view/pages/LeaderBoard/LeaderBoard";
 // import { useSwipeable, Swipeable } from 'react-swipeable'
 
 
+
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
 // import Form from 'react-bootstrap/Form';
@@ -107,7 +108,7 @@ function App() {
     if (!homePage) {
       return (
         <div>
-          <button id="NavButton LogOut" onClick={() => setLogout(true)}>Log Out</button>
+          <button type="button" class="btn btn-info" id="logout" onClick={()=> setLogout(true)}>LogOut</button>
           <Groups
             db={DB}
             setGroupID={setGroupID}
@@ -121,7 +122,7 @@ function App() {
       <Router>
         <div>
           <div id="dock">
-            <button id="NavButton GroupOut" onClick={() => setHomePage(false)}>Back to Groups</button>
+            <button type="button" class="btn btn-info" id="backtothegroup" onClick={() => setHomePage(false)}>Back to Groups</button>
             <div className="link" onSelect={() => null}>
               <Link to="/leaderboardpage">Leaderboard</Link>
             </div>
