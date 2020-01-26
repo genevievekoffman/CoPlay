@@ -136,7 +136,7 @@ function App() {
           <Switch>
             <Route exact path="/leaderboardpage">
 
-              <LeaderBoard db={DB} groupID={groupID} setLogout={setLogout} />
+              <LeaderBoard db={DB} groupID={groupID} />
             </Route>
             <Route exact path="/">
               <Tasks db={DB} groupID={groupID} name={name} />
