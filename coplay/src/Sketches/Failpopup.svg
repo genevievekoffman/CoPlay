@@ -19,7 +19,8 @@
                         <circle id="Oval" cx="20.5" cy="66.5" r="1.5"></circle>
                         <circle id="Oval" stroke="#000000" stroke-width="3" cx="53" cy="38" r="35.5"></circle>
                     </g>
-                    <polyline id="Line-21" stroke="#000000" stroke-width="3" stroke-linecap="square" points="34 44.0770466 47.6246431 57.5127777 72.4818215 19"></polyline>
+                    <line x1="40" y1="56.5127777" x2="64.8571783" y2="18" id="Line-21" stroke="#000000" stroke-width="3" stroke-linecap="square"></line>
+                    <line x1="40" y1="56.5127777" x2="64.8571783" y2="18" id="Line-21" stroke="#000000" stroke-width="3" stroke-linecap="square" transform="translate(52.428589, 37.256389) scale(-1, 1) translate(-52.428589, -37.256389) "></line>
                 </g>
                 <g id="Group-6" transform="translate(0.000000, 94.000000)">
                     <text id="Failure" font-family="Avenir-Black, Avenir" font-size="25" font-weight="700" fill="#000000">

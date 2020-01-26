@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import "./Reward.css";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import "./Reward.css"; 
 
 //component
 import star from "../../Sketches/Star.svg";

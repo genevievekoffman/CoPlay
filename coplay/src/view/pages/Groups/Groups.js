@@ -307,6 +307,7 @@ async function joinGroup(e, db, setGroupsList, setCounter) {
         .set({
           admin: false,
           totalPoints: 0,
+          leaderBoardPoints: 0,
           username: sessionStorage.getItem("user")
         });
       await updateInUsers(db, groupID);
