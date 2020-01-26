@@ -31,7 +31,7 @@ function Groups(props) {
   return (
     <div>
       <img
-        src={twoCircles}
+        src={"https://secure.webtoolhub.com/static/resources/icons/set113/8042a445.png"}
         className="twoCircles"
         alt="twoCircles"
         onClick={() => {

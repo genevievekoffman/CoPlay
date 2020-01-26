@@ -39,6 +39,7 @@
 .twoCircles{
     float: right;
     margin-right: 1em; 
+    width: 40px;
 }
 
 .join_div{
