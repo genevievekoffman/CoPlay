@@ -39,9 +39,6 @@
   width: 100vw;
   overflow-y: scroll;
   padding: 0.5em;
-  border: 1px solid rgba(128,128,128, 0.8);
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
 }
  
  
