@@ -5,17 +5,13 @@ import firebase from "firebase";
 import Rewards from "./view/pages/Rewards/Rewards";
 import Tasks from "./view/pages/Tasks/Tasks";
 import LeaderBoard from "./view/pages/LeaderBoard/LeaderBoard";
-// import { useSwipeable, Swipeable } from 'react-swipeable'
-
-// import Button from 'react-bootstrap/Button';
-// import Modal from 'react-bootstrap/Modal';
-// import Form from 'react-bootstrap/Form';
-
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import SignUp from "./view/pages/SignUp/SignUp";
 
 import Groups from "./view/pages/Groups/Groups";
+
+import CheckUser from "./Popups/CheckUser/CheckUser"
 
 //Firebase
 const firebaseConfig = {
@@ -45,7 +41,8 @@ function App() {
   //useEffect(() => updateTasks(setTasksList), []);
   const [logout, setLogout] = useState(false);
 
-  //const [points, setPoints] = useState(false);
+  const [isShowing, setIsShowing] = useState(false);
+
   const style = {
     "@media (min-width : 500px": {
       width: "400px"
@@ -60,6 +57,10 @@ function App() {
     if (!isRegistering) {
       return (
         <div className="App">
+          <CheckUser
+          isShowing = {isShowing}
+          setIsShowing = {setIsShowing}
+          />
           <div className="screen">
             <div className="top">
               <div className="pinkBubble"></div>
@@ -70,7 +71,7 @@ function App() {
                 type="text"
                 className="signInForm"
                 onSubmit={event => {
-                  checkUser(event, setIsLoggedIn);
+                  checkUser(event, setIsLoggedIn, setIsShowing);
                 }}
               >
                 <div className="userLabel">username</div>
@@ -159,16 +160,18 @@ function App() {
   }
 }
 
-function checkUser(e, setIsLoggedIn) {
+function checkUser(e, setIsLoggedIn, setIsShowing) {
   e.preventDefault();
 
   let username = e.target.elements.username.value;
   let password = e.target.elements.password.value;
 
   if (username === "") {
-    alert("Must enter a username");
+    setIsShowing(true)
+    //alert("Must enter a username");
   } else if (password === "") {
-    alert("Must enter a password");
+    setIsShowing(true)
+    //alert("Must enter a password");
   } else {
     var docRef = DB.collection("Users").doc(username);
     docRef.get().then(function(doc) {
@@ -183,8 +186,8 @@ function checkUser(e, setIsLoggedIn) {
           alert("Either the username or password is incorrect");
         }
       } else {
-        console.log("User does not exist");
-        alert("User does not exist");
+        setIsShowing(true)
+        //alert("User does not exist");
       }
     });
   }

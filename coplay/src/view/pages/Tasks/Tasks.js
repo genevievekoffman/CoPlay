@@ -16,40 +16,50 @@ function Tasks(props) {
   const [pointsDisplay, setPointsDisplay] = useState(false);
 
   if (counter === 0) {
-    updateTasks(setTasksList, setCounter, db, groupID, setTaskDeleted, setTaskAdded);
+    updateTasks(
+      setTasksList,
+      setCounter,
+      db,
+      groupID,
+      setTaskDeleted,
+      setTaskAdded
+    );
   }
 
   if (taskDeleted || taskAdded) {
-    updateTasks(setTasksList, setCounter, db, groupID, setTaskDeleted, setTaskAdded);
+    updateTasks(
+      setTasksList,
+      setCounter,
+      db,
+      groupID,
+      setTaskDeleted,
+      setTaskAdded
+    );
   }
 
-  if(pointsDisplay){
-    displayPoints(db, setPoints, groupID)
+  if (pointsDisplay) {
+    displayPoints(db, setPoints, groupID);
     setPointsDisplay(false);
   }
 
   return (
     <div className="App2">
+      <div className="taskTitle">{name}</div>
 
-      <div className = "taskTitle">
-          {name}
+      <div className="tasksMappedContainer">
+        {tasksLists.map((task, index) => {
+          return (
+            <Task
+              task={task}
+              key={index}
+              db={db}
+              groupID={groupID}
+              setTaskDeleted={setTaskDeleted}
+              setPointsDisplay={setPointsDisplay}
+            />
+          );
+        })}
       </div>
-        
-      <div className = "tasksMappedContainer">
-          {tasksLists.map((task, index) => {
-            return (
-              <Task
-                task={task}
-                key={index}
-                db={db}
-                groupID={groupID}
-                setTaskDeleted={setTaskDeleted}
-                setPointsDisplay={setPointsDisplay}
-              />
-            );
-          })}
-      </div>
-
 
       <div className="AddTask" name="AddTask">
         <AddTaskForm
@@ -75,8 +85,14 @@ function Tasks(props) {
 
 export default Tasks;
 
-
-function updateTasks(setTasksList, setCounter, db, groupID, setTaskDeleted, setTaskAdded) {
+function updateTasks(
+  setTasksList,
+  setCounter,
+  db,
+  groupID,
+  setTaskDeleted,
+  setTaskAdded
+) {
   var list = new Array();
   //let list = [];
 
@@ -92,7 +108,6 @@ function updateTasks(setTasksList, setCounter, db, groupID, setTaskDeleted, setT
         taskInfo.push(taskDB.get("points"));
         taskInfo.push(taskDB.get("completedCount"));
         taskInfo.push(taskDB.get("completedBy"));
-
 
         list.push(taskInfo);
       });
@@ -123,7 +138,14 @@ function AddTaskForm(props) {
                 </div>
                 <form
                   onSubmit={event => {
-                    addTask(event, db, setTasksList, setCounter, groupID, setTaskAdded);
+                    addTask(
+                      event,
+                      db,
+                      setTasksList,
+                      setCounter,
+                      groupID,
+                      setTaskAdded
+                    );
                   }}
                 >
                   <div className="modal-body">
@@ -178,38 +200,54 @@ function addTask(event, db, setTasksList, setCounter, groupID, setTaskAdded) {
   let title = event.target.elements.title.value;
   let points = event.target.elements.points.value;
   console.log(groupID);
+  var docRef = db
+    .collection("Groups")
+    .doc(groupID)
+    .collection("Tasks")
+    .doc(title);
 
-  if (title === "") {
-    alert("Must enter a title");
-  } else if (points === "") {
-    alert("Must enter points");
-  } else if (parseInt(points) <= 0) {
-    alert("Invalid Input. Stay Positive!");
-   } else if (isNaN(parseInt(points)) ){
-     alert("Invalid points entered")
-  } else {
-    points = parseInt(points);
-    console.log(
-      "The task " + title + " has been added with a reward of " + points
-    );
-    db.collection("Groups")
-      .doc(groupID)
-      .collection("Tasks")
-      .doc(title)
-      .set({
-        points: points, 
-        task: title,
-        time: Date.now(),
-        completedBy: null,
-        completedCount: 0
-      });
+
+  docRef.get().then(function(doc) {
+    if (doc.exists==false) {
+      if (title === "") {
+        alert("Must enter a title");
+      } else if (points === "") {
+        alert("Must enter points");
+      } else if (parseInt(points) <= 0) {
+        alert("Invalid Input. Stay Positive!");
+      } else if (isNaN(parseInt(points))) {
+        alert("Invalid points entered");
+      }
+      else {
+        points = parseInt(points);
+        console.log(
+          "The task " + title + " has been added with a reward of " + points
+        );
+        db.collection("Groups")
+          .doc(groupID)
+          .collection("Tasks")
+          .doc(title)
+          .set({
+            points: points,
+            task: title,
+            time: Date.now(),
+            completedBy: null,
+            completedCount: 0
+          });
+        }
+      } else {
+        alert("Task already exists");
+        
+      }
+      
+      
+    });
+    event.target.elements.title.value = "";
+    event.target.elements.points.value = "";
+    
+    setTaskAdded(true);
   }
-
-  event.target.elements.title.value = "";
-  event.target.elements.points.value = "";
-  setTaskAdded(true);
-}
-
+  
 function displayPoints(db, setPoints, groupID) {
   db.collection("Groups")
     .doc(groupID)

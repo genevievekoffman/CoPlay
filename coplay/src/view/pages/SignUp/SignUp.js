@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SignUp.css";
 
 //function to make sure no usernames are the same
 //each username has a name field-their real name
 
+import SignUpFail1 from "../../../Popups/SignUpFails/SignUpFail1"
+
 function SignUp(props) {
   const { db, setIsRegistering } = props;
+  const [isShowing, setIsShowing] = useState(false);
+  const [issue, setIssue] = useState(0); //number changes based on the issue
 
   return (
     <div className="screen">
+      <SignUpFail1
+        isShowing = {isShowing}
+        setIsShowing = {setIsShowing}
+        issue = {issue}
+         
+      />
+      
       <div className="top">
         <div className="blueBubbleRev">Sign Up</div>
         <div className="pinkBubbleRev"></div>
@@ -17,7 +28,7 @@ function SignUp(props) {
         <form
           className="createUserForm"
           onSubmit={event => {
-            registerUser(event, db, setIsRegistering);
+            registerUser(event, db, setIsRegistering, setIsShowing, setIssue);
           }}
         >
           <div className="userLabel">username</div>
@@ -42,24 +53,36 @@ function SignUp(props) {
 
 export default SignUp;
 
-async function registerUser(e, db, setIsRegistering) {
+async function registerUser(e, db, setIsRegistering, setIsShowing, setIssue) {
   e.preventDefault();
 
   let username = e.target.elements.username.value;
   let password = e.target.elements.password.value;
 
   if (username === "") {
-    alert("Must enter a username");
+    setIssue(2)
+    //alert("Must enter a username");
+    setIsShowing(true)
   } else if (password === "") {
-    alert("Must enter a password");
+    setIssue(2)
+    //alert("Must enter a password");
+    setIsShowing(true)
   } else if (username.length < 2) {
-    alert("Username is too short");
+    setIssue(0)
+    //alert("Username is too short");
+    setIsShowing(true)
   } else if (username.length > 12) {
-    alert("Username exceeds character limit");
+    setIssue(0)
+    //alert("Username exceeds character limit");
+    setIsShowing(true)
   } else if (password.length < 2) {
-    alert("Password is too short");
+    setIssue(0)
+    //alert("Password is too short");
+    setIsShowing(true)
   } else if (password.length > 12) {
-    alert("Password exceeds character limit");
+    setIssue(0)
+    //alert("Password exceeds character limit");
+    setIsShowing(true)
   } else {
     const available = await checkUsername(username, db);
     if (available) {
@@ -74,7 +97,9 @@ async function registerUser(e, db, setIsRegistering) {
 
       setIsRegistering(false);
     } else {
-      alert("Username already exists, choose a different username");
+      setIssue(1)
+      //alert("Username already exists, choose a different username");
+      setIsShowing(true)
     }
   }
 }
