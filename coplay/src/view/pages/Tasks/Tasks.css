@@ -15,7 +15,10 @@
 .plusBtn{
   position: absolute;
   bottom: 1em;
-  right: 1em; 
+  right: 1em;
+  border: none;
+  background-color: transparent;
+  outline: none;
 }
 
 .tasksMappedContainer{
