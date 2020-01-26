@@ -47,7 +47,6 @@ function Rewards(props) {
         {displayPoints(db, setPoints, groupID)}
         <div id="points" className="points"> {points} </div>
       </div>
-
     </div>
   );
 }
