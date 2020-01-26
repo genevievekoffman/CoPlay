@@ -3,14 +3,10 @@
 }
 
 #savee{
-    margin-right: 13vw;
+    margin-left: 25vw;
   }
   
-  #cancell{
-    margin-right: 5vw;
-  }
-
-   
+  
 
 .plusBtn{
   position: absolute;
@@ -47,6 +43,7 @@
   .tasksMappedContainer{
       grid-template-columns: repeat(1, 1fr);
   }
+
 }
 
 .taskTitle{
