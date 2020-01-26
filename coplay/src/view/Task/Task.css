@@ -89,7 +89,7 @@
     grid-row-start: 3;
     grid-row-end: span 1;
 
-    background: #F04242;
+    background: rgba(240, 66, 66, 0.6);
     border-radius: 13.5px;
     font-family: Avenir-Light;
     font-size: 18px;
