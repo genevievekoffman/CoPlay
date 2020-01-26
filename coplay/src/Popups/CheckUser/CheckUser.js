@@ -8,8 +8,8 @@ function CheckUser(props){
 
     if(isShowing){
         return(
-            <div>
-                <div className = "behind" onClick = {() => {setIsShowing(false)}}> 
+            <div onClick = {()=> {setIsShowing(false)}}>
+                <div className = "behind"> 
                  </div>
                 <div className = "mesg">
                     <img src={loginfail} className="loginfail" alt="loginfail" />

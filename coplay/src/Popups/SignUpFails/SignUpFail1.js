@@ -10,8 +10,8 @@ function SignUpFail1(props){
 
     if(isShowing){
         return(
-            <div>
-                <div className = "bkrnd" onClick = {()=>{setIsShowing(false)}}> </div>
+            <div onClick = {()=>{setIsShowing(false)}}>
+                <div className = "bkrnd"> </div>
                 <div className = "inMsg">
                     {issue === 1 ? (
                         <img src={signupfail} className="signupfail" alt="signupfail" />
