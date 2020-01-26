@@ -187,7 +187,7 @@ function AddGroupForm(props) {
                       className="m-1"
                     />
                   </div>
-                  <div className="modal-footer">
+                  <div className="modal-footer" id = "BottomButtons">
                     <button
                       className="btn btn-secondary btn-sm"
                       // id="cancell"
@@ -255,7 +255,15 @@ function JoinGroupForm(props) {
                       className="m-1"
                     />
                   </div>
-                  <div className="modal-footer">
+                  <div className="modal-footer" id = "BottomButtons">
+                    <button
+                      className="btn btn-secondary btn-sm"
+                      value="Cancel"
+                      type="button"
+                      data-dismiss="modal"
+                    >
+                      Cancel
+                    </button>
                     <button
                       className="btn btn-primary btn-sm"
                       type="submit"
@@ -264,14 +272,6 @@ function JoinGroupForm(props) {
                       data-target="#myModal2"
                     >
                       Join
-                    </button>
-                    <button
-                      className="btn btn-secondary btn-sm"
-                      value="Cancel"
-                      type="button"
-                      data-dismiss="modal"
-                    >
-                      Cancel
                     </button>
                   </div>
                 </form>

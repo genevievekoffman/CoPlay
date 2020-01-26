@@ -26,8 +26,14 @@ function SignUp(props) {
           <div className="passwordLabel">password</div>
           <input type="text" name="password" className="password"></input>
           <br></br>
-          <input type="submit" className="submitLogin" value="create account"></input>
-          <div className="backToLogin" onClick={() => setIsRegistering(false)}>back to login</div>
+          <input
+            type="submit"
+            className="submitLogin"
+            value="create account"
+          ></input>
+          <div className="backToLogin" onClick={() => setIsRegistering(false)}>
+            back to login
+          </div>
         </form>
       </div>
     </div>
@@ -46,6 +52,14 @@ async function registerUser(e, db, setIsRegistering) {
     alert("Must enter a username");
   } else if (password === "") {
     alert("Must enter a password");
+  } else if (username.length < 2) {
+    alert("Username is too short");
+  } else if (username.length > 12) {
+    alert("Username exceeds character limit");
+  } else if (password.length < 2) {
+    alert("Password is too short");
+  } else if (password.length > 12) {
+    alert("Password exceeds character limit");
   } else {
     const available = await checkUsername(username, db);
     if (available) {

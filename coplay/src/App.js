@@ -7,7 +7,6 @@ import Tasks from "./view/pages/Tasks/Tasks";
 import LeaderBoard from "./view/pages/LeaderBoard/LeaderBoard";
 // import { useSwipeable, Swipeable } from 'react-swipeable'
 
-
 // import Button from 'react-bootstrap/Button';
 // import Modal from 'react-bootstrap/Modal';
 // import Form from 'react-bootstrap/Form';
@@ -35,15 +34,16 @@ firebase.analytics();
 const DB = firebase.firestore();
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(sessionStorage.getItem("loggedIn"));
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    sessionStorage.getItem("loggedIn")
+  );
   const [isRegistering, setIsRegistering] = useState(false);
 
   const [homePage, setHomePage] = useState(false); //for changing to task page from groups
   const [groupID, setGroupID] = useState("");
   const [name, setName] = useState("");
   //useEffect(() => updateTasks(setTasksList), []);
-  const [logout, setLogout] = useState(false)
-
+  const [logout, setLogout] = useState(false);
 
   //const [points, setPoints] = useState(false);
   const style = {
@@ -53,7 +53,7 @@ function App() {
   };
 
   if (logout) {
-    checkLogin(setIsLoggedIn, setLogout)
+    checkLogin(setIsLoggedIn, setLogout);
   }
 
   if (!isLoggedIn) {
@@ -67,6 +67,7 @@ function App() {
             </div>
             <div className="bottom">
               <form
+                type="text"
                 className="signInForm"
                 onSubmit={event => {
                   checkUser(event, setIsLoggedIn);
@@ -76,7 +77,11 @@ function App() {
                 <input type="text" name="username" className="name"></input>
                 <br></br>
                 <div className="passwordLabel">password</div>
-                <input type="text" name="password" className="password"></input>
+                <input
+                  type="password"
+                  name="password"
+                  className="password"
+                ></input>
                 <br></br>
                 <input
                   type="submit"
@@ -107,7 +112,9 @@ function App() {
     if (!homePage) {
       return (
         <div>
-          <button id="NavButton LogOut" onClick={() => setLogout(true)}>Log Out</button>
+          <button id="NavButton LogOut" onClick={() => setLogout(true)}>
+            Log Out
+          </button>
           <Groups
             db={DB}
             setGroupID={setGroupID}
@@ -121,7 +128,9 @@ function App() {
       <Router>
         <div>
           <div id="dock">
-            <button id="NavButton GroupOut" onClick={() => setHomePage(false)}>Back to Groups</button>
+            <button id="NavButton GroupOut" onClick={() => setHomePage(false)}>
+              Back to Groups
+            </button>
             <div className="link" onSelect={() => null}>
               <Link to="/leaderboardpage">Leaderboard</Link>
             </div>
@@ -135,7 +144,6 @@ function App() {
           </div>
           <Switch>
             <Route exact path="/leaderboardpage">
-
               <LeaderBoard db={DB} groupID={groupID} />
             </Route>
             <Route exact path="/">
@@ -163,20 +171,20 @@ function checkUser(e, setIsLoggedIn) {
     alert("Must enter a password");
   } else {
     var docRef = DB.collection("Users").doc(username);
-    docRef.get().then(function (doc) {
+    docRef.get().then(function(doc) {
       if (doc.exists) {
         if (password === doc.data().password) {
           console.log("passwords match");
           sessionStorage.setItem("user", username); //saves to local storage
-          sessionStorage.setItem("loggedIn", true)
+          sessionStorage.setItem("loggedIn", true);
           setIsLoggedIn(sessionStorage.getItem("loggedIn"));
         } else {
           console.log("passwords dont match");
           alert("Either the username or password is incorrect");
         }
-      }else{
-        console.log("User does not exist")
-        alert("User does not exist")
+      } else {
+        console.log("User does not exist");
+        alert("User does not exist");
       }
     });
   }
@@ -191,15 +199,15 @@ function newUser(setIsRegistering) {
 }
 
 function checkLogin(setIsLoggedIn, setLogout) {
-  console.log("running")
-  sessionStorage.removeItem("loggedIn")
-  sessionStorage.removeItem("user")
+  console.log("running");
+  sessionStorage.removeItem("loggedIn");
+  sessionStorage.removeItem("user");
 
-  setLogout(false)
+  setLogout(false);
 
-  setTimeout(function () {
-    setIsLoggedIn(false)
-  }, 500)
+  setTimeout(function() {
+    setIsLoggedIn(false);
+  }, 500);
 }
 
 export default App;
