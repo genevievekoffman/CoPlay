@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./SignUp.css";
+import firebase from 'firebase';
+import 'firebase/auth'
 
 //function to make sure no usernames are the same
 //each username has a name field-their real name
@@ -29,10 +31,19 @@ function SignUp(props) {
           className="createUserForm"
           onSubmit={event => {
             registerUser(event, db, setIsRegistering, setIsShowing, setIssue);
+            let signinObj = {email:event.target.elements.username.value, password: event.target.elements.password.value};
+
+            firebase.auth().createUserWithEmailAndPassword(signinObj.email, signinObj.password).catch(function(error) {
+              // Handle Errors here.
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              console.error(error)
+              // ...
+            });
           }}
         >
           <div className="userLabel">username</div>
-          <input type="text" name="username" className="name"></input>
+          <input type="email" name="email" className="name"></input>
           <br></br>
           <div className="passwordLabel">password</div>
           <input type="text" name="password" className="password"></input>

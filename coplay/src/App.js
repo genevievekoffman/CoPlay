@@ -11,7 +11,7 @@ import SignUp from "./view/pages/SignUp/SignUp";
 
 import Groups from "./view/pages/Groups/Groups";
 
-import CheckUser from "./Popups/CheckUser/CheckUser"
+import CheckUser from "./Popups/CheckUser/CheckUser";
 
 //Firebase
 const firebaseConfig = {
@@ -28,6 +28,14 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 const DB = firebase.firestore();
+
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log(user);
+  } else {
+    console.log("user signed out");
+  }
+});
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -57,10 +65,7 @@ function App() {
     if (!isRegistering) {
       return (
         <div className="App">
-          <CheckUser
-          isShowing = {isShowing}
-          setIsShowing = {setIsShowing}
-          />
+          <CheckUser isShowing={isShowing} setIsShowing={setIsShowing} />
           <div className="screen">
             <div className="top">
               <div className="pinkBubble"></div>
@@ -167,10 +172,10 @@ function checkUser(e, setIsLoggedIn, setIsShowing) {
   let password = e.target.elements.password.value;
 
   if (username === "") {
-    setIsShowing(true)
+    setIsShowing(true);
     //alert("Must enter a username");
   } else if (password === "") {
-    setIsShowing(true)
+    setIsShowing(true);
     //alert("Must enter a password");
   } else {
     var docRef = DB.collection("Users").doc(username);
@@ -186,7 +191,7 @@ function checkUser(e, setIsLoggedIn, setIsShowing) {
           alert("Either the username or password is incorrect");
         }
       } else {
-        setIsShowing(true)
+        setIsShowing(true);
         //alert("User does not exist");
       }
     });
