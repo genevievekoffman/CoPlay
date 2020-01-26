@@ -23,7 +23,7 @@
   font-size: 6vh;
   line-height: 275px;
   font-family: Avenir-Light;
-   
+  z-index: 2;
 }
 
 .pinkBubbleRev{
