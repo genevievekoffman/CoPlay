@@ -34,12 +34,14 @@
     .groupContainer{
         grid-template-columns: repeat(1, 1fr);
     }
+    
 }
 
 .twoCircles{
     float: right;
     margin-right: 1em; 
     width: 40px;
+    cursor: pointer;
 }
 
 .join_div{
@@ -52,6 +54,8 @@
     width: 7em;
     text-align: center;
     line-height: 8vh;
+    cursor: pointer;
+    
 }
 
 .create_div{
@@ -64,4 +68,6 @@
     width: 7em;
     text-align: center;
     line-height: 8vh;
+    cursor:pointer;
+    
 }
