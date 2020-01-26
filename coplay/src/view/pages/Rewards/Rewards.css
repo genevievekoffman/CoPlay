@@ -1,5 +1,7 @@
 .AddReward{
-      margin-left:27vw;
+  position: absolute;
+  bottom: 1em;
+  right: 1em; 
 }
 
 #Title{
@@ -31,12 +33,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-}
-
-.plusBtn{
-  position: absolute;
-  bottom: 1em;
-  right: 1em; 
 }
  
  
