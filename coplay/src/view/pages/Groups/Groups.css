@@ -36,73 +36,13 @@
     }
 }
 
-.joinGroupForm{ 
-    justify-content: center;
-    display: flex;
-    flex-direction: column
-}
-
-.joinBtn{
-    opacity: 0.6;
-    background: #F04242;
-    border-radius: 22.5px;
-    font-family: Avenir-Book;
-    font-size: 3vh;
-    color: #000000;
-    height: 8vh;
-    width: 7em;
-}
-
-.createBtn{
-    background: #A7E59D;
-    border-radius: 22.5px;
-    font-family: Avenir-Book;
-    font-size: 3vh;
-    color: #000000;
-    height: 8vh;
-    width: 7em;
-    
-}
-
-.joinScreen{
-    border: 3px solid black;
-    background: white;
-    height: 50vh;
-    width: 15em;
-    position: absolute; 
-    border-radius: 8px;
-    margin: 0 auto; 
-     
-    
-}
-
-.groupID{
-    border: 1px solid black;
-    height: 5vh;
-    width: 10em;
-    border-radius: 9px;
-}
-
-#Code{
-    width:100%;
-    border: 1px solid rgb(90, 90, 219);
-    padding: 4%;
-    height: fit-content;
-}
-
 .twoCircles{
     float: right;
     margin-right: 1em; 
 }
- 
-
-#BottomButtons{
-    justify-content: start ;
-}
 
 .join_div{
     color:black;
-    opacity: 0.6;
     background: #F04242;
     border-radius: 22.5px;
     font-family: Avenir-Book;
@@ -110,6 +50,7 @@
     height: 8vh;
     width: 7em;
     text-align: center;
+    line-height: 8vh;
 }
 
 .create_div{
@@ -121,4 +62,5 @@
     height: 8vh;
     width: 7em;
     text-align: center;
+    line-height: 8vh;
 }

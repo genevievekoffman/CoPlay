@@ -86,8 +86,6 @@ function AddRewardForm(props) {
         className = "plusBtn"
         data-toggle="modal"
         data-target="#myModal"
-        id="plus"
-        className=".btn-default"
       >
         {<img src={plus} alt="plus" />}
       </button>

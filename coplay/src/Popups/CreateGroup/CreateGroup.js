@@ -20,7 +20,7 @@ function CreateGroup(props){
                         <h5>Group Title</h5>
                         <input type="text" name="title" className = "createGroupText"></input>
                         <br></br>
-                        <input type="submit" value="Join" className = "create_btn"></input>
+                        <input type="submit" value="Add" className = "create_btn"></input>
                     </form>
                 </div>
 

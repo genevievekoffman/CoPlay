@@ -41,15 +41,6 @@ function Groups(props) {
 
       <header className="groupPageTitle">My Groups</header>
       <div className="groupButtons">
-        {/* {
-          <AddGroupForm
-            db={db}
-            setGroupsList={setGroupsList}
-            setCounter={setCounter} 
-             
-          />
-        } */}
-
         <CreateGroup
           isShowing2 = {isShowing2}
           setIsShowing2 = {setIsShowing2}
