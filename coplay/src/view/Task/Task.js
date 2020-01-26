@@ -27,6 +27,7 @@ function Task(props) {
         <button className="confirm" onClick={() => { completeTask(task[0], task[1], db, groupID, setTotalCompleted, setPointsDisplay, setCompletedBy, setVisibilityComp, setConfetti, confetti) }}>Yes</button>
         <button className="deny" onClick={() => setVisibilityComp(false)}>No</button>
       </div>
+      
     )
   } else if (visibleDel) {
     return (

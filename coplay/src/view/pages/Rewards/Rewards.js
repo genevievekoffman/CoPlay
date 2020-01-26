@@ -83,13 +83,7 @@ function AddRewardForm(props) {
   return (
     <div>  
 
-      <button 
-        className = "plusBtn"
-        data-toggle="modal"
-        data-target="#myModal"
-        id="plus"
-        className=".btn-default"
-      >
+<button className="plusBtn" data-toggle="modal" data-target="#myModal">
         {<img src={plus} alt="plus" />}
       </button>
       <div className="row">
