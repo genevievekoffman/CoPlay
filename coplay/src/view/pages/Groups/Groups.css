@@ -99,3 +99,15 @@
 #BottomButtons{
     justify-content: start ;
 }
+
+.join_div{
+    color:black;
+    opacity: 0.6;
+    background: #F04242;
+    border-radius: 22.5px;
+    font-family: Avenir-Book;
+    font-size: 3vh;
+    height: 8vh;
+    width: 7em;
+    text-align: center;
+}
