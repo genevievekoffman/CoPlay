@@ -95,7 +95,7 @@ function fetchMyGroups(db, setGroupsList, setCounter) {
         groupInfo.push(groupDB.get("ID"));
         list.push(groupInfo);
       });
-      //console.log("GROUPS LIST: " + list) //[ ["name", "ID"] , index]
+       
       setGroupsList(list);
       setCounter(1);
     });
@@ -120,7 +120,8 @@ function addUserToGroup(db, username, groupID) {
     .set({
       username: username,
       admin: true,
-      totalPoints: 0
+      totalPoints: 0,
+      leaderBoardPoints: 0 //this is the total points the user has ever earned(can only increase)
     });
 }
 
