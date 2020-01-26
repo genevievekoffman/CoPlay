@@ -166,8 +166,9 @@
 }
 
 #dock{
-display:flex;
-flex-direction: row;
-flex-wrap: nowrap;
-justify-content: space-between;
+  display:flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  background: rgba(220, 112, 112, 0.5)
 }

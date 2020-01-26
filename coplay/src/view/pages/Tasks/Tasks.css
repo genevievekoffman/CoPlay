@@ -51,8 +51,10 @@
   font-size: 5.5vh;
   color: #000000;
   text-align: center;
-  margin-top: 0.5em;
-  padding-bottom:0.5em;
+  padding-top: 0.5em;
+  padding-bottom:0.4em;
+  background: rgba(220, 112, 112, 0.5);
+  margin-bottom: 0.1em;
 }
 
 .pointsHolder{
