@@ -43,7 +43,6 @@ function Task(props) {
     return (
       <div className="taskGrid" key={index}>
         <div className="description">
-          Points: {task[1]} <br></br>
           Recently Completed by: {completedBy} <br></br>
           Times Completed: {totalCompleted}
         </div>
@@ -57,6 +56,7 @@ function Task(props) {
         <button className="confirm" onClick={() => { setVisibilityComp(true); console.log(confetti) }}>Complete</button>
         <button className="deny" onClick={() => setVisibilityDel(true)}>Delete</button>
         <div className="info" onClick={() => setVisibilityInfo(true)}>i</div>
+        <div className="pnts">{task[1]}</div>
         <ConfettiTime confetti={confetti} />
       </div>
     )
