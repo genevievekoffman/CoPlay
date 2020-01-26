@@ -174,6 +174,9 @@ function checkUser(e, setIsLoggedIn) {
           console.log("passwords dont match");
           alert("Either the username or password is incorrect");
         }
+      }else{
+        console.log("User does not exist")
+        alert("User does not exist")
       }
     });
   }
