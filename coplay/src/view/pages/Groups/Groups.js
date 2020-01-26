@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import "./Groups.css";
 import Group from "../../Group/Group";
 
+//joining groups components
+import JoinGroup from "../../../Popups/JoinGroup/JoinGroup";
+
 
 //component
 import twoCircles from "../../../Sketches/Twocircles.svg";
@@ -11,6 +14,10 @@ function Groups(props) {
   const [groupsList, setGroupsList] = useState([]);
   const [counter, setCounter] = useState(0);
   const [circlesClicked, setCirclesClicked] = useState(0);
+ 
+
+  //for joinGroup popup
+  const [isShowing, setIsShowing] = useState(false);
 
   if (counter < 1) {
     fetchMyGroups(db, setGroupsList, setCounter);
@@ -33,14 +40,25 @@ function Groups(props) {
           <AddGroupForm
             db={db}
             setGroupsList={setGroupsList}
-            setCounter={setCounter}
+            setCounter={setCounter} 
+             
           />
-        }       
-        <JoinGroupForm
+        }
+        <JoinGroup
+          isShowing={isShowing} 
+          setIsShowing={setIsShowing}
+          setCounter = {setCounter}
+          db = {db}
+        />
+        <div className = "join_div" onClick = { () => {setIsShowing(true)}}>
+          Join
+        </div>       
+         
+        {/* <JoinGroupForm
           db={db}
           setGroupsList={setGroupsList}
           setCounter={setCounter}
-        />
+        /> */}
       </div>
       
       {circlesClicked === 1 ? ( //1->they clicked it (group ID's are shown)
@@ -81,6 +99,8 @@ function Groups(props) {
 
 export default Groups;
 
+ 
+
 function fetchMyGroups(db, setGroupsList, setCounter) {
   let list = [];
 
@@ -97,7 +117,7 @@ function fetchMyGroups(db, setGroupsList, setCounter) {
       });
        
       setGroupsList(list);
-      setCounter(1);
+      setCounter(1); 
     });
 }
 
@@ -218,143 +238,7 @@ function AddGroupForm(props) {
     </div>
   );
 }
-function JoinGroupForm(props) {
-  const { db, setGroupsList, setCounter } = props;
-  return (
-    <div>
-      <button
-        className="joinBtn"
-        data-toggle="modal"
-        data-target="#myModal2"
-        id="join"
-        // className="addGroupButton"
-      >
-        Join
-      </button>
 
-      <div className="row">
-        <div className="col-md-12">
-          <div className="modal fade" id="myModal2">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h3>Join a Group</h3>
-                </div>
-                <form
-                  onSubmit={event => {
-                    console.log("Join Clicked")
-                     joinGroup(event, db, setGroupsList, setCounter);
-                  }}
-                >
-                  <div className="modal-body">
-                    <input
-                      type="text"
-                      name="groupID"
-                      placeholder="Group ID"
-                      id="Code"
-                      className="m-1"
-                    />
-                  </div>
-                  <div className="modal-footer" id = "BottomButtons">
-                    <button
-                      className="btn btn-secondary btn-sm"
-                      value="Cancel"
-                      type="button"
-                      data-dismiss="modal"
-                    >
-                      Cancel
-                    </button>
-                    <button
-                      className="btn btn-primary btn-sm"
-                      type="submit"
-                      value="Save"
-                      data-toggle="modal"
-                      data-target="#myModal2"
-                    >
-                      Join
-                    </button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-async function joinGroup(e, db, setGroupsList, setCounter) {
-  console.log("Join group called")
-  e.preventDefault();
-
-  let groupID = e.target.elements.groupID.value;
-
-  //go into Groups and see if groupID exists
-
-  if (groupID === "") {
-    alert("Must enter a group ID");
-  } else {
-    const exists = await checkGroup(groupID, db);
-    if (exists) {
-      //if the group exists
-
-      await db //adds the current user into the Groups collection
-        .collection("Groups")
-        .doc(groupID)
-        .collection("Users")
-        .doc(sessionStorage.getItem("user"))
-        .set({
-          admin: false,
-          totalPoints: 0,
-          leaderBoardPoints: 0,
-          username: sessionStorage.getItem("user")
-        });
-      await updateInUsers(db, groupID);
-    } else {
-      alert("Sorry this group does not exist");
-    }
-    console.log("information has been saved");
-
-    fetchMyGroups(db, setGroupsList, setCounter);
-  }
-}
-
-async function updateInUsers(db, groupID) {
-  // console.log(getName(groupID));
-  const name = await getName(groupID, db);
-  db.collection("Users")
-    .doc(sessionStorage.getItem("user"))
-    .collection("Groups")
-    .doc(groupID)
-    .set({
-      ID: groupID,
-      name
-    });
-}
-async function checkGroup(groupID, db) {
-  //returns true if the groupID exists
-  let exists = false;
-  const IDgroupsDB = await db.collection("Groups").get();
-  IDgroupsDB.forEach(groupDB => {
-    if (groupDB.get("ID") === groupID) {
-      exists = true;
-    }
-  });
-  return exists;
-}
-
-async function getName(groupID, db) {
-  //returns the name of groupID
-  let name;
-  const IDgroupsDB = await db.collection("Groups").get();
-  IDgroupsDB.forEach(groupDB => {
-    if (groupDB.get("ID") === groupID) {
-      name = groupDB.get("name");
-    }
-  });
-  return name;
-}
 
 function twoCirclesClicked(setCirclesClicked, circlesClicked) {
   if (circlesClicked === 0){
